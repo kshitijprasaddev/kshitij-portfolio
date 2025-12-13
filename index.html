@@ -3,227 +3,611 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Kshitij Prasad - Robotics Developer</title>
+  <title>Kshitij Prasad | Robotics & Autonomous Systems Engineer</title>
+  <meta name="description" content="Robotics engineer specializing in autonomous vehicles, reinforcement learning, and drone systems. Currently pursuing bachelor's at TH Ingolstadt." />
   <!-- CSS -->
   <link rel="stylesheet" href="css/style.css" />
   <!-- AOS Animation CSS -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet"/>
   <!-- Google Fonts -->
-  <link
-    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap"
-    rel="stylesheet"
-  />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
 
   <!-- Header & Navigation -->
   <header id="home">
     <nav class="navbar">
-      <div class="logo">Kshitij Prasad</div>
+      <div class="logo">
+        <span class="logo-icon">K</span>
+        <span class="logo-text">Kshitij Prasad</span>
+      </div>
       <ul class="nav-links">
-        <li><a href="#home" data-aos="fade-down">Home</a></li>
-        <li><a href="#about" data-aos="fade-down">About</a></li>
-        <li><a href="#cv" data-aos="fade-down">CV</a></li>
-        <li><a href="#projects" data-aos="fade-down">Projects</a></li>
-        <li><a href="#contact" data-aos="fade-down">Contact</a></li>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
       </ul>
       <div class="menu-toggle">
         <span></span><span></span><span></span>
       </div>
     </nav>
     <div class="hero">
-      <div class="hero-overlay" data-aos="fade-in"></div>
-      <!-- Floating shapes -->
-      <div class="floating-shapes">
-        <span class="shape"></span>
-        <span class="shape"></span>
-        <span class="shape"></span>
-        <span class="shape"></span>
-        <span class="shape"></span>
+      <canvas id="neural-network" class="neural-bg"></canvas>
+      <div class="hero-content" data-aos="fade-up" data-aos-duration="1000">
+        <div class="hero-intro">
+          <div class="hero-text">
+            <p class="hero-greeting">Hi, I'm</p>
+            <h1>Kshitij Prasad</h1>
+            <p class="hero-subtitle">Robotics engineer building autonomous systems that work in the real world. Currently finishing my thesis on RL-based drone landing.</p>
+            <div class="hero-stats">
+              <div class="stat-item">
+                <span class="stat-number">5+</span>
+                <span class="stat-label">Projects</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-number">3+</span>
+                <span class="stat-label">Years</span>
+              </div>
+            </div>
+          </div>
+          <div class="hero-headshot">
+            <img src="media/headshot.jpg" alt="Kshitij Prasad" />
+          </div>
+        </div>
+        <div class="hero-cta">
+          <a href="#projects" class="btn primary-btn">View Projects</a>
+          <a href="CV.pdf" target="_blank" class="btn secondary-btn">Download CV</a>
+        </div>
       </div>
-      <h1 id="typewriter"></h1>
-      <p>Robotics Development | Autonomous Vehicles</p>
-      <!-- Gradient button with simpler styling -->
-      <a href="#projects" class="btn fancy-btn" data-aos="zoom-in">View My Work</a>
+      <div class="scroll-indicator">
+        <span>Scroll to explore</span>
+        <i data-lucide="chevrons-down"></i>
+      </div>
     </div>
   </header>
-
-  <!-- Wave Divider -->
-  <svg class="wave-divider" viewBox="0 0 1440 120" preserveAspectRatio="none">
-    <path d="M0,120 C480,0 960,180 1440,60 L1440,240 L0,240 Z"></path>
-  </svg>
 
   <!-- Main Content -->
   <main>
     <!-- About Section -->
-    <section id="about" data-aos="fade-up" class="section-wave">
+    <section id="about" data-aos="fade-up" class="section">
       <div class="container">
-        <h2>About Me</h2>
-        <p>
-          I'm currently a bachelor’s student in Autonomous Vehicle Engineering at TH Ingolstadt.
-          I’m diving into robotics and self-driving cars—experimenting with hardware, writing code, 
-          and solving real-world challenges. Every project is a learning curve, and I'm excited to push 
-          my skills further each day.
-        </p>
-      </div>
-    </section>
-
-    <!-- Wave Divider -->
-    <svg class="wave-divider" viewBox="0 0 1440 120" preserveAspectRatio="none">
-      <path d="M0,120 C480,0 960,180 1440,60 L1440,240 L0,240 Z"></path>
-    </svg>
-
-    <!-- CV Section -->
-    <section id="cv" data-aos="fade-up" class="section-wave">
-      <div class="container">
-        <h2>Curriculum Vitae</h2>
-        <div class="cv-download">
-          <a href="CV.pdf" target="_blank" class="btn fancy-btn">Full Resume</a>
+        <div class="section-header">
+          <span class="section-tag">Who I Am</span>
+          <h2>About Me</h2>
+        </div>
+        <div class="about-layout">
+          <div class="about-main">
+            <p class="about-lead">
+              Final-year <strong>Autonomous Vehicle Engineering</strong> student at TH Ingolstadt with a passion for building intelligent systems that operate in the real world.
+            </p>
+            <p>
+              My work spans from low-level robotics (ROS2, PX4, sensor fusion) to high-level AI (reinforcement learning for autonomous navigation). I believe the future of mobility lies in intelligent orchestration of autonomous fleets, and I'm actively contributing to that vision through research and hands-on projects.
+            </p>
+            <p>
+              Currently completing my <strong>Bachelor's Thesis</strong> on reinforcement learning for precision drone landing on moving platforms, combining PPO/SAC algorithms with safety-critical control systems.
+            </p>
+          </div>
+          <div class="about-sidebar">
+            <div class="info-card">
+              <div class="info-card-header">
+                <i data-lucide="graduation-cap"></i>
+                <span>Education</span>
+              </div>
+              <div class="info-card-body">
+                <strong>B.Eng. Autonomous Vehicle Engineering</strong>
+                <span>TH Ingolstadt</span>
+                <span class="info-date">Expected March 2026</span>
+              </div>
+            </div>
+            <div class="info-card">
+              <div class="info-card-header">
+                <i data-lucide="map-pin"></i>
+                <span>Location</span>
+              </div>
+              <div class="info-card-body">
+                <strong>Ingolstadt, Germany</strong>
+                <span>Open to opportunities across Europe</span>
+              </div>
+            </div>
+            <div class="info-card">
+              <div class="info-card-header">
+                <i data-lucide="briefcase"></i>
+                <span>Focus</span>
+              </div>
+              <div class="info-card-body">
+                <strong>Robotics & Autonomous Systems</strong>
+                <span>RL, ROS2, Computer Vision</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- Wave Divider -->
-    <svg class="wave-divider" viewBox="0 0 1440 120" preserveAspectRatio="none">
-      <path d="M0,120 C480,0 960,180 1440,60 L1440,240 L0,240 Z"></path>
-    </svg>
+    <!-- Skills Section -->
+    <section id="skills" data-aos="fade-up" class="section section-alt">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Technical Expertise</span>
+          <h2>Skills & Technologies</h2>
+        </div>
+        <div class="skills-grid">
+          <div class="skill-category" data-aos="fade-up" data-aos-delay="100">
+            <div class="skill-icon">
+              <i data-lucide="brain"></i>
+            </div>
+            <h3>Machine Learning & AI</h3>
+            <ul class="skill-list">
+              <li>Reinforcement Learning (PPO, SAC, DQN)</li>
+              <li>PyTorch & Stable Baselines3</li>
+              <li>Computer Vision (YOLO, OpenCV)</li>
+              <li>TensorBoard & Experiment Tracking</li>
+            </ul>
+          </div>
+          <div class="skill-category" data-aos="fade-up" data-aos-delay="200">
+            <div class="skill-icon">
+              <i data-lucide="cog"></i>
+            </div>
+            <h3>Robotics & Autonomy</h3>
+            <ul class="skill-list">
+              <li>ROS2 (Humble, Jazzy)</li>
+              <li>PX4 & ArduPilot</li>
+              <li>Sensor Fusion (LiDAR, Camera, IMU)</li>
+              <li>SLAM & Navigation</li>
+            </ul>
+          </div>
+          <div class="skill-category" data-aos="fade-up" data-aos-delay="300">
+            <div class="skill-icon">
+              <i data-lucide="code-2"></i>
+            </div>
+            <h3>Programming</h3>
+            <ul class="skill-list">
+              <li>Python, C++</li>
+              <li>TypeScript & React/Next.js</li>
+              <li>MATLAB/Simulink</li>
+              <li>Git & CI/CD</li>
+            </ul>
+          </div>
+          <div class="skill-category" data-aos="fade-up" data-aos-delay="400">
+            <div class="skill-icon">
+              <i data-lucide="box"></i>
+            </div>
+            <h3>Simulation & Tools</h3>
+            <ul class="skill-list">
+              <li>Gazebo & Isaac Sim</li>
+              <li>Gymnasium (OpenAI Gym)</li>
+              <li>Docker & Linux</li>
+              <li>CAD (SolidWorks)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- Projects Section -->
-    <section id="projects" data-aos="fade-up" class="section-wave">
+    <section id="projects" data-aos="fade-up" class="section">
       <div class="container">
-        <h2>Projects</h2>
+        <div class="section-header">
+          <span class="section-tag">Portfolio</span>
+          <h2>Featured Projects</h2>
+          <p class="section-subtitle">A selection of my work in robotics, autonomous systems, and AI</p>
+        </div>
+        
+        <!-- Featured Project: Thesis -->
+        <div class="featured-project" data-aos="fade-up">
+          <div class="featured-badge">
+            <i data-lucide="star"></i>
+            Bachelor's Thesis (Ongoing)
+          </div>
+          <div class="featured-content">
+            <div class="featured-media">
+              <video controls poster="media/pixhawk_drone.jpg">
+                <source src="media/ppo_landing_demo.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+            <div class="featured-info">
+              <h3>RL-Based Precision Drone Landing on Moving Platforms</h3>
+              <p class="featured-description">
+                My thesis focuses on training a quadcopter to autonomously land on a moving platform using deep reinforcement learning. The agent learns to track the platform, compensate for disturbances, and execute precise touchdowns.
+              </p>
+              
+              <div class="thesis-status">
+                <h4><i data-lucide="activity"></i> Current Progress</h4>
+                <ul class="status-list">
+                  <li class="completed"><i data-lucide="check-circle"></i> PPO and SAC models converged successfully</li>
+                  <li class="completed"><i data-lucide="check-circle"></i> PPO shows higher reliability in landing accuracy</li>
+                  <li class="in-progress"><i data-lucide="loader"></i> Implementing Control Barrier Functions for safety guarantees</li>
+                  <li class="planned"><i data-lucide="circle"></i> Real drone testing after simulation validation</li>
+                </ul>
+              </div>
+
+              <div class="thesis-details">
+                <div class="detail-card">
+                  <h4>RL Architecture</h4>
+                  <p>PPO with custom reward shaping for landing precision, velocity matching, and stability. SAC tested for comparison.</p>
+                </div>
+                <div class="detail-card">
+                  <h4>Safety Layer</h4>
+                  <p>Implementing Runtime Assurance using Control Barrier Functions based on research by Hobbs, Mote, Abate, Coogan & Fero.</p>
+                </div>
+              </div>
+
+              <div class="tensorboard-section">
+                <h4>Training Metrics</h4>
+                <div class="tensorboard-single">
+                  <img src="media/tensorboard_screenshot.png" alt="TensorBoard Training Metrics" />
+                </div>
+                <p class="tb-note">
+                  Multiple PPO and SAC runs compared. PPO_10 (pink) shows best convergence with stable episode lengths and reward around 60.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project Grid -->
         <div class="project-grid">
-          <!-- Project 1: Schanzer Racing -->
-          <div class="project-card" data-project-id="project1">
-            <div class="thumbnail" data-tilt data-tilt-glare="true" data-tilt-max-glare="0.3">
+          <!-- Project: AV Orchestrator -->
+          <div class="project-card featured-card" data-project-id="av-orchestrator" data-aos="fade-up">
+            <div class="card-badge">Live Demo</div>
+            <div class="thumbnail">
+              <img src="media/av_orchestrator_map.jpg" alt="AV Orchestrator">
+              <div class="thumbnail-overlay">
+                <i data-lucide="external-link"></i>
+              </div>
+            </div>
+            <div class="card-content">
+              <h3>Autonomous Mobility Orchestrator</h3>
+              <p>RL-powered platform for city-wide AV fleet optimization</p>
+              <div class="card-tags">
+                <span>PPO</span>
+                <span>Next.js</span>
+                <span>TomTom API</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project: Schanzer Racing -->
+          <div class="project-card" data-project-id="project1" data-aos="fade-up" data-aos-delay="100">
+            <div class="thumbnail">
               <img src="media/schanzer_logo.png" alt="Schanzer Racing Logo">
+              <div class="thumbnail-overlay">
+                <i data-lucide="external-link"></i>
+              </div>
             </div>
-            <h3>Schanzer Racing Ingolstadt</h3>
+            <div class="card-content">
+              <h3>Schanzer Racing Electric</h3>
+              <p>Formula Student autonomous systems & LiDAR integration</p>
+              <div class="card-tags">
+                <span>LiDAR</span>
+                <span>ROS2</span>
+                <span>Autonomy</span>
+              </div>
+            </div>
           </div>
-          <!-- Project 2: Akkodis - TurtleBot3 Work -->
-          <div class="project-card" data-project-id="akkodis">
-            <div class="thumbnail" data-tilt data-tilt-glare="true" data-tilt-max-glare="0.3">
+
+          <!-- Project: Akkodis TurtleBot3 -->
+          <div class="project-card" data-project-id="akkodis" data-aos="fade-up" data-aos-delay="200">
+            <div class="thumbnail">
               <img src="media/akkodis_logo.jpg" alt="Akkodis Logo">
+              <div class="thumbnail-overlay">
+                <i data-lucide="external-link"></i>
+              </div>
             </div>
-            <h3>Akkodis - TurtleBot3 Work</h3>
+            <div class="card-content">
+              <h3>Akkodis Service Robot</h3>
+              <p>Autonomous TurtleBot3 with YOLO object detection</p>
+              <div class="card-tags">
+                <span>ROS2</span>
+                <span>YOLO</span>
+                <span>RealSense</span>
+              </div>
+            </div>
           </div>
-          <!-- Project 3: Pixhawk Drone Project -->
-          <div class="project-card" data-project-id="pixhawk">
-            <div class="thumbnail" data-tilt data-tilt-glare="true" data-tilt-max-glare="0.3">
+
+          <!-- Project: Pixhawk Drone -->
+          <div class="project-card" data-project-id="pixhawk" data-aos="fade-up" data-aos-delay="300">
+            <div class="thumbnail">
               <img src="media/pixhawk_drone.jpg" alt="Pixhawk Drone">
+              <div class="thumbnail-overlay">
+                <i data-lucide="external-link"></i>
+              </div>
             </div>
-            <h3>Pixhawk Drone Project</h3>
+            <div class="card-content">
+              <h3>Pixhawk Drone Platform</h3>
+              <p>Custom autonomous drone for thesis experiments</p>
+              <div class="card-tags">
+                <span>PX4</span>
+                <span>Pixhawk</span>
+                <span>UAV</span>
+              </div>
+            </div>
           </div>
-          <!-- Project 4: Pixel Park -->
-          <div class="project-card" data-project-id="project2">
-            <div class="thumbnail" data-tilt data-tilt-glare="true" data-tilt-max-glare="0.3">
+
+          <!-- Project: Pixel Park -->
+          <div class="project-card" data-project-id="project2" data-aos="fade-up" data-aos-delay="400">
+            <div class="thumbnail">
               <img src="media/pixelpark_logo.png" alt="Pixel Park Logo">
+              <div class="thumbnail-overlay">
+                <i data-lucide="external-link"></i>
+              </div>
             </div>
-            <h3>Pixel Park</h3>
+            <div class="card-content">
+              <h3>Pixel Park</h3>
+              <p>LiDAR-based smart parking detection (24hr Hackathon)</p>
+              <div class="card-tags">
+                <span>LiDAR</span>
+                <span>Python</span>
+                <span>Hackathon</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Wave Divider -->
-    <svg class="wave-divider" viewBox="0 0 1440 120" preserveAspectRatio="none">
-      <path d="M0,120 C480,0 960,180 1440,60 L1440,240 L0,240 Z"></path>
-    </svg>
+    <!-- Modal: AV Orchestrator -->
+    <div class="modal" id="modal-av-orchestrator">
+      <div class="modal-content modal-large">
+        <span class="close">&times;</span>
+        <div class="modal-header">
+          <span class="modal-badge">Live Demo Available</span>
+          <h2>Autonomous Mobility Orchestrator</h2>
+          <p class="modal-subtitle">RL-Powered City-Scale AV Fleet Optimization Platform</p>
+        </div>
+        
+        <div class="modal-body">
+          <div class="modal-media">
+            <img src="media/av_orchestrator_map.jpg" alt="Ingolstadt Autonomous Mobility Twin" />
+          </div>
+          <div class="modal-media-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem;">
+            <div class="modal-media">
+              <img src="media/pave_speaking.jpg" alt="Kshitij presenting at PAVE Europe Conference" />
+              <p class="media-caption">Presenting the AV Orchestrator – 1st Place</p>
+            </div>
+            <div class="modal-media">
+              <img src="media/pave_speakers.jpg" alt="PAVE Europe Conference Speakers" />
+              <p class="media-caption">PAVE Europe Conference 2025</p>
+            </div>
+          </div>
+          
+          <div class="modal-description">
+            <h3>Project Overview</h3>
+            <p>
+              A comprehensive digital twin platform for planning and optimizing autonomous vehicle deployments. 
+              The system integrates real-time traffic telemetry from TomTom, demand modeling, and a PPO-based 
+              reinforcement learning engine to generate optimal fleet configurations.
+            </p>
+            
+            <h3>Key Features</h3>
+            <div class="feature-grid">
+              <div class="feature-item">
+                <i data-lucide="map"></i>
+                <div>
+                  <strong>Traffic Analysis</strong>
+                  <p>Real corridor congestion data from TomTom APIs with demand density visualization</p>
+                </div>
+              </div>
+              <div class="feature-item">
+                <i data-lucide="brain"></i>
+                <div>
+                  <strong>RL Policy Studio</strong>
+                  <p>PPO-based optimizer that balances reliability, energy costs, and grid stress</p>
+                </div>
+              </div>
+              <div class="feature-item">
+                <i data-lucide="zap"></i>
+                <div>
+                  <strong>Real-Time Metrics</strong>
+                  <p>Live updates on fleet performance: rides served, energy per trip, grid relief</p>
+                </div>
+              </div>
+              <div class="feature-item">
+                <i data-lucide="bar-chart"></i>
+                <div>
+                  <strong>INVG Comparison</strong>
+                  <p>Side-by-side analysis with Ingolstadt's current 274-bus public transit fleet</p>
+                </div>
+              </div>
+            </div>
 
-    <!-- Modal for Schanzer Racing -->
+            <h3>Technical Stack</h3>
+            <div class="tech-stack">
+              <span>Next.js 15</span>
+              <span>TypeScript</span>
+              <span>Python</span>
+              <span>PPO (Stable Baselines3)</span>
+              <span>TomTom Traffic API</span>
+              <span>Mapbox GL</span>
+              <span>Tailwind CSS</span>
+            </div>
+
+            <h3>Impact Metrics</h3>
+            <div class="impact-grid">
+              <div class="impact-item">
+                <span class="impact-value">56%</span>
+                <span class="impact-label">Fewer Vehicles Needed</span>
+              </div>
+              <div class="impact-item">
+                <span class="impact-value">+20%</span>
+                <span class="impact-label">More Riders Served</span>
+              </div>
+              <div class="impact-item">
+                <span class="impact-value">30%</span>
+                <span class="impact-label">Less Driving Distance</span>
+              </div>
+              <div class="impact-item">
+                <span class="impact-value">€840M</span>
+                <span class="impact-label">Estimated 10yr Savings</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="modal-footer">
+          <a href="https://pave-av.vercel.app/" target="_blank" class="btn primary-btn">
+            <i data-lucide="external-link"></i>
+            Launch Live Demo
+          </a>
+          <a href="https://github.com/kshitijprasad" target="_blank" class="btn secondary-btn">
+            <i data-lucide="github"></i>
+            View Code
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal: Schanzer Racing -->
     <div class="modal" id="modal-project1">
       <div class="modal-content">
         <span class="close">&times;</span>
-        <h2>Schanzer Racing Ingolstadt</h2>
-        <div class="media">
-          <video controls width="100%" poster="media/schanzer_racing.jpeg">
-            <source src="media/schanzer_racing.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
+        <div class="modal-header">
+          <h2>Schanzer Racing Electric</h2>
+          <p class="modal-subtitle">Formula Student Autonomous Systems Team</p>
         </div>
-        <p>
-          I worked on differential drive robotics, integrated LiDAR solutions, and managed budgeting for
-          technical components for the Schanzer Racing Formula Student team.
-        </p>
-        <div class="gallery">
-          <img src="media/schanzer_racing.jpeg" alt="Schanzer Racing 1">
-          <img src="media/schanzer_racing2.jpeg" alt="Schanzer Racing 2">
-          <img src="media/schanzer_racing3.jpeg" alt="Schanzer Racing 3">
-          <img src="media/schanzer_racing4.jpeg" alt="Schanzer Racing 4">
+        <div class="modal-body">
+          <div class="modal-media">
+            <video controls width="100%" poster="media/schanzer_racing.jpeg">
+              <source src="media/schanzer_racing.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <div class="modal-description">
+            <p>
+              As part of the Schanzer Racing Ingolstadt Formula Student team, I contributed to developing 
+              autonomous driving capabilities for our electric race car. My work focused on differential 
+              drive robotics, LiDAR integration for perception, and technical component budgeting.
+            </p>
+            <h3>Contributions</h3>
+            <ul>
+              <li>Integrated LiDAR sensors for real-time obstacle detection and mapping</li>
+              <li>Developed differential drive control algorithms for precise maneuvering</li>
+              <li>Managed technical budgeting for sensor and compute components</li>
+              <li>Collaborated with cross-functional teams on system integration</li>
+            </ul>
+          </div>
+          <div class="gallery">
+            <img src="media/schanzer_racing.jpeg" alt="Schanzer Racing 1" class="lightbox-img">
+            <img src="media/schanzer_racing2.jpeg" alt="Schanzer Racing 2" class="lightbox-img">
+            <img src="media/schanzer_racing3.jpeg" alt="Schanzer Racing 3" class="lightbox-img">
+            <img src="media/schanzer_racing4.jpeg" alt="Schanzer Racing 4" class="lightbox-img">
+          </div>
         </div>
-        <a href="https://schanzer-racing.de/" target="_blank" class="btn fancy-btn">Visit Schanzer Racing</a>
+        <div class="modal-footer">
+          <a href="https://schanzer-racing.de/" target="_blank" class="btn primary-btn">
+            <i data-lucide="external-link"></i>
+            Visit Team Website
+          </a>
+        </div>
       </div>
     </div>
 
-    <!-- Modal for Akkodis - TurtleBot3 Work -->
+    <!-- Modal: Akkodis TurtleBot3 -->
     <div class="modal" id="modal-akkodis">
       <div class="modal-content">
         <span class="close">&times;</span>
-        <h2>Akkodis - TurtleBot3 Work</h2>
-        <div class="media">
-          <video controls width="100%" poster="media/turtlebot_demo.jpg">
-            <source src="media/turtlebot_demo.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
+        <div class="modal-header">
+          <h2>Akkodis Service Robot</h2>
+          <p class="modal-subtitle">Autonomous Object Detection & Retrieval System</p>
         </div>
-        <div class="media" style="margin-top: 1rem;">
-          <video controls width="100%">
-            <source src="media/tb3_demo.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </div>
-        <p>
-          This project involved enhancing a TurtleBot3 service robot’s autonomy by integrating
-          a RealSense D405 depth camera for 3D vision and a YOLO model for real-time object detection.
-          A distributed ROS 2 system was used: an onboard Raspberry Pi 5 ran “ROS2 Jazzy,” while
-          a workstation ran ROS 2 Humble Hawksbill. A custom ZeroMQ bridge transferred camera data
-          and YOLO results between Pi and PC, with Eclipse Cyclone DDS improving reliability and
-          reducing latency. The final system let the robot identify and fetch objects in a test environment.
-        </p>
-        <div class="gallery">
-          <img src="media/akkodis1.gif" alt="Akkodis Work 1" class="lightbox-img">
+        <div class="modal-body">
+          <div class="modal-media">
+            <img src="media/rviz_turtlebot.png" alt="RViz Nav2 with YOLO object detection" />
+            <p class="media-caption">RViz2 showing Nav2 navigation with real-time YOLO object detection</p>
+          </div>
+          <div class="modal-media">
+            <video controls width="100%">
+              <source src="media/tb3_demo.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+            <p class="media-caption">TurtleBot3 autonomous object retrieval demo</p>
+          </div>
+          <div class="modal-description">
+            <p>
+              Enhanced a TurtleBot3 with advanced 3D perception using a RealSense D405 depth camera and YOLO object detection. The robot can identify and locate objects in 3D space for autonomous retrieval tasks.
+            </p>
+            <h3>Technical Architecture</h3>
+            <ul>
+              <li><strong>Distributed ROS2:</strong> Pi 5 (Jazzy) + Workstation (Humble)</li>
+              <li><strong>Custom ZeroMQ Bridge:</strong> Camera data + YOLO inference transfer</li>
+              <li><strong>Eclipse Cyclone DDS:</strong> Low-latency real-time operation</li>
+              <li><strong>3D Perception:</strong> RealSense D405 depth camera</li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- Modal for Pixhawk Drone Project -->
+    <!-- Modal: Pixhawk Drone -->
     <div class="modal" id="modal-pixhawk">
       <div class="modal-content">
         <span class="close">&times;</span>
-        <h2>Pixhawk Drone Project</h2>
-        <div class="media">
-          <video controls width="100%" poster="media/pixhawk_drone.jpg">
-            <source src="media/pixhawk_drone.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
+        <div class="modal-header">
+          <h2>Pixhawk Drone Platform</h2>
+          <p class="modal-subtitle">Custom UAV for Autonomous Research</p>
         </div>
-        <p>
-          I've been transforming a used Pixhawk drone into an autonomous exploration platform for
-          environmental monitoring, aerial surveys, and search &amp; rescue (since December 2024).
-          Currently troubleshooting motor inconsistencies—the front-left motor occasionally experiences
-          voltage drops. Once stable, it’ll handle real-time 3D navigation and sensor fusion.
-        </p>
+        <div class="modal-body">
+          <div class="modal-media">
+            <video controls width="100%" poster="media/pixhawk_drone.jpg">
+              <source src="media/pixhawk_drone.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <div class="modal-description">
+            <p>
+              Building a custom Pixhawk-based drone platform for my thesis research on autonomous landing. 
+              The drone serves as the physical testbed for validating RL policies trained in simulation.
+            </p>
+            <h3>Platform Specifications</h3>
+            <ul>
+              <li><strong>Flight Controller:</strong> Pixhawk 4 running PX4 autopilot</li>
+              <li><strong>Application:</strong> Environmental monitoring, aerial surveys, precision landing</li>
+              <li><strong>Current Status:</strong> Hardware assembly complete, debugging motor calibration</li>
+              <li><strong>Next Steps:</strong> Real-world testing of RL-trained landing policies</li>
+            </ul>
+            <p class="note">
+              <i data-lucide="alert-circle"></i>
+              Once simulation training is complete and safety validation passes, the trained PPO policy 
+              will be deployed on this platform for real-world precision landing tests.
+            </p>
+          </div>
+        </div>
       </div>
     </div>
 
-    <!-- Modal for Pixel Park -->
+    <!-- Modal: Pixel Park -->
     <div class="modal" id="modal-project2">
       <div class="modal-content">
         <span class="close">&times;</span>
-        <h2>Pixel Park</h2>
-        <div class="media">
-          <video controls width="100%" poster="media/pixelpark_logo.png">
-            <source src="media/pixel_park.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
+        <div class="modal-header">
+          <h2>Pixel Park</h2>
+          <p class="modal-subtitle">24-Hour Hackathon Project</p>
         </div>
-        <p>
-          Pixel Park was a 24-hour hackathon project. I developed a LiDAR-based parking detection
-          system to find open spots faster and reduce search time.
-        </p>
-        <a href="https://github.com/yourusername/pixel_park_project" target="_blank" class="btn fancy-btn">
-          View Code
-        </a>
+        <div class="modal-body">
+          <div class="modal-media">
+            <video controls width="100%" poster="media/pixelpark_logo.png">
+              <source src="media/pixel_park.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <div class="modal-description">
+            <p>
+              Pixel Park was developed during a 24-hour hackathon, focusing on smart city mobility solutions. 
+              The system uses LiDAR sensors to detect available parking spots in real-time, reducing 
+              search time and traffic congestion.
+            </p>
+            <h3>Features</h3>
+            <ul>
+              <li>Real-time LiDAR-based parking spot detection</li>
+              <li>Occupancy tracking and availability prediction</li>
+              <li>Integration-ready API for navigation apps</li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -235,42 +619,85 @@
       </div>
     </div>
 
-    <!-- Wave Divider -->
-    <svg class="wave-divider" viewBox="0 0 1440 120" preserveAspectRatio="none">
-      <path d="M0,120 C480,0 960,180 1440,60 L1440,240 L0,240 Z"></path>
-    </svg>
-
     <!-- Contact Section -->
-    <section id="contact" data-aos="fade-up" class="section-wave">
+    <section id="contact" data-aos="fade-up" class="section section-alt">
       <div class="container">
-        <h2>Contact Me</h2>
-        <p>
-          I'd love to hear from you! Please drop a message below.
-        </p>
-        <!-- Mailto form -->
-        <form id="contact-form" action="mailto:kshitijp21@gmail.com" method="post" enctype="text/plain">
-          <input type="text" name="name" placeholder="Your Name" required />
-          <input type="email" name="email" placeholder="Your Email" required />
-          <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
-          <button type="submit" class="btn fancy-btn">Send Message</button>
-        </form>
-        <div class="contact-details">
-          <p><strong>LinkedIn:</strong> 
-            <a href="https://www.linkedin.com/in/kshitijp21/" target="_blank">LinkedIn</a>
-          </p>
-          <p><strong>Email:</strong> 
-            <a href="mailto:kshitijp21@gmail.com">kshitijp21@gmail.com</a>
-          </p>
-          <p><strong>Phone:</strong> +4917620072984</p>
+        <div class="section-header">
+          <span class="section-tag">Get in Touch</span>
+          <h2>Let's Connect</h2>
+          <p class="section-subtitle">Interested in collaboration or have a question? I'd love to hear from you.</p>
+        </div>
+        
+        <div class="contact-grid">
+          <div class="contact-info">
+            <div class="contact-item">
+              <div class="contact-icon">
+                <i data-lucide="mail"></i>
+              </div>
+              <div>
+                <h3>Email</h3>
+                <a href="mailto:kshitijp21@gmail.com">kshitijp21@gmail.com</a>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon">
+                <i data-lucide="linkedin"></i>
+              </div>
+              <div>
+                <h3>LinkedIn</h3>
+                <a href="https://www.linkedin.com/in/kshitijp21/" target="_blank">linkedin.com/in/kshitijp21</a>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon">
+                <i data-lucide="phone"></i>
+              </div>
+              <div>
+                <h3>Phone</h3>
+                <a href="tel:+4917620072984">+49 176 20072984</a>
+              </div>
+            </div>
+          </div>
+          
+          <form id="contact-form" class="contact-form" action="mailto:kshitijp21@gmail.com" method="post" enctype="text/plain">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" placeholder="Your name" required />
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="your.email@example.com" required />
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" rows="5" placeholder="Your message..." required></textarea>
+            </div>
+            <button type="submit" class="btn primary-btn">
+              <i data-lucide="send"></i>
+              Send Message
+            </button>
+          </form>
         </div>
       </div>
     </section>
   </main>
 
   <!-- Footer -->
-  <footer data-aos="fade-up">
+  <footer>
     <div class="container">
-      <p>&copy; 2025 Kshitij Prasad. All rights reserved.</p>
+      <div class="footer-content">
+        <div class="footer-brand">
+          <span class="logo-icon">K</span>
+          <span>Kshitij Prasad</span>
+        </div>
+        <p class="footer-tagline">Building the future of autonomous systems</p>
+        <div class="footer-links">
+          <a href="https://www.linkedin.com/in/kshitijp21/" target="_blank"><i data-lucide="linkedin"></i></a>
+          <a href="https://github.com/kshitijprasad" target="_blank"><i data-lucide="github"></i></a>
+          <a href="mailto:kshitijp21@gmail.com"><i data-lucide="mail"></i></a>
+        </div>
+        <p class="footer-copyright">&copy; 2025 Kshitij Prasad. All rights reserved.</p>
+      </div>
     </div>
   </footer>
 
