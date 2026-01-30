@@ -725,6 +725,49 @@ document.addEventListener("DOMContentLoaded", function () {
   // Initialize floating dots
   initFloatingDots();
 
+  // ===== Floating Code Particles =====
+  function initCodeParticles() {
+    const container = document.getElementById('codeParticles');
+    if (!container) return;
+    
+    const codeSnippets = [
+      'ros2 run', 'import torch', 'def forward()', 'np.array()', 
+      'self.model', 'optimizer.step()', 'tensor.cuda()', 'env.reset()',
+      'action = policy(state)', 'reward += 1', 'done = False',
+      'cv2.imread()', 'lidar.scan()', 'imu.read()', 'gps.fix()',
+      'mavros.setpoint', 'px4.arm()', 'gazebo.spawn()', 'rviz2',
+      '0x7F3D', 'float32', 'uint8_t', '>>>', 'sudo', 'chmod +x',
+      'git push', 'docker run', 'cmake ..', 'colcon build',
+      'class Agent:', 'while True:', 'return loss', 'model.train()',
+      '# TODO', '/**/', 'lambda x:', 'async def', 'yield state'
+    ];
+    
+    function createParticle() {
+      const particle = document.createElement('span');
+      particle.className = 'code-particle';
+      particle.textContent = codeSnippets[Math.floor(Math.random() * codeSnippets.length)];
+      particle.style.left = Math.random() * 100 + '%';
+      particle.style.animationDuration = (12 + Math.random() * 10) + 's';
+      particle.style.animationDelay = Math.random() * 5 + 's';
+      container.appendChild(particle);
+      
+      // Remove particle after animation
+      setTimeout(() => {
+        particle.remove();
+      }, 25000);
+    }
+    
+    // Create initial particles
+    for (let i = 0; i < 15; i++) {
+      setTimeout(createParticle, i * 800);
+    }
+    
+    // Keep creating particles
+    setInterval(createParticle, 2000);
+  }
+  
+  initCodeParticles();
+
   function initAnimations() {
     if (typeof gsap === "undefined") return;
 
