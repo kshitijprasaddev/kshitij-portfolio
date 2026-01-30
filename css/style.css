@@ -74,15 +74,15 @@
 .bg-gradient-1, .bg-gradient-2, .bg-gradient-3 {
   position: absolute;
   border-radius: 50%;
-  filter: blur(120px);
-  opacity: 0.4;
-  animation: morphGradient 20s ease-in-out infinite;
+  filter: blur(150px);
+  opacity: 0.25;
+  animation: morphGradient 30s ease-in-out infinite;
 }
 
 .bg-gradient-1 {
   width: 800px;
   height: 800px;
-  background: radial-gradient(circle, rgba(132, 204, 22, 0.3) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(132, 204, 22, 0.2) 0%, transparent 70%);
   top: -400px;
   right: -200px;
   animation-delay: 0s;
@@ -91,33 +91,30 @@
 .bg-gradient-2 {
   width: 600px;
   height: 600px;
-  background: radial-gradient(circle, rgba(34, 197, 94, 0.25) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(34, 197, 94, 0.15) 0%, transparent 70%);
   bottom: -200px;
   left: -200px;
-  animation-delay: -7s;
+  animation-delay: -10s;
 }
 
 .bg-gradient-3 {
   width: 500px;
   height: 500px;
-  background: radial-gradient(circle, rgba(250, 204, 21, 0.2) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(250, 204, 21, 0.12) 0%, transparent 70%);
   top: 40%;
   left: 40%;
-  animation-delay: -14s;
+  animation-delay: -20s;
 }
 
 @keyframes morphGradient {
   0%, 100% {
-    transform: translate(0, 0) scale(1) rotate(0deg);
+    transform: translate(0, 0) scale(1);
   }
-  25% {
-    transform: translate(50px, -80px) scale(1.1) rotate(90deg);
+  33% {
+    transform: translate(30px, -50px) scale(1.05);
   }
-  50% {
-    transform: translate(-60px, 40px) scale(0.9) rotate(180deg);
-  }
-  75% {
-    transform: translate(40px, 60px) scale(1.05) rotate(270deg);
+  66% {
+    transform: translate(-40px, 30px) scale(0.95);
   }
 }
 
@@ -1278,19 +1275,16 @@ header {
   gap: 1.5rem;
   max-width: 1100px;
   margin: 0 auto;
-  perspective: 1000px;
 }
 
 .experience-card {
   background: linear-gradient(145deg, rgba(20, 20, 20, 0.8) 0%, rgba(15, 15, 15, 0.9) 100%);
   border-radius: var(--radius-lg);
   padding: 1.75rem;
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.03);
-  transform-style: preserve-3d;
-  will-change: transform;
 }
 
 .experience-card::before {
@@ -1317,9 +1311,9 @@ header {
 }
 
 .experience-card:hover {
-  transform: translateY(-8px) rotateX(2deg);
+  transform: translateY(-6px);
   border-color: rgba(132, 204, 22, 0.1);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 60px rgba(132, 204, 22, 0.05);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.3), 0 0 40px rgba(132, 204, 22, 0.05);
 }
 
 .experience-card:hover::before {
@@ -2684,8 +2678,11 @@ header {
 .skill-category,
 .section-header,
 .experience-card,
-.experience-grid {
+.experience-grid,
+.tech-stack-visual,
+.tech-icons {
   opacity: 1 !important;
+  transform: none !important;
 }
 
 /* ===== Print Styles ===== */

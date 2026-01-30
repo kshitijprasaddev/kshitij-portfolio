@@ -85,8 +85,8 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // ===== 3D Card Tilt Effect =====
-  function init3DCards() {
+  // ===== Subtle Card Hover Effect (No 3D Tilt) =====
+  function initCardHoverEffects() {
     const cards = document.querySelectorAll('.experience-card, .project-card, .glass-card');
     
     cards.forEach(card => {
@@ -94,19 +94,10 @@ document.addEventListener("DOMContentLoaded", function () {
         const rect = card.getBoundingClientRect();
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
         
-        const rotateX = (y - centerY) / 20;
-        const rotateY = (centerX - x) / 20;
-        
+        // Only update glow position, no 3D tilt
         card.style.setProperty('--mouse-x', (x / rect.width * 100) + '%');
         card.style.setProperty('--mouse-y', (y / rect.height * 100) + '%');
-        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
-      });
-      
-      card.addEventListener('mouseleave', () => {
-        card.style.transform = '';
       });
     });
   }
@@ -152,8 +143,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // ===== Initialize Advanced Effects =====
   function initAdvancedEffects() {
-    init3DCards();
-    initMagneticButtons();
+    initCardHoverEffects();
     
     // Animate text reveals when in view
     const observer = new IntersectionObserver((entries) => {
@@ -459,94 +449,158 @@ document.addEventListener("DOMContentLoaded", function () {
   animatedElements.forEach((el) => scrollObserver.observe(el));
 
   // ===== GSAP Animations =====
-  // ===== Floating Dots Animation (Google Antigravity Style) =====
+  // ===== Interactive Mesh Dots (Google Antigravity Style) =====
   function initFloatingDots() {
     const container = document.getElementById('floatingDots');
     if (!container) return;
 
-    const dotCount = 50;
-    const dots = [];
+    // Create canvas for mesh effect
+    const canvas = document.createElement('canvas');
+    canvas.style.position = 'absolute';
+    canvas.style.inset = '0';
+    canvas.style.width = '100%';
+    canvas.style.height = '100%';
+    canvas.style.pointerEvents = 'none';
+    container.appendChild(canvas);
+    
+    const ctx = canvas.getContext('2d');
+    
+    function resizeCanvas() {
+      const rect = container.getBoundingClientRect();
+      canvas.width = rect.width;
+      canvas.height = rect.height;
+    }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
 
-    // Create dots
+    const dotCount = 80;
+    const dots = [];
+    const connectionDistance = 120;
+    const mouseRadius = 150;
+
+    // Create dots with properties
     for (let i = 0; i < dotCount; i++) {
-      const dot = document.createElement('div');
-      dot.className = 'floating-dot';
-      
-      // Random size class
-      const sizes = ['small', 'medium', 'large'];
-      dot.classList.add(sizes[Math.floor(Math.random() * sizes.length)]);
-      
-      // Random initial position
-      const x = Math.random() * 100;
-      const y = Math.random() * 100;
-      dot.style.left = x + '%';
-      dot.style.top = y + '%';
-      
-      // Store velocity and position data
       dots.push({
-        el: dot,
-        x: x,
-        y: y,
-        vx: (Math.random() - 0.5) * 0.15,
-        vy: (Math.random() - 0.5) * 0.15,
-        baseVx: (Math.random() - 0.5) * 0.15,
-        baseVy: (Math.random() - 0.5) * 0.15
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        vx: (Math.random() - 0.5) * 0.5,
+        vy: (Math.random() - 0.5) * 0.5,
+        radius: Math.random() * 2 + 1.5,
+        originalVx: (Math.random() - 0.5) * 0.5,
+        originalVy: (Math.random() - 0.5) * 0.5
       });
-      
-      container.appendChild(dot);
     }
 
-    // Mouse interaction
-    let mouseX = 50, mouseY = 50;
+    // Mouse tracking
+    let mouse = { x: null, y: null };
     const hero = document.querySelector('.hero');
     
     if (hero) {
       hero.addEventListener('mousemove', (e) => {
-        const rect = hero.getBoundingClientRect();
-        mouseX = ((e.clientX - rect.left) / rect.width) * 100;
-        mouseY = ((e.clientY - rect.top) / rect.height) * 100;
+        const rect = canvas.getBoundingClientRect();
+        mouse.x = e.clientX - rect.left;
+        mouse.y = e.clientY - rect.top;
+      });
+      
+      hero.addEventListener('mouseleave', () => {
+        mouse.x = null;
+        mouse.y = null;
       });
     }
 
-    // Animation loop
-    function animateDots() {
-      dots.forEach(dot => {
-        // Calculate distance from mouse
-        const dx = dot.x - mouseX;
-        const dy = dot.y - mouseY;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        
-        // Push dots away from mouse (antigravity effect)
-        if (dist < 20) {
-          const force = (20 - dist) / 20;
-          const angle = Math.atan2(dy, dx);
-          dot.vx += Math.cos(angle) * force * 0.3;
-          dot.vy += Math.sin(angle) * force * 0.3;
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      // Update and draw dots
+      dots.forEach((dot, i) => {
+        // Mouse repulsion (antigravity effect)
+        if (mouse.x !== null && mouse.y !== null) {
+          const dx = dot.x - mouse.x;
+          const dy = dot.y - mouse.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          
+          if (dist < mouseRadius) {
+            const force = (mouseRadius - dist) / mouseRadius;
+            const angle = Math.atan2(dy, dx);
+            dot.vx += Math.cos(angle) * force * 0.8;
+            dot.vy += Math.sin(angle) * force * 0.8;
+          }
         }
         
-        // Apply velocity with drift back to base velocity
-        dot.vx = dot.vx * 0.98 + dot.baseVx * 0.02;
-        dot.vy = dot.vy * 0.98 + dot.baseVy * 0.02;
+        // Ease back to original velocity
+        dot.vx = dot.vx * 0.96 + dot.originalVx * 0.04;
+        dot.vy = dot.vy * 0.96 + dot.originalVy * 0.04;
         
         // Update position
         dot.x += dot.vx;
         dot.y += dot.vy;
         
-        // Wrap around edges
-        if (dot.x < -5) dot.x = 105;
-        if (dot.x > 105) dot.x = -5;
-        if (dot.y < -5) dot.y = 105;
-        if (dot.y > 105) dot.y = -5;
+        // Bounce off edges
+        if (dot.x < 0 || dot.x > canvas.width) {
+          dot.vx *= -1;
+          dot.originalVx *= -1;
+        }
+        if (dot.y < 0 || dot.y > canvas.height) {
+          dot.vy *= -1;
+          dot.originalVy *= -1;
+        }
         
-        // Apply position
-        dot.el.style.left = dot.x + '%';
-        dot.el.style.top = dot.y + '%';
+        // Draw dot
+        ctx.beginPath();
+        ctx.arc(dot.x, dot.y, dot.radius, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(132, 204, 22, 0.6)';
+        ctx.fill();
+        
+        // Draw connections to nearby dots
+        for (let j = i + 1; j < dots.length; j++) {
+          const dx = dot.x - dots[j].x;
+          const dy = dot.y - dots[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          
+          if (dist < connectionDistance) {
+            const opacity = (1 - dist / connectionDistance) * 0.25;
+            ctx.beginPath();
+            ctx.moveTo(dot.x, dot.y);
+            ctx.lineTo(dots[j].x, dots[j].y);
+            ctx.strokeStyle = `rgba(132, 204, 22, ${opacity})`;
+            ctx.lineWidth = 0.5;
+            ctx.stroke();
+          }
+        }
+        
+        // Draw connection to mouse
+        if (mouse.x !== null && mouse.y !== null) {
+          const dx = dot.x - mouse.x;
+          const dy = dot.y - mouse.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          
+          if (dist < mouseRadius) {
+            const opacity = (1 - dist / mouseRadius) * 0.4;
+            ctx.beginPath();
+            ctx.moveTo(dot.x, dot.y);
+            ctx.lineTo(mouse.x, mouse.y);
+            ctx.strokeStyle = `rgba(250, 204, 21, ${opacity})`;
+            ctx.lineWidth = 0.8;
+            ctx.stroke();
+          }
+        }
       });
       
-      requestAnimationFrame(animateDots);
+      // Draw mouse glow
+      if (mouse.x !== null && mouse.y !== null) {
+        const gradient = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, 60);
+        gradient.addColorStop(0, 'rgba(132, 204, 22, 0.15)');
+        gradient.addColorStop(1, 'transparent');
+        ctx.beginPath();
+        ctx.arc(mouse.x, mouse.y, 60, 0, Math.PI * 2);
+        ctx.fillStyle = gradient;
+        ctx.fill();
+      }
+      
+      requestAnimationFrame(animate);
     }
     
-    animateDots();
+    animate();
   }
   
   // Initialize floating dots
