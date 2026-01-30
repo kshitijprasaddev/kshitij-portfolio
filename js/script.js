@@ -357,6 +357,99 @@ document.addEventListener("DOMContentLoaded", function () {
   animatedElements.forEach((el) => scrollObserver.observe(el));
 
   // ===== GSAP Animations =====
+  // ===== Floating Dots Animation (Google Antigravity Style) =====
+  function initFloatingDots() {
+    const container = document.getElementById('floatingDots');
+    if (!container) return;
+
+    const dotCount = 50;
+    const dots = [];
+
+    // Create dots
+    for (let i = 0; i < dotCount; i++) {
+      const dot = document.createElement('div');
+      dot.className = 'floating-dot';
+      
+      // Random size class
+      const sizes = ['small', 'medium', 'large'];
+      dot.classList.add(sizes[Math.floor(Math.random() * sizes.length)]);
+      
+      // Random initial position
+      const x = Math.random() * 100;
+      const y = Math.random() * 100;
+      dot.style.left = x + '%';
+      dot.style.top = y + '%';
+      
+      // Store velocity and position data
+      dots.push({
+        el: dot,
+        x: x,
+        y: y,
+        vx: (Math.random() - 0.5) * 0.15,
+        vy: (Math.random() - 0.5) * 0.15,
+        baseVx: (Math.random() - 0.5) * 0.15,
+        baseVy: (Math.random() - 0.5) * 0.15
+      });
+      
+      container.appendChild(dot);
+    }
+
+    // Mouse interaction
+    let mouseX = 50, mouseY = 50;
+    const hero = document.querySelector('.hero');
+    
+    if (hero) {
+      hero.addEventListener('mousemove', (e) => {
+        const rect = hero.getBoundingClientRect();
+        mouseX = ((e.clientX - rect.left) / rect.width) * 100;
+        mouseY = ((e.clientY - rect.top) / rect.height) * 100;
+      });
+    }
+
+    // Animation loop
+    function animateDots() {
+      dots.forEach(dot => {
+        // Calculate distance from mouse
+        const dx = dot.x - mouseX;
+        const dy = dot.y - mouseY;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        
+        // Push dots away from mouse (antigravity effect)
+        if (dist < 20) {
+          const force = (20 - dist) / 20;
+          const angle = Math.atan2(dy, dx);
+          dot.vx += Math.cos(angle) * force * 0.3;
+          dot.vy += Math.sin(angle) * force * 0.3;
+        }
+        
+        // Apply velocity with drift back to base velocity
+        dot.vx = dot.vx * 0.98 + dot.baseVx * 0.02;
+        dot.vy = dot.vy * 0.98 + dot.baseVy * 0.02;
+        
+        // Update position
+        dot.x += dot.vx;
+        dot.y += dot.vy;
+        
+        // Wrap around edges
+        if (dot.x < -5) dot.x = 105;
+        if (dot.x > 105) dot.x = -5;
+        if (dot.y < -5) dot.y = 105;
+        if (dot.y > 105) dot.y = -5;
+        
+        // Apply position
+        dot.el.style.left = dot.x + '%';
+        dot.el.style.top = dot.y + '%';
+      });
+      
+      requestAnimationFrame(animateDots);
+    }
+    
+    animateDots();
+  }
+  
+  // Initialize floating dots
+  initFloatingDots();
+
   function initAnimations() {
     if (typeof gsap === "undefined") return;
 
