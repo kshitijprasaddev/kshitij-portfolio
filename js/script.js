@@ -69,16 +69,71 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // ===== Google Antigravity-Style Hero Animation =====
+  // ===== Advanced Antigravity Hero Animation (Google-style) =====
   const hero = document.querySelector(".hero");
   const heroContent = document.querySelector(".hero-content");
   const floatingCards = document.querySelectorAll(".floating-card");
   const gradientOrbs = document.querySelectorAll(".gradient-orb");
   const heroImageWrapper = document.querySelector(".hero-image-wrapper");
+  const heroTitle = document.querySelector(".hero-title");
+  const heroBadge = document.querySelector(".hero-badge");
+  const heroStats = document.querySelector(".hero-stats");
   
   if (hero && heroContent) {
-    // Track if we're in the hero section
     let isInHero = true;
+    let animationFrame;
+    let targetX = 0, targetY = 0;
+    let currentX = 0, currentY = 0;
+    
+    // Smooth interpolation for fluid motion
+    const lerp = (start, end, factor) => start + (end - start) * factor;
+    
+    // Animation loop for smooth continuous movement
+    function animateHero() {
+      currentX = lerp(currentX, targetX, 0.08);
+      currentY = lerp(currentY, targetY, 0.08);
+      
+      // Apply transforms with eased values
+      floatingCards.forEach((card, index) => {
+        const intensity = 25 + (index * 12);
+        const rotation = currentX * 3;
+        const moveX = -currentX * intensity;
+        const moveY = -currentY * intensity;
+        card.style.transform = `translate(${moveX}px, ${moveY}px) rotate(${rotation}deg) scale(${1 + Math.abs(currentX) * 0.05})`;
+      });
+      
+      gradientOrbs.forEach((orb, index) => {
+        const intensity = 35 + (index * 15);
+        const scale = 1 + Math.abs(currentX * currentY) * 0.1;
+        const moveX = currentX * intensity;
+        const moveY = currentY * intensity;
+        orb.style.transform = `translate(${moveX}px, ${moveY}px) scale(${scale})`;
+      });
+      
+      if (heroImageWrapper) {
+        const tiltX = currentY * 8;
+        const tiltY = -currentX * 8;
+        const scale = 1 + Math.abs(currentX * currentY) * 0.02;
+        heroImageWrapper.style.transform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale(${scale})`;
+      }
+      
+      // Subtle text parallax
+      if (heroTitle) {
+        heroTitle.style.transform = `translate(${currentX * 5}px, ${currentY * 3}px)`;
+      }
+      
+      if (heroBadge) {
+        heroBadge.style.transform = `translate(${-currentX * 8}px, ${-currentY * 5}px)`;
+      }
+      
+      if (heroStats) {
+        heroStats.style.transform = `translate(${currentX * 3}px, ${currentY * 2}px)`;
+      }
+      
+      if (isInHero) {
+        animationFrame = requestAnimationFrame(animateHero);
+      }
+    }
     
     hero.addEventListener("mousemove", (e) => {
       if (!isInHero) return;
@@ -89,55 +144,60 @@ document.addEventListener("DOMContentLoaded", function () {
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
       
-      // Calculate offset from center (-1 to 1)
-      const offsetX = (x - centerX) / centerX;
-      const offsetY = (y - centerY) / centerY;
-      
-      // Move floating cards in opposite direction (antigravity effect)
-      floatingCards.forEach((card, index) => {
-        const intensity = 15 + (index * 5);
-        const moveX = -offsetX * intensity;
-        const moveY = -offsetY * intensity;
-        card.style.transform = `translate(${moveX}px, ${moveY}px)`;
-      });
-      
-      // Subtle parallax on gradient orbs
-      gradientOrbs.forEach((orb, index) => {
-        const intensity = 20 + (index * 10);
-        const moveX = offsetX * intensity;
-        const moveY = offsetY * intensity;
-        orb.style.transform = `translate(${moveX}px, ${moveY}px) scale(1)`;
-      });
-      
-      // Slight tilt on hero image
-      if (heroImageWrapper) {
-        const tiltX = offsetY * 5;
-        const tiltY = -offsetX * 5;
-        heroImageWrapper.style.transform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
+      targetX = (x - centerX) / centerX;
+      targetY = (y - centerY) / centerY;
+    });
+    
+    hero.addEventListener("mouseenter", () => {
+      if (!animationFrame && isInHero) {
+        animateHero();
       }
     });
     
     hero.addEventListener("mouseleave", () => {
-      // Reset all elements smoothly
-      floatingCards.forEach((card) => {
-        card.style.transform = "";
-      });
-      gradientOrbs.forEach((orb) => {
-        orb.style.transform = "";
-      });
-      if (heroImageWrapper) {
-        heroImageWrapper.style.transform = "";
-      }
+      targetX = 0;
+      targetY = 0;
+      
+      // Let animation continue to smoothly return to center
+      setTimeout(() => {
+        floatingCards.forEach((card) => {
+          card.style.transform = "";
+        });
+        gradientOrbs.forEach((orb) => {
+          orb.style.transform = "";
+        });
+        if (heroImageWrapper) {
+          heroImageWrapper.style.transform = "";
+        }
+        if (heroTitle) {
+          heroTitle.style.transform = "";
+        }
+        if (heroBadge) {
+          heroBadge.style.transform = "";
+        }
+        if (heroStats) {
+          heroStats.style.transform = "";
+        }
+      }, 500);
     });
     
-    // Detect when user scrolls past hero
+    // Start animation when hero is visible
     const heroObserver = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         isInHero = entry.isIntersecting;
+        if (isInHero && !animationFrame) {
+          animateHero();
+        } else if (!isInHero && animationFrame) {
+          cancelAnimationFrame(animationFrame);
+          animationFrame = null;
+        }
       });
     }, { threshold: 0.1 });
     
     heroObserver.observe(hero);
+    
+    // Initial animation start
+    animateHero();
   }
 
   // ===== Navigation =====
