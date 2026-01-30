@@ -34,19 +34,33 @@
     <i data-lucide="moon" class="theme-icon moon"></i>
   </button>
   
-  <!-- Music Player (Fixed position - edge of screen) -->
+  <!-- Music Player - Retro Record Player Style -->
   <div class="music-player" id="musicPlayer">
     <button class="music-toggle" id="musicToggle" aria-label="Toggle music">
-      <div class="vinyl-disc">
-        <div class="vinyl-inner"></div>
+      <div class="record-player">
+        <div class="turntable">
+          <div class="vinyl">
+            <div class="vinyl-grooves"></div>
+            <div class="vinyl-label">
+              <span>♪</span>
+            </div>
+          </div>
+        </div>
+        <div class="tonearm">
+          <div class="tonearm-base"></div>
+          <div class="tonearm-arm"></div>
+          <div class="tonearm-head"></div>
+        </div>
       </div>
-      <i data-lucide="volume-2" class="music-icon playing"></i>
-      <i data-lucide="volume-x" class="music-icon muted"></i>
+      <div class="play-indicator">
+        <span class="indicator-dot"></span>
+      </div>
     </button>
-    <span class="music-label">Music</span>
+    <span class="music-label">// vibes.play()</span>
   </div>
-  <audio id="bgMusic" loop>
-    <source src="https://assets.mixkit.co/music/preview/mixkit-tech-house-vibes-130.mp3" type="audio/mpeg">
+  <audio id="bgMusic" loop preload="auto">
+    <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3" type="audio/mpeg">
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
   </audio>
   
   <!-- Cursor follower -->
@@ -134,8 +148,9 @@
             </div>
             
             <p class="hero-description">
-              I engineer intelligent systems where software meets the real world. 
-              Currently building RL-powered autonomous drone landing systems.
+              <span class="code-comment">// currently obsessed with making things fly & drive themselves</span><br>
+              CS student @ THI, deep into <span class="code-var">autonomous vehicles</span> and <span class="code-var">drones</span>.<br>
+              Building RL agents that land quadcopters. Breaking things in simulation so they don't break IRL.
             </p>
             
             <div class="hero-cta">
