@@ -2500,7 +2500,9 @@ header {
 .timeline-item,
 .project-card,
 .skill-category,
-.section-header {
+.section-header,
+.experience-card,
+.experience-grid {
   opacity: 1 !important;
 }
 
