@@ -466,23 +466,68 @@ document.addEventListener("DOMContentLoaded", function () {
       },
     });
 
-    // Section headers - animate in and stay visible
+    // Section headers - elegant fade in
     gsap.utils.toArray(".section-header").forEach((header) => {
       gsap.from(header, {
-        y: 50,
+        y: 40,
         opacity: 0,
-        duration: 0.8,
+        duration: 1,
+        ease: "power3.out",
         scrollTrigger: {
           trigger: header,
           start: "top 85%",
-          toggleActions: "play none none none", // Don't reverse - stay visible
+          toggleActions: "play none none none",
         },
       });
     });
 
-    // Timeline items - animate in and stay visible
+    // Experience cards - professional stagger animation
+    gsap.utils.toArray(".experience-card").forEach((card, index) => {
+      gsap.from(card, {
+        y: 60,
+        opacity: 0,
+        duration: 0.8,
+        delay: index * 0.1,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: card,
+          start: "top 90%",
+          toggleActions: "play none none none",
+        },
+      });
+    });
+
+    // Company logos in experience cards - subtle pop in
+    gsap.utils.toArray(".company-logo").forEach((logo) => {
+      gsap.from(logo, {
+        scale: 0.5,
+        opacity: 0,
+        duration: 0.5,
+        delay: 0.3,
+        ease: "back.out(1.7)",
+        scrollTrigger: {
+          trigger: logo,
+          start: "top 90%",
+          toggleActions: "play none none none",
+        },
+      });
+    });
+
+    // Logo marquee items - cascade fade in
+    gsap.from(".logos-section", {
+      opacity: 0,
+      y: 30,
+      duration: 1,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: ".logos-section",
+        start: "top 95%",
+        toggleActions: "play none none none",
+      },
+    });
+
+    // Timeline items - animate in and stay visible (legacy support)
     gsap.utils.toArray(".timeline-item").forEach((item, index) => {
-      // Set initial state
       gsap.set(item, { opacity: 1 });
       
       gsap.from(item, {
@@ -493,7 +538,7 @@ document.addEventListener("DOMContentLoaded", function () {
         scrollTrigger: {
           trigger: item,
           start: "top 90%",
-          toggleActions: "play none none none", // Don't reverse
+          toggleActions: "play none none none",
         },
       });
     });
