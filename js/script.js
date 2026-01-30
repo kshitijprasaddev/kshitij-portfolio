@@ -69,6 +69,77 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
+  // ===== Google Antigravity-Style Hero Animation =====
+  const hero = document.querySelector(".hero");
+  const heroContent = document.querySelector(".hero-content");
+  const floatingCards = document.querySelectorAll(".floating-card");
+  const gradientOrbs = document.querySelectorAll(".gradient-orb");
+  const heroImageWrapper = document.querySelector(".hero-image-wrapper");
+  
+  if (hero && heroContent) {
+    // Track if we're in the hero section
+    let isInHero = true;
+    
+    hero.addEventListener("mousemove", (e) => {
+      if (!isInHero) return;
+      
+      const rect = hero.getBoundingClientRect();
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      
+      // Calculate offset from center (-1 to 1)
+      const offsetX = (x - centerX) / centerX;
+      const offsetY = (y - centerY) / centerY;
+      
+      // Move floating cards in opposite direction (antigravity effect)
+      floatingCards.forEach((card, index) => {
+        const intensity = 15 + (index * 5);
+        const moveX = -offsetX * intensity;
+        const moveY = -offsetY * intensity;
+        card.style.transform = `translate(${moveX}px, ${moveY}px)`;
+      });
+      
+      // Subtle parallax on gradient orbs
+      gradientOrbs.forEach((orb, index) => {
+        const intensity = 20 + (index * 10);
+        const moveX = offsetX * intensity;
+        const moveY = offsetY * intensity;
+        orb.style.transform = `translate(${moveX}px, ${moveY}px) scale(1)`;
+      });
+      
+      // Slight tilt on hero image
+      if (heroImageWrapper) {
+        const tiltX = offsetY * 5;
+        const tiltY = -offsetX * 5;
+        heroImageWrapper.style.transform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
+      }
+    });
+    
+    hero.addEventListener("mouseleave", () => {
+      // Reset all elements smoothly
+      floatingCards.forEach((card) => {
+        card.style.transform = "";
+      });
+      gradientOrbs.forEach((orb) => {
+        orb.style.transform = "";
+      });
+      if (heroImageWrapper) {
+        heroImageWrapper.style.transform = "";
+      }
+    });
+    
+    // Detect when user scrolls past hero
+    const heroObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        isInHero = entry.isIntersecting;
+      });
+    }, { threshold: 0.1 });
+    
+    heroObserver.observe(hero);
+  }
+
   // ===== Navigation =====
   const navbar = document.querySelector(".navbar");
   const menuToggle = document.querySelector(".menu-toggle");
@@ -231,7 +302,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     gsap.registerPlugin(ScrollTrigger);
 
-    // Hero section parallax
+    // Hero section parallax (only affects gradient orbs when scrolling)
     gsap.to(".gradient-orb", {
       y: -100,
       scrollTrigger: {
@@ -242,7 +313,7 @@ document.addEventListener("DOMContentLoaded", function () {
       },
     });
 
-    // Section headers
+    // Section headers - animate in and stay visible
     gsap.utils.toArray(".section-header").forEach((header) => {
       gsap.from(header, {
         y: 50,
@@ -250,42 +321,63 @@ document.addEventListener("DOMContentLoaded", function () {
         duration: 0.8,
         scrollTrigger: {
           trigger: header,
-          start: "top 80%",
-          toggleActions: "play none none reverse",
+          start: "top 85%",
+          toggleActions: "play none none none", // Don't reverse - stay visible
         },
       });
     });
 
-    // Timeline items
+    // Timeline items - animate in and stay visible
     gsap.utils.toArray(".timeline-item").forEach((item, index) => {
+      // Set initial state
+      gsap.set(item, { opacity: 1 });
+      
       gsap.from(item, {
-        x: -50,
+        x: -30,
         opacity: 0,
         duration: 0.6,
         delay: index * 0.1,
         scrollTrigger: {
           trigger: item,
-          start: "top 85%",
-          toggleActions: "play none none reverse",
+          start: "top 90%",
+          toggleActions: "play none none none", // Don't reverse
         },
       });
     });
 
-    // Project cards stagger
-    const projectCards = document.querySelectorAll(".project-card");
-    if (projectCards.length > 0) {
-      gsap.from(projectCards, {
-        y: 60,
+    // Project cards stagger - animate in and stay visible
+    const projectCardsGSAP = document.querySelectorAll(".project-card");
+    if (projectCardsGSAP.length > 0) {
+      // Ensure cards start visible
+      gsap.set(projectCardsGSAP, { opacity: 1 });
+      
+      gsap.from(projectCardsGSAP, {
+        y: 40,
         opacity: 0,
         duration: 0.6,
         stagger: 0.1,
         scrollTrigger: {
           trigger: ".projects-grid",
-          start: "top 80%",
-          toggleActions: "play none none reverse",
+          start: "top 85%",
+          toggleActions: "play none none none", // Don't reverse
         },
       });
     }
+    
+    // Skill categories animation
+    gsap.utils.toArray(".skill-category").forEach((category, index) => {
+      gsap.from(category, {
+        y: 30,
+        opacity: 0,
+        duration: 0.5,
+        delay: index * 0.1,
+        scrollTrigger: {
+          trigger: category,
+          start: "top 90%",
+          toggleActions: "play none none none",
+        },
+      });
+    });
   }
 
   // ===== Modal Functionality =====
