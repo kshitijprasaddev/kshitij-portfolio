@@ -853,21 +853,11 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     });
 
-    // Tech icons stagger
+    // Tech icons - show immediately without animation (CSS handles visibility)
     gsap.utils.toArray(".tech-icons").forEach(container => {
       const icons = container.querySelectorAll('.tech-icon');
-      gsap.from(icons, {
-        scale: 0,
-        opacity: 0,
-        duration: 0.4,
-        stagger: 0.05,
-        ease: "back.out(2)",
-        scrollTrigger: {
-          trigger: container,
-          start: "top 90%",
-          toggleActions: "play none none none",
-        },
-      });
+      // Set to visible immediately
+      gsap.set(icons, { scale: 1, opacity: 1 });
     });
 
     // Contact cards wave animation

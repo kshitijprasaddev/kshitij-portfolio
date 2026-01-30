@@ -2360,7 +2360,8 @@ header {
 }
 
 /* Tech Stack Visual - FORCE VISIBILITY */
-.tech-stack-visual {
+.tech-stack-visual,
+.tech-stack-visual.hardware-stack {
   text-align: center;
   padding: 3rem;
   background: var(--bg-card);
@@ -2370,19 +2371,23 @@ header {
   visibility: visible !important;
   transform: none !important;
   margin-top: 2rem;
+  display: block !important;
 }
 
 .tech-stack-visual h3 {
   font-size: 1.25rem;
   font-weight: 600;
   margin-bottom: 2rem;
+  opacity: 1 !important;
 }
 
 .tech-icons {
-  display: flex;
+  display: flex !important;
   flex-wrap: wrap;
   justify-content: center;
   gap: 2rem;
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 .tech-icon {
@@ -2395,6 +2400,9 @@ header {
   border-radius: var(--radius-md);
   transition: all var(--transition-normal);
   cursor: pointer;
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: scale(1) !important;
 }
 
 .tech-icon:hover {
