@@ -1477,189 +1477,260 @@ header {
   margin: 0 auto;
 }
 
-/* ===== Arc Timeline Visualization ===== */
-.arc-timeline {
+/* ===== Career Timeline (Unique Design) ===== */
+.career-timeline {
   position: relative;
   margin: 0 auto 4rem;
-  max-width: 800px;
-  height: 400px;
+  max-width: 900px;
+  padding: 2rem 0;
 }
 
-.arc-path {
-  position: absolute;
-  inset: 0;
+.timeline-track {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  padding: 0 2rem;
+  margin-bottom: 3rem;
 }
 
-.arc-svg {
-  width: 100%;
-  height: 200px;
+.timeline-line {
   position: absolute;
   top: 50%;
+  left: 2rem;
+  right: 2rem;
+  height: 2px;
+  background: linear-gradient(90deg, var(--primary) 0%, var(--border-light) 50%, var(--accent) 100%);
   transform: translateY(-50%);
+  z-index: 0;
 }
 
-.arc-line {
-  animation: dashAnimation 30s linear infinite;
-}
-
-@keyframes dashAnimation {
-  to {
-    stroke-dashoffset: -1000;
-  }
-}
-
-.arc-marker {
+.timeline-line::before {
+  content: '';
   position: absolute;
-  top: calc(50% - 60px);
-  left: var(--position);
-  transform: translateX(-50%);
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  transform: translateY(-50%);
+  animation: lineGlow 3s ease-in-out infinite;
+}
+
+@keyframes lineGlow {
+  0%, 100% { opacity: 0.3; filter: blur(4px); }
+  50% { opacity: 0.8; filter: blur(8px); }
+}
+
+.timeline-node {
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
+  gap: 12px;
+  cursor: pointer;
 }
 
-.marker-dot {
-  width: 12px;
-  height: 12px;
+.node-dot {
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
   background: var(--bg-tertiary);
-  border: 2px solid var(--border-light);
-  transition: all var(--transition-normal);
+  border: 3px solid var(--border-light);
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
 }
 
-.arc-marker:hover .marker-dot,
-.arc-marker.current .marker-dot {
+.node-dot::after {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.timeline-node:hover .node-dot,
+.timeline-node.active .node-dot {
   background: var(--primary);
   border-color: var(--primary);
-  box-shadow: 0 0 20px rgba(132, 204, 22, 0.5);
+  transform: scale(1.3);
+  box-shadow: 0 0 30px rgba(132, 204, 22, 0.6);
 }
 
-.marker-date {
+.timeline-node.active .node-dot::after {
+  border-color: rgba(132, 204, 22, 0.3);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.5); opacity: 0; }
+}
+
+.node-year {
   font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-size: 0.9rem;
+  font-weight: 600;
   color: var(--text-muted);
+  transition: color 0.3s ease;
 }
 
-.arc-center {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
+.timeline-node:hover .node-year,
+.timeline-node.active .node-year {
+  color: var(--primary);
+}
+
+/* Central Display Card */
+.timeline-display {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
+  gap: 1.5rem;
 }
 
-.arc-years {
-  font-family: var(--font-mono);
-  font-size: 1rem;
-  color: var(--primary);
-  letter-spacing: 0.1em;
-}
-
-.arc-location {
-  width: 32px;
-  height: 32px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--primary);
-  animation: bounce 2s ease-in-out infinite;
-}
-
-@keyframes bounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-5px); }
-}
-
-.arc-role-title,
-.arc-role-subtitle {
-  font-family: var(--font-display);
-  font-size: 1.5rem;
-  font-weight: 600;
-  line-height: 1.2;
-  margin: 0;
-}
-
-.arc-role-subtitle {
-  font-weight: 700;
-}
-
-.arc-company-carousel {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  margin-top: 12px;
-}
-
-.carousel-btn {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: transparent;
+.display-card {
+  background: linear-gradient(145deg, rgba(20, 20, 20, 0.9) 0%, rgba(10, 10, 10, 0.95) 100%);
   border: 1px solid var(--border-light);
-  color: var(--text-secondary);
-  cursor: pointer;
+  border-radius: var(--radius-xl);
+  padding: 2rem;
   display: flex;
   align-items: center;
-  justify-content: center;
-  transition: all var(--transition-fast);
-}
-
-.carousel-btn:hover {
-  border-color: var(--primary);
-  color: var(--primary);
-}
-
-.carousel-btn svg {
-  width: 16px;
-  height: 16px;
-}
-
-.carousel-track {
-  width: 120px;
-  height: 50px;
+  gap: 2rem;
+  max-width: 600px;
+  width: 100%;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
+}
+
+.display-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--gradient-primary);
+  transform: scaleX(1);
+}
+
+.display-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 30% 50%, rgba(132, 204, 22, 0.05) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.card-company {
+  flex-shrink: 0;
+  width: 100px;
+  height: 80px;
   background: white;
   border-radius: var(--radius-md);
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 12px;
+  transition: transform 0.4s ease;
 }
 
-.carousel-item {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 8px;
-  opacity: 0;
-  transform: translateX(100%);
-  transition: all var(--transition-normal);
+.display-card:hover .card-company {
+  transform: scale(1.05);
 }
 
-.carousel-item.active {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-.carousel-item img {
-  max-width: 90%;
-  max-height: 90%;
+.company-logo-display {
+  max-width: 100%;
+  max-height: 100%;
   object-fit: contain;
 }
 
-.arc-year-range {
+.card-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.card-type {
   font-family: var(--font-mono);
-  font-size: 0.8rem;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--primary);
+  padding: 4px 10px;
+  background: rgba(132, 204, 22, 0.1);
+  border-radius: var(--radius-full);
+  width: fit-content;
+}
+
+.card-role {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+  line-height: 1.3;
+}
+
+.card-location {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+}
+
+.card-location svg {
+  width: 14px;
+  height: 14px;
+  color: var(--primary);
+}
+
+.card-duration {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
   color: var(--text-muted);
-  margin-top: 8px;
+}
+
+/* Navigation Dots */
+.display-nav {
+  display: flex;
+  gap: 12px;
+}
+
+.nav-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--border-light);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0;
+}
+
+.nav-dot:hover {
+  background: var(--text-muted);
+}
+
+.nav-dot.active {
+  background: var(--primary);
+  transform: scale(1.3);
+  box-shadow: 0 0 10px rgba(132, 204, 22, 0.5);
+}
+
+/* Light theme adjustments */
+[data-theme="light"] .display-card {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.95) 0%, rgba(245, 245, 245, 0.98) 100%);
+}
+
+[data-theme="light"] .card-company {
+  background: #f5f5f5;
+  border: 1px solid var(--border);
 }
 
 /* ===== Experience Cards Grid ===== */
@@ -3018,23 +3089,43 @@ header {
     flex-direction: column;
   }
   
-  /* Arc Timeline Mobile */
-  .arc-timeline {
-    height: 320px;
-    margin-bottom: 3rem;
+  /* Career Timeline Mobile */
+  .career-timeline {
+    padding: 1rem 0;
   }
   
-  .arc-svg {
-    height: 150px;
+  .timeline-track {
+    padding: 0 1rem;
+    margin-bottom: 2rem;
   }
   
-  .arc-marker {
-    display: none;
+  .node-dot {
+    width: 16px;
+    height: 16px;
   }
   
-  .arc-role-title,
-  .arc-role-subtitle {
-    font-size: 1.2rem;
+  .node-year {
+    font-size: 0.75rem;
+  }
+  
+  .display-card {
+    flex-direction: column;
+    text-align: center;
+    padding: 1.5rem;
+    gap: 1rem;
+  }
+  
+  .card-company {
+    width: 80px;
+    height: 60px;
+  }
+  
+  .card-info {
+    align-items: center;
+  }
+  
+  .card-role {
+    font-size: 1.1rem;
   }
   
   /* Theme & Music buttons mobile */

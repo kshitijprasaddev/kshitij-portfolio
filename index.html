@@ -365,63 +365,58 @@
           <p class="section-subtitle">Building expertise in autonomous systems through hands-on industry experience</p>
         </div>
         
-        <!-- Arc Timeline Visualization -->
-        <div class="arc-timeline">
-          <div class="arc-path">
-            <svg viewBox="0 0 800 200" class="arc-svg">
-              <defs>
-                <linearGradient id="arcGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stop-color="var(--primary)" stop-opacity="0.3"/>
-                  <stop offset="50%" stop-color="var(--primary)" stop-opacity="1"/>
-                  <stop offset="100%" stop-color="var(--accent)" stop-opacity="0.3"/>
-                </linearGradient>
-              </defs>
-              <path d="M 50 180 Q 400 20 750 180" fill="none" stroke="url(#arcGradient)" stroke-width="2" stroke-dasharray="8,4" class="arc-line"/>
-            </svg>
-            <div class="arc-marker current" style="--position: 85%;">
-              <div class="marker-dot"></div>
-              <span class="marker-date">2025</span>
+        <!-- Career Timeline Cards -->
+        <div class="career-timeline">
+          <div class="timeline-track">
+            <!-- Timeline Line -->
+            <div class="timeline-line"></div>
+            
+            <!-- Timeline Nodes -->
+            <div class="timeline-node active" data-year="2025" data-index="0">
+              <div class="node-dot"></div>
+              <span class="node-year">2025</span>
             </div>
-            <div class="arc-marker" style="--position: 60%;">
-              <div class="marker-dot"></div>
-              <span class="marker-date">2024</span>
+            <div class="timeline-node" data-year="2024" data-index="1">
+              <div class="node-dot"></div>
+              <span class="node-year">2024</span>
             </div>
-            <div class="arc-marker" style="--position: 35%;">
-              <div class="marker-dot"></div>
-              <span class="marker-date">2022</span>
+            <div class="timeline-node" data-year="2022" data-index="2">
+              <div class="node-dot"></div>
+              <span class="node-year">2022</span>
             </div>
-            <div class="arc-marker" style="--position: 15%;">
-              <div class="marker-dot"></div>
-              <span class="marker-date">2021</span>
+            <div class="timeline-node" data-year="2021" data-index="3">
+              <div class="node-dot"></div>
+              <span class="node-year">2021</span>
             </div>
           </div>
-          <div class="arc-center">
-            <span class="arc-years">2021 - 2026</span>
-            <div class="arc-location">
-              <i data-lucide="map-pin"></i>
-            </div>
-            <h3 class="arc-role-title">Robotics &</h3>
-            <h3 class="arc-role-subtitle">AV Engineer</h3>
-            <div class="arc-company-carousel">
-              <button class="carousel-btn prev" aria-label="Previous">
-                <i data-lucide="chevron-left"></i>
-              </button>
-              <div class="carousel-track">
-                <div class="carousel-item active">
-                  <img src="Logos/akkodis logo.png" alt="Akkodis">
-                </div>
-                <div class="carousel-item">
-                  <img src="Logos/thi logo.png" alt="THI">
-                </div>
-                <div class="carousel-item">
-                  <img src="Logos/Logo-Schanzer-blau-schwarz.png" alt="Schanzer">
-                </div>
+          
+          <!-- Central Display Card -->
+          <div class="timeline-display">
+            <div class="display-card">
+              <div class="card-company">
+                <img src="Logos/akkodis logo.png" alt="Akkodis" class="company-logo-display">
               </div>
-              <button class="carousel-btn next" aria-label="Next">
-                <i data-lucide="chevron-right"></i>
-              </button>
+              <div class="card-info">
+                <span class="card-type">Thesis & Working Student</span>
+                <h3 class="card-role">Robotics & Autonomous Systems</h3>
+                <p class="card-location"><i data-lucide="map-pin"></i> Ingolstadt, Germany</p>
+                <span class="card-duration">Apr 2024 — Present</span>
+              </div>
             </div>
-            <span class="arc-year-range">2024 — 2026</span>
+            
+            <!-- Navigation Dots -->
+            <div class="display-nav">
+              <button class="nav-dot active" data-slide="0"></button>
+              <button class="nav-dot" data-slide="1"></button>
+              <button class="nav-dot" data-slide="2"></button>
+            </div>
+            
+            <!-- Company Cards Data -->
+            <div class="company-slides" style="display: none;">
+              <div class="slide-data" data-company="Akkodis" data-logo="Logos/akkodis logo.png" data-type="Thesis & Working Student" data-role="Robotics & Autonomous Systems" data-location="Ingolstadt, Germany" data-duration="Apr 2024 — Present"></div>
+              <div class="slide-data" data-company="THI" data-logo="Logos/THI logo.png" data-type="Bachelor's Degree" data-role="Autonomous Vehicle Engineering" data-location="Ingolstadt, Germany" data-duration="Oct 2021 — Present"></div>
+              <div class="slide-data" data-company="Schanzer Racing" data-logo="Logos/Logo-Schanzer-blau-schwarz.png" data-type="Formula Student" data-role="Driverless Department Engineer" data-location="TH Ingolstadt" data-duration="Oct 2022 — Oct 2024"></div>
+            </div>
           </div>
         </div>
         

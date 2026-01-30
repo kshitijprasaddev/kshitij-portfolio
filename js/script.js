@@ -125,43 +125,83 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // ===== Company Carousel (Arc Timeline) =====
-  const carouselTrack = document.querySelector('.carousel-track');
-  const carouselItems = document.querySelectorAll('.carousel-item');
-  const prevBtn = document.querySelector('.carousel-btn.prev');
-  const nextBtn = document.querySelector('.carousel-btn.next');
+  // ===== Career Timeline (New Design) =====
+  const timelineNodes = document.querySelectorAll('.timeline-node');
+  const navDots = document.querySelectorAll('.nav-dot');
+  const slideData = document.querySelectorAll('.slide-data');
+  const displayCard = document.querySelector('.display-card');
   
-  if (carouselTrack && carouselItems.length > 0) {
-    let currentIndex = 0;
+  if (timelineNodes.length > 0 && slideData.length > 0) {
+    let currentSlide = 0;
     
-    function showSlide(index) {
-      carouselItems.forEach((item, i) => {
-        item.classList.remove('active');
-        if (i === index) {
-          item.classList.add('active');
+    function updateDisplayCard(index) {
+      const data = slideData[index];
+      if (!data || !displayCard) return;
+      
+      // Add transition effect
+      displayCard.style.opacity = '0';
+      displayCard.style.transform = 'translateY(10px)';
+      
+      setTimeout(() => {
+        // Update card content
+        const logoImg = displayCard.querySelector('.company-logo-display');
+        const typeSpan = displayCard.querySelector('.card-type');
+        const roleH3 = displayCard.querySelector('.card-role');
+        const locationP = displayCard.querySelector('.card-location');
+        const durationSpan = displayCard.querySelector('.card-duration');
+        
+        if (logoImg) logoImg.src = data.dataset.logo;
+        if (typeSpan) typeSpan.textContent = data.dataset.type;
+        if (roleH3) roleH3.textContent = data.dataset.role;
+        if (locationP) {
+          locationP.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg> ${data.dataset.location}`;
         }
+        if (durationSpan) durationSpan.textContent = data.dataset.duration;
+        
+        // Animate back in
+        displayCard.style.opacity = '1';
+        displayCard.style.transform = 'translateY(0)';
+      }, 200);
+      
+      // Update nav dots
+      navDots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === index);
+      });
+      
+      // Update timeline nodes
+      timelineNodes.forEach((node, i) => {
+        // Map slides to nodes (0->0, 1->3, 2->2)
+        const nodeMap = [0, 3, 2]; // Akkodis=2025, THI=2021, Schanzer=2022
+        node.classList.toggle('active', nodeMap[index] === i);
       });
     }
     
-    if (prevBtn) {
-      prevBtn.addEventListener('click', () => {
-        currentIndex = (currentIndex - 1 + carouselItems.length) % carouselItems.length;
-        showSlide(currentIndex);
+    // Click on nav dots
+    navDots.forEach((dot, index) => {
+      dot.addEventListener('click', () => {
+        currentSlide = index;
+        updateDisplayCard(currentSlide);
       });
-    }
+    });
     
-    if (nextBtn) {
-      nextBtn.addEventListener('click', () => {
-        currentIndex = (currentIndex + 1) % carouselItems.length;
-        showSlide(currentIndex);
+    // Click on timeline nodes
+    timelineNodes.forEach((node, index) => {
+      node.addEventListener('click', () => {
+        // Map nodes to slides
+        const slideMap = { 0: 0, 1: 0, 2: 2, 3: 1 }; // 2025/2024->Akkodis, 2022->Schanzer, 2021->THI
+        currentSlide = slideMap[index];
+        updateDisplayCard(currentSlide);
       });
-    }
+    });
     
-    // Auto-rotate every 3 seconds
+    // Auto-rotate every 4 seconds
     setInterval(() => {
-      currentIndex = (currentIndex + 1) % carouselItems.length;
-      showSlide(currentIndex);
-    }, 3000);
+      currentSlide = (currentSlide + 1) % slideData.length;
+      updateDisplayCard(currentSlide);
+    }, 4000);
+    
+    // Initialize
+    updateDisplayCard(0);
   }
 
   // ===== Subtle Card Hover Effect (No 3D Tilt) =====
