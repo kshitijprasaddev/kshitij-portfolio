@@ -170,8 +170,8 @@ document.addEventListener("DOMContentLoaded", function () {
       
       // Update timeline nodes
       timelineNodes.forEach((node, i) => {
-        // Map slides to nodes (0->0, 1->3, 2->2)
-        const nodeMap = [0, 3, 2]; // Akkodis=2025, THI=2021, Schanzer=2022
+        // Map slides to nodes: 0=Akkodis->2025(0), 1=THI->2022(2), 2=Schanzer->2022(2), 3=FU Berlin->2020(3)
+        const nodeMap = [0, 2, 2, 3]; // Akkodis=2025, THI=2022, Schanzer=2022, FU Berlin=2020
         node.classList.toggle('active', nodeMap[index] === i);
       });
     }
@@ -187,8 +187,8 @@ document.addEventListener("DOMContentLoaded", function () {
     // Click on timeline nodes
     timelineNodes.forEach((node, index) => {
       node.addEventListener('click', () => {
-        // Map nodes to slides
-        const slideMap = { 0: 0, 1: 0, 2: 2, 3: 1 }; // 2025/2024->Akkodis, 2022->Schanzer, 2021->THI
+        // Map nodes to slides: 2025(0)->Akkodis, 2024(1)->Akkodis, 2022(2)->THI, 2020(3)->FU Berlin
+        const slideMap = { 0: 0, 1: 0, 2: 1, 3: 3 };
         currentSlide = slideMap[index];
         updateDisplayCard(currentSlide);
       });
