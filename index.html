@@ -25,15 +25,29 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 </head>
 <body>
+  <!-- Scroll Progress Bar -->
+  <div class="scroll-progress"></div>
+  
   <!-- Cursor follower -->
   <div class="cursor-follower"></div>
   <div class="cursor-dot"></div>
+  
+  <!-- Animated Background -->
+  <div class="animated-bg">
+    <div class="bg-gradient-1"></div>
+    <div class="bg-gradient-2"></div>
+    <div class="bg-gradient-3"></div>
+    <div class="noise-overlay"></div>
+  </div>
 
   <!-- Preloader -->
   <div class="preloader">
     <div class="preloader-content">
       <div class="preloader-logo">K</div>
-      <div class="preloader-text">Loading...</div>
+      <div class="preloader-bar">
+        <div class="preloader-fill"></div>
+      </div>
+      <div class="preloader-text">Loading<span class="loading-dots"></span></div>
     </div>
   </div>
 
