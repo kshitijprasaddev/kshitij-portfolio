@@ -9,6 +9,46 @@ document.addEventListener("DOMContentLoaded", function () {
     lucide.createIcons();
   }
 
+  // ===== Theme Toggle (Dark/Light Mode) =====
+  const themeToggle = document.getElementById('themeToggle');
+  const savedTheme = localStorage.getItem('theme') || 'dark';
+  
+  document.documentElement.setAttribute('data-theme', savedTheme);
+  
+  if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      
+      document.documentElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+      
+      // Re-initialize Lucide icons after theme change
+      if (typeof lucide !== "undefined") {
+        lucide.createIcons();
+      }
+    });
+  }
+
+  // ===== Music Player =====
+  const musicToggle = document.getElementById('musicToggle');
+  const bgMusic = document.getElementById('bgMusic');
+  
+  if (musicToggle && bgMusic) {
+    bgMusic.volume = 0.3;
+    
+    musicToggle.addEventListener('click', () => {
+      if (bgMusic.paused) {
+        bgMusic.play().then(() => {
+          musicToggle.classList.add('playing');
+        }).catch(e => console.log('Audio play failed:', e));
+      } else {
+        bgMusic.pause();
+        musicToggle.classList.remove('playing');
+      }
+    });
+  }
+
   // ===== Scroll Progress Bar =====
   const scrollProgress = document.querySelector('.scroll-progress');
   
@@ -84,6 +124,45 @@ document.addEventListener("DOMContentLoaded", function () {
       cursorFollower.classList.remove("hover");
     });
   });
+
+  // ===== Company Carousel (Arc Timeline) =====
+  const carouselTrack = document.querySelector('.carousel-track');
+  const carouselItems = document.querySelectorAll('.carousel-item');
+  const prevBtn = document.querySelector('.carousel-btn.prev');
+  const nextBtn = document.querySelector('.carousel-btn.next');
+  
+  if (carouselTrack && carouselItems.length > 0) {
+    let currentIndex = 0;
+    
+    function showSlide(index) {
+      carouselItems.forEach((item, i) => {
+        item.classList.remove('active');
+        if (i === index) {
+          item.classList.add('active');
+        }
+      });
+    }
+    
+    if (prevBtn) {
+      prevBtn.addEventListener('click', () => {
+        currentIndex = (currentIndex - 1 + carouselItems.length) % carouselItems.length;
+        showSlide(currentIndex);
+      });
+    }
+    
+    if (nextBtn) {
+      nextBtn.addEventListener('click', () => {
+        currentIndex = (currentIndex + 1) % carouselItems.length;
+        showSlide(currentIndex);
+      });
+    }
+    
+    // Auto-rotate every 3 seconds
+    setInterval(() => {
+      currentIndex = (currentIndex + 1) % carouselItems.length;
+      showSlide(currentIndex);
+    }, 3000);
+  }
 
   // ===== Subtle Card Hover Effect (No 3D Tilt) =====
   function initCardHoverEffects() {

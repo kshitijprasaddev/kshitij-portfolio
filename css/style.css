@@ -7,7 +7,7 @@
   --accent: #facc15;
   --accent-secondary: #22c55e;
   
-  /* Dark theme */
+  /* Dark theme (default) */
   --bg-primary: #050505;
   --bg-secondary: #0a0a0a;
   --bg-tertiary: #151515;
@@ -47,6 +47,199 @@
   --transition-normal: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   --transition-slow: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
   --transition-spring: 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  
+  /* Fonts */
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* ===== Light Theme ===== */
+[data-theme="light"] {
+  --bg-primary: #fafafa;
+  --bg-secondary: #f0f0f0;
+  --bg-tertiary: #e5e5e5;
+  --bg-card: rgba(255, 255, 255, 0.9);
+  --bg-card-hover: rgba(255, 255, 255, 1);
+  --text-primary: #0a0a0a;
+  --text-secondary: #525252;
+  --text-muted: #737373;
+  --border: rgba(0, 0, 0, 0.08);
+  --border-light: rgba(0, 0, 0, 0.12);
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.12);
+  --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.16);
+}
+
+[data-theme="light"] .animated-bg {
+  background: #fafafa;
+}
+
+[data-theme="light"] .bg-gradient-1 {
+  background: radial-gradient(circle, rgba(132, 204, 22, 0.15) 0%, transparent 70%);
+}
+
+[data-theme="light"] .bg-gradient-2 {
+  background: radial-gradient(circle, rgba(34, 197, 94, 0.1) 0%, transparent 70%);
+}
+
+[data-theme="light"] .bg-gradient-3 {
+  background: radial-gradient(circle, rgba(250, 204, 21, 0.08) 0%, transparent 70%);
+}
+
+/* ===== Theme Toggle ===== */
+.theme-toggle {
+  position: fixed;
+  top: 100px;
+  right: 24px;
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-full);
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  cursor: pointer;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-normal);
+  backdrop-filter: blur(10px);
+}
+
+.theme-toggle:hover {
+  transform: scale(1.1);
+  border-color: var(--primary);
+  box-shadow: 0 0 20px rgba(132, 204, 22, 0.3);
+}
+
+.theme-icon {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  color: var(--text-primary);
+  transition: all var(--transition-normal);
+}
+
+.theme-icon.sun {
+  opacity: 0;
+  transform: rotate(-90deg) scale(0);
+}
+
+.theme-icon.moon {
+  opacity: 1;
+  transform: rotate(0) scale(1);
+}
+
+[data-theme="light"] .theme-icon.sun {
+  opacity: 1;
+  transform: rotate(0) scale(1);
+}
+
+[data-theme="light"] .theme-icon.moon {
+  opacity: 0;
+  transform: rotate(90deg) scale(0);
+}
+
+/* ===== Music Player ===== */
+.music-player {
+  position: fixed;
+  bottom: 100px;
+  right: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  z-index: 9999;
+}
+
+.music-toggle {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-full);
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-normal);
+  backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+}
+
+.music-toggle:hover {
+  transform: scale(1.1);
+  border-color: var(--primary);
+  box-shadow: 0 0 20px rgba(132, 204, 22, 0.3);
+}
+
+.vinyl-disc {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg, #1a1a1a, #333, #1a1a1a, #333, #1a1a1a);
+  opacity: 0;
+  transition: opacity var(--transition-normal);
+}
+
+.vinyl-inner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--primary);
+}
+
+.music-toggle.playing .vinyl-disc {
+  opacity: 1;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.music-icon {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  color: var(--text-primary);
+  transition: all var(--transition-normal);
+  z-index: 1;
+}
+
+.music-icon.playing {
+  opacity: 1;
+}
+
+.music-icon.muted {
+  opacity: 0;
+}
+
+.music-toggle.playing .music-icon.playing {
+  opacity: 0;
+}
+
+.music-toggle:not(.playing) .music-icon.muted {
+  opacity: 1;
+}
+
+.music-toggle:not(.playing) .music-icon.playing {
+  opacity: 0;
+}
+
+.music-label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 
 /* ===== Scroll Progress Bar ===== */
@@ -139,13 +332,14 @@ html {
 }
 
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: var(--font-body);
   line-height: 1.6;
   background: var(--bg-primary);
   color: var(--text-primary);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.4s ease, color 0.4s ease;
 }
 
 body.modal-open {
@@ -679,7 +873,7 @@ header {
 }
 
 .hero-title {
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: var(--font-display);
   font-size: clamp(2.5rem, 6vw, 4.5rem);
   font-weight: 700;
   line-height: 1.1;
@@ -727,7 +921,8 @@ header {
 }
 
 .role-text {
-  font-size: 1.25rem;
+  font-family: var(--font-mono);
+  font-size: 1.15rem;
   color: var(--text-secondary);
   font-weight: 500;
   position: relative;
@@ -736,14 +931,13 @@ header {
 }
 
 .role-text::before {
-  content: '';
+  content: '>';
   position: absolute;
   left: 0;
   top: 50%;
   transform: translateY(-50%);
-  width: 1rem;
-  height: 2px;
-  background: var(--gradient-primary);
+  color: var(--primary);
+  font-weight: 700;
 }
 
 .hero-description {
@@ -1088,8 +1282,23 @@ header {
   margin-bottom: 4rem;
 }
 
+.section-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--primary);
+  margin-bottom: 0.5rem;
+  display: inline-block;
+}
+
+.section-eyebrow::before {
+  content: '// ';
+  opacity: 0.5;
+}
+
 .section-title {
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: var(--font-display);
   font-size: clamp(2rem, 4vw, 3rem);
   font-weight: 700;
   margin: 0.75rem 0;
@@ -1266,6 +1475,191 @@ header {
   position: relative;
   max-width: 800px;
   margin: 0 auto;
+}
+
+/* ===== Arc Timeline Visualization ===== */
+.arc-timeline {
+  position: relative;
+  margin: 0 auto 4rem;
+  max-width: 800px;
+  height: 400px;
+}
+
+.arc-path {
+  position: absolute;
+  inset: 0;
+}
+
+.arc-svg {
+  width: 100%;
+  height: 200px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.arc-line {
+  animation: dashAnimation 30s linear infinite;
+}
+
+@keyframes dashAnimation {
+  to {
+    stroke-dashoffset: -1000;
+  }
+}
+
+.arc-marker {
+  position: absolute;
+  top: calc(50% - 60px);
+  left: var(--position);
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.marker-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--bg-tertiary);
+  border: 2px solid var(--border-light);
+  transition: all var(--transition-normal);
+}
+
+.arc-marker:hover .marker-dot,
+.arc-marker.current .marker-dot {
+  background: var(--primary);
+  border-color: var(--primary);
+  box-shadow: 0 0 20px rgba(132, 204, 22, 0.5);
+}
+
+.marker-date {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.arc-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.arc-years {
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  color: var(--primary);
+  letter-spacing: 0.1em;
+}
+
+.arc-location {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary);
+  animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+.arc-role-title,
+.arc-role-subtitle {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.arc-role-subtitle {
+  font-weight: 700;
+}
+
+.arc-company-carousel {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 12px;
+}
+
+.carousel-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: transparent;
+  border: 1px solid var(--border-light);
+  color: var(--text-secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+}
+
+.carousel-btn:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.carousel-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+.carousel-track {
+  width: 120px;
+  height: 50px;
+  position: relative;
+  overflow: hidden;
+  background: white;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.carousel-item {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  opacity: 0;
+  transform: translateX(100%);
+  transition: all var(--transition-normal);
+}
+
+.carousel-item.active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.carousel-item img {
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+}
+
+.arc-year-range {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 8px;
 }
 
 /* ===== Experience Cards Grid ===== */
@@ -2622,6 +3016,43 @@ header {
   
   .modal-footer {
     flex-direction: column;
+  }
+  
+  /* Arc Timeline Mobile */
+  .arc-timeline {
+    height: 320px;
+    margin-bottom: 3rem;
+  }
+  
+  .arc-svg {
+    height: 150px;
+  }
+  
+  .arc-marker {
+    display: none;
+  }
+  
+  .arc-role-title,
+  .arc-role-subtitle {
+    font-size: 1.2rem;
+  }
+  
+  /* Theme & Music buttons mobile */
+  .theme-toggle {
+    top: 80px;
+    right: 16px;
+    width: 40px;
+    height: 40px;
+  }
+  
+  .music-player {
+    bottom: 80px;
+    right: 16px;
+  }
+  
+  .music-toggle {
+    width: 44px;
+    height: 44px;
   }
 }
 
