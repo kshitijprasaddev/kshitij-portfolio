@@ -12,8 +12,9 @@ function openPdfViewer(pdfUrl, title) {
   
   if (!modal || !frame) return;
   
-  // Use direct PDF URL for instant native browser rendering (much faster than Google Docs Viewer)
-  frame.src = pdfUrl;
+  // Build absolute URL for Google Docs Viewer
+  const fullUrl = window.location.origin + '/' + pdfUrl;
+  frame.src = 'https://docs.google.com/gview?url=' + encodeURIComponent(fullUrl) + '&embedded=true';
   
   if (titleEl) titleEl.textContent = title || 'Document';
   if (downloadBtn) {
