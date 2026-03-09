@@ -12,7 +12,12 @@ function openPdfViewer(pdfUrl, title) {
   
   if (!modal || !frame) return;
   
-  frame.src = pdfUrl;
+  // Build the full public URL for the PDF
+  const fullPdfUrl = window.location.origin + '/' + pdfUrl;
+  
+  // Use Google Docs Viewer for reliable cross-browser inline PDF rendering
+  frame.src = 'https://docs.google.com/gview?url=' + encodeURIComponent(fullPdfUrl) + '&embedded=true';
+  
   if (titleEl) titleEl.textContent = title || 'Document';
   if (downloadBtn) {
     downloadBtn.href = pdfUrl;

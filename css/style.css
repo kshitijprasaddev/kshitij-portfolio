@@ -3982,3 +3982,450 @@ header {
     flex-direction: column;
   }
 }
+
+/* ===================================================================
+   PROFESSIONAL UPGRADE — Helsing-tier polish
+   =================================================================== */
+
+/* ===== Hero Status Indicator ===== */
+.hero-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.4rem 1rem 0.4rem 0.75rem;
+  background: rgba(34, 197, 94, 0.08);
+  border: 1px solid rgba(34, 197, 94, 0.2);
+  border-radius: var(--radius-full);
+  margin-bottom: 1.25rem;
+  animation: fadeInUp 0.8s ease-out 0.2s backwards;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  background: #22c55e;
+  border-radius: 50%;
+  animation: statusPulse 2s ease-in-out infinite;
+  box-shadow: 0 0 8px rgba(34, 197, 94, 0.6);
+}
+
+@keyframes statusPulse {
+  0%, 100% { opacity: 1; box-shadow: 0 0 8px rgba(34, 197, 94, 0.6); }
+  50% { opacity: 0.5; box-shadow: 0 0 16px rgba(34, 197, 94, 0.3); }
+}
+
+.status-text {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: #22c55e;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* ===== Enhanced Glassmorphism ===== */
+.glass-card {
+  background: rgba(18, 18, 18, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2),
+              inset 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+
+.glass-card:hover {
+  background: rgba(24, 24, 24, 0.75);
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.3),
+              0 0 0 1px rgba(132, 204, 22, 0.05),
+              inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+/* ===== Enhanced Section Transitions ===== */
+.section {
+  padding: 7rem 0;
+}
+
+.section-header {
+  margin-bottom: 4.5rem;
+}
+
+.section-eyebrow {
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  background: rgba(132, 204, 22, 0.08);
+  padding: 0.35rem 1rem;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(132, 204, 22, 0.12);
+}
+
+.section-title {
+  font-size: clamp(2.2rem, 4.5vw, 3.2rem);
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.section-subtitle {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  max-width: 650px;
+}
+
+/* ===== Refined Experience Cards ===== */
+.experience-card {
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(8px);
+}
+
+.experience-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(132, 204, 22, 0.15);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3),
+              0 0 50px rgba(132, 204, 22, 0.06);
+}
+
+.experience-card.featured {
+  border: 1px solid rgba(132, 204, 22, 0.15);
+  box-shadow: 0 4px 30px rgba(132, 204, 22, 0.05);
+}
+
+.experience-card.featured:hover {
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3),
+              0 0 60px rgba(132, 204, 22, 0.1);
+}
+
+.experience-type {
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+}
+
+.experience-highlights li {
+  font-size: 0.84rem;
+  line-height: 1.7;
+}
+
+.experience-tags span {
+  font-size: 0.68rem;
+  letter-spacing: 0.03em;
+  border: 1px solid rgba(132, 204, 22, 0.08);
+}
+
+.experience-tags span:hover {
+  background: rgba(132, 204, 22, 0.18);
+  border-color: rgba(132, 204, 22, 0.25);
+  transform: translateY(-1px);
+}
+
+/* ===== Enhanced Project Cards ===== */
+.project-card {
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.project-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35),
+              0 0 40px rgba(132, 204, 22, 0.06);
+}
+
+.project-badge {
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+}
+
+/* ===== Enhanced Featured Project ===== */
+.featured-project {
+  position: relative;
+  overflow: hidden;
+}
+
+.featured-project::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--primary), transparent);
+  opacity: 0.4;
+}
+
+.featured-badge {
+  letter-spacing: 0.08em;
+}
+
+.featured-tags span {
+  border: 1px solid rgba(132, 204, 22, 0.1);
+  transition: all 0.3s ease;
+}
+
+.featured-tags span:hover {
+  background: rgba(132, 204, 22, 0.15);
+  border-color: rgba(132, 204, 22, 0.3);
+  transform: translateY(-1px);
+}
+
+/* ===== Enhanced PDF Viewer ===== */
+.pdf-viewer-modal .pdf-content {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 32px 80px rgba(0, 0, 0, 0.6);
+}
+
+.pdf-header {
+  background: rgba(15, 15, 15, 0.95);
+  backdrop-filter: blur(20px);
+}
+
+.pdf-header h3 {
+  font-size: 1rem;
+  letter-spacing: -0.01em;
+}
+
+.pdf-frame {
+  background: #1a1a1a;
+}
+
+/* ===== Enhanced Footer ===== */
+.footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+  padding: 5rem 0 2.5rem;
+}
+
+.footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--primary), transparent);
+  opacity: 0.5;
+}
+
+.footer-tagline {
+  font-family: var(--font-mono);
+  font-size: 0.88rem;
+  letter-spacing: 0.02em;
+}
+
+.social-link {
+  width: 46px;
+  height: 46px;
+  backdrop-filter: blur(10px);
+}
+
+.social-link:hover {
+  background: var(--gradient-primary);
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 8px 24px rgba(132, 204, 22, 0.3);
+}
+
+/* ===== Enhanced Skill Bars ===== */
+.skill-fill {
+  box-shadow: 0 0 10px rgba(132, 204, 22, 0.3);
+}
+
+.skill-item:hover .skill-fill {
+  box-shadow: 0 0 20px rgba(132, 204, 22, 0.5);
+}
+
+/* ===== Enhanced Navigation ===== */
+.navbar.scrolled {
+  background: rgba(5, 5, 5, 0.92);
+  backdrop-filter: blur(24px) saturate(200%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.btn-nav {
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.btn-nav:hover {
+  background: rgba(132, 204, 22, 0.12);
+  border-color: rgba(132, 204, 22, 0.4);
+  box-shadow: 0 0 24px rgba(132, 204, 22, 0.15),
+              inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+/* ===== Enhanced Hero ===== */
+.hero-title .word.highlight {
+  position: relative;
+}
+
+.hero-description {
+  max-width: 540px;
+  font-size: 1.02rem;
+  line-height: 1.95;
+  color: var(--text-secondary);
+}
+
+/* ===== Enhanced Hero Stats ===== */
+.stat-number {
+  text-shadow: 0 0 30px rgba(132, 204, 22, 0.2);
+}
+
+.stat-item:hover .stat-number {
+  text-shadow: 0 0 40px rgba(132, 204, 22, 0.4);
+}
+
+/* ===== Enhanced Preloader ===== */
+.preloader-logo {
+  font-size: 5.5rem;
+  letter-spacing: -0.02em;
+}
+
+/* ===== Refined Buttons ===== */
+.btn-primary {
+  box-shadow: 0 4px 20px rgba(132, 204, 22, 0.25),
+              0 0 0 1px rgba(132, 204, 22, 0.1),
+              inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.btn-primary:hover {
+  box-shadow: 0 8px 40px rgba(132, 204, 22, 0.35),
+              0 0 80px rgba(132, 204, 22, 0.15),
+              0 0 0 1px rgba(132, 204, 22, 0.2),
+              inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.btn-secondary {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.btn-secondary:hover {
+  border-color: rgba(132, 204, 22, 0.4);
+  box-shadow: 0 0 30px rgba(132, 204, 22, 0.08),
+              inset 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+
+/* ===== Enhanced About Section ===== */
+.about-lead {
+  font-size: 1.25rem;
+  line-height: 1.85;
+}
+
+.highlight-icon {
+  box-shadow: 0 4px 12px rgba(132, 204, 22, 0.08);
+}
+
+.info-card {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.info-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+}
+
+/* ===== Enhanced Gallery ===== */
+.gallery-image {
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+}
+
+.gallery-image:hover {
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.35);
+  transform: translateY(-3px);
+}
+
+/* ===== Enhanced Contact Form ===== */
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(132, 204, 22, 0.08);
+}
+
+/* ===== Progress List Refinement ===== */
+.progress-item {
+  transition: all 0.3s ease;
+}
+
+.progress-item.completed i {
+  filter: drop-shadow(0 0 4px rgba(34, 197, 94, 0.4));
+}
+
+.progress-item.active i {
+  filter: drop-shadow(0 0 4px rgba(132, 204, 22, 0.4));
+}
+
+/* ===== Scroll Progress Bar Enhancement ===== */
+.scroll-progress {
+  background: linear-gradient(90deg, var(--primary), var(--accent-secondary)) !important;
+  box-shadow: 0 0 10px rgba(132, 204, 22, 0.4);
+}
+
+/* ===== Enhanced Logo Marquee ===== */
+.logo-item img {
+  transition: all 0.4s ease;
+}
+
+.logo-item:hover img {
+  transform: scale(1.08);
+  filter: brightness(1.15);
+}
+
+/* ===== Light Theme Professional Overrides ===== */
+[data-theme="light"] .hero-status {
+  background: rgba(34, 197, 94, 0.06);
+  border-color: rgba(34, 197, 94, 0.15);
+}
+
+[data-theme="light"] .glass-card {
+  background: rgba(255, 255, 255, 0.7);
+  border-color: rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.06);
+}
+
+[data-theme="light"] .glass-card:hover {
+  background: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="light"] .experience-card {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 248, 248, 0.95) 100%);
+  border-color: rgba(0, 0, 0, 0.06);
+}
+
+[data-theme="light"] .experience-card:hover {
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1),
+              0 0 50px rgba(132, 204, 22, 0.06);
+}
+
+[data-theme="light"] .section-eyebrow {
+  background: rgba(132, 204, 22, 0.06);
+  border-color: rgba(132, 204, 22, 0.1);
+}
+
+[data-theme="light"] .footer {
+  border-top-color: rgba(0, 0, 0, 0.06);
+}
+
+[data-theme="light"] .pdf-header {
+  background: rgba(250, 250, 250, 0.95);
+}
+
+[data-theme="light"] .navbar.scrolled {
+  background: rgba(250, 250, 250, 0.92);
+  border-bottom-color: rgba(0, 0, 0, 0.06);
+}
+
+/* ===== Responsive Professional Overrides ===== */
+@media (max-width: 1024px) {
+  .hero-status {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 5rem 0;
+  }
+  
+  .hero-status {
+    margin-bottom: 1rem;
+  }
+  
+  .status-text {
+    font-size: 0.72rem;
+  }
+}
