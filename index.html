@@ -688,17 +688,17 @@
         <div class="featured-project glass-card">
           <div class="featured-badge">
             <i data-lucide="star"></i>
-            <span>Bachelor's Thesis (Ongoing)</span>
+            <span>Bachelor's Thesis (Completed)</span>
           </div>
           
           <div class="featured-grid thesis-layout">
             <div class="featured-info full-width">
               <h3>Autonomous Precision Landing via Deep Reinforcement Learning</h3>
-              <p class="featured-subtitle">AKKODIS | Abschlussarbeit, Autonomous Aerial Systems | Ingolstadt, Bavaria | Oct 2025 – Present</p>
+              <p class="featured-subtitle">AKKODIS | Abschlussarbeit, Autonomous Aerial Systems | Ingolstadt, Bavaria | Oct 2025 – Mar 2026</p>
               <p class="featured-description">
                 Deep Reinforcement Learning (PPO/SAC/TD3) for Precise Multirotor UAV Landing on Moving Targets. 
-                Designing distributed training and evaluation pipelines using custom simulators (Isaac Sim, Gazebo) 
-                and PX4 Software-in-the-Loop (SITL). Executing reliable pipelines from raw sensor data to RL inference, 
+                Designed distributed training and evaluation pipelines using custom simulators (Isaac Sim, Gazebo) 
+                and PX4 Software-in-the-Loop (SITL). Executed reliable pipelines from raw sensor data to RL inference, 
                 with a strict focus on edge-case handling and tactical execution.
               </p>
               
@@ -711,12 +711,12 @@
                   <i data-lucide="check-circle-2"></i>
                   <span>PPO shows higher landing reliability</span>
                 </div>
-                <div class="progress-item active">
-                  <i data-lucide="loader"></i>
-                  <span>Implementing Control Barrier Functions</span>
+                <div class="progress-item completed">
+                  <i data-lucide="check-circle-2"></i>
+                  <span>Control Barrier Functions implemented</span>
                 </div>
-                <div class="progress-item">
-                  <i data-lucide="circle"></i>
+                <div class="progress-item completed">
+                  <i data-lucide="check-circle-2"></i>
                   <span>Real drone testing</span>
                 </div>
               </div>
@@ -897,112 +897,44 @@
           <h2 class="section-title">Skills & Technologies</h2>
         </div>
         
-        <div class="skills-showcase">
-          <div class="skill-category">
-            <div class="category-header">
-              <div class="category-icon">
-                <i data-lucide="brain"></i>
-              </div>
-              <h3>Machine Learning & AI</h3>
-            </div>
-            <div class="skill-items">
-              <div class="skill-item">
-                <span class="skill-name">Reinforcement Learning</span>
-                <div class="skill-bar"><div class="skill-fill" style="--fill: 95%"></div></div>
-              </div>
-              <div class="skill-item">
-                <span class="skill-name">PyTorch</span>
-                <div class="skill-bar"><div class="skill-fill" style="--fill: 90%"></div></div>
-              </div>
-              <div class="skill-item">
-                <span class="skill-name">Computer Vision</span>
-                <div class="skill-bar"><div class="skill-fill" style="--fill: 85%"></div></div>
-              </div>
-              <div class="skill-item">
-                <span class="skill-name">YOLO / OpenCV</span>
-                <div class="skill-bar"><div class="skill-fill" style="--fill: 88%"></div></div>
-              </div>
+        <div class="skills-compact">
+          <div class="skill-group">
+            <h3 class="skill-group-title"><i data-lucide="brain"></i> Machine Learning & AI</h3>
+            <div class="skill-chips">
+              <div class="skill-chip" data-level="95"><span>Reinforcement Learning</span><span class="chip-level">95%</span></div>
+              <div class="skill-chip" data-level="90"><span>PyTorch</span><span class="chip-level">90%</span></div>
+              <div class="skill-chip" data-level="85"><span>Computer Vision</span><span class="chip-level">85%</span></div>
+              <div class="skill-chip" data-level="88"><span>YOLO / OpenCV</span><span class="chip-level">88%</span></div>
             </div>
           </div>
           
-          <div class="skill-category">
-            <div class="category-header">
-              <div class="category-icon">
-                <i data-lucide="cog"></i>
-              </div>
-              <h3>Robotics & Autonomy</h3>
-            </div>
-            <div class="skill-items">
-              <div class="skill-item">
-                <span class="skill-name">ROS2</span>
-                <div class="skill-bar"><div class="skill-fill" style="--fill: 95%"></div></div>
-              </div>
-              <div class="skill-item">
-                <span class="skill-name">PX4 / ArduPilot</span>
-                <div class="skill-bar"><div class="skill-fill" style="--fill: 85%"></div></div>
-              </div>
-              <div class="skill-item">
-                <span class="skill-name">Sensor Fusion</span>
-                <div class="skill-bar"><div class="skill-fill" style="--fill: 80%"></div></div>
-              </div>
-              <div class="skill-item">
-                <span class="skill-name">SLAM & Navigation</span>
-                <div class="skill-bar"><div class="skill-fill" style="--fill: 82%"></div></div>
-              </div>
+          <div class="skill-group">
+            <h3 class="skill-group-title"><i data-lucide="cog"></i> Robotics & Autonomy</h3>
+            <div class="skill-chips">
+              <div class="skill-chip" data-level="95"><span>ROS2</span><span class="chip-level">95%</span></div>
+              <div class="skill-chip" data-level="85"><span>PX4 / ArduPilot</span><span class="chip-level">85%</span></div>
+              <div class="skill-chip" data-level="80"><span>Sensor Fusion</span><span class="chip-level">80%</span></div>
+              <div class="skill-chip" data-level="82"><span>SLAM & Navigation</span><span class="chip-level">82%</span></div>
             </div>
           </div>
           
-          <div class="skill-category">
-            <div class="category-header">
-              <div class="category-icon">
-                <i data-lucide="code-2"></i>
-              </div>
-              <h3>Programming</h3>
-            </div>
-            <div class="skill-items">
-              <div class="skill-item">
-                <span class="skill-name">Python</span>
-                <div class="skill-bar"><div class="skill-fill" style="--fill: 95%"></div></div>
-              </div>
-              <div class="skill-item">
-                <span class="skill-name">C++</span>
-                <div class="skill-bar"><div class="skill-fill" style="--fill: 80%"></div></div>
-              </div>
-              <div class="skill-item">
-                <span class="skill-name">TypeScript / React</span>
-                <div class="skill-bar"><div class="skill-fill" style="--fill: 85%"></div></div>
-              </div>
-              <div class="skill-item">
-                <span class="skill-name">Git / CI/CD</span>
-                <div class="skill-bar"><div class="skill-fill" style="--fill: 88%"></div></div>
-              </div>
+          <div class="skill-group">
+            <h3 class="skill-group-title"><i data-lucide="code-2"></i> Programming</h3>
+            <div class="skill-chips">
+              <div class="skill-chip" data-level="95"><span>Python</span><span class="chip-level">95%</span></div>
+              <div class="skill-chip" data-level="80"><span>C++</span><span class="chip-level">80%</span></div>
+              <div class="skill-chip" data-level="85"><span>TypeScript / React</span><span class="chip-level">85%</span></div>
+              <div class="skill-chip" data-level="88"><span>Git / CI/CD</span><span class="chip-level">88%</span></div>
             </div>
           </div>
           
-          <div class="skill-category">
-            <div class="category-header">
-              <div class="category-icon">
-                <i data-lucide="box"></i>
-              </div>
-              <h3>Simulation & Tools</h3>
-            </div>
-            <div class="skill-items">
-              <div class="skill-item">
-                <span class="skill-name">Gazebo / Isaac Sim</span>
-                <div class="skill-bar"><div class="skill-fill" style="--fill: 90%"></div></div>
-              </div>
-              <div class="skill-item">
-                <span class="skill-name">Gymnasium</span>
-                <div class="skill-bar"><div class="skill-fill" style="--fill: 92%"></div></div>
-              </div>
-              <div class="skill-item">
-                <span class="skill-name">Docker / Linux</span>
-                <div class="skill-bar"><div class="skill-fill" style="--fill: 88%"></div></div>
-              </div>
-              <div class="skill-item">
-                <span class="skill-name">SolidWorks</span>
-                <div class="skill-bar"><div class="skill-fill" style="--fill: 75%"></div></div>
-              </div>
+          <div class="skill-group">
+            <h3 class="skill-group-title"><i data-lucide="box"></i> Simulation & Tools</h3>
+            <div class="skill-chips">
+              <div class="skill-chip" data-level="90"><span>Gazebo / Isaac Sim</span><span class="chip-level">90%</span></div>
+              <div class="skill-chip" data-level="92"><span>Gymnasium</span><span class="chip-level">92%</span></div>
+              <div class="skill-chip" data-level="88"><span>Docker / Linux</span><span class="chip-level">88%</span></div>
+              <div class="skill-chip" data-level="75"><span>SolidWorks</span><span class="chip-level">75%</span></div>
             </div>
           </div>
         </div>
@@ -1087,40 +1019,13 @@
         </div>
         
         <div class="testimonials-grid">
-          <div class="testimonial-card featured">
-            <div class="testimonial-quote">
-              <svg class="quote-icon" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
-              </svg>
-              <p class="testimonial-text">
-                During the course, Mr. Prasad consistently demonstrated a strong ability to independently grasp complex concepts and apply them effectively. One of Mr. Prasad's standout qualities is his aptitude for quickly understanding new theoretical material and integrating it with his mathematical background to gain valuable insights.
-              </p>
-              <p class="testimonial-text">
-                His analytical skills and problem-solving abilities were evident in his lab work, where he consistently produced high-quality work and actively engaged with the subject matter. Mr. Prasad also demonstrated strong collaboration skills when working with fellow students.
-              </p>
-              <p class="testimonial-highlight">
-                "I have no hesitation in recommending Mr. Prasad for any professional opportunities. His combination of intellectual curiosity, strong analytical skills, and dedication to learning make him a valuable candidate for any position he may pursue."
-              </p>
-            </div>
-            <div class="testimonial-author">
-              <div class="author-image">
-                <img src="Logos/THI logo.png" alt="THI">
-              </div>
-              <div class="author-info">
-                <h4 class="author-name">Prof. Dr.-Ing. Michael Mecking <span class="author-badge">Ex-BMW</span></h4>
-                <p class="author-title">Dean, Faculty of Electrical & Information Engineering</p>
-                <p class="author-org">Technische Hochschule Ingolstadt</p>
-              </div>
-              <span class="testimonial-date">March 2024</span>
-            </div>
-          </div>
-          
           <!-- Recommendation Letter Image -->
           <div class="recommendation-embed">
             <h3 class="recommendation-embed-title">
               <i data-lucide="file-text"></i>
-              <span>Recommendation Letter</span>
+              <span>Recommendation Letter — Prof. Dr.-Ing. Michael Mecking</span>
             </h3>
+            <p class="recommendation-embed-subtitle">Dean, Faculty of Electrical & Information Engineering · Technische Hochschule Ingolstadt</p>
             <div class="recommendation-image-wrapper">
               <img src="Professor mecking recommendation.jpg" alt="Recommendation Letter from Prof. Dr.-Ing. Michael Mecking" class="recommendation-letter-img" loading="lazy" />
             </div>

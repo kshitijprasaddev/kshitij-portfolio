@@ -48,6 +48,11 @@ document.addEventListener("DOMContentLoaded", function () {
     lucide.createIcons();
   }
 
+  // Set --level CSS variable on skill chips from data-level attribute
+  document.querySelectorAll('.skill-chip[data-level]').forEach(chip => {
+    chip.style.setProperty('--level', chip.dataset.level);
+  });
+
   // ===== Theme Toggle (Dark/Light Mode) =====
   const themeToggle = document.getElementById('themeToggle');
   const savedTheme = localStorage.getItem('theme') || 'dark';
