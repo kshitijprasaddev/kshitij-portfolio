@@ -4429,3 +4429,274 @@ header {
     font-size: 0.72rem;
   }
 }
+
+/* ===================================================================
+   EXPERIENCE VERTICAL TIMELINE — Cascading scroll-reveal layout
+   =================================================================== */
+
+.experience-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+  padding-left: 3rem;
+}
+
+/* Vertical timeline line */
+.experience-timeline::before {
+  content: '';
+  position: absolute;
+  left: 0.75rem;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--primary), rgba(132, 204, 22, 0.15), transparent);
+  border-radius: 2px;
+}
+
+/* Each entry */
+.experience-entry {
+  position: relative;
+  padding: 1.75rem 2rem;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(145deg, rgba(20, 20, 20, 0.7) 0%, rgba(12, 12, 12, 0.85) 100%);
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(8px);
+}
+
+/* Timeline dot on left edge */
+.experience-entry::before {
+  content: '';
+  position: absolute;
+  left: calc(-3rem + 0.75rem - 5px);
+  top: 2rem;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--bg-primary);
+  border: 2px solid var(--primary);
+  z-index: 2;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 0 4px var(--bg-secondary);
+}
+
+/* Connecting arm from dot to card */
+.experience-entry::after {
+  content: '';
+  position: absolute;
+  left: calc(-3rem + 0.75rem + 7px);
+  top: calc(2rem + 5px);
+  width: calc(3rem - 0.75rem - 7px);
+  height: 2px;
+  background: rgba(132, 204, 22, 0.2);
+  transition: background 0.3s ease;
+}
+
+.experience-entry:hover {
+  transform: translateX(6px);
+  border-color: rgba(132, 204, 22, 0.15);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3),
+              0 0 40px rgba(132, 204, 22, 0.04);
+}
+
+.experience-entry:hover::before {
+  background: var(--primary);
+  box-shadow: 0 0 12px rgba(132, 204, 22, 0.5),
+              0 0 0 4px var(--bg-secondary);
+  transform: scale(1.2);
+}
+
+.experience-entry:hover::after {
+  background: rgba(132, 204, 22, 0.5);
+}
+
+/* First entry highlighted */
+.experience-entry:first-child {
+  background: linear-gradient(145deg, rgba(132, 204, 22, 0.06) 0%, rgba(12, 12, 12, 0.85) 100%);
+  border-color: rgba(132, 204, 22, 0.12);
+}
+
+.experience-entry:first-child::before {
+  background: var(--primary);
+  box-shadow: 0 0 8px rgba(132, 204, 22, 0.4),
+              0 0 0 4px var(--bg-secondary);
+}
+
+/* Education entry */
+.experience-entry.education {
+  background: linear-gradient(135deg, rgba(250, 204, 21, 0.04) 0%, rgba(12, 12, 12, 0.85) 100%);
+}
+
+.experience-entry.education::before {
+  border-color: var(--accent);
+}
+
+.experience-entry.education:hover::before {
+  background: var(--accent);
+  box-shadow: 0 0 12px rgba(250, 204, 21, 0.5),
+              0 0 0 4px var(--bg-secondary);
+}
+
+/* Cascade animation for timeline entries */
+.experience-entry.cascade-item {
+  opacity: 0;
+  transform: translateY(40px) translateX(-10px);
+  transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.experience-entry.cascade-item.cascade-visible {
+  opacity: 1;
+  transform: translateY(0) translateX(0);
+}
+
+/* Keep reusing experience-header, experience-body etc from existing styles */
+.experience-entry .experience-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* Light theme */
+[data-theme="light"] .experience-entry {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 248, 248, 0.95) 100%);
+  border-color: rgba(0, 0, 0, 0.06);
+}
+
+[data-theme="light"] .experience-entry:first-child {
+  background: linear-gradient(145deg, rgba(132, 204, 22, 0.04) 0%, rgba(255, 255, 255, 0.95) 100%);
+}
+
+[data-theme="light"] .experience-entry:hover {
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08),
+              0 0 40px rgba(132, 204, 22, 0.04);
+}
+
+[data-theme="light"] .experience-entry::before {
+  box-shadow: 0 0 0 4px var(--bg-primary);
+}
+
+[data-theme="light"] .experience-entry::after {
+  background: rgba(132, 204, 22, 0.15);
+}
+
+[data-theme="light"] .experience-timeline::before {
+  background: linear-gradient(to bottom, var(--primary), rgba(132, 204, 22, 0.1), transparent);
+}
+
+/* Responsive - mobile timeline */
+@media (max-width: 768px) {
+  .experience-timeline {
+    padding-left: 2rem;
+  }
+  
+  .experience-timeline::before {
+    left: 0.5rem;
+  }
+  
+  .experience-entry {
+    padding: 1.25rem 1.25rem;
+  }
+  
+  .experience-entry::before {
+    left: calc(-2rem + 0.5rem - 4px);
+    width: 10px;
+    height: 10px;
+  }
+  
+  .experience-entry::after {
+    left: calc(-2rem + 0.5rem + 6px);
+    width: calc(2rem - 0.5rem - 6px);
+    top: calc(2rem + 4px);
+  }
+  
+  .experience-entry .experience-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+  
+  .experience-entry .experience-meta {
+    align-items: flex-start;
+  }
+}
+
+/* ===================================================================
+   RECOMMENDATION EMBED — Letter display in testimonials section
+   =================================================================== */
+
+.recommendation-embed {
+  margin-top: 2.5rem;
+  background: linear-gradient(145deg, rgba(20, 20, 20, 0.6) 0%, rgba(12, 12, 12, 0.8) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  backdrop-filter: blur(8px);
+}
+
+.recommendation-embed-title {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1.25rem 1.75rem;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  margin: 0;
+}
+
+.recommendation-embed-title i {
+  width: 20px;
+  height: 20px;
+  color: var(--primary);
+}
+
+.recommendation-image-wrapper {
+  padding: 1.5rem;
+  display: flex;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.recommendation-letter-img {
+  width: 100%;
+  max-width: 700px;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+  transition: transform 0.4s ease;
+  cursor: zoom-in;
+}
+
+.recommendation-letter-img:hover {
+  transform: scale(1.02);
+}
+
+[data-theme="light"] .recommendation-embed {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 248, 248, 0.95) 100%);
+  border-color: rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="light"] .recommendation-image-wrapper {
+  background: rgba(0, 0, 0, 0.02);
+}
+
+[data-theme="light"] .recommendation-letter-img {
+  border-color: rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+  .recommendation-image-wrapper {
+    padding: 1rem;
+  }
+}
