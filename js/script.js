@@ -3,6 +3,42 @@
  * Professional JavaScript with GSAP Animations
  */
 
+// ===== PDF Viewer (Global Functions) =====
+function openPdfViewer(pdfUrl, title) {
+  const modal = document.getElementById('pdfViewerModal');
+  const frame = document.getElementById('pdfViewerFrame');
+  const titleEl = document.getElementById('pdfViewerTitle');
+  const downloadBtn = document.getElementById('pdfDownloadBtn');
+  
+  if (!modal || !frame) return;
+  
+  frame.src = pdfUrl;
+  if (titleEl) titleEl.textContent = title || 'Document';
+  if (downloadBtn) {
+    downloadBtn.href = pdfUrl;
+    downloadBtn.download = '';
+  }
+  
+  document.body.classList.add('modal-open');
+  modal.classList.add('show');
+  
+  // Re-initialize Lucide icons in modal
+  if (typeof lucide !== 'undefined') {
+    setTimeout(() => lucide.createIcons(), 100);
+  }
+}
+
+function closePdfViewer() {
+  const modal = document.getElementById('pdfViewerModal');
+  const frame = document.getElementById('pdfViewerFrame');
+  
+  if (frame) frame.src = '';
+  if (modal) {
+    modal.classList.remove('show');
+    document.body.classList.remove('modal-open');
+  }
+}
+
 document.addEventListener("DOMContentLoaded", function () {
   // Initialize Lucide icons
   if (typeof lucide !== "undefined") {
@@ -170,8 +206,8 @@ document.addEventListener("DOMContentLoaded", function () {
       
       // Update timeline nodes
       timelineNodes.forEach((node, i) => {
-        // Map slides to nodes: 0=Akkodis->2025(0), 1=THI->2022(2), 2=Schanzer->2022(2), 3=FU Berlin->2020(3)
-        const nodeMap = [0, 2, 2, 3]; // Akkodis=2025, THI=2022, Schanzer=2022, FU Berlin=2020
+        // Map slides to nodes: 0,1=2025(0), 2,3=2024(1), 4=2022(2)
+        const nodeMap = [0, 0, 1, 1, 2]; // Thesis=2025, Werkstudent=2025, Praktikum=2024, Werkstudent2=2024, THI=2022
         node.classList.toggle('active', nodeMap[index] === i);
       });
     }
@@ -187,9 +223,9 @@ document.addEventListener("DOMContentLoaded", function () {
     // Click on timeline nodes
     timelineNodes.forEach((node, index) => {
       node.addEventListener('click', () => {
-        // Map nodes to slides: 2025(0)->Akkodis, 2024(1)->Akkodis, 2022(2)->THI, 2020(3)->FU Berlin
-        const slideMap = { 0: 0, 1: 0, 2: 1, 3: 3 };
-        currentSlide = slideMap[index];
+        // Map nodes to slides: 2025(0)->Thesis, 2024(1)->Praktikum, 2022(2)->THI
+        const slideMap = { 0: 0, 1: 2, 2: 4 };
+        currentSlide = slideMap[index] || 0;
         updateDisplayCard(currentSlide);
       });
     });
@@ -799,8 +835,9 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     });
 
-    // Experience cards - professional stagger animation
-    gsap.utils.toArray(".experience-card").forEach((card, index) => {
+    // Experience cards - cascade handled by CSS IntersectionObserver
+    // Only animate non-cascade experience cards (legacy support)
+    gsap.utils.toArray(".experience-card:not(.cascade-item)").forEach((card, index) => {
       gsap.from(card, {
         y: 60,
         opacity: 0,
@@ -989,6 +1026,13 @@ document.addEventListener("DOMContentLoaded", function () {
   // Close modal on Escape key
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") {
+      // Close PDF viewer if open
+      const pdfModal = document.getElementById('pdfViewerModal');
+      if (pdfModal && pdfModal.classList.contains('show')) {
+        closePdfViewer();
+        return;
+      }
+      
       modals.forEach((modal) => {
         if (modal.classList.contains("show")) {
           closeModal(modal);
@@ -1122,49 +1166,33 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // ===== Typing Effect for Role =====
-  const roleText = document.querySelector(".role-text");
+  // ===== Typing Effect for Role - REPLACED by Role Carousel =====
+  // Old typing effect removed. New slide carousel below.
   
-  if (roleText) {
-    const roles = [
-      "Autonomous Vehicle Engineer",
-      "Robotics Developer",
-      "RL Researcher",
-      "ROS2 Specialist"
-    ];
+  // ===== Role Carousel (Smooth Slide Animation) =====
+  const roleTrack = document.getElementById('roleTrack');
+  if (roleTrack) {
+    const roleItems = roleTrack.querySelectorAll('.role-item');
+    let currentRoleIndex = 0;
+    const roleItemHeight = 40; // 2.5rem = 40px
     
-    let roleIndex = 0;
-    let charIndex = 0;
-    let isDeleting = false;
-    let typingSpeed = 100;
-    
-    function typeRole() {
-      const currentRole = roles[roleIndex];
+    function nextRole() {
+      // Remove active from current
+      roleItems[currentRoleIndex].classList.remove('active');
       
-      if (isDeleting) {
-        roleText.textContent = currentRole.substring(0, charIndex - 1);
-        charIndex--;
-        typingSpeed = 50;
-      } else {
-        roleText.textContent = currentRole.substring(0, charIndex + 1);
-        charIndex++;
-        typingSpeed = 100;
-      }
+      currentRoleIndex = (currentRoleIndex + 1) % roleItems.length;
       
-      if (!isDeleting && charIndex === currentRole.length) {
-        typingSpeed = 2000;
-        isDeleting = true;
-      } else if (isDeleting && charIndex === 0) {
-        isDeleting = false;
-        roleIndex = (roleIndex + 1) % roles.length;
-        typingSpeed = 500;
-      }
+      // Slide track
+      roleTrack.style.transform = `translateY(-${currentRoleIndex * roleItemHeight}px)`;
       
-      setTimeout(typeRole, typingSpeed);
+      // Add active to new
+      roleItems[currentRoleIndex].classList.add('active');
     }
     
-    // Start typing after initial animation
-    setTimeout(typeRole, 3000);
+    // Start cycling after initial load animation
+    setTimeout(() => {
+      setInterval(nextRole, 2800);
+    }, 2000);
   }
 
   // ===== Performance Optimization - Reduce animations on low-end devices =====
@@ -1179,6 +1207,22 @@ document.addEventListener("DOMContentLoaded", function () {
     // Disable cursor effects
     cursorFollower.style.display = "none";
     cursorDot.style.display = "none";
+  }
+
+  // ===== Cascading Experience Cards on Scroll =====
+  const cascadeItems = document.querySelectorAll('.cascade-item');
+  
+  if (cascadeItems.length > 0) {
+    const cascadeObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('cascade-visible');
+          cascadeObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+    
+    cascadeItems.forEach(item => cascadeObserver.observe(item));
   }
 
   console.log("Portfolio loaded successfully! 🚀");

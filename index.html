@@ -122,10 +122,10 @@
         <li><a href="#contact" class="nav-link">Contact</a></li>
       </ul>
       <div class="nav-right">
-        <a href="CV.pdf" target="_blank" class="btn btn-nav">
-          <span>Download CV</span>
-          <i data-lucide="download"></i>
-        </a>
+        <button class="btn btn-nav" id="openCvViewer" onclick="openPdfViewer('CV_Kshitij_Prasad.pdf', 'Curriculum Vitae — Kshitij Prasad')">
+          <span>View CV</span>
+          <i data-lucide="file-text"></i>
+        </button>
       </div>
       <div class="menu-toggle">
         <span></span><span></span><span></span>
@@ -159,7 +159,16 @@
             </h1>
             
             <div class="hero-role">
-              <span class="role-text">Autonomous Vehicle Engineer</span>
+              <span class="role-prefix">›</span>
+              <div class="role-carousel">
+                <div class="role-track" id="roleTrack">
+                  <span class="role-item active">Autonomous Vehicle Engineer</span>
+                  <span class="role-item">Reinforcement Learning Researcher</span>
+                  <span class="role-item">Robotics Developer</span>
+                  <span class="role-item">Drone Systems Engineer</span>
+                  <span class="role-item">ROS 2 Specialist</span>
+                </div>
+              </div>
             </div>
             
             <p class="hero-description">
@@ -221,8 +230,8 @@
           </div>
           <div class="stat-divider"></div>
           <div class="stat-item">
-            <span class="stat-number" data-count="2">0</span>
-            <span class="stat-plus"></span>
+            <span class="stat-number" data-count="1">0</span>
+            <span class="stat-plus">st</span>
             <span class="stat-label">Place PAVE Europe</span>
           </div>
         </div>
@@ -461,10 +470,6 @@
               <div class="node-dot"></div>
               <span class="node-year">2022</span>
             </div>
-            <div class="timeline-node" data-year="2020" data-index="3">
-              <div class="node-dot"></div>
-              <span class="node-year">2020</span>
-            </div>
           </div>
           
           <!-- Central Display Card -->
@@ -474,10 +479,10 @@
                 <img src="Logos/akkodis logo.png" alt="Akkodis" class="company-logo-display">
               </div>
               <div class="card-info">
-                <span class="card-type">Thesis & Working Student</span>
-                <h3 class="card-role">Robotics & Autonomous Systems</h3>
-                <p class="card-location"><i data-lucide="map-pin"></i> Ingolstadt, Germany</p>
-                <span class="card-duration">Apr 2024 — Present</span>
+                <span class="card-type">Thesis</span>
+                <h3 class="card-role">Autonomous Aerial Systems</h3>
+                <p class="card-location"><i data-lucide="map-pin"></i> Ingolstadt, Bavaria</p>
+                <span class="card-duration">Oct 2025 — Present</span>
               </div>
             </div>
             
@@ -487,183 +492,184 @@
               <button class="nav-dot" data-slide="1"></button>
               <button class="nav-dot" data-slide="2"></button>
               <button class="nav-dot" data-slide="3"></button>
+              <button class="nav-dot" data-slide="4"></button>
             </div>
             
             <!-- Company Cards Data -->
             <div class="company-slides" style="display: none;">
-              <div class="slide-data" data-company="Akkodis" data-logo="Logos/akkodis logo.png" data-type="Thesis & Working Student" data-role="Robotics & Autonomous Systems" data-location="Ingolstadt, Germany" data-duration="Apr 2024 — Present"></div>
-              <div class="slide-data" data-company="THI" data-logo="Logos/THI logo.png" data-type="Bachelor's Degree" data-role="Autonomous Vehicle Engineering" data-location="Ingolstadt, Germany" data-duration="Oct 2022 — Present"></div>
-              <div class="slide-data" data-company="Schanzer Racing" data-logo="Logos/Logo-Schanzer-blau-schwarz.png" data-type="Formula Student" data-role="Driverless Department Engineer" data-location="TH Ingolstadt" data-duration="Oct 2022 — Oct 2024"></div>
-              <div class="slide-data" data-company="FU Berlin" data-logo="Logos/FU BERLIN logo.png" data-type="Foundation Year" data-role="German Language & Pre-Studies" data-location="Berlin, Germany" data-duration="Oct 2020 — Sep 2021"></div>
+              <div class="slide-data" data-company="Akkodis" data-logo="Logos/akkodis logo.png" data-type="Thesis" data-role="Autonomous Aerial Systems" data-location="Ingolstadt, Bavaria" data-duration="Oct 2025 — Present"></div>
+              <div class="slide-data" data-company="Akkodis" data-logo="Logos/akkodis logo.png" data-type="Working Student" data-role="Automated Driving Testing" data-location="Ingolstadt, Bavaria" data-duration="Mar 2025 — Oct 2025"></div>
+              <div class="slide-data" data-company="Akkodis" data-logo="Logos/akkodis logo.png" data-type="Internship" data-role="Sensor Fusion &amp; Navigation" data-location="Ingolstadt, Bavaria" data-duration="Oct 2024 — Mar 2025"></div>
+              <div class="slide-data" data-company="Akkodis" data-logo="Logos/akkodis logo.png" data-type="Working Student" data-role="Service Robot Integration" data-location="Ingolstadt, Bavaria" data-duration="Apr 2024 — Oct 2024"></div>
+              <div class="slide-data" data-company="THI" data-logo="Logos/THI logo.png" data-type="Bachelor's Degree" data-role="Autonomous Vehicle Engineering" data-location="Ingolstadt, Bavaria" data-duration="Oct 2022 — Mar 2026"></div>
             </div>
           </div>
         </div>
         
         <div class="experience-grid">
-          <!-- Current Position -->
-          <div class="experience-card featured">
+          <!-- Current Position: Thesis -->
+          <div class="experience-card featured cascade-item">
             <div class="experience-header">
               <div class="company-logo">
                 <img src="Logos/akkodis logo.png" alt="Akkodis" />
               </div>
               <div class="experience-meta">
                 <span class="experience-type">Thesis</span>
-                <span class="experience-date">Sep 2025 - Present</span>
+                <span class="experience-date">Oct 2025 – Present</span>
               </div>
             </div>
             <div class="experience-body">
-              <h3 class="experience-title">Abschlussarbeit (Bachelor's Thesis)</h3>
-              <p class="experience-company">Akkodis Germany · Ingolstadt</p>
+              <h3 class="experience-title">Abschlussarbeit — Autonomous Aerial Systems</h3>
+              <p class="experience-company">AKKODIS · Ingolstadt, Bavaria</p>
               <ul class="experience-highlights">
-                <li>Fiducial-assisted deep RL for UAV landing on moving platforms</li>
-                <li>Benchmarking TD3, PPO, SAC against native controllers</li>
-                <li>Isaac Sim domain randomization + Gazebo SITL for sim-to-real transfer</li>
-                <li>Built ROS 2 ↔ MAVLink ↔ PX4 SITL control loops</li>
+                <li>Deep Reinforcement Learning (PPO/SAC/TD3) for Precise Multirotor UAV Landing on Moving Targets</li>
+                <li>Designing distributed training and evaluation pipelines using custom simulators (Isaac Sim, Gazebo) and PX4 Software-in-the-Loop (SITL)</li>
+                <li>Executing reliable pipelines from raw sensor data to RL inference, with strict focus on edge-case handling and tactical execution</li>
               </ul>
               <div class="experience-tags">
-                <span>TD3/PPO/SAC</span>
+                <span>Python</span>
+                <span>C++</span>
+                <span>Deep RL</span>
                 <span>PX4 SITL</span>
-                <span>Isaac Sim</span>
-                <span>ROS 2</span>
+                <span>MAVLink</span>
+                <span>Docker</span>
               </div>
             </div>
           </div>
 
-          <!-- Werkstudent Mar-Sep 2025 -->
-          <div class="experience-card">
+          <!-- Werkstudent Mar–Oct 2025 -->
+          <div class="experience-card cascade-item">
             <div class="experience-header">
               <div class="company-logo">
                 <img src="Logos/akkodis logo.png" alt="Akkodis" />
               </div>
               <div class="experience-meta">
                 <span class="experience-type">Working Student</span>
-                <span class="experience-date">Mar - Sep 2025</span>
+                <span class="experience-date">Mar 2025 – Oct 2025</span>
               </div>
             </div>
             <div class="experience-body">
-              <h3 class="experience-title">Werkstudent - Simulation Integration</h3>
-              <p class="experience-company">Akkodis Germany · Ingolstadt</p>
+              <h3 class="experience-title">Werkstudent — Automated Driving Testing</h3>
+              <p class="experience-company">AKKODIS · Ingolstadt, Bavaria</p>
               <ul class="experience-highlights">
-                <li>Bridged ROS 2 Humble with CARLA via ros-bridge for synchronized sensor streaming</li>
-                <li>Automated 15+ critical scenarios, trimmed integration time ~40%</li>
-                <li>Established DDS QoS settings for reliable simulation dataflow</li>
+                <li>Engineered extensive test suites and macro-level benchmarks for Automated Driving (AD) stacks, improving operational reliability</li>
+                <li>Supported development of a Python pipeline to parameterize and extract driving scenarios for state-of-the-art ADAS functions</li>
+                <li>Proactively collaborated via asynchronous workflows (PRs, RFCs) to ensure robustness and adherence to safety standards</li>
               </ul>
               <div class="experience-tags">
-                <span>ROS 2</span>
-                <span>CARLA</span>
-                <span>Nav2</span>
-                <span>DDS</span>
+                <span>Python</span>
+                <span>AD Testing</span>
+                <span>ADAS</span>
+                <span>CI/CD</span>
               </div>
             </div>
           </div>
 
-          <!-- Praktikum -->
-          <div class="experience-card">
+          <!-- Praktikum Oct 2024–Mar 2025 -->
+          <div class="experience-card cascade-item">
             <div class="experience-header">
               <div class="company-logo">
                 <img src="Logos/akkodis logo.png" alt="Akkodis" />
               </div>
               <div class="experience-meta">
                 <span class="experience-type">Internship</span>
-                <span class="experience-date">Oct 2024 - Mar 2025</span>
+                <span class="experience-date">Oct 2024 – Mar 2025</span>
               </div>
             </div>
             <div class="experience-body">
-              <h3 class="experience-title">Praktikum - Service Robot Navigation</h3>
-              <p class="experience-company">Akkodis Germany · Ingolstadt</p>
+              <h3 class="experience-title">Praktikum — Sensor Fusion & Navigation</h3>
+              <p class="experience-company">AKKODIS · Ingolstadt, Bavaria</p>
               <ul class="experience-highlights">
-                <li>Integrated ROS 2 service robot with Nav2 stack (controllers, perception, trajectory)</li>
-                <li>Built real-time perception with Intel RealSense + YOLO object detection</li>
-                <li>Triggered custom Nav2 behaviors, reduced downtime ~15%</li>
+                <li>Built and integrated a real-time sensor fusion pipeline (Intel RealSense, LiDAR, Vision) for autonomous state estimation and navigation</li>
+                <li>Developed robust ROS 2 plugins to handle bespoke hardware protocols and intermittent connectivity constraints</li>
+                <li>Reduced system downtime by 15% by implementing failure-mode handling in dynamic trajectory planning algorithms</li>
               </ul>
               <div class="experience-tags">
-                <span>Nav2</span>
-                <span>YOLO</span>
+                <span>ROS 2</span>
+                <span>Sensor Fusion</span>
                 <span>RealSense</span>
-                <span>Trajectory Planning</span>
+                <span>LiDAR</span>
               </div>
             </div>
           </div>
 
-          <!-- Werkstudent Apr-Oct 2024 -->
-          <div class="experience-card">
+          <!-- Werkstudent Apr–Oct 2024 -->
+          <div class="experience-card cascade-item">
             <div class="experience-header">
               <div class="company-logo">
                 <img src="Logos/akkodis logo.png" alt="Akkodis" />
               </div>
               <div class="experience-meta">
                 <span class="experience-type">Working Student</span>
-                <span class="experience-date">Apr - Oct 2024</span>
+                <span class="experience-date">Apr 2024 – Oct 2024</span>
               </div>
             </div>
             <div class="experience-body">
-              <h3 class="experience-title">Werkstudent - Autonomous Navigation</h3>
-              <p class="experience-company">Akkodis Germany · Ingolstadt</p>
+              <h3 class="experience-title">Werkstudent — Service Robot Integration</h3>
+              <p class="experience-company">AKKODIS · Ingolstadt, Bavaria</p>
               <ul class="experience-highlights">
-                <li>Autonomous navigation on TurtleBot3 with ROS 2, Nav2, RealSense</li>
-                <li>Improved exploration and path planning algorithms</li>
-                <li>Collaborated on SLAM/EKF integration for simulation-to-real alignment</li>
+                <li>Focused on tight hardware-software integration, deploying autonomous path planning behaviors on physical service robots</li>
+                <li>Actively shared technical know-how in engineering huddles, reviewing code contributions to support continuous team improvement</li>
               </ul>
               <div class="experience-tags">
-                <span>TurtleBot3</span>
-                <span>SLAM</span>
-                <span>EKF</span>
-                <span>Nav2</span>
+                <span>ROS 2</span>
+                <span>Path Planning</span>
+                <span>Hardware Integration</span>
               </div>
             </div>
           </div>
 
           <!-- Schanzer Racing -->
-          <div class="experience-card">
+          <div class="experience-card cascade-item">
             <div class="experience-header">
               <div class="company-logo">
                 <img src="Logos/Logo-Schanzer-blau-schwarz.png" alt="Schanzer Racing" />
               </div>
               <div class="experience-meta">
                 <span class="experience-type">Formula Student</span>
-                <span class="experience-date">Oct 2022 - Oct 2024</span>
+                <span class="experience-date">Oct 2022 – Oct 2024</span>
               </div>
             </div>
             <div class="experience-body">
-              <h3 class="experience-title">Driverless Department Engineer</h3>
+              <h3 class="experience-title">Driverless Department</h3>
               <p class="experience-company">Schanzer Racing e.V. · TH Ingolstadt</p>
               <ul class="experience-highlights">
-                <li>Differential drive robotics with MATLAB, C++, ROS 2</li>
-                <li>JETSON deployment and Foxglove visualization setup</li>
-                <li>LiDAR solution selection and component budgeting</li>
+                <li>Developed high-performance embedded control logic using ROS 2 on NVIDIA JETSON</li>
+                <li>Integrated IMUs, LiDAR, and camera hardware for autonomous perception</li>
               </ul>
               <div class="experience-tags">
                 <span>C++</span>
-                <span>JETSON</span>
+                <span>ROS 2</span>
+                <span>NVIDIA JETSON</span>
                 <span>LiDAR</span>
-                <span>MATLAB</span>
               </div>
             </div>
           </div>
 
           <!-- Education -->
-          <div class="experience-card education">
+          <div class="experience-card education cascade-item">
             <div class="experience-header">
               <div class="company-logo">
                 <img src="Logos/THI logo.png" alt="TH Ingolstadt" />
               </div>
               <div class="experience-meta">
                 <span class="experience-type">Education</span>
-                <span class="experience-date">Mar 2022 - Mar 2026</span>
+                <span class="experience-date">Oct 2022 – Mar 2026</span>
               </div>
             </div>
             <div class="experience-body">
               <h3 class="experience-title">B.Eng. Autonomous Vehicle Engineering</h3>
               <p class="experience-company">Technische Hochschule Ingolstadt</p>
               <ul class="experience-highlights">
-                <li>Focus: Robotics, Signal Processing, Control Theory, Sensor Fusion</li>
-                <li>Schanzer Formula Student Racing Team Member</li>
-                <li>Hochschule Gaming e.V. Club Member</li>
+                <li>Focus: Robotics, Reinforcement Learning, Systems Engineering, Sensor Fusion, Digital Signal Processing</li>
+                <li>Schanzer Formula Student Racing Team — Driverless Department</li>
+                <li>Winner, PAVE Europe 2025 Next Gen Challenge (Brussels)</li>
               </ul>
               <div class="experience-tags">
                 <span>Robotics</span>
-                <span>Control Theory</span>
+                <span>Reinforcement Learning</span>
                 <span>Sensor Fusion</span>
+                <span>DSP</span>
               </div>
             </div>
           </div>
@@ -687,17 +693,15 @@
             <span>Bachelor's Thesis (Ongoing)</span>
           </div>
           
-          <div class="featured-grid">
-            <div class="featured-media">
-              <video controls poster="media/pixhawk_drone.jpg" class="featured-video">
-                <source src="media/ppo_landing_demo.mp4" type="video/mp4">
-              </video>
-            </div>
-            
-            <div class="featured-info">
-              <h3>RL-Based Precision Drone Landing</h3>
+          <div class="featured-grid thesis-layout">
+            <div class="featured-info full-width">
+              <h3>Autonomous Precision Landing via Deep Reinforcement Learning</h3>
+              <p class="featured-subtitle">AKKODIS | Abschlussarbeit — Autonomous Aerial Systems | Ingolstadt, Bavaria | Oct 2025 – Present</p>
               <p class="featured-description">
-                Training a quadcopter to autonomously land on a moving platform using deep reinforcement learning. The agent learns to track the platform, compensate for disturbances, and execute precise touchdowns.
+                Deep Reinforcement Learning (PPO/SAC/TD3) for Precise Multirotor UAV Landing on Moving Targets. 
+                Designing distributed training and evaluation pipelines using custom simulators (Isaac Sim, Gazebo) 
+                and PX4 Software-in-the-Loop (SITL). Executing reliable pipelines from raw sensor data to RL inference, 
+                with a strict focus on edge-case handling and tactical execution.
               </p>
               
               <div class="progress-list">
@@ -720,19 +724,24 @@
               </div>
               
               <div class="featured-tags">
-                <span>PPO</span>
-                <span>SAC</span>
-                <span>PX4</span>
+                <span>PPO/SAC/TD3</span>
+                <span>PX4 SITL</span>
+                <span>Isaac Sim</span>
                 <span>Gazebo</span>
-                <span>PyTorch</span>
+                <span>MAVLink</span>
+                <span>MAVSDK</span>
+                <span>Python</span>
+                <span>C++</span>
+                <span>Docker</span>
+              </div>
+              
+              <div class="thesis-actions">
+                <button class="btn btn-primary" onclick="openPdfViewer('Thesis%20Kshitij.pdf', 'Bachelor\'s Thesis — RL-Based Precision Drone Landing')">
+                  <i data-lucide="book-open"></i>
+                  <span>Read Thesis</span>
+                </button>
               </div>
             </div>
-          </div>
-          
-          <div class="tensorboard-preview">
-            <h4>Training Metrics</h4>
-            <img src="media/tensorboard_screenshot.png" alt="TensorBoard Training Metrics" />
-            <p class="tb-caption">Multiple PPO and SAC runs compared. PPO_10 (pink) shows best convergence.</p>
           </div>
         </div>
         
@@ -1415,6 +1424,13 @@
             </video>
           </div>
           
+          <div class="modal-media">
+            <h4 style="color: var(--text-secondary); margin-bottom: 0.75rem; font-family: var(--font-display);">SAC Agent — XY Tracking Demo</h4>
+            <video controls>
+              <source src="SAC%20XY%20.webm" type="video/webm">
+            </video>
+          </div>
+          
           <div class="modal-description">
             <p>
               Building a custom Pixhawk-based drone platform for thesis research on autonomous landing.
@@ -1520,6 +1536,28 @@
             </ul>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PDF Viewer Modal -->
+  <div class="modal pdf-viewer-modal" id="pdfViewerModal">
+    <div class="modal-backdrop" onclick="closePdfViewer()"></div>
+    <div class="modal-container pdf-container">
+      <div class="modal-content glass-card pdf-content">
+        <div class="pdf-header">
+          <h3 id="pdfViewerTitle">Document</h3>
+          <div class="pdf-actions">
+            <a href="#" id="pdfDownloadBtn" class="btn btn-primary btn-sm" download>
+              <i data-lucide="download"></i>
+              <span>Download</span>
+            </a>
+            <button class="modal-close" onclick="closePdfViewer()">
+              <i data-lucide="x"></i>
+            </button>
+          </div>
+        </div>
+        <iframe id="pdfViewerFrame" src="" class="pdf-frame"></iframe>
       </div>
     </div>
   </div>
