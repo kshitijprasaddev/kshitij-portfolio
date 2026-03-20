@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Kshitij Prasad | Robotics & Autonomous Systems Engineer</title>
-  <meta name="description" content="Robotics & Autonomous Systems Engineer specializing in deep reinforcement learning, drone autonomy, and real-time sensor fusion. B.Eng in Autonomous Vehicle Engineering, TH Ingolstadt. Open to full-time roles in defense tech and AI." />
+  <meta name="description" content="Robotics engineer specializing in autonomous vehicles, reinforcement learning, and drone systems. Currently pursuing bachelor's at TH Ingolstadt." />
   
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>K</text></svg>">
@@ -63,34 +63,11 @@
     <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
   </audio>
   
-  <!-- Cursor follower -->
-  <div class="cursor-follower"></div>
-  <div class="cursor-dot"></div>
-  
   <!-- Animated Background -->
   <div class="animated-bg">
     <div class="bg-gradient-1"></div>
     <div class="bg-gradient-2"></div>
     <div class="bg-gradient-3"></div>
-    
-    <!-- Grid Pattern -->
-    <div class="grid-pattern"></div>
-    
-    <!-- Floating Code Particles -->
-    <div class="code-particles" id="codeParticles"></div>
-    
-    <!-- Circuit Lines -->
-    <svg class="circuit-lines" viewBox="0 0 100 100" preserveAspectRatio="none">
-      <path class="circuit-path" d="M0,20 L30,20 L35,25 L60,25 L65,20 L100,20" />
-      <path class="circuit-path" d="M0,50 L20,50 L25,55 L40,55 L45,50 L70,50 L75,45 L100,45" />
-      <path class="circuit-path" d="M0,80 L45,80 L50,75 L80,75 L85,80 L100,80" />
-      <circle class="circuit-node" cx="35" cy="25" r="1.5" />
-      <circle class="circuit-node" cx="65" cy="20" r="1.5" />
-      <circle class="circuit-node" cx="45" cy="50" r="1.5" />
-      <circle class="circuit-node" cx="75" cy="45" r="1.5" />
-      <circle class="circuit-node" cx="50" cy="75" r="1.5" />
-    </svg>
-    
     <div class="noise-overlay"></div>
   </div>
 
@@ -122,10 +99,10 @@
         <li><a href="#contact" class="nav-link">Contact</a></li>
       </ul>
       <div class="nav-right">
-        <button class="btn btn-nav" id="openCvViewer" onclick="openPdfViewer('CV_Kshitij_Prasad.pdf', 'Curriculum Vitae — Kshitij Prasad')">
-          <span>View CV</span>
-          <i data-lucide="file-text"></i>
-        </button>
+        <a href="CV.pdf" target="_blank" class="btn btn-nav">
+          <span>Download CV</span>
+          <i data-lucide="download"></i>
+        </a>
       </div>
       <div class="menu-toggle">
         <span></span><span></span><span></span>
@@ -134,14 +111,7 @@
 
     <!-- Hero Section -->
     <div class="hero">
-      <div class="hero-bg">
-        <div class="gradient-orb orb-1"></div>
-        <div class="gradient-orb orb-2"></div>
-        <div class="gradient-orb orb-3"></div>
-        <div class="grid-overlay"></div>
-        <!-- Floating dots container -->
-        <div class="floating-dots" id="floatingDots"></div>
-      </div>
+      <div class="hero-bg"></div>
       
       <div class="hero-content">
         <div class="hero-main">
@@ -159,20 +129,13 @@
             </h1>
             
             <div class="hero-role">
-              <span class="role-prefix">›</span>
-              <div class="role-carousel">
-                <div class="role-track" id="roleTrack">
-                  <span class="role-item active">Autonomous Vehicle Engineer</span>
-                  <span class="role-item">Reinforcement Learning Researcher</span>
-                  <span class="role-item">Robotics Developer</span>
-                  <span class="role-item">Drone Systems Engineer</span>
-                  <span class="role-item">ROS 2 Specialist</span>
-                </div>
-              </div>
+              <span class="role-text">Autonomous Vehicle Engineer</span>
             </div>
             
             <p class="hero-description">
-              I'm curious about almost everything! Studies in autonomous vehicle engineering, strong in Python, robotics, and reinforcement learning.
+              I'm curious about almost everything. For me it isn't just about building cool tech, it's 
+              working on problems that actually matter. Making roads safer through autonomy, using AI 
+              to solve real challenges, or contributing to something bigger than myself.
             </p>
             
             <div class="hero-cta">
@@ -189,27 +152,7 @@
           
           <div class="hero-visual">
             <div class="hero-image-wrapper">
-              <div class="image-glow"></div>
               <img src="media/headshot.jpg" alt="Kshitij Prasad" class="hero-image" />
-              <div class="image-ring"></div>
-            </div>
-            <div class="floating-cards">
-              <div class="floating-card card-1">
-                <i data-lucide="brain"></i>
-                <span>Reinforcement Learning</span>
-              </div>
-              <div class="floating-card card-2">
-                <i data-lucide="cpu"></i>
-                <span>ROS2</span>
-              </div>
-              <div class="floating-card card-3">
-                <i data-lucide="plane"></i>
-                <span>Drone Systems</span>
-              </div>
-              <div class="floating-card card-4">
-                <i data-lucide="car"></i>
-                <span>Autonomous Vehicles</span>
-              </div>
             </div>
           </div>
         </div>
@@ -229,8 +172,8 @@
           <div class="stat-divider"></div>
           <div class="stat-item">
             <span class="stat-number" data-count="1">0</span>
-            <span class="stat-plus">st</span>
-            <span class="stat-label">Place PAVE Europe</span>
+            <span class="stat-plus">.0</span>
+            <span class="stat-label">Thesis Grade (A+)</span>
           </div>
         </div>
       </div>
@@ -378,7 +321,7 @@
               My work spans from low-level robotics (ROS2, PX4, sensor fusion) to high-level AI (reinforcement learning for autonomous navigation). I believe the future of mobility lies in intelligent orchestration of autonomous fleets.
             </p>
             <p>
-              Currently completing my <strong>Bachelor's Thesis</strong> on reinforcement learning for precision drone landing on moving platforms, combining PPO/SAC algorithms with safety-critical control systems.
+              Completed my <strong>Bachelor's Thesis</strong> on reinforcement learning for precision drone landing on moving platforms with a grade of <strong>1.0</strong> (highest in Germany, equivalent to A+), combining PPO/SAC algorithms with safety-critical control systems.
             </p>
             
             <div class="about-highlights">
@@ -468,6 +411,10 @@
               <div class="node-dot"></div>
               <span class="node-year">2022</span>
             </div>
+            <div class="timeline-node" data-year="2020" data-index="3">
+              <div class="node-dot"></div>
+              <span class="node-year">2020</span>
+            </div>
           </div>
           
           <!-- Central Display Card -->
@@ -477,10 +424,10 @@
                 <img src="Logos/akkodis logo.png" alt="Akkodis" class="company-logo-display">
               </div>
               <div class="card-info">
-                <span class="card-type">Thesis</span>
-                <h3 class="card-role">Autonomous Aerial Systems</h3>
-                <p class="card-location"><i data-lucide="map-pin"></i> Ingolstadt, Bavaria</p>
-                <span class="card-duration">Oct 2025 — Present</span>
+                <span class="card-type">Thesis & Working Student</span>
+                <h3 class="card-role">Robotics & Autonomous Systems</h3>
+                <p class="card-location"><i data-lucide="map-pin"></i> Ingolstadt, Germany</p>
+                <span class="card-duration">Apr 2024 — Present</span>
               </div>
             </div>
             
@@ -490,184 +437,183 @@
               <button class="nav-dot" data-slide="1"></button>
               <button class="nav-dot" data-slide="2"></button>
               <button class="nav-dot" data-slide="3"></button>
-              <button class="nav-dot" data-slide="4"></button>
             </div>
             
             <!-- Company Cards Data -->
             <div class="company-slides" style="display: none;">
-              <div class="slide-data" data-company="Akkodis" data-logo="Logos/akkodis logo.png" data-type="Thesis" data-role="Autonomous Aerial Systems" data-location="Ingolstadt, Bavaria" data-duration="Oct 2025 – Present"></div>
-              <div class="slide-data" data-company="Akkodis" data-logo="Logos/akkodis logo.png" data-type="Working Student" data-role="Automated Driving Testing" data-location="Ingolstadt, Bavaria" data-duration="Mar 2025 – Oct 2025"></div>
-              <div class="slide-data" data-company="Akkodis" data-logo="Logos/akkodis logo.png" data-type="Internship" data-role="Sensor Fusion &amp; Navigation" data-location="Ingolstadt, Bavaria" data-duration="Oct 2024 – Mar 2025"></div>
-              <div class="slide-data" data-company="Akkodis" data-logo="Logos/akkodis logo.png" data-type="Working Student" data-role="Service Robot Integration" data-location="Ingolstadt, Bavaria" data-duration="Apr 2024 – Oct 2024"></div>
-              <div class="slide-data" data-company="THI" data-logo="Logos/THI logo.png" data-type="Bachelor's Degree" data-role="Autonomous Vehicle Engineering" data-location="Ingolstadt, Bavaria" data-duration="Oct 2022 – Mar 2026"></div>
+              <div class="slide-data" data-company="Akkodis" data-logo="Logos/akkodis logo.png" data-type="Thesis & Working Student" data-role="Robotics & Autonomous Systems" data-location="Ingolstadt, Germany" data-duration="Apr 2024 — Present"></div>
+              <div class="slide-data" data-company="THI" data-logo="Logos/THI logo.png" data-type="Bachelor's Degree" data-role="Autonomous Vehicle Engineering" data-location="Ingolstadt, Germany" data-duration="Oct 2022 — Present"></div>
+              <div class="slide-data" data-company="Schanzer Racing" data-logo="Logos/Logo-Schanzer-blau-schwarz.png" data-type="Formula Student" data-role="Driverless Department Engineer" data-location="TH Ingolstadt" data-duration="Oct 2022 — Oct 2024"></div>
+              <div class="slide-data" data-company="FU Berlin" data-logo="Logos/FU BERLIN logo.png" data-type="Foundation Year" data-role="German Language & Pre-Studies" data-location="Berlin, Germany" data-duration="Oct 2020 — Sep 2021"></div>
             </div>
           </div>
         </div>
         
-        <div class="experience-timeline">
-          <!-- Current Position: Thesis -->
-          <div class="experience-entry cascade-item">
+        <div class="experience-grid">
+          <!-- Current Position -->
+          <div class="experience-card featured">
             <div class="experience-header">
               <div class="company-logo">
                 <img src="Logos/akkodis logo.png" alt="Akkodis" />
               </div>
               <div class="experience-meta">
                 <span class="experience-type">Thesis</span>
-                <span class="experience-date">Oct 2025 – Present</span>
+                <span class="experience-date">Sep 2025 - Present</span>
               </div>
             </div>
             <div class="experience-body">
-              <h3 class="experience-title">Abschlussarbeit, Autonomous Aerial Systems</h3>
-              <p class="experience-company">AKKODIS · Ingolstadt, Bavaria</p>
+              <h3 class="experience-title">Abschlussarbeit (Bachelor's Thesis)</h3>
+              <p class="experience-company">Akkodis Germany · Ingolstadt</p>
               <ul class="experience-highlights">
-                <li>Deep Reinforcement Learning (PPO/SAC/TD3) for Precise Multirotor UAV Landing on Moving Targets</li>
-                <li>Designing distributed training and evaluation pipelines using custom simulators (Isaac Sim, Gazebo) and PX4 Software-in-the-Loop (SITL)</li>
-                <li>Executing reliable pipelines from raw sensor data to RL inference, with strict focus on edge-case handling and tactical execution</li>
+                <li>Fiducial-assisted deep RL for UAV landing on moving platforms</li>
+                <li>Benchmarking TD3, PPO, SAC against native controllers</li>
+                <li>Isaac Sim domain randomization + Gazebo SITL for sim-to-real transfer</li>
+                <li>Built ROS 2 ↔ MAVLink ↔ PX4 SITL control loops</li>
               </ul>
               <div class="experience-tags">
-                <span>Python</span>
-                <span>C++</span>
-                <span>Deep RL</span>
+                <span>TD3/PPO/SAC</span>
                 <span>PX4 SITL</span>
-                <span>MAVLink</span>
-                <span>Docker</span>
+                <span>Isaac Sim</span>
+                <span>ROS 2</span>
               </div>
             </div>
           </div>
 
-          <!-- Werkstudent Mar–Oct 2025 -->
-          <div class="experience-entry cascade-item">
+          <!-- Werkstudent Mar-Sep 2025 -->
+          <div class="experience-card">
             <div class="experience-header">
               <div class="company-logo">
                 <img src="Logos/akkodis logo.png" alt="Akkodis" />
               </div>
               <div class="experience-meta">
                 <span class="experience-type">Working Student</span>
-                <span class="experience-date">Mar 2025 – Oct 2025</span>
+                <span class="experience-date">Mar - Sep 2025</span>
               </div>
             </div>
             <div class="experience-body">
-              <h3 class="experience-title">Werkstudent, Automated Driving Testing</h3>
-              <p class="experience-company">AKKODIS · Ingolstadt, Bavaria</p>
+              <h3 class="experience-title">Werkstudent - Simulation Integration</h3>
+              <p class="experience-company">Akkodis Germany · Ingolstadt</p>
               <ul class="experience-highlights">
-                <li>Engineered extensive test suites and macro-level benchmarks for Automated Driving (AD) stacks, improving operational reliability</li>
-                <li>Supported development of a Python pipeline to parameterize and extract driving scenarios for state-of-the-art ADAS functions</li>
-                <li>Proactively collaborated via asynchronous workflows (PRs, RFCs) to ensure robustness and adherence to safety standards</li>
+                <li>Bridged ROS 2 Humble with CARLA via ros-bridge for synchronized sensor streaming</li>
+                <li>Automated 15+ critical scenarios, trimmed integration time ~40%</li>
+                <li>Established DDS QoS settings for reliable simulation dataflow</li>
               </ul>
               <div class="experience-tags">
-                <span>Python</span>
-                <span>AD Testing</span>
-                <span>ADAS</span>
-                <span>CI/CD</span>
+                <span>ROS 2</span>
+                <span>CARLA</span>
+                <span>Nav2</span>
+                <span>DDS</span>
               </div>
             </div>
           </div>
 
-          <!-- Praktikum Oct 2024–Mar 2025 -->
-          <div class="experience-entry cascade-item">
+          <!-- Praktikum -->
+          <div class="experience-card">
             <div class="experience-header">
               <div class="company-logo">
                 <img src="Logos/akkodis logo.png" alt="Akkodis" />
               </div>
               <div class="experience-meta">
                 <span class="experience-type">Internship</span>
-                <span class="experience-date">Oct 2024 – Mar 2025</span>
+                <span class="experience-date">Oct 2024 - Mar 2025</span>
               </div>
             </div>
             <div class="experience-body">
-              <h3 class="experience-title">Praktikum, Sensor Fusion & Navigation</h3>
-              <p class="experience-company">AKKODIS · Ingolstadt, Bavaria</p>
+              <h3 class="experience-title">Praktikum - Service Robot Navigation</h3>
+              <p class="experience-company">Akkodis Germany · Ingolstadt</p>
               <ul class="experience-highlights">
-                <li>Built and integrated a real-time sensor fusion pipeline (Intel RealSense, LiDAR, Vision) for autonomous state estimation and navigation</li>
-                <li>Developed robust ROS 2 plugins to handle bespoke hardware protocols and intermittent connectivity constraints</li>
-                <li>Reduced system downtime by 15% by implementing failure-mode handling in dynamic trajectory planning algorithms</li>
+                <li>Integrated ROS 2 service robot with Nav2 stack (controllers, perception, trajectory)</li>
+                <li>Built real-time perception with Intel RealSense + YOLO object detection</li>
+                <li>Triggered custom Nav2 behaviors, reduced downtime ~15%</li>
               </ul>
               <div class="experience-tags">
-                <span>ROS 2</span>
-                <span>Sensor Fusion</span>
+                <span>Nav2</span>
+                <span>YOLO</span>
                 <span>RealSense</span>
-                <span>LiDAR</span>
+                <span>Trajectory Planning</span>
               </div>
             </div>
           </div>
 
-          <!-- Werkstudent Apr–Oct 2024 -->
-          <div class="experience-entry cascade-item">
+          <!-- Werkstudent Apr-Oct 2024 -->
+          <div class="experience-card">
             <div class="experience-header">
               <div class="company-logo">
                 <img src="Logos/akkodis logo.png" alt="Akkodis" />
               </div>
               <div class="experience-meta">
                 <span class="experience-type">Working Student</span>
-                <span class="experience-date">Apr 2024 – Oct 2024</span>
+                <span class="experience-date">Apr - Oct 2024</span>
               </div>
             </div>
             <div class="experience-body">
-              <h3 class="experience-title">Werkstudent, Service Robot Integration</h3>
-              <p class="experience-company">AKKODIS · Ingolstadt, Bavaria</p>
+              <h3 class="experience-title">Werkstudent - Autonomous Navigation</h3>
+              <p class="experience-company">Akkodis Germany · Ingolstadt</p>
               <ul class="experience-highlights">
-                <li>Focused on tight hardware-software integration, deploying autonomous path planning behaviors on physical service robots</li>
-                <li>Actively shared technical know-how in engineering huddles, reviewing code contributions to support continuous team improvement</li>
+                <li>Autonomous navigation on TurtleBot3 with ROS 2, Nav2, RealSense</li>
+                <li>Improved exploration and path planning algorithms</li>
+                <li>Collaborated on SLAM/EKF integration for simulation-to-real alignment</li>
               </ul>
               <div class="experience-tags">
-                <span>ROS 2</span>
-                <span>Path Planning</span>
-                <span>Hardware Integration</span>
+                <span>TurtleBot3</span>
+                <span>SLAM</span>
+                <span>EKF</span>
+                <span>Nav2</span>
               </div>
             </div>
           </div>
 
           <!-- Schanzer Racing -->
-          <div class="experience-entry cascade-item">
+          <div class="experience-card">
             <div class="experience-header">
               <div class="company-logo">
                 <img src="Logos/Logo-Schanzer-blau-schwarz.png" alt="Schanzer Racing" />
               </div>
               <div class="experience-meta">
                 <span class="experience-type">Formula Student</span>
-                <span class="experience-date">Oct 2022 – Oct 2024</span>
+                <span class="experience-date">Oct 2022 - Oct 2024</span>
               </div>
             </div>
             <div class="experience-body">
-              <h3 class="experience-title">Driverless Department</h3>
+              <h3 class="experience-title">Driverless Department Engineer</h3>
               <p class="experience-company">Schanzer Racing e.V. · TH Ingolstadt</p>
               <ul class="experience-highlights">
-                <li>Developed high-performance embedded control logic using ROS 2 on NVIDIA JETSON</li>
-                <li>Integrated IMUs, LiDAR, and camera hardware for autonomous perception</li>
+                <li>Differential drive robotics with MATLAB, C++, ROS 2</li>
+                <li>JETSON deployment and Foxglove visualization setup</li>
+                <li>LiDAR solution selection and component budgeting</li>
               </ul>
               <div class="experience-tags">
                 <span>C++</span>
-                <span>ROS 2</span>
-                <span>NVIDIA JETSON</span>
+                <span>JETSON</span>
                 <span>LiDAR</span>
+                <span>MATLAB</span>
               </div>
             </div>
           </div>
 
           <!-- Education -->
-          <div class="experience-entry education cascade-item">
+          <div class="experience-card education">
             <div class="experience-header">
               <div class="company-logo">
                 <img src="Logos/THI logo.png" alt="TH Ingolstadt" />
               </div>
               <div class="experience-meta">
                 <span class="experience-type">Education</span>
-                <span class="experience-date">Oct 2022 – Mar 2026</span>
+                <span class="experience-date">Mar 2022 - Mar 2026</span>
               </div>
             </div>
             <div class="experience-body">
               <h3 class="experience-title">B.Eng. Autonomous Vehicle Engineering</h3>
               <p class="experience-company">Technische Hochschule Ingolstadt</p>
               <ul class="experience-highlights">
-                <li>Focus: Robotics, Reinforcement Learning, Systems Engineering, Sensor Fusion, Digital Signal Processing</li>
-                <li>Schanzer Formula Student Racing Team, Driverless Department</li>
-                <li>Winner, PAVE Europe 2025 Next Gen Challenge (Brussels)</li>
+                <li>Focus: Robotics, Signal Processing, Control Theory, Sensor Fusion</li>
+                <li>Schanzer Formula Student Racing Team Member</li>
+                <li>Hochschule Gaming e.V. Club Member</li>
               </ul>
               <div class="experience-tags">
                 <span>Robotics</span>
-                <span>Reinforcement Learning</span>
+                <span>Control Theory</span>
                 <span>Sensor Fusion</span>
-                <span>DSP</span>
               </div>
             </div>
           </div>
@@ -688,18 +634,20 @@
         <div class="featured-project glass-card">
           <div class="featured-badge">
             <i data-lucide="star"></i>
-            <span>Bachelor's Thesis (Completed)</span>
+            <span>Bachelor's Thesis — Grade: 1.0 (A+)</span>
           </div>
           
-          <div class="featured-grid thesis-layout">
-            <div class="featured-info full-width">
-              <h3>Autonomous Precision Landing via Deep Reinforcement Learning</h3>
-              <p class="featured-subtitle">AKKODIS | Abschlussarbeit, Autonomous Aerial Systems | Ingolstadt, Bavaria | Oct 2025 – Mar 2026</p>
+          <div class="featured-grid">
+            <div class="featured-media">
+              <video controls poster="media/pixhawk_drone.jpg" class="featured-video">
+                <source src="media/ppo_landing_demo.mp4" type="video/mp4">
+              </video>
+            </div>
+            
+            <div class="featured-info">
+              <h3>RL-Based Precision Drone Landing</h3>
               <p class="featured-description">
-                Deep Reinforcement Learning (PPO/SAC/TD3) for Precise Multirotor UAV Landing on Moving Targets. 
-                Designed distributed training and evaluation pipelines using custom simulators (Isaac Sim, Gazebo) 
-                and PX4 Software-in-the-Loop (SITL). Executed reliable pipelines from raw sensor data to RL inference, 
-                with a strict focus on edge-case handling and tactical execution.
+                Training a quadcopter to autonomously land on a moving platform using deep reinforcement learning. The agent learns to track the platform, compensate for disturbances, and execute precise touchdowns.
               </p>
               
               <div class="progress-list">
@@ -717,29 +665,24 @@
                 </div>
                 <div class="progress-item completed">
                   <i data-lucide="check-circle-2"></i>
-                  <span>Real drone testing</span>
+                  <span>Real drone testing completed</span>
                 </div>
               </div>
               
               <div class="featured-tags">
-                <span>PPO/SAC/TD3</span>
-                <span>PX4 SITL</span>
-                <span>Isaac Sim</span>
+                <span>PPO</span>
+                <span>SAC</span>
+                <span>PX4</span>
                 <span>Gazebo</span>
-                <span>MAVLink</span>
-                <span>MAVSDK</span>
-                <span>Python</span>
-                <span>C++</span>
-                <span>Docker</span>
-              </div>
-              
-              <div class="thesis-actions">
-                <button class="btn btn-primary" onclick="openPdfViewer('thesis-kshitij.pdf', 'Bachelor\'s Thesis — RL-Based Precision Drone Landing')">
-                  <i data-lucide="book-open"></i>
-                  <span>Read Thesis</span>
-                </button>
+                <span>PyTorch</span>
               </div>
             </div>
+          </div>
+          
+          <div class="tensorboard-preview">
+            <h4>Training Metrics</h4>
+            <img src="media/tensorboard_screenshot.png" alt="TensorBoard Training Metrics" />
+            <p class="tb-caption">Multiple PPO and SAC runs compared. PPO_10 (pink) shows best convergence.</p>
           </div>
         </div>
         
@@ -866,22 +809,25 @@
             </div>
           </div>
           
-          <!-- VR Accident Reconstruction -->
-          <div class="project-card glass-card" data-project-id="vr-dekra" data-aos="fade-up" data-aos-delay="450">
-            <div class="project-image">
-              <img src="DEKRA/vr-dekra-1.jpg" alt="VR Accident Reconstruction">
+          <!-- Airbus Fly Your Ideas -->
+          <div class="project-card glass-card" data-project-id="airbus-fyi" data-aos="fade-up" data-aos-delay="450">
+            <div class="project-image airbus-card-bg">
+              <div class="airbus-card-icon">
+                <i data-lucide="plane"></i>
+                <span>Airbus</span>
+              </div>
               <div class="project-overlay">
-                <span>View Project</span>
+                <span>View Details</span>
                 <i data-lucide="arrow-up-right"></i>
               </div>
             </div>
             <div class="project-content">
-              <h3>VR Accident Reconstruction</h3>
-              <p>Dashcam &amp; 3D laser-scan fusion for forensic VR simulation</p>
+              <h3>Airbus Fly Your Ideas</h3>
+              <p>Global aerospace innovation challenge by Airbus</p>
               <div class="project-tags">
-                <span>IPG CarMaker</span>
-                <span>CARLA</span>
-                <span>VR</span>
+                <span>Aerospace</span>
+                <span>Innovation</span>
+                <span>Airbus</span>
               </div>
             </div>
           </div>
@@ -897,44 +843,112 @@
           <h2 class="section-title">Skills & Technologies</h2>
         </div>
         
-        <div class="skills-compact">
-          <div class="skill-group">
-            <h3 class="skill-group-title"><i data-lucide="brain"></i> Machine Learning & AI</h3>
-            <div class="skill-chips">
-              <div class="skill-chip" data-level="95"><span>Reinforcement Learning</span><span class="chip-level">95%</span></div>
-              <div class="skill-chip" data-level="90"><span>PyTorch</span><span class="chip-level">90%</span></div>
-              <div class="skill-chip" data-level="85"><span>Computer Vision</span><span class="chip-level">85%</span></div>
-              <div class="skill-chip" data-level="88"><span>YOLO / OpenCV</span><span class="chip-level">88%</span></div>
+        <div class="skills-showcase">
+          <div class="skill-category">
+            <div class="category-header">
+              <div class="category-icon">
+                <i data-lucide="brain"></i>
+              </div>
+              <h3>Machine Learning & AI</h3>
+            </div>
+            <div class="skill-items">
+              <div class="skill-item">
+                <span class="skill-name">Reinforcement Learning</span>
+                <div class="skill-bar"><div class="skill-fill" style="--fill: 95%"></div></div>
+              </div>
+              <div class="skill-item">
+                <span class="skill-name">PyTorch</span>
+                <div class="skill-bar"><div class="skill-fill" style="--fill: 90%"></div></div>
+              </div>
+              <div class="skill-item">
+                <span class="skill-name">Computer Vision</span>
+                <div class="skill-bar"><div class="skill-fill" style="--fill: 85%"></div></div>
+              </div>
+              <div class="skill-item">
+                <span class="skill-name">YOLO / OpenCV</span>
+                <div class="skill-bar"><div class="skill-fill" style="--fill: 88%"></div></div>
+              </div>
             </div>
           </div>
           
-          <div class="skill-group">
-            <h3 class="skill-group-title"><i data-lucide="cog"></i> Robotics & Autonomy</h3>
-            <div class="skill-chips">
-              <div class="skill-chip" data-level="95"><span>ROS2</span><span class="chip-level">95%</span></div>
-              <div class="skill-chip" data-level="85"><span>PX4 / ArduPilot</span><span class="chip-level">85%</span></div>
-              <div class="skill-chip" data-level="80"><span>Sensor Fusion</span><span class="chip-level">80%</span></div>
-              <div class="skill-chip" data-level="82"><span>SLAM & Navigation</span><span class="chip-level">82%</span></div>
+          <div class="skill-category">
+            <div class="category-header">
+              <div class="category-icon">
+                <i data-lucide="cog"></i>
+              </div>
+              <h3>Robotics & Autonomy</h3>
+            </div>
+            <div class="skill-items">
+              <div class="skill-item">
+                <span class="skill-name">ROS2</span>
+                <div class="skill-bar"><div class="skill-fill" style="--fill: 95%"></div></div>
+              </div>
+              <div class="skill-item">
+                <span class="skill-name">PX4 / ArduPilot</span>
+                <div class="skill-bar"><div class="skill-fill" style="--fill: 85%"></div></div>
+              </div>
+              <div class="skill-item">
+                <span class="skill-name">Sensor Fusion</span>
+                <div class="skill-bar"><div class="skill-fill" style="--fill: 80%"></div></div>
+              </div>
+              <div class="skill-item">
+                <span class="skill-name">SLAM & Navigation</span>
+                <div class="skill-bar"><div class="skill-fill" style="--fill: 82%"></div></div>
+              </div>
             </div>
           </div>
           
-          <div class="skill-group">
-            <h3 class="skill-group-title"><i data-lucide="code-2"></i> Programming</h3>
-            <div class="skill-chips">
-              <div class="skill-chip" data-level="95"><span>Python</span><span class="chip-level">95%</span></div>
-              <div class="skill-chip" data-level="80"><span>C++</span><span class="chip-level">80%</span></div>
-              <div class="skill-chip" data-level="85"><span>TypeScript / React</span><span class="chip-level">85%</span></div>
-              <div class="skill-chip" data-level="88"><span>Git / CI/CD</span><span class="chip-level">88%</span></div>
+          <div class="skill-category">
+            <div class="category-header">
+              <div class="category-icon">
+                <i data-lucide="code-2"></i>
+              </div>
+              <h3>Programming</h3>
+            </div>
+            <div class="skill-items">
+              <div class="skill-item">
+                <span class="skill-name">Python</span>
+                <div class="skill-bar"><div class="skill-fill" style="--fill: 95%"></div></div>
+              </div>
+              <div class="skill-item">
+                <span class="skill-name">C++</span>
+                <div class="skill-bar"><div class="skill-fill" style="--fill: 80%"></div></div>
+              </div>
+              <div class="skill-item">
+                <span class="skill-name">TypeScript / React</span>
+                <div class="skill-bar"><div class="skill-fill" style="--fill: 85%"></div></div>
+              </div>
+              <div class="skill-item">
+                <span class="skill-name">Git / CI/CD</span>
+                <div class="skill-bar"><div class="skill-fill" style="--fill: 88%"></div></div>
+              </div>
             </div>
           </div>
           
-          <div class="skill-group">
-            <h3 class="skill-group-title"><i data-lucide="box"></i> Simulation & Tools</h3>
-            <div class="skill-chips">
-              <div class="skill-chip" data-level="90"><span>Gazebo / Isaac Sim</span><span class="chip-level">90%</span></div>
-              <div class="skill-chip" data-level="92"><span>Gymnasium</span><span class="chip-level">92%</span></div>
-              <div class="skill-chip" data-level="88"><span>Docker / Linux</span><span class="chip-level">88%</span></div>
-              <div class="skill-chip" data-level="75"><span>SolidWorks</span><span class="chip-level">75%</span></div>
+          <div class="skill-category">
+            <div class="category-header">
+              <div class="category-icon">
+                <i data-lucide="box"></i>
+              </div>
+              <h3>Simulation & Tools</h3>
+            </div>
+            <div class="skill-items">
+              <div class="skill-item">
+                <span class="skill-name">Gazebo / Isaac Sim</span>
+                <div class="skill-bar"><div class="skill-fill" style="--fill: 90%"></div></div>
+              </div>
+              <div class="skill-item">
+                <span class="skill-name">Gymnasium</span>
+                <div class="skill-bar"><div class="skill-fill" style="--fill: 92%"></div></div>
+              </div>
+              <div class="skill-item">
+                <span class="skill-name">Docker / Linux</span>
+                <div class="skill-bar"><div class="skill-fill" style="--fill: 88%"></div></div>
+              </div>
+              <div class="skill-item">
+                <span class="skill-name">SolidWorks</span>
+                <div class="skill-bar"><div class="skill-fill" style="--fill: 75%"></div></div>
+              </div>
             </div>
           </div>
         </div>
@@ -1019,15 +1033,31 @@
         </div>
         
         <div class="testimonials-grid">
-          <!-- Recommendation Letter Image -->
-          <div class="recommendation-embed">
-            <h3 class="recommendation-embed-title">
-              <i data-lucide="file-text"></i>
-              <span>Recommendation Letter — Prof. Dr.-Ing. Michael Mecking</span>
-            </h3>
-            <p class="recommendation-embed-subtitle">Dean, Faculty of Electrical & Information Engineering · Technische Hochschule Ingolstadt</p>
-            <div class="recommendation-image-wrapper">
-              <img src="Professor mecking recommendation.jpg" alt="Recommendation Letter from Prof. Dr.-Ing. Michael Mecking" class="recommendation-letter-img" loading="lazy" />
+          <div class="testimonial-card featured">
+            <div class="testimonial-quote">
+              <svg class="quote-icon" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+              </svg>
+              <p class="testimonial-text">
+                During the course, Mr. Prasad consistently demonstrated a strong ability to independently grasp complex concepts and apply them effectively. One of Mr. Prasad's standout qualities is his aptitude for quickly understanding new theoretical material and integrating it with his mathematical background to gain valuable insights.
+              </p>
+              <p class="testimonial-text">
+                His analytical skills and problem-solving abilities were evident in his lab work, where he consistently produced high-quality work and actively engaged with the subject matter. Mr. Prasad also demonstrated strong collaboration skills when working with fellow students.
+              </p>
+              <p class="testimonial-highlight">
+                "I have no hesitation in recommending Mr. Prasad for any professional opportunities. His combination of intellectual curiosity, strong analytical skills, and dedication to learning make him a valuable candidate for any position he may pursue."
+              </p>
+            </div>
+            <div class="testimonial-author">
+              <div class="author-image">
+                <img src="Logos/THI logo.png" alt="THI">
+              </div>
+              <div class="author-info">
+                <h4 class="author-name">Prof. Dr.-Ing. Michael Mecking <span class="author-badge">Ex-BMW</span></h4>
+                <p class="author-title">Dean, Faculty of Electrical & Information Engineering</p>
+                <p class="author-org">Technische Hochschule Ingolstadt</p>
+              </div>
+              <span class="testimonial-date">March 2024</span>
             </div>
           </div>
         </div>
@@ -1097,7 +1127,7 @@
               </div>
               <div class="contact-details">
                 <h3>Professor's Recommendation</h3>
-                <p style="color: var(--text-muted); font-size: 0.9rem;">View recommendation letter from Prof. Dr.-Ing. Michael Mecking (Dean, ex-BMW)</p>
+                <p style="color: var(--text-muted); font-size: 0.9rem;">View recommendation letter from Prof. Dr. Thomas Mecking (Dean, ex-BMW GM)</p>
               </div>
               <i data-lucide="external-link" style="color: var(--text-muted); margin-left: auto;"></i>
             </a>
@@ -1358,13 +1388,6 @@
             </video>
           </div>
           
-          <div class="modal-media">
-            <h4 style="color: var(--text-secondary); margin-bottom: 0.75rem; font-family: var(--font-display);">SAC Agent — XY Tracking Demo</h4>
-            <video controls>
-              <source src="SAC%20XY%20.webm" type="video/webm">
-            </video>
-          </div>
-          
           <div class="modal-description">
             <p>
               Building a custom Pixhawk-based drone platform for thesis research on autonomous landing.
@@ -1474,8 +1497,8 @@
     </div>
   </div>
 
-  <!-- VR Accident Reconstruction Modal -->
-  <div class="modal" id="modal-vr-dekra">
+  <!-- Airbus Fly Your Ideas Modal -->
+  <div class="modal" id="modal-airbus-fyi">
     <div class="modal-backdrop"></div>
     <div class="modal-container">
       <div class="modal-content glass-card">
@@ -1484,98 +1507,33 @@
         </button>
         
         <div class="modal-header">
-          <span class="modal-badge">Student Project</span>
-          <h2>VR Accident Reconstruction</h2>
-          <p class="modal-subtitle">Dash-Cam &amp; Simulation for Forensic VR Reconstruction</p>
+          <h2>Airbus Fly Your Ideas</h2>
+          <p class="modal-subtitle">Global Aerospace Innovation Challenge</p>
         </div>
         
         <div class="modal-body">
-          <div class="modal-media">
-            <img src="DEKRA/vr-dekra-1.jpg" alt="VR Accident Reconstruction" />
-          </div>
-          
-          <div class="modal-gallery">
-            <div class="gallery-item">
-              <img src="DEKRA/dekra-2.jpg" alt="DEKRA scene scan" />
-              <span class="gallery-caption">3D Laser-Scanned Scene</span>
-            </div>
-            <div class="gallery-item">
-              <img src="DEKRA/dekra-3.jpg" alt="DEKRA simulation" />
-              <span class="gallery-caption">Simulation Environment</span>
-            </div>
-          </div>
-          
           <div class="modal-description">
-            <h3>Project Overview</h3>
             <p>
-              Bridged real-world evidence (dashcam footage + FARO Focus Core 3D laser scans) with driving simulators 
-              for forensic VR accident reconstruction. Imported high-fidelity point cloud environments into IPG CarMaker, 
-              integrated a Skoda Octavia vehicle model, and aligned virtual scenarios with real-world coordinates via 
-              OpenStreetMap data. Also explored CARLA as a parallel digital twin platform.
+              Participated in the <strong>Airbus Fly Your Ideas</strong> challenge — a global competition that invites university students 
+              to develop innovative ideas for the future of aviation and aerospace.
             </p>
             
-            <h3>Key Contributions</h3>
+            <h3>About the Challenge</h3>
             <ul>
-              <li><strong>3D Scene Capture:</strong> Acquired point cloud data with FARO Focus Core laser scanner (±2 mm accuracy)</li>
-              <li><strong>Simulation Pipeline:</strong> Imported scanned 3D environments into IPG CarMaker for driving simulation</li>
-              <li><strong>Vehicle Integration:</strong> Added Skoda Octavia model with dashcam perspective for scenario replay</li>
-              <li><strong>Geo-Alignment:</strong> Aligned virtual scenario with real-world coordinates via OpenStreetMap</li>
-              <li><strong>CARLA Digital Twin:</strong> Explored open-source CARLA simulator as an alternative reconstruction platform</li>
+              <li>Biennial competition organized by Airbus and UNESCO</li>
+              <li>Teams from universities worldwide propose innovative aerospace solutions</li>
+              <li>Focus on sustainability, passenger experience, and next-gen aviation technology</li>
+              <li>Opportunity to work on real-world aerospace engineering problems</li>
             </ul>
           </div>
-          
-          <div class="modal-description">
-            <h3>Demo Videos</h3>
-          </div>
-          
-          <div class="modal-media">
-            <video controls>
-              <source src="DEKRA/dekra-video-1.mp4" type="video/mp4">
-            </video>
-          </div>
-          <div class="modal-media">
-            <video controls>
-              <source src="DEKRA/dekra-video-2.mp4" type="video/mp4">
-            </video>
-          </div>
-          <div class="modal-media">
-            <video controls>
-              <source src="DEKRA/dekra-video-3.mp4" type="video/mp4">
-            </video>
-          </div>
-          
-          <div class="modal-tags">
-            <span>IPG CarMaker</span>
-            <span>CARLA</span>
-            <span>VR</span>
-            <span>FARO 3D Scanner</span>
-            <span>Point Cloud</span>
-            <span>OpenStreetMap</span>
-            <span>MovieNX</span>
-          </div>
         </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- PDF Viewer Modal -->
-  <div class="modal pdf-viewer-modal" id="pdfViewerModal">
-    <div class="modal-backdrop" onclick="closePdfViewer()"></div>
-    <div class="modal-container pdf-container">
-      <div class="modal-content glass-card pdf-content">
-        <div class="pdf-header">
-          <h3 id="pdfViewerTitle">Document</h3>
-          <div class="pdf-actions">
-            <a href="#" id="pdfDownloadBtn" class="btn btn-primary btn-sm" download>
-              <i data-lucide="download"></i>
-              <span>Download</span>
-            </a>
-            <button class="modal-close" onclick="closePdfViewer()">
-              <i data-lucide="x"></i>
-            </button>
-          </div>
+        
+        <div class="modal-footer">
+          <a href="https://www.airbus.com/en/airbus-fly-your-ideas" target="_blank" class="btn btn-primary">
+            <span>Visit Fly Your Ideas</span>
+            <i data-lucide="external-link"></i>
+          </a>
         </div>
-        <iframe id="pdfViewerFrame" src="" class="pdf-frame"></iframe>
       </div>
     </div>
   </div>
@@ -1593,10 +1551,10 @@
         </div>
         
         <div class="footer-links">
-          <a href="https://www.linkedin.com/in/kshitijp21/" target="_blank" class="social-link" aria-label="LinkedIn">
+          <a href="https://www.linkedin.com/in/kshitijp21/" target="_blank" class="social-link">
             <i data-lucide="linkedin"></i>
           </a>
-          <a href="mailto:kshitijp21@gmail.com" class="social-link" aria-label="Email">
+          <a href="mailto:kshitijp21@gmail.com" class="social-link">
             <i data-lucide="mail"></i>
           </a>
         </div>
