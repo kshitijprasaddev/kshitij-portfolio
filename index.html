@@ -34,63 +34,22 @@
     <i data-lucide="moon" class="theme-icon moon"></i>
   </button>
   
-  <!-- Music Player - Retro Record Player Style -->
+  <!-- Music Toggle -->
   <div class="music-player" id="musicPlayer">
     <button class="music-toggle" id="musicToggle" aria-label="Toggle music">
-      <div class="record-player">
-        <div class="turntable">
-          <div class="vinyl">
-            <div class="vinyl-grooves"></div>
-            <div class="vinyl-label">
-              <span>♪</span>
-            </div>
-          </div>
-        </div>
-        <div class="tonearm">
-          <div class="tonearm-base"></div>
-          <div class="tonearm-arm"></div>
-          <div class="tonearm-head"></div>
-        </div>
-      </div>
-      <div class="play-indicator">
-        <span class="indicator-dot"></span>
-      </div>
+      <i data-lucide="volume-2" class="music-icon-on" style="width:18px;height:18px;"></i>
+      <i data-lucide="volume-x" class="music-icon-off" style="width:18px;height:18px;"></i>
     </button>
-    <span class="music-label">Music</span>
   </div>
   <audio id="bgMusic" loop preload="auto">
     <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3" type="audio/mpeg">
     <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
   </audio>
   
-  <!-- Cursor follower -->
-  <div class="cursor-follower"></div>
-  <div class="cursor-dot"></div>
-  
-  <!-- Animated Background -->
+  <!-- Subtle Background -->
   <div class="animated-bg">
     <div class="bg-gradient-1"></div>
     <div class="bg-gradient-2"></div>
-    <div class="bg-gradient-3"></div>
-    
-    <!-- Grid Pattern -->
-    <div class="grid-pattern"></div>
-    
-    <!-- Floating Code Particles -->
-    <div class="code-particles" id="codeParticles"></div>
-    
-    <!-- Circuit Lines -->
-    <svg class="circuit-lines" viewBox="0 0 100 100" preserveAspectRatio="none">
-      <path class="circuit-path" d="M0,20 L30,20 L35,25 L60,25 L65,20 L100,20" />
-      <path class="circuit-path" d="M0,50 L20,50 L25,55 L40,55 L45,50 L70,50 L75,45 L100,45" />
-      <path class="circuit-path" d="M0,80 L45,80 L50,75 L80,75 L85,80 L100,80" />
-      <circle class="circuit-node" cx="35" cy="25" r="1.5" />
-      <circle class="circuit-node" cx="65" cy="20" r="1.5" />
-      <circle class="circuit-node" cx="45" cy="50" r="1.5" />
-      <circle class="circuit-node" cx="75" cy="45" r="1.5" />
-      <circle class="circuit-node" cx="50" cy="75" r="1.5" />
-    </svg>
-    
     <div class="noise-overlay"></div>
   </div>
 
@@ -137,10 +96,6 @@
       <div class="hero-bg">
         <div class="gradient-orb orb-1"></div>
         <div class="gradient-orb orb-2"></div>
-        <div class="gradient-orb orb-3"></div>
-        <div class="grid-overlay"></div>
-        <!-- Floating dots container -->
-        <div class="floating-dots" id="floatingDots"></div>
       </div>
       
       <div class="hero-content">
@@ -158,18 +113,9 @@
               </span>
             </h1>
             
-            <div class="hero-role">
-              <span class="role-prefix">›</span>
-              <div class="role-carousel">
-                <div class="role-track" id="roleTrack">
-                  <span class="role-item active">Autonomous Vehicle Engineer</span>
-                  <span class="role-item">Reinforcement Learning Researcher</span>
-                  <span class="role-item">Robotics Developer</span>
-                  <span class="role-item">Drone Systems Engineer</span>
-                  <span class="role-item">ROS 2 Specialist</span>
-                </div>
-              </div>
-            </div>
+            <p class="hero-subtitle">
+              Robotics & Autonomous Systems Engineer
+            </p>
             
             <p class="hero-description">
               Autonomous Vehicle Engineering graduate specializing in reinforcement learning, robotics, and drone systems.
@@ -189,27 +135,7 @@
           
           <div class="hero-visual">
             <div class="hero-image-wrapper">
-              <div class="image-glow"></div>
               <img src="media/headshot.jpg" alt="Kshitij Prasad" class="hero-image" />
-              <div class="image-ring"></div>
-            </div>
-            <div class="floating-cards">
-              <div class="floating-card card-1">
-                <i data-lucide="brain"></i>
-                <span>Reinforcement Learning</span>
-              </div>
-              <div class="floating-card card-2">
-                <i data-lucide="cpu"></i>
-                <span>ROS2</span>
-              </div>
-              <div class="floating-card card-3">
-                <i data-lucide="plane"></i>
-                <span>Drone Systems</span>
-              </div>
-              <div class="floating-card card-4">
-                <i data-lucide="car"></i>
-                <span>Autonomous Vehicles</span>
-              </div>
             </div>
           </div>
         </div>
@@ -236,10 +162,8 @@
       </div>
       
       <div class="scroll-indicator">
-        <div class="mouse">
-          <div class="wheel"></div>
-        </div>
-        <span>Scroll to explore</span>
+        <span>Scroll</span>
+        <i data-lucide="chevron-down" style="width:16px;height:16px;"></i>
       </div>
     </div>
   </header>
