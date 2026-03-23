@@ -131,83 +131,51 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // ===== Custom Cursor (disabled for cleaner look) =====
 
-  // ===== Career Timeline (New Design) =====
-  const timelineNodes = document.querySelectorAll('.timeline-node');
-  const navDots = document.querySelectorAll('.nav-dot');
-  const slideData = document.querySelectorAll('.slide-data');
-  const displayCard = document.querySelector('.display-card');
-  
-  if (timelineNodes.length > 0 && slideData.length > 0) {
-    let currentSlide = 0;
-    
-    function updateDisplayCard(index) {
-      const data = slideData[index];
-      if (!data || !displayCard) return;
-      
-      // Add transition effect
-      displayCard.style.opacity = '0';
-      displayCard.style.transform = 'translateY(10px)';
-      
-      setTimeout(() => {
-        // Update card content
-        const logoImg = displayCard.querySelector('.company-logo-display');
-        const typeSpan = displayCard.querySelector('.card-type');
-        const roleH3 = displayCard.querySelector('.card-role');
-        const locationP = displayCard.querySelector('.card-location');
-        const durationSpan = displayCard.querySelector('.card-duration');
+  // ===== Career Timeline (Horizontal Segments) =====
+  const timelineSegments = document.querySelectorAll('.timeline-segment');
+  const timelineDetail = document.getElementById('timeline-detail');
+  const detailClose = document.getElementById('detail-close');
+
+  const segmentInfo = {
+    'B.Eng. AVE': { role: 'B.Eng. Autonomous Vehicle Engineering', company: 'Technische Hochschule Ingolstadt', duration: 'Oct 2022 - Mar 2026' },
+    'WS': null, // handled by data-tip
+    'Intern': { role: 'Internship - Sensor Fusion & Navigation', company: 'Akkodis · Ingolstadt', duration: 'Oct 2024 - Mar 2025' },
+    'Thesis': { role: 'Thesis - Autonomous Aerial Systems', company: 'Akkodis · Ingolstadt', duration: 'Oct 2025 - Present' },
+    'Formula Student': { role: 'Driverless Department', company: 'Schanzer Racing e.V. · TH Ingolstadt', duration: 'Oct 2022 - Oct 2024' }
+  };
+
+  if (timelineSegments.length > 0) {
+    timelineSegments.forEach(seg => {
+      seg.addEventListener('click', () => {
+        if (!timelineDetail) return;
+        const tip = seg.getAttribute('data-tip') || '';
+        const parts = tip.split(' - ');
+        const detailRole = timelineDetail.querySelector('.detail-role');
+        const detailCompany = timelineDetail.querySelector('.detail-company');
+        const detailDuration = timelineDetail.querySelector('.detail-duration');
         
-        if (logoImg) logoImg.src = data.dataset.logo;
-        if (typeSpan) typeSpan.textContent = data.dataset.type;
-        if (roleH3) roleH3.textContent = data.dataset.role;
-        if (locationP) {
-          locationP.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg> ${data.dataset.location}`;
+        if (detailRole) detailRole.textContent = tip;
+        if (detailCompany) detailCompany.textContent = seg.classList.contains('edu') ? 'TH Ingolstadt' : seg.classList.contains('racing') ? 'Schanzer Racing e.V.' : 'Akkodis · Ingolstadt';
+        if (detailDuration) {
+          // Map segment to duration
+          const label = seg.querySelector('.seg-label')?.textContent;
+          if (seg.classList.contains('edu')) detailDuration.textContent = 'Oct 2022 - Mar 2026';
+          else if (seg.classList.contains('thesis')) detailDuration.textContent = 'Oct 2025 - Present';
+          else if (seg.classList.contains('ws2')) detailDuration.textContent = 'Mar 2025 - Oct 2025';
+          else if (seg.classList.contains('intern')) detailDuration.textContent = 'Oct 2024 - Mar 2025';
+          else if (seg.classList.contains('ws1')) detailDuration.textContent = 'Apr 2024 - Oct 2024';
+          else if (seg.classList.contains('racing')) detailDuration.textContent = 'Oct 2022 - Oct 2024';
         }
-        if (durationSpan) durationSpan.textContent = data.dataset.duration;
         
-        // Animate back in
-        displayCard.style.opacity = '1';
-        displayCard.style.transform = 'translateY(0)';
-      }, 200);
-      
-      // Update nav dots
-      navDots.forEach((dot, i) => {
-        dot.classList.toggle('active', i === index);
+        timelineDetail.classList.add('visible');
       });
-      
-      // Update timeline nodes
-      timelineNodes.forEach((node, i) => {
-        // Map slides to nodes: 0,1=2025(0), 2,3=2024(1), 4=2022(2)
-        const nodeMap = [0, 0, 1, 1, 2]; // Thesis=2025, Werkstudent=2025, Praktikum=2024, Werkstudent2=2024, THI=2022
-        node.classList.toggle('active', nodeMap[index] === i);
+    });
+
+    if (detailClose) {
+      detailClose.addEventListener('click', () => {
+        timelineDetail.classList.remove('visible');
       });
     }
-    
-    // Click on nav dots
-    navDots.forEach((dot, index) => {
-      dot.addEventListener('click', () => {
-        currentSlide = index;
-        updateDisplayCard(currentSlide);
-      });
-    });
-    
-    // Click on timeline nodes
-    timelineNodes.forEach((node, index) => {
-      node.addEventListener('click', () => {
-        // Map nodes to slides: 2025(0)->Thesis, 2024(1)->Praktikum, 2022(2)->THI
-        const slideMap = { 0: 0, 1: 2, 2: 4 };
-        currentSlide = slideMap[index] || 0;
-        updateDisplayCard(currentSlide);
-      });
-    });
-    
-    // Auto-rotate every 4 seconds
-    setInterval(() => {
-      currentSlide = (currentSlide + 1) % slideData.length;
-      updateDisplayCard(currentSlide);
-    }, 4000);
-    
-    // Initialize
-    updateDisplayCard(0);
   }
 
   // ===== Subtle Card Hover Effect (No 3D Tilt) =====

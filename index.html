@@ -152,12 +152,6 @@
             <span class="stat-plus">+</span>
             <span class="stat-label">Years Experience</span>
           </div>
-          <div class="stat-divider"></div>
-          <div class="stat-item">
-            <span class="stat-number" data-count="1">0</span>
-            <span class="stat-plus">st</span>
-            <span class="stat-label">Place PAVE Europe</span>
-          </div>
         </div>
       </div>
       
@@ -370,58 +364,60 @@
           <p class="section-subtitle">Building expertise in autonomous systems through hands-on industry experience</p>
         </div>
         
-        <!-- Career Timeline Cards -->
-        <div class="career-timeline">
-          <div class="timeline-track">
-            <!-- Timeline Line -->
-            <div class="timeline-line"></div>
-            
-            <!-- Timeline Nodes -->
-            <div class="timeline-node active" data-year="2025" data-index="0">
-              <div class="node-dot"></div>
-              <span class="node-year">2025</span>
-            </div>
-            <div class="timeline-node" data-year="2024" data-index="1">
-              <div class="node-dot"></div>
-              <span class="node-year">2024</span>
-            </div>
-            <div class="timeline-node" data-year="2022" data-index="2">
-              <div class="node-dot"></div>
-              <span class="node-year">2022</span>
+        <!-- Career Timeline - Professional Horizontal -->
+        <div class="career-timeline-pro">
+          <!-- Year markers -->
+          <div class="timeline-years">
+            <span class="year-mark">2022</span>
+            <span class="year-mark">2023</span>
+            <span class="year-mark">2024</span>
+            <span class="year-mark">2025</span>
+            <span class="year-mark now">Now</span>
+          </div>
+          
+          <!-- Timeline bar with segments -->
+          <div class="timeline-bar">
+            <div class="timeline-segment edu" style="flex: 42;" data-tip="B.Eng. Autonomous Vehicle Engineering">
+              <span class="seg-label">B.Eng. AVE</span>
             </div>
           </div>
           
-          <!-- Central Display Card -->
-          <div class="timeline-display">
-            <div class="display-card">
-              <div class="card-company">
-                <img src="Logos/akkodis logo.png" alt="Akkodis" class="company-logo-display">
-              </div>
-              <div class="card-info">
-                <span class="card-type">Thesis</span>
-                <h3 class="card-role">Autonomous Aerial Systems</h3>
-                <p class="card-location"><i data-lucide="map-pin"></i> Ingolstadt, Bavaria</p>
-                <span class="card-duration">Oct 2025 - Present</span>
-              </div>
+          <div class="timeline-bar">
+            <div class="timeline-spacer" style="flex: 18;"></div>
+            <div class="timeline-segment work ws1" style="flex: 6;" data-tip="Working Student - Service Robot Integration">
+              <span class="seg-label">WS</span>
             </div>
-            
-            <!-- Navigation Dots -->
-            <div class="display-nav">
-              <button class="nav-dot active" data-slide="0"></button>
-              <button class="nav-dot" data-slide="1"></button>
-              <button class="nav-dot" data-slide="2"></button>
-              <button class="nav-dot" data-slide="3"></button>
-              <button class="nav-dot" data-slide="4"></button>
+            <div class="timeline-segment work intern" style="flex: 5;" data-tip="Internship - Sensor Fusion & Navigation">
+              <span class="seg-label">Intern</span>
             </div>
-            
-            <!-- Company Cards Data -->
-            <div class="company-slides" style="display: none;">
-              <div class="slide-data" data-company="Akkodis" data-logo="Logos/akkodis logo.png" data-type="Thesis" data-role="Autonomous Aerial Systems" data-location="Ingolstadt, Bavaria" data-duration="Oct 2025 - Present"></div>
-              <div class="slide-data" data-company="Akkodis" data-logo="Logos/akkodis logo.png" data-type="Working Student" data-role="Automated Driving Testing" data-location="Ingolstadt, Bavaria" data-duration="Mar 2025 - Oct 2025"></div>
-              <div class="slide-data" data-company="Akkodis" data-logo="Logos/akkodis logo.png" data-type="Internship" data-role="Sensor Fusion &amp; Navigation" data-location="Ingolstadt, Bavaria" data-duration="Oct 2024 - Mar 2025"></div>
-              <div class="slide-data" data-company="Akkodis" data-logo="Logos/akkodis logo.png" data-type="Working Student" data-role="Service Robot Integration" data-location="Ingolstadt, Bavaria" data-duration="Apr 2024 - Oct 2024"></div>
-              <div class="slide-data" data-company="THI" data-logo="Logos/THI logo.png" data-type="Bachelor's Degree" data-role="Autonomous Vehicle Engineering" data-location="Ingolstadt, Bavaria" data-duration="Oct 2022 - Mar 2026"></div>
+            <div class="timeline-segment work ws2" style="flex: 7;" data-tip="Working Student - AD Testing">
+              <span class="seg-label">WS</span>
             </div>
+            <div class="timeline-segment work thesis" style="flex: 6;" data-tip="Thesis - Autonomous Aerial Systems">
+              <span class="seg-label">Thesis</span>
+            </div>
+          </div>
+
+          <div class="timeline-bar">
+            <div class="timeline-spacer" style="flex: 0;"></div>
+            <div class="timeline-segment extra racing" style="flex: 24;" data-tip="Schanzer Racing - Driverless Department">
+              <span class="seg-label">Formula Student</span>
+            </div>
+          </div>
+
+          <!-- Legend -->
+          <div class="timeline-legend">
+            <div class="legend-item"><span class="legend-dot edu-dot"></span> Education</div>
+            <div class="legend-item"><span class="legend-dot work-dot"></span> Akkodis (Industry)</div>
+            <div class="legend-item"><span class="legend-dot racing-dot"></span> Formula Student</div>
+          </div>
+          
+          <!-- Role detail on hover/click -->
+          <div class="timeline-detail" id="timeline-detail">
+            <span class="detail-close" id="detail-close">&times;</span>
+            <h4 class="detail-role"></h4>
+            <p class="detail-company"></p>
+            <p class="detail-duration"></p>
           </div>
         </div>
         
@@ -842,30 +838,30 @@
           <div class="skill-group">
             <h3 class="skill-group-title"><i data-lucide="brain"></i> Machine Learning & AI</h3>
             <div class="skill-chips">
-              <div class="skill-chip" data-level="95"><span>Reinforcement Learning</span><span class="chip-level">95%</span></div>
+              <div class="skill-chip" data-level="90"><span>Reinforcement Learning</span><span class="chip-level">90%</span></div>
               <div class="skill-chip" data-level="90"><span>PyTorch</span><span class="chip-level">90%</span></div>
-              <div class="skill-chip" data-level="85"><span>Computer Vision</span><span class="chip-level">85%</span></div>
-              <div class="skill-chip" data-level="88"><span>YOLO / OpenCV</span><span class="chip-level">88%</span></div>
+              <div class="skill-chip" data-level="80"><span>Computer Vision</span><span class="chip-level">80%</span></div>
+              <div class="skill-chip" data-level="90"><span>YOLO / OpenCV</span><span class="chip-level">90%</span></div>
             </div>
           </div>
           
           <div class="skill-group">
             <h3 class="skill-group-title"><i data-lucide="cog"></i> Robotics & Autonomy</h3>
             <div class="skill-chips">
-              <div class="skill-chip" data-level="95"><span>ROS2</span><span class="chip-level">95%</span></div>
-              <div class="skill-chip" data-level="85"><span>PX4 / ArduPilot</span><span class="chip-level">85%</span></div>
+              <div class="skill-chip" data-level="90"><span>ROS2</span><span class="chip-level">90%</span></div>
+              <div class="skill-chip" data-level="80"><span>PX4 / ArduPilot</span><span class="chip-level">80%</span></div>
               <div class="skill-chip" data-level="80"><span>Sensor Fusion</span><span class="chip-level">80%</span></div>
-              <div class="skill-chip" data-level="82"><span>SLAM & Navigation</span><span class="chip-level">82%</span></div>
+              <div class="skill-chip" data-level="80"><span>SLAM & Navigation</span><span class="chip-level">80%</span></div>
             </div>
           </div>
           
           <div class="skill-group">
             <h3 class="skill-group-title"><i data-lucide="code-2"></i> Programming</h3>
             <div class="skill-chips">
-              <div class="skill-chip" data-level="95"><span>Python</span><span class="chip-level">95%</span></div>
+              <div class="skill-chip" data-level="90"><span>Python</span><span class="chip-level">90%</span></div>
               <div class="skill-chip" data-level="80"><span>C++</span><span class="chip-level">80%</span></div>
-              <div class="skill-chip" data-level="85"><span>TypeScript / React</span><span class="chip-level">85%</span></div>
-              <div class="skill-chip" data-level="88"><span>Git / CI/CD</span><span class="chip-level">88%</span></div>
+              <div class="skill-chip" data-level="80"><span>TypeScript / React</span><span class="chip-level">80%</span></div>
+              <div class="skill-chip" data-level="90"><span>Git / CI/CD</span><span class="chip-level">90%</span></div>
             </div>
           </div>
           
@@ -873,9 +869,9 @@
             <h3 class="skill-group-title"><i data-lucide="box"></i> Simulation & Tools</h3>
             <div class="skill-chips">
               <div class="skill-chip" data-level="90"><span>Gazebo / Isaac Sim</span><span class="chip-level">90%</span></div>
-              <div class="skill-chip" data-level="92"><span>Gymnasium</span><span class="chip-level">92%</span></div>
-              <div class="skill-chip" data-level="88"><span>Docker / Linux</span><span class="chip-level">88%</span></div>
-              <div class="skill-chip" data-level="75"><span>SolidWorks</span><span class="chip-level">75%</span></div>
+              <div class="skill-chip" data-level="90"><span>Gymnasium</span><span class="chip-level">90%</span></div>
+              <div class="skill-chip" data-level="90"><span>Docker / Linux</span><span class="chip-level">90%</span></div>
+              <div class="skill-chip" data-level="70"><span>SolidWorks</span><span class="chip-level">70%</span></div>
             </div>
           </div>
         </div>
@@ -916,7 +912,7 @@
           <h3>Hardware & Simulation</h3>
           <div class="tech-icons">
             <a href="https://developer.nvidia.com/embedded/jetson" target="_blank" class="tech-icon" data-tooltip="NVIDIA Jetson">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nvidia/nvidia-original.svg" alt="Jetson">
+              <img src="Logos/nvidia_jetson_logo.png" alt="Jetson">
             </a>
             <a href="https://www.raspberrypi.com/" target="_blank" class="tech-icon" data-tooltip="Raspberry Pi">
               <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/raspberrypi/raspberrypi-original.svg" alt="Raspberry Pi">
@@ -925,7 +921,7 @@
               <img src="https://avatars.githubusercontent.com/u/4684191?s=200&v=4" alt="PX4">
             </a>
             <a href="https://www.intelrealsense.com/" target="_blank" class="tech-icon" data-tooltip="Intel RealSense">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/intel/intel-original.svg" alt="RealSense">
+              <img src="Logos/intel realsense.png" alt="RealSense">
             </a>
             <a href="https://carla.org/" target="_blank" class="tech-icon" data-tooltip="CARLA">
               <img src="Logos/carla logo.jpg" alt="CARLA">
@@ -1031,17 +1027,7 @@
               </div>
             </div>
             
-            <!-- Professor Recommendation -->
-            <a href="Professor mecking recommendation.jpg" target="_blank" class="contact-card glass-card recommendation-link" style="grid-column: 1 / -1; text-decoration: none;">
-              <div class="contact-icon" style="background: linear-gradient(135deg, var(--primary), var(--accent-secondary));">
-                <i data-lucide="file-text"></i>
-              </div>
-              <div class="contact-details">
-                <h3>Professor's Recommendation</h3>
-                <p style="color: var(--text-muted); font-size: 0.9rem;">View recommendation letter from Prof. Dr.-Ing. Michael Mecking (Dean, ex-BMW)</p>
-              </div>
-              <i data-lucide="external-link" style="color: var(--text-muted); margin-left: auto;"></i>
-            </a>
+
           </div>
           
           <form class="contact-form glass-card" id="contact-form">

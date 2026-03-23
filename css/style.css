@@ -1675,259 +1675,199 @@ header {
 }
 
 /* ===== Career Timeline (Unique Design) ===== */
-.career-timeline {
+/* ===== Career Timeline - Professional Horizontal ===== */
+.career-timeline-pro {
   position: relative;
-  margin: 0 auto 4rem;
   max-width: 900px;
+  margin: 0 auto 3rem;
   padding: 2rem 0;
 }
 
-.timeline-track {
+.timeline-years {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  position: relative;
-  padding: 0 2rem;
-  margin-bottom: 3rem;
+  padding: 0 0 0.5rem;
+  margin-bottom: 0.25rem;
 }
 
-.timeline-line {
-  position: absolute;
-  top: 50%;
-  left: 2rem;
-  right: 2rem;
-  height: 2px;
-  background: linear-gradient(90deg, var(--primary) 0%, var(--border-light) 50%, var(--accent) 100%);
-  transform: translateY(-50%);
-  z-index: 0;
-}
-
-.timeline-line::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, var(--primary), var(--accent));
-  transform: translateY(-50%);
-  animation: lineGlow 3s ease-in-out infinite;
-}
-
-@keyframes lineGlow {
-  0%, 100% { opacity: 0.3; filter: blur(4px); }
-  50% { opacity: 0.8; filter: blur(8px); }
-}
-
-.timeline-node {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 12px;
-  cursor: pointer;
-}
-
-.node-dot {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: var(--bg-tertiary);
-  border: 3px solid var(--border-light);
-  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-  position: relative;
-}
-
-.node-dot::after {
-  content: '';
-  position: absolute;
-  inset: -6px;
-  border-radius: 50%;
-  border: 2px solid transparent;
-  transition: all 0.3s ease;
-}
-
-.timeline-node:hover .node-dot,
-.timeline-node.active .node-dot {
-  background: var(--primary);
-  border-color: var(--primary);
-  transform: scale(1.3);
-  box-shadow: 0 0 30px rgba(132, 204, 22, 0.6);
-}
-
-.timeline-node.active .node-dot::after {
-  border-color: rgba(132, 204, 22, 0.3);
-  animation: pulse 2s ease-in-out infinite;
-}
-
-@keyframes pulse {
-  0%, 100% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.5); opacity: 0; }
-}
-
-.node-year {
+.year-mark {
   font-family: var(--font-mono);
-  font-size: 0.9rem;
-  font-weight: 600;
+  font-size: 0.8rem;
   color: var(--text-muted);
-  transition: color 0.3s ease;
+  font-weight: 500;
 }
 
-.timeline-node:hover .node-year,
-.timeline-node.active .node-year {
+.year-mark.now {
   color: var(--primary);
+  font-weight: 700;
 }
 
-/* Central Display Card */
-.timeline-display {
+.timeline-bar {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1.5rem;
-}
-
-.display-card {
-  background: linear-gradient(145deg, rgba(20, 20, 20, 0.9) 0%, rgba(10, 10, 10, 0.95) 100%);
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius-xl);
-  padding: 2rem;
-  display: flex;
-  align-items: center;
-  gap: 2rem;
-  max-width: 600px;
-  width: 100%;
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative;
+  height: 36px;
+  margin-bottom: 6px;
+  gap: 3px;
+  border-radius: var(--radius-sm);
   overflow: hidden;
 }
 
-.display-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: var(--gradient-primary);
-  transform: scaleX(1);
-}
-
-.display-card::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at 30% 50%, rgba(132, 204, 22, 0.05) 0%, transparent 50%);
-  pointer-events: none;
-}
-
-.card-company {
+.timeline-spacer {
   flex-shrink: 0;
-  width: 100px;
-  height: 80px;
-  background: white;
-  border-radius: var(--radius-md);
+}
+
+.timeline-segment {
+  border-radius: var(--radius-sm);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 12px;
-  transition: transform 0.4s ease;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.3s ease;
+  overflow: hidden;
 }
 
-.display-card:hover .card-company {
-  transform: scale(1.05);
+.timeline-segment:hover {
+  filter: brightness(1.2);
+  transform: scaleY(1.1);
+  z-index: 2;
 }
 
-.company-logo-display {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-}
-
-.card-info {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.card-type {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--primary);
-  padding: 4px 10px;
-  background: rgba(132, 204, 22, 0.1);
-  border-radius: var(--radius-full);
-  width: fit-content;
-}
-
-.card-role {
-  font-family: var(--font-display);
-  font-size: 1.25rem;
-  font-weight: 600;
+.timeline-segment::after {
+  content: attr(data-tip);
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) scale(0.95);
+  background: var(--bg-primary);
+  border: 1px solid var(--border-light);
   color: var(--text-primary);
-  margin: 0;
-  line-height: 1.3;
+  font-size: 0.75rem;
+  font-family: var(--font-mono);
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.2s ease;
+  z-index: 10;
 }
 
-.card-location {
-  font-size: 0.9rem;
-  color: var(--text-secondary);
+.timeline-segment:hover::after {
+  opacity: 1;
+  transform: translateX(-50%) scale(1);
+}
+
+.seg-label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.85);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0 8px;
+}
+
+/* Segment colors */
+.timeline-segment.edu {
+  background: linear-gradient(135deg, #6366f1, #818cf8);
+}
+
+.timeline-segment.work {
+  background: linear-gradient(135deg, var(--primary), #a3e635);
+}
+
+.timeline-segment.work.intern {
+  background: linear-gradient(135deg, #22c55e, #4ade80);
+}
+
+.timeline-segment.work.thesis {
+  background: linear-gradient(135deg, #f59e0b, #fbbf24);
+}
+
+.timeline-segment.extra.racing {
+  background: linear-gradient(135deg, #ec4899, #f472b6);
+}
+
+/* Legend */
+.timeline-legend {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  margin-top: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.legend-item {
   display: flex;
   align-items: center;
   gap: 6px;
-  margin: 0;
-}
-
-.card-location svg {
-  width: 14px;
-  height: 14px;
-  color: var(--primary);
-}
-
-.card-duration {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
   font-family: var(--font-mono);
-  font-size: 0.85rem;
+}
+
+.legend-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
+.edu-dot { background: linear-gradient(135deg, #6366f1, #818cf8); }
+.work-dot { background: linear-gradient(135deg, var(--primary), #a3e635); }
+.racing-dot { background: linear-gradient(135deg, #ec4899, #f472b6); }
+
+/* Detail popup (hidden by default) */
+.timeline-detail {
+  display: none;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  margin-top: 1rem;
+  position: relative;
+  text-align: center;
+}
+
+.timeline-detail.visible {
+  display: block;
+}
+
+.detail-close {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  cursor: pointer;
+  font-size: 1.2rem;
   color: var(--text-muted);
 }
 
-/* Navigation Dots */
-.display-nav {
-  display: flex;
-  gap: 12px;
+.detail-role {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 4px;
 }
 
-.nav-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: var(--border-light);
-  border: none;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  padding: 0;
+.detail-company {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin: 0 0 2px;
 }
 
-.nav-dot:hover {
-  background: var(--text-muted);
+.detail-duration {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin: 0;
 }
 
-.nav-dot.active {
-  background: var(--primary);
-  transform: scale(1.3);
-  box-shadow: 0 0 10px rgba(132, 204, 22, 0.5);
-}
-
-/* Light theme adjustments */
-[data-theme="light"] .display-card {
-  background: linear-gradient(145deg, rgba(255, 255, 255, 0.95) 0%, rgba(245, 245, 245, 0.98) 100%);
-}
-
-[data-theme="light"] .card-company {
-  background: #f5f5f5;
-  border: 1px solid var(--border);
+/* Light theme */
+[data-theme="light"] .seg-label {
+  color: rgba(0, 0, 0, 0.8);
 }
 
 /* ===== Experience Cards Grid ===== */
@@ -3479,42 +3419,30 @@ header {
   }
   
   /* Career Timeline Mobile */
-  .career-timeline {
+  .career-timeline-pro {
     padding: 1rem 0;
   }
-  
-  .timeline-track {
-    padding: 0 1rem;
-    margin-bottom: 2rem;
+
+  .timeline-bar {
+    height: 28px;
   }
-  
-  .node-dot {
-    width: 16px;
-    height: 16px;
+
+  .seg-label {
+    font-size: 0.6rem;
+    padding: 0 4px;
   }
-  
-  .node-year {
-    font-size: 0.75rem;
+
+  .year-mark {
+    font-size: 0.7rem;
   }
-  
-  .display-card {
-    flex-direction: column;
-    text-align: center;
-    padding: 1.5rem;
+
+  .timeline-legend {
     gap: 1rem;
   }
-  
-  .card-company {
-    width: 80px;
-    height: 60px;
-  }
-  
-  .card-info {
-    align-items: center;
-  }
-  
-  .card-role {
-    font-size: 1.1rem;
+
+  .timeline-segment::after {
+    font-size: 0.65rem;
+    padding: 4px 8px;
   }
   
   /* Theme & Music buttons mobile */
