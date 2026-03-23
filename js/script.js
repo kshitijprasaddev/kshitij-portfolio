@@ -131,52 +131,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // ===== Custom Cursor (disabled for cleaner look) =====
 
-  // ===== Career Timeline (Horizontal Segments) =====
-  const timelineSegments = document.querySelectorAll('.timeline-segment');
-  const timelineDetail = document.getElementById('timeline-detail');
-  const detailClose = document.getElementById('detail-close');
-
-  const segmentInfo = {
-    'B.Eng. AVE': { role: 'B.Eng. Autonomous Vehicle Engineering', company: 'Technische Hochschule Ingolstadt', duration: 'Oct 2022 - Mar 2026' },
-    'WS': null, // handled by data-tip
-    'Intern': { role: 'Internship - Sensor Fusion & Navigation', company: 'Akkodis · Ingolstadt', duration: 'Oct 2024 - Mar 2025' },
-    'Thesis': { role: 'Thesis - Autonomous Aerial Systems', company: 'Akkodis · Ingolstadt', duration: 'Oct 2025 - Present' },
-    'Formula Student': { role: 'Driverless Department', company: 'Schanzer Racing e.V. · TH Ingolstadt', duration: 'Oct 2022 - Oct 2024' }
-  };
-
-  if (timelineSegments.length > 0) {
-    timelineSegments.forEach(seg => {
-      seg.addEventListener('click', () => {
-        if (!timelineDetail) return;
-        const tip = seg.getAttribute('data-tip') || '';
-        const parts = tip.split(' - ');
-        const detailRole = timelineDetail.querySelector('.detail-role');
-        const detailCompany = timelineDetail.querySelector('.detail-company');
-        const detailDuration = timelineDetail.querySelector('.detail-duration');
-        
-        if (detailRole) detailRole.textContent = tip;
-        if (detailCompany) detailCompany.textContent = seg.classList.contains('edu') ? 'TH Ingolstadt' : seg.classList.contains('racing') ? 'Schanzer Racing e.V.' : 'Akkodis · Ingolstadt';
-        if (detailDuration) {
-          // Map segment to duration
-          const label = seg.querySelector('.seg-label')?.textContent;
-          if (seg.classList.contains('edu')) detailDuration.textContent = 'Oct 2022 - Mar 2026';
-          else if (seg.classList.contains('thesis')) detailDuration.textContent = 'Oct 2025 - Present';
-          else if (seg.classList.contains('ws2')) detailDuration.textContent = 'Mar 2025 - Oct 2025';
-          else if (seg.classList.contains('intern')) detailDuration.textContent = 'Oct 2024 - Mar 2025';
-          else if (seg.classList.contains('ws1')) detailDuration.textContent = 'Apr 2024 - Oct 2024';
-          else if (seg.classList.contains('racing')) detailDuration.textContent = 'Oct 2022 - Oct 2024';
-        }
-        
-        timelineDetail.classList.add('visible');
-      });
-    });
-
-    if (detailClose) {
-      detailClose.addEventListener('click', () => {
-        timelineDetail.classList.remove('visible');
-      });
-    }
-  }
+  // ===== Career Timeline (Pure CSS tooltips, no JS needed) =====
 
   // ===== Subtle Card Hover Effect (No 3D Tilt) =====
   function initCardHoverEffects() {

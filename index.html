@@ -364,60 +364,48 @@
           <p class="section-subtitle">Building expertise in autonomous systems through hands-on industry experience</p>
         </div>
         
-        <!-- Career Timeline - Professional Horizontal -->
+        <!-- Career Timeline - Professional -->
         <div class="career-timeline-pro">
-          <!-- Year markers -->
-          <div class="timeline-years">
-            <span class="year-mark">2022</span>
-            <span class="year-mark">2023</span>
-            <span class="year-mark">2024</span>
-            <span class="year-mark">2025</span>
-            <span class="year-mark now">Now</span>
-          </div>
-          
-          <!-- Timeline bar with segments -->
-          <div class="timeline-bar">
-            <div class="timeline-segment edu" style="flex: 42;" data-tip="B.Eng. Autonomous Vehicle Engineering">
-              <span class="seg-label">B.Eng. AVE</span>
-            </div>
-          </div>
-          
-          <div class="timeline-bar">
-            <div class="timeline-spacer" style="flex: 18;"></div>
-            <div class="timeline-segment work ws1" style="flex: 6;" data-tip="Working Student - Service Robot Integration">
-              <span class="seg-label">WS</span>
-            </div>
-            <div class="timeline-segment work intern" style="flex: 5;" data-tip="Internship - Sensor Fusion & Navigation">
-              <span class="seg-label">Intern</span>
-            </div>
-            <div class="timeline-segment work ws2" style="flex: 7;" data-tip="Working Student - AD Testing">
-              <span class="seg-label">WS</span>
-            </div>
-            <div class="timeline-segment work thesis" style="flex: 6;" data-tip="Thesis - Autonomous Aerial Systems">
-              <span class="seg-label">Thesis</span>
-            </div>
+          <!-- Year axis -->
+          <div class="tl-axis">
+            <div class="tl-tick" style="left: 0%"><span>2022</span></div>
+            <div class="tl-tick" style="left: 25%"><span>2023</span></div>
+            <div class="tl-tick" style="left: 50%"><span>2024</span></div>
+            <div class="tl-tick" style="left: 75%"><span>2025</span></div>
+            <div class="tl-tick now" style="left: 100%"><span>2026</span></div>
           </div>
 
-          <div class="timeline-bar">
-            <div class="timeline-spacer" style="flex: 0;"></div>
-            <div class="timeline-segment extra racing" style="flex: 24;" data-tip="Schanzer Racing - Driverless Department">
-              <span class="seg-label">Formula Student</span>
+          <!-- Lanes -->
+          <div class="tl-lanes">
+            <!-- Professional lane -->
+            <div class="tl-lane">
+              <span class="tl-lane-label">Professional</span>
+              <div class="tl-lane-track">
+                <div class="tl-item" style="left: 42.9%; width: 14.3%;" data-tip="Service Robot Integration · Apr - Oct 2024"></div>
+                <div class="tl-item" style="left: 57.1%; width: 11.9%;" data-tip="Sensor Fusion & Navigation · Oct 2024 - Mar 2025"></div>
+                <div class="tl-item" style="left: 69%; width: 16.7%;" data-tip="Automated Driving Testing · Mar - Oct 2025"></div>
+                <div class="tl-item active" style="left: 85.7%; width: 14.3%;" data-tip="Autonomous Aerial Systems (Thesis) · Oct 2025 - Present"></div>
+              </div>
+              <span class="tl-lane-company">Akkodis Germany</span>
             </div>
-          </div>
 
-          <!-- Legend -->
-          <div class="timeline-legend">
-            <div class="legend-item"><span class="legend-dot edu-dot"></span> Education</div>
-            <div class="legend-item"><span class="legend-dot work-dot"></span> Akkodis (Industry)</div>
-            <div class="legend-item"><span class="legend-dot racing-dot"></span> Formula Student</div>
-          </div>
-          
-          <!-- Role detail on hover/click -->
-          <div class="timeline-detail" id="timeline-detail">
-            <span class="detail-close" id="detail-close">&times;</span>
-            <h4 class="detail-role"></h4>
-            <p class="detail-company"></p>
-            <p class="detail-duration"></p>
+            <!-- Formula Student lane -->
+            <div class="tl-lane">
+              <span class="tl-lane-label">Formula Student</span>
+              <div class="tl-lane-track">
+                <div class="tl-item alt" style="left: 0%; width: 85.7%;" data-tip="Driverless Department · Oct 2022 - Mar 2026"></div>
+              </div>
+              <span class="tl-lane-company">Schanzer Racing e.V.</span>
+            </div>
+
+            <!-- Education lane -->
+            <div class="tl-lane">
+              <span class="tl-lane-label">Education</span>
+              <div class="tl-lane-track">
+                <div class="tl-item muted" style="left: 0%; width: 100%;" data-tip="B.Eng. Autonomous Vehicle Engineering · Oct 2022 - Mar 2026"></div>
+              </div>
+              <span class="tl-lane-company">TH Ingolstadt</span>
+            </div>
           </div>
         </div>
         
@@ -542,7 +530,7 @@
               </div>
               <div class="experience-meta">
                 <span class="experience-type">Formula Student</span>
-                <span class="experience-date">Oct 2022 - Oct 2024</span>
+                <span class="experience-date">Oct 2022 - Mar 2026</span>
               </div>
             </div>
             <div class="experience-body">
