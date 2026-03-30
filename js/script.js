@@ -1,7 +1,208 @@
 /**
  * Kshitij Prasad - Portfolio
- * Professional JavaScript with GSAP Animations
+ * Professional JavaScript with GSAP Animations + Three.js WebGL
  */
+
+// ===== Three.js Particle Field =====
+(function initWebGL() {
+  const canvas = document.getElementById('webgl-bg');
+  if (!canvas || typeof THREE === 'undefined') return;
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+  camera.position.z = 30;
+
+  const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+  // Particle system
+  const PARTICLE_COUNT = 1200;
+  const positions = new Float32Array(PARTICLE_COUNT * 3);
+  const velocities = new Float32Array(PARTICLE_COUNT * 3);
+  const sizes = new Float32Array(PARTICLE_COUNT);
+  const spread = 50;
+
+  for (let i = 0; i < PARTICLE_COUNT; i++) {
+    positions[i * 3] = (Math.random() - 0.5) * spread;
+    positions[i * 3 + 1] = (Math.random() - 0.5) * spread;
+    positions[i * 3 + 2] = (Math.random() - 0.5) * spread;
+    velocities[i * 3] = (Math.random() - 0.5) * 0.01;
+    velocities[i * 3 + 1] = (Math.random() - 0.5) * 0.01;
+    velocities[i * 3 + 2] = (Math.random() - 0.5) * 0.01;
+    sizes[i] = Math.random() * 2 + 0.5;
+  }
+
+  const geometry = new THREE.BufferGeometry();
+  geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+  geometry.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
+
+  const material = new THREE.ShaderMaterial({
+    uniforms: {
+      uTime: { value: 0 },
+      uMouse: { value: new THREE.Vector2(0, 0) },
+      uColor: { value: new THREE.Color(0x84cc16) },
+      uResolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight) },
+    },
+    vertexShader: `
+      attribute float size;
+      uniform float uTime;
+      uniform vec2 uMouse;
+      varying float vAlpha;
+      varying float vDist;
+
+      void main() {
+        vec3 pos = position;
+
+        // Gentle wave motion
+        pos.x += sin(uTime * 0.3 + position.y * 0.5) * 0.5;
+        pos.y += cos(uTime * 0.2 + position.x * 0.3) * 0.5;
+        pos.z += sin(uTime * 0.15 + position.x * 0.2 + position.y * 0.3) * 0.3;
+
+        vec4 mvPosition = modelViewMatrix * vec4(pos, 1.0);
+
+        // Mouse repulsion in screen space
+        vec4 projected = projectionMatrix * mvPosition;
+        vec2 screenPos = projected.xy / projected.w;
+        float dist = distance(screenPos, uMouse);
+        vDist = dist;
+
+        // Push particles away from cursor
+        if (dist < 0.3) {
+          vec2 dir = normalize(screenPos - uMouse);
+          float force = (0.3 - dist) * 3.0;
+          mvPosition.xy += dir * force;
+        }
+
+        vAlpha = smoothstep(50.0, 5.0, -mvPosition.z) * 0.8;
+
+        gl_PointSize = size * (15.0 / -mvPosition.z);
+        gl_Position = projectionMatrix * mvPosition;
+      }
+    `,
+    fragmentShader: `
+      uniform vec3 uColor;
+      varying float vAlpha;
+      varying float vDist;
+
+      void main() {
+        float d = distance(gl_PointCoord, vec2(0.5));
+        if (d > 0.5) discard;
+
+        float glow = smoothstep(0.5, 0.0, d);
+        float brightness = vDist < 0.3 ? 1.5 : 1.0;
+
+        gl_FragColor = vec4(uColor * brightness, glow * vAlpha * 0.7);
+      }
+    `,
+    transparent: true,
+    depthWrite: false,
+    blending: THREE.AdditiveBlending,
+  });
+
+  const particles = new THREE.Points(geometry, material);
+  scene.add(particles);
+
+  // Connecting lines between nearby particles
+  const lineGeometry = new THREE.BufferGeometry();
+  const MAX_LINES = 3000;
+  const linePositions = new Float32Array(MAX_LINES * 6);
+  const lineColors = new Float32Array(MAX_LINES * 6);
+  lineGeometry.setAttribute('position', new THREE.BufferAttribute(linePositions, 3));
+  lineGeometry.setAttribute('color', new THREE.BufferAttribute(lineColors, 3));
+
+  const lineMaterial = new THREE.LineBasicMaterial({
+    vertexColors: true,
+    transparent: true,
+    opacity: 0.15,
+    blending: THREE.AdditiveBlending,
+  });
+
+  const lines = new THREE.LineSegments(lineGeometry, lineMaterial);
+  scene.add(lines);
+
+  // Mouse tracking
+  const mouse = { x: 0, y: 0 };
+  let mouseNDC = { x: 0, y: 0 };
+
+  window.addEventListener('mousemove', (e) => {
+    mouse.x = e.clientX;
+    mouse.y = e.clientY;
+    mouseNDC.x = (e.clientX / window.innerWidth) * 2 - 1;
+    mouseNDC.y = -(e.clientY / window.innerHeight) * 2 + 1;
+  });
+
+  // Scroll-based camera parallax
+  let scrollY = 0;
+  window.addEventListener('scroll', () => { scrollY = window.scrollY; }, { passive: true });
+
+  // Resize
+  window.addEventListener('resize', () => {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    material.uniforms.uResolution.value.set(window.innerWidth, window.innerHeight);
+  });
+
+  // Render loop
+  const clock = new THREE.Clock();
+
+  function animate() {
+    requestAnimationFrame(animate);
+
+    const elapsed = clock.getElapsedTime();
+    material.uniforms.uTime.value = elapsed;
+    material.uniforms.uMouse.value.set(mouseNDC.x, mouseNDC.y);
+
+    // Gentle rotation
+    particles.rotation.y = elapsed * 0.03;
+    particles.rotation.x = Math.sin(elapsed * 0.02) * 0.1;
+
+    // Scroll parallax — move camera on Y
+    camera.position.y = -scrollY * 0.005;
+
+    // Update connecting lines
+    const posArr = geometry.attributes.position.array;
+    let lineIdx = 0;
+    const CONNECT_DIST = 4.5;
+    const green = new THREE.Color(0x84cc16);
+
+    for (let i = 0; i < PARTICLE_COUNT && lineIdx < MAX_LINES; i++) {
+      for (let j = i + 1; j < PARTICLE_COUNT && lineIdx < MAX_LINES; j++) {
+        const dx = posArr[i*3] - posArr[j*3];
+        const dy = posArr[i*3+1] - posArr[j*3+1];
+        const dz = posArr[i*3+2] - posArr[j*3+2];
+        const dist = Math.sqrt(dx*dx + dy*dy + dz*dz);
+
+        if (dist < CONNECT_DIST) {
+          const alpha = 1 - dist / CONNECT_DIST;
+          linePositions[lineIdx*6] = posArr[i*3];
+          linePositions[lineIdx*6+1] = posArr[i*3+1];
+          linePositions[lineIdx*6+2] = posArr[i*3+2];
+          linePositions[lineIdx*6+3] = posArr[j*3];
+          linePositions[lineIdx*6+4] = posArr[j*3+1];
+          linePositions[lineIdx*6+5] = posArr[j*3+2];
+
+          lineColors[lineIdx*6] = green.r * alpha;
+          lineColors[lineIdx*6+1] = green.g * alpha;
+          lineColors[lineIdx*6+2] = green.b * alpha;
+          lineColors[lineIdx*6+3] = green.r * alpha;
+          lineColors[lineIdx*6+4] = green.g * alpha;
+          lineColors[lineIdx*6+5] = green.b * alpha;
+          lineIdx++;
+        }
+      }
+    }
+
+    lineGeometry.setDrawRange(0, lineIdx * 2);
+    lineGeometry.attributes.position.needsUpdate = true;
+    lineGeometry.attributes.color.needsUpdate = true;
+
+    renderer.render(scene, camera);
+  }
+
+  animate();
+})();
 
 // ===== PDF Viewer (Global Functions) =====
 function openPdfViewer(pdfUrl, title) {
@@ -47,6 +248,65 @@ document.addEventListener("DOMContentLoaded", function () {
   if (typeof lucide !== "undefined") {
     lucide.createIcons();
   }
+
+  // ===== Custom Cursor =====
+  (function initCursor() {
+    const dot = document.getElementById('cursorDot');
+    const ring = document.getElementById('cursorRing');
+    if (!dot || !ring || matchMedia('(pointer:coarse)').matches) return;
+
+    document.body.style.cursor = 'none';
+
+    let dotX = 0, dotY = 0, ringX = 0, ringY = 0;
+    let mouseX = 0, mouseY = 0;
+
+    // Track mouse position
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    });
+
+    // Smooth follow loop
+    function moveCursor() {
+      // Dot follows fast
+      dotX += (mouseX - dotX) * 0.25;
+      dotY += (mouseY - dotY) * 0.25;
+      dot.style.transform = `translate(${dotX - 4}px, ${dotY - 4}px)`;
+
+      // Ring follows with delay (creates liquid feel)
+      ringX += (mouseX - ringX) * 0.1;
+      ringY += (mouseY - ringY) * 0.1;
+      ring.style.transform = `translate(${ringX - 20}px, ${ringY - 20}px)`;
+
+      requestAnimationFrame(moveCursor);
+    }
+    moveCursor();
+
+    // Magnetic hover for interactive elements
+    const hoverTargets = 'a, button, .btn, .st-head, .project-card, .nav-link, .theme-toggle, .music-toggle, .logo-item';
+
+    document.querySelectorAll(hoverTargets).forEach(el => {
+      el.style.cursor = 'none';
+      el.addEventListener('mouseenter', () => {
+        dot.classList.add('hovering');
+        ring.classList.add('hovering');
+      });
+      el.addEventListener('mouseleave', () => {
+        dot.classList.remove('hovering');
+        ring.classList.remove('hovering');
+      });
+    });
+
+    // Hide cursor when leaving window
+    document.addEventListener('mouseleave', () => {
+      dot.style.opacity = '0';
+      ring.style.opacity = '0';
+    });
+    document.addEventListener('mouseenter', () => {
+      dot.style.opacity = '1';
+      ring.style.opacity = '1';
+    });
+  })();
 
   // Set --level CSS variable on skill chips from data-level attribute
   document.querySelectorAll('.skill-chip[data-level]').forEach(chip => {
