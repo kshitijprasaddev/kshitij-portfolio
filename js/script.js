@@ -131,23 +131,81 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // ===== Custom Cursor (disabled for cleaner look) =====
 
-  // ===== Interactive Career Timeline =====
-  function initCareerTimeline() {
-    const segs = document.querySelectorAll('.tl-seg[data-target]');
-    segs.forEach(seg => {
-      seg.addEventListener('click', () => {
-        const targetId = seg.getAttribute('data-target');
-        const entry = document.getElementById(targetId);
-        if (!entry) return;
-        entry.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        entry.classList.remove('tl-targeted');
-        void entry.offsetWidth;  // reflow to restart animation
-        entry.classList.add('tl-targeted');
-        setTimeout(() => entry.classList.remove('tl-targeted'), 1500);
+  // ===== Interactive Story Timeline =====
+  function initStoryTimeline() {
+    const nodes = document.querySelectorAll('.st-node');
+    const lineProgress = document.getElementById('stLineProgress');
+    const timeline = document.getElementById('storyTimeline');
+
+    // Accordion: toggle expand/collapse
+    document.querySelectorAll('.st-card-header').forEach(header => {
+      header.addEventListener('click', () => {
+        const card = header.closest('.st-card');
+        const wasExpanded = card.classList.contains('st-card--expanded');
+        
+        // Collapse all other cards
+        document.querySelectorAll('.st-card--expanded').forEach(c => {
+          if (c !== card) c.classList.remove('st-card--expanded');
+        });
+        
+        // Toggle this one
+        card.classList.toggle('st-card--expanded', !wasExpanded);
+      });
+
+      // Keyboard accessibility
+      header.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          header.click();
+        }
       });
     });
+
+    // Scroll-linked line progress
+    function updateLineProgress() {
+      if (!timeline || !lineProgress) return;
+      const rect = timeline.getBoundingClientRect();
+      const vh = window.innerHeight;
+      const timelineTop = rect.top;
+      const timelineH = rect.height;
+      
+      if (timelineTop > vh) {
+        lineProgress.style.height = '0%';
+      } else if (timelineTop + timelineH < 0) {
+        lineProgress.style.height = '100%';
+      } else {
+        const scrolled = vh - timelineTop;
+        const pct = Math.min(Math.max(scrolled / (timelineH + vh * 0.3), 0), 1) * 100;
+        lineProgress.style.height = pct + '%';
+      }
+    }
+
+    // Intersection Observer for node entrance
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('st-visible');
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+
+    nodes.forEach(node => observer.observe(node));
+
+    // Update on scroll (throttled via rAF)
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          updateLineProgress();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }, { passive: true });
+
+    updateLineProgress();
   }
-  initCareerTimeline();
+  initStoryTimeline();
 
   // ===== Subtle Card Hover Effect (No 3D Tilt) =====
   function initCardHoverEffects() {
@@ -591,39 +649,39 @@ document.addEventListener("DOMContentLoaded", function () {
       },
     });
 
-    // Career timeline - bars animate from scaleX(0) on scroll
-    const tlSegs = document.querySelectorAll('.tl-seg');
-    if (tlSegs.length > 0) {
-      gsap.set(tlSegs, { scaleX: 0, transformOrigin: 'left center' });
-      
-      gsap.to(tlSegs, {
-        scaleX: 1,
-        duration: 0.8,
-        ease: 'power3.out',
-        stagger: 0.1,
-        scrollTrigger: {
-          trigger: '.career-timeline-pro',
-          start: 'top 80%',
-          toggleActions: 'play none none none',
-        },
-      });
-    }
+    // Story Timeline - GSAP scroll-linked card reveals
+    const stNodes = document.querySelectorAll('.st-node');
+    stNodes.forEach((node) => {
+      const card = node.querySelector('.st-card');
+      const marker = node.querySelector('.st-node-marker');
+      const isLeft = node.classList.contains('st-node--left');
 
-    // Timeline items - animate in and stay visible (legacy support)
-    gsap.utils.toArray(".timeline-item").forEach((item, index) => {
-      gsap.set(item, { opacity: 1 });
-      
-      gsap.from(item, {
-        x: -30,
-        opacity: 0,
-        duration: 0.6,
-        delay: index * 0.1,
-        scrollTrigger: {
-          trigger: item,
-          start: "top 90%",
-          toggleActions: "play none none none",
-        },
-      });
+      if (card) {
+        gsap.from(card, {
+          x: isLeft ? -60 : 60,
+          opacity: 0,
+          duration: 0.7,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: node,
+            start: 'top 85%',
+            toggleActions: 'play none none none',
+          },
+        });
+      }
+
+      if (marker) {
+        gsap.from(marker, {
+          scale: 0,
+          duration: 0.5,
+          ease: 'back.out(1.7)',
+          scrollTrigger: {
+            trigger: node,
+            start: 'top 85%',
+            toggleActions: 'play none none none',
+          },
+        });
+      }
     });
 
     // Project cards stagger - professional reveal
