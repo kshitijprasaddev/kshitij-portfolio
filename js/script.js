@@ -131,7 +131,23 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // ===== Custom Cursor (disabled for cleaner look) =====
 
-  // ===== Career Timeline (Pure CSS tooltips, no JS needed) =====
+  // ===== Interactive Career Timeline =====
+  function initCareerTimeline() {
+    const segs = document.querySelectorAll('.tl-seg[data-target]');
+    segs.forEach(seg => {
+      seg.addEventListener('click', () => {
+        const targetId = seg.getAttribute('data-target');
+        const entry = document.getElementById(targetId);
+        if (!entry) return;
+        entry.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        entry.classList.remove('tl-targeted');
+        void entry.offsetWidth;  // reflow to restart animation
+        entry.classList.add('tl-targeted');
+        setTimeout(() => entry.classList.remove('tl-targeted'), 1500);
+      });
+    });
+  }
+  initCareerTimeline();
 
   // ===== Subtle Card Hover Effect (No 3D Tilt) =====
   function initCardHoverEffects() {
@@ -574,6 +590,24 @@ document.addEventListener("DOMContentLoaded", function () {
         toggleActions: "play none none none",
       },
     });
+
+    // Career timeline - bars animate from scaleX(0) on scroll
+    const tlSegs = document.querySelectorAll('.tl-seg');
+    if (tlSegs.length > 0) {
+      gsap.set(tlSegs, { scaleX: 0, transformOrigin: 'left center' });
+      
+      gsap.to(tlSegs, {
+        scaleX: 1,
+        duration: 0.8,
+        ease: 'power3.out',
+        stagger: 0.1,
+        scrollTrigger: {
+          trigger: '.career-timeline-pro',
+          start: 'top 80%',
+          toggleActions: 'play none none none',
+        },
+      });
+    }
 
     // Timeline items - animate in and stay visible (legacy support)
     gsap.utils.toArray(".timeline-item").forEach((item, index) => {

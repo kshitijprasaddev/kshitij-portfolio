@@ -364,54 +364,99 @@
           <p class="section-subtitle">Building expertise in autonomous systems through hands-on industry experience</p>
         </div>
         
-        <!-- Career Timeline - Professional -->
+        <!-- Career Timeline - Interactive -->
         <div class="career-timeline-pro">
-          <!-- Year axis -->
-          <div class="tl-axis">
-            <div class="tl-tick" style="left: 0%"><span>2022</span></div>
-            <div class="tl-tick" style="left: 25%"><span>2023</span></div>
-            <div class="tl-tick" style="left: 50%"><span>2024</span></div>
-            <div class="tl-tick" style="left: 75%"><span>2025</span></div>
-            <div class="tl-tick now" style="left: 100%"><span>2026</span></div>
+          <!-- Year ruler -->
+          <div class="tl-ruler">
+            <div class="tl-year-mark" style="left: 0%"><span>2022</span></div>
+            <div class="tl-year-mark" style="left: 25%"><span>2023</span></div>
+            <div class="tl-year-mark" style="left: 50%"><span>2024</span></div>
+            <div class="tl-year-mark" style="left: 75%"><span>2025</span></div>
+            <div class="tl-year-mark tl-now" style="left: 100%"><span>Now</span></div>
           </div>
 
-          <!-- Lanes -->
+          <!-- Swim lanes -->
           <div class="tl-lanes">
-            <!-- Professional lane -->
-            <div class="tl-lane">
-              <span class="tl-lane-label">Professional</span>
-              <div class="tl-lane-track">
-                <div class="tl-item" style="left: 42.9%; width: 14.3%;" data-tip="Service Robot Integration · Apr - Oct 2024"></div>
-                <div class="tl-item" style="left: 57.1%; width: 11.9%;" data-tip="Sensor Fusion & Navigation · Oct 2024 - Mar 2025"></div>
-                <div class="tl-item" style="left: 69%; width: 16.7%;" data-tip="Automated Driving Testing · Mar - Oct 2025"></div>
-                <div class="tl-item active" style="left: 85.7%; width: 14.3%;" data-tip="Autonomous Aerial Systems (Thesis) · Oct 2025 - Present"></div>
+            <!-- Professional Lane -->
+            <div class="tl-lane" data-color="green">
+              <div class="tl-lane-info">
+                <span class="tl-lane-label">Professional</span>
+                <span class="tl-lane-org">Akkodis Germany</span>
               </div>
-              <span class="tl-lane-company">Akkodis Germany</span>
+              <div class="tl-lane-track">
+                <div class="tl-seg" style="left: 42.9%; width: 13.8%;" data-target="exp-robot">
+                  <div class="tl-popover">
+                    <strong>Service Robot Integration</strong>
+                    <span class="tl-popover-date">Apr - Oct 2024</span>
+                    <div class="tl-popover-chips"><span>ROS 2</span><span>Path Planning</span><span>HW Integration</span></div>
+                  </div>
+                </div>
+                <div class="tl-seg" style="left: 57.1%; width: 11.5%;" data-target="exp-sensor">
+                  <div class="tl-popover">
+                    <strong>Sensor Fusion & Navigation</strong>
+                    <span class="tl-popover-date">Oct 2024 - Mar 2025</span>
+                    <div class="tl-popover-chips"><span>RealSense</span><span>LiDAR</span><span>ROS 2</span></div>
+                  </div>
+                </div>
+                <div class="tl-seg" style="left: 69%; width: 16.3%;" data-target="exp-ad">
+                  <div class="tl-popover">
+                    <strong>Automated Driving Testing</strong>
+                    <span class="tl-popover-date">Mar - Oct 2025</span>
+                    <div class="tl-popover-chips"><span>Python</span><span>ADAS</span><span>CI/CD</span></div>
+                  </div>
+                </div>
+                <div class="tl-seg tl-seg--active" style="left: 85.7%; width: 14.3%;" data-target="exp-thesis">
+                  <div class="tl-popover">
+                    <strong>Autonomous Aerial Systems</strong>
+                    <span class="tl-popover-date">Oct 2025 - Present</span>
+                    <div class="tl-popover-chips"><span>Deep RL</span><span>PX4</span><span>Docker</span></div>
+                  </div>
+                </div>
+              </div>
             </div>
 
-            <!-- Formula Student lane -->
-            <div class="tl-lane">
-              <span class="tl-lane-label">Formula Student</span>
-              <div class="tl-lane-track">
-                <div class="tl-item alt" style="left: 0%; width: 85.7%;" data-tip="Driverless Department · Oct 2022 - Mar 2026"></div>
+            <!-- Formula Student Lane -->
+            <div class="tl-lane" data-color="blue">
+              <div class="tl-lane-info">
+                <span class="tl-lane-label">Formula Student</span>
+                <span class="tl-lane-org">Schanzer Racing e.V.</span>
               </div>
-              <span class="tl-lane-company">Schanzer Racing e.V.</span>
+              <div class="tl-lane-track">
+                <div class="tl-seg" style="left: 0%; width: 85.7%;" data-target="exp-racing">
+                  <div class="tl-popover">
+                    <strong>Driverless Department</strong>
+                    <span class="tl-popover-date">Oct 2022 - Mar 2026</span>
+                    <div class="tl-popover-chips"><span>C++</span><span>ROS 2</span><span>NVIDIA JETSON</span></div>
+                  </div>
+                </div>
+              </div>
             </div>
 
-            <!-- Education lane -->
-            <div class="tl-lane">
-              <span class="tl-lane-label">Education</span>
-              <div class="tl-lane-track">
-                <div class="tl-item muted" style="left: 0%; width: 100%;" data-tip="B.Eng. Autonomous Vehicle Engineering · Oct 2022 - Mar 2026"></div>
+            <!-- Education Lane -->
+            <div class="tl-lane" data-color="amber">
+              <div class="tl-lane-info">
+                <span class="tl-lane-label">Education</span>
+                <span class="tl-lane-org">TH Ingolstadt</span>
               </div>
-              <span class="tl-lane-company">TH Ingolstadt</span>
+              <div class="tl-lane-track">
+                <div class="tl-seg" style="left: 0%; width: 100%;" data-target="exp-edu">
+                  <div class="tl-popover">
+                    <strong>B.Eng. Autonomous Vehicle Eng.</strong>
+                    <span class="tl-popover-date">Oct 2022 - Mar 2026</span>
+                    <div class="tl-popover-chips"><span>Robotics</span><span>RL</span><span>Sensor Fusion</span></div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
+
+          <!-- Click hint -->
+          <p class="tl-hint">Click a segment to jump to details</p>
         </div>
         
         <div class="experience-timeline">
           <!-- Current Position: Thesis -->
-          <div class="experience-entry cascade-item">
+          <div class="experience-entry cascade-item" id="exp-thesis">
             <div class="experience-header">
               <div class="company-logo">
                 <img src="Logos/akkodis logo.png" alt="Akkodis" />
@@ -441,7 +486,7 @@
           </div>
 
           <!-- Werkstudent Mar-Oct 2025 -->
-          <div class="experience-entry cascade-item">
+          <div class="experience-entry cascade-item" id="exp-ad">
             <div class="experience-header">
               <div class="company-logo">
                 <img src="Logos/akkodis logo.png" alt="Akkodis" />
@@ -469,7 +514,7 @@
           </div>
 
           <!-- Praktikum Oct 2024-Mar 2025 -->
-          <div class="experience-entry cascade-item">
+          <div class="experience-entry cascade-item" id="exp-sensor">
             <div class="experience-header">
               <div class="company-logo">
                 <img src="Logos/akkodis logo.png" alt="Akkodis" />
@@ -497,7 +542,7 @@
           </div>
 
           <!-- Werkstudent Apr-Oct 2024 -->
-          <div class="experience-entry cascade-item">
+          <div class="experience-entry cascade-item" id="exp-robot">
             <div class="experience-header">
               <div class="company-logo">
                 <img src="Logos/akkodis logo.png" alt="Akkodis" />
@@ -523,7 +568,7 @@
           </div>
 
           <!-- Schanzer Racing -->
-          <div class="experience-entry cascade-item">
+          <div class="experience-entry accent-blue cascade-item" id="exp-racing">
             <div class="experience-header">
               <div class="company-logo">
                 <img src="Logos/Logo-Schanzer-blau-schwarz.png" alt="Schanzer Racing" />
@@ -550,7 +595,7 @@
           </div>
 
           <!-- Education -->
-          <div class="experience-entry education cascade-item">
+          <div class="experience-entry education cascade-item" id="exp-edu">
             <div class="experience-header">
               <div class="company-logo">
                 <img src="Logos/THI logo.png" alt="TH Ingolstadt" />
