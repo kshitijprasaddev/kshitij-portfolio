@@ -174,15 +174,6 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
 
-    // Intersection observer for entrance
-    const observer = new IntersectionObserver((items) => {
-      items.forEach(item => {
-        if (item.isIntersecting) item.target.classList.add('st-visible');
-      });
-    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-
-    entries.forEach(entry => observer.observe(entry));
-
     // Throttled scroll
     let ticking = false;
     window.addEventListener('scroll', () => {
