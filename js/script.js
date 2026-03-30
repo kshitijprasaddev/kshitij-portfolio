@@ -283,7 +283,7 @@ document.addEventListener("DOMContentLoaded", function () {
     moveCursor();
 
     // Magnetic hover for interactive elements
-    const hoverTargets = 'a, button, .btn, .st-head, .project-card, .nav-link, .theme-toggle, .music-toggle, .logo-item';
+    const hoverTargets = 'a, button, .btn, .exp-card, .exp-nav-btn, .exp-dot, .project-card, .nav-link, .theme-toggle, .music-toggle, .logo-item';
 
     document.querySelectorAll(hoverTargets).forEach(el => {
       el.style.cursor = 'none';
@@ -391,61 +391,257 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // ===== Custom Cursor (disabled for cleaner look) =====
 
-  // ===== Interactive Story Timeline =====
-  function initStoryTimeline() {
-    const entries = document.querySelectorAll('.st-entry');
-    const progressFill = document.getElementById('stProgressFill');
-    const timeline = document.getElementById('storyTimeline');
+  // ===== 3D Experience Carousel + Center Animation =====
+  function initExpCarousel() {
+    const cards = document.querySelectorAll('.exp-card');
+    const ring = document.getElementById('expRing');
+    const dots = document.querySelectorAll('.exp-dot');
+    const prevBtn = document.getElementById('expPrev');
+    const nextBtn = document.getElementById('expNext');
+    const dragHint = document.getElementById('expDragHint');
+    const TOTAL = cards.length;
+    const ANGLE_STEP = 360 / TOTAL;
+    // Radius — how far cards sit from center
+    const RADIUS = 420;
+    let current = 0;
+    let autoTimer;
+    let isDragging = false;
+    let dragStartX = 0;
+    let dragAngle = 0;
+    let currentRotation = 0;
 
-    // Accordion expand/collapse
-    document.querySelectorAll('.st-head').forEach(head => {
-      head.addEventListener('click', () => {
-        const entry = head.closest('.st-entry');
-        const wasOpen = entry.classList.contains('st-entry--open');
-
-        // Close all others
-        entries.forEach(e => {
-          if (e !== entry) e.classList.remove('st-entry--open');
-        });
-
-        entry.classList.toggle('st-entry--open', !wasOpen);
+    function setCardClasses(activeIndex) {
+      cards.forEach((card, i) => {
+        card.classList.remove('exp-card--front', 'exp-card--side', 'exp-card--back');
+        const diff = ((i - activeIndex) % TOTAL + TOTAL) % TOTAL;
+        if (diff === 0) {
+          card.classList.add('exp-card--front');
+        } else if (diff === 1 || diff === TOTAL - 1) {
+          card.classList.add('exp-card--side');
+        } else {
+          card.classList.add('exp-card--back');
+        }
       });
 
-      head.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          head.click();
+      dots.forEach((d, i) => {
+        d.classList.toggle('exp-dot--active', i === activeIndex);
+      });
+    }
+
+    function goTo(index) {
+      current = ((index % TOTAL) + TOTAL) % TOTAL;
+      currentRotation = -current * ANGLE_STEP;
+      ring.style.transform = `rotateY(${currentRotation}deg)`;
+      setCardClasses(current);
+    }
+
+    // Position cards in a ring
+    cards.forEach((card, i) => {
+      const angle = i * ANGLE_STEP;
+      card.style.transform = `rotateY(${angle}deg) translateZ(${RADIUS}px)`;
+    });
+
+    goTo(0);
+
+    // Navigation
+    prevBtn.addEventListener('click', () => { goTo(current - 1); resetAuto(); });
+    nextBtn.addEventListener('click', () => { goTo(current + 1); resetAuto(); });
+
+    dots.forEach(dot => {
+      dot.addEventListener('click', () => {
+        goTo(parseInt(dot.dataset.i));
+        resetAuto();
+      });
+    });
+
+    // Click side cards to navigate
+    cards.forEach(card => {
+      card.addEventListener('click', () => {
+        const idx = parseInt(card.dataset.index);
+        if (idx !== current) {
+          goTo(idx);
+          resetAuto();
         }
       });
     });
 
-    // Scroll-linked progress line
-    function updateProgress() {
-      if (!timeline || !progressFill) return;
-      const rect = timeline.getBoundingClientRect();
-      const vh = window.innerHeight;
-      if (rect.top > vh) {
-        progressFill.style.height = '0%';
-      } else if (rect.bottom < 0) {
-        progressFill.style.height = '100%';
-      } else {
-        const pct = Math.min(Math.max((vh - rect.top) / (rect.height + vh * 0.25), 0), 1) * 100;
-        progressFill.style.height = pct + '%';
-      }
+    // Keyboard nav
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') { goTo(current - 1); resetAuto(); }
+      if (e.key === 'ArrowRight') { goTo(current + 1); resetAuto(); }
+    });
+
+    // Drag / swipe to rotate
+    const stage = document.getElementById('expStage');
+
+    stage.addEventListener('pointerdown', (e) => {
+      if (e.target.closest('.exp-nav-btn') || e.target.closest('.exp-dot')) return;
+      isDragging = true;
+      dragStartX = e.clientX;
+      dragAngle = currentRotation;
+      stage.style.cursor = 'grabbing';
+      if (dragHint) dragHint.classList.add('hidden');
+    });
+
+    window.addEventListener('pointermove', (e) => {
+      if (!isDragging) return;
+      const dx = e.clientX - dragStartX;
+      const sensitivity = 0.3;
+      const newRot = dragAngle + dx * sensitivity;
+      ring.style.transform = `rotateY(${newRot}deg)`;
+      ring.style.transition = 'none';
+    });
+
+    window.addEventListener('pointerup', (e) => {
+      if (!isDragging) return;
+      isDragging = false;
+      stage.style.cursor = '';
+      ring.style.transition = '';
+      const dx = e.clientX - dragStartX;
+      const sensitivity = 0.3;
+      const totalRotation = dragAngle + dx * sensitivity;
+      // Snap to nearest card
+      const snappedIndex = Math.round(-totalRotation / ANGLE_STEP);
+      goTo(snappedIndex);
+      resetAuto();
+    });
+
+    // Auto-rotation
+    function startAuto() {
+      autoTimer = setInterval(() => { goTo(current + 1); }, 5000);
     }
 
-    // Throttled scroll
-    let ticking = false;
-    window.addEventListener('scroll', () => {
-      if (!ticking) {
-        requestAnimationFrame(() => { updateProgress(); ticking = false; });
-        ticking = true;
-      }
-    }, { passive: true });
+    function resetAuto() {
+      clearInterval(autoTimer);
+      startAuto();
+    }
 
-    updateProgress();
+    startAuto();
+
+    // Pause on hover
+    stage.addEventListener('mouseenter', () => clearInterval(autoTimer));
+    stage.addEventListener('mouseleave', () => startAuto());
   }
-  initStoryTimeline();
+
+  // Center 3D animation — rotating icosahedron wireframe
+  function initExp3DCenter() {
+    const canvas = document.getElementById('exp3dCenter');
+    if (!canvas || typeof THREE === 'undefined') return;
+
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(50, 1, 0.1, 100);
+    camera.position.z = 4.5;
+
+    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+    renderer.setSize(320, 320);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setClearColor(0x000000, 0);
+
+    // Main icosahedron wireframe
+    const icoGeo = new THREE.IcosahedronGeometry(1.5, 1);
+    const wireGeo = new THREE.WireframeGeometry(icoGeo);
+    const wireMat = new THREE.LineBasicMaterial({
+      color: 0x84cc16,
+      transparent: true,
+      opacity: 0.3,
+    });
+    const wireframe = new THREE.LineSegments(wireGeo, wireMat);
+    scene.add(wireframe);
+
+    // Inner smaller icosahedron
+    const innerGeo = new THREE.IcosahedronGeometry(0.8, 0);
+    const innerWireGeo = new THREE.WireframeGeometry(innerGeo);
+    const innerMat = new THREE.LineBasicMaterial({
+      color: 0x84cc16,
+      transparent: true,
+      opacity: 0.15,
+    });
+    const innerWire = new THREE.LineSegments(innerWireGeo, innerMat);
+    scene.add(innerWire);
+
+    // Vertex dots on outer shape
+    const dotCount = icoGeo.attributes.position.count;
+    const dotGeo = new THREE.BufferGeometry();
+    const dotPos = new Float32Array(dotCount * 3);
+    for (let i = 0; i < dotCount; i++) {
+      dotPos[i * 3] = icoGeo.attributes.position.array[i * 3];
+      dotPos[i * 3 + 1] = icoGeo.attributes.position.array[i * 3 + 1];
+      dotPos[i * 3 + 2] = icoGeo.attributes.position.array[i * 3 + 2];
+    }
+    dotGeo.setAttribute('position', new THREE.BufferAttribute(dotPos, 3));
+    const dotMat = new THREE.PointsMaterial({
+      color: 0x84cc16,
+      size: 0.06,
+      transparent: true,
+      opacity: 0.6,
+    });
+    const dotPoints = new THREE.Points(dotGeo, dotMat);
+    scene.add(dotPoints);
+
+    // Glow ring
+    const ringGeo = new THREE.TorusGeometry(2.0, 0.01, 8, 64);
+    const ringMat = new THREE.MeshBasicMaterial({
+      color: 0x84cc16,
+      transparent: true,
+      opacity: 0.08,
+    });
+    const glowRing = new THREE.Mesh(ringGeo, ringMat);
+    glowRing.rotation.x = Math.PI / 2;
+    scene.add(glowRing);
+
+    // Mouse tracking for subtle reactivity
+    let mouseX = 0, mouseY = 0;
+    document.addEventListener('mousemove', (e) => {
+      mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
+      mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
+    });
+
+    function animate() {
+      requestAnimationFrame(animate);
+      const t = performance.now() * 0.001;
+
+      // Gentle rotation
+      wireframe.rotation.y = t * 0.15;
+      wireframe.rotation.x = Math.sin(t * 0.08) * 0.3;
+
+      innerWire.rotation.y = -t * 0.2;
+      innerWire.rotation.z = t * 0.1;
+
+      dotPoints.rotation.y = t * 0.15;
+      dotPoints.rotation.x = Math.sin(t * 0.08) * 0.3;
+
+      glowRing.rotation.z = t * 0.05;
+
+      // Subtle mouse reactivity
+      wireframe.rotation.y += mouseX * 0.15;
+      wireframe.rotation.x += mouseY * 0.1;
+      dotPoints.rotation.y += mouseX * 0.15;
+      dotPoints.rotation.x += mouseY * 0.1;
+
+      // Breathe effect on opacity
+      wireMat.opacity = 0.25 + Math.sin(t * 0.5) * 0.08;
+      innerMat.opacity = 0.12 + Math.sin(t * 0.7 + 1) * 0.05;
+
+      renderer.render(scene, camera);
+    }
+
+    animate();
+
+    // Responsive resize
+    function resizeCenter() {
+      const el = canvas.parentElement;
+      if (!el) return;
+      const s = Math.min(el.offsetWidth * 0.35, 320);
+      canvas.style.width = s + 'px';
+      canvas.style.height = s + 'px';
+    }
+
+    window.addEventListener('resize', resizeCenter);
+    resizeCenter();
+  }
+
+  initExpCarousel();
+  initExp3DCenter();
 
   // ===== Subtle Card Hover Effect (No 3D Tilt) =====
   function initCardHoverEffects() {
@@ -889,22 +1085,21 @@ document.addEventListener("DOMContentLoaded", function () {
       },
     });
 
-    // Story Timeline entries — staggered slide-up
-    const stEntries = document.querySelectorAll('.st-entry');
-    stEntries.forEach((entry, i) => {
-      gsap.from(entry, {
-        y: 30,
+    // 3D Experience Carousel — reveal on scroll
+    const expStage = document.getElementById('expStage');
+    if (expStage) {
+      gsap.from(expStage, {
         opacity: 0,
-        duration: 0.6,
-        delay: i * 0.08,
+        scale: 0.9,
+        duration: 1.2,
         ease: 'power3.out',
         scrollTrigger: {
-          trigger: entry,
-          start: 'top 88%',
+          trigger: expStage,
+          start: 'top 85%',
           toggleActions: 'play none none none',
         },
       });
-    });
+    }
 
     // Project cards stagger - professional reveal
     const projectCardsGSAP = document.querySelectorAll(".project-card");
