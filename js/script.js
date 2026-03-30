@@ -133,77 +133,66 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // ===== Interactive Story Timeline =====
   function initStoryTimeline() {
-    const nodes = document.querySelectorAll('.st-node');
-    const lineProgress = document.getElementById('stLineProgress');
+    const entries = document.querySelectorAll('.st-entry');
+    const progressFill = document.getElementById('stProgressFill');
     const timeline = document.getElementById('storyTimeline');
 
-    // Accordion: toggle expand/collapse
-    document.querySelectorAll('.st-card-header').forEach(header => {
-      header.addEventListener('click', () => {
-        const card = header.closest('.st-card');
-        const wasExpanded = card.classList.contains('st-card--expanded');
-        
-        // Collapse all other cards
-        document.querySelectorAll('.st-card--expanded').forEach(c => {
-          if (c !== card) c.classList.remove('st-card--expanded');
+    // Accordion expand/collapse
+    document.querySelectorAll('.st-head').forEach(head => {
+      head.addEventListener('click', () => {
+        const entry = head.closest('.st-entry');
+        const wasOpen = entry.classList.contains('st-entry--open');
+
+        // Close all others
+        entries.forEach(e => {
+          if (e !== entry) e.classList.remove('st-entry--open');
         });
-        
-        // Toggle this one
-        card.classList.toggle('st-card--expanded', !wasExpanded);
+
+        entry.classList.toggle('st-entry--open', !wasOpen);
       });
 
-      // Keyboard accessibility
-      header.addEventListener('keydown', (e) => {
+      head.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
-          header.click();
+          head.click();
         }
       });
     });
 
-    // Scroll-linked line progress
-    function updateLineProgress() {
-      if (!timeline || !lineProgress) return;
+    // Scroll-linked progress line
+    function updateProgress() {
+      if (!timeline || !progressFill) return;
       const rect = timeline.getBoundingClientRect();
       const vh = window.innerHeight;
-      const timelineTop = rect.top;
-      const timelineH = rect.height;
-      
-      if (timelineTop > vh) {
-        lineProgress.style.height = '0%';
-      } else if (timelineTop + timelineH < 0) {
-        lineProgress.style.height = '100%';
+      if (rect.top > vh) {
+        progressFill.style.height = '0%';
+      } else if (rect.bottom < 0) {
+        progressFill.style.height = '100%';
       } else {
-        const scrolled = vh - timelineTop;
-        const pct = Math.min(Math.max(scrolled / (timelineH + vh * 0.3), 0), 1) * 100;
-        lineProgress.style.height = pct + '%';
+        const pct = Math.min(Math.max((vh - rect.top) / (rect.height + vh * 0.25), 0), 1) * 100;
+        progressFill.style.height = pct + '%';
       }
     }
 
-    // Intersection Observer for node entrance
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('st-visible');
-        }
+    // Intersection observer for entrance
+    const observer = new IntersectionObserver((items) => {
+      items.forEach(item => {
+        if (item.isIntersecting) item.target.classList.add('st-visible');
       });
-    }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
-    nodes.forEach(node => observer.observe(node));
+    entries.forEach(entry => observer.observe(entry));
 
-    // Update on scroll (throttled via rAF)
+    // Throttled scroll
     let ticking = false;
     window.addEventListener('scroll', () => {
       if (!ticking) {
-        requestAnimationFrame(() => {
-          updateLineProgress();
-          ticking = false;
-        });
+        requestAnimationFrame(() => { updateProgress(); ticking = false; });
         ticking = true;
       }
     }, { passive: true });
 
-    updateLineProgress();
+    updateProgress();
   }
   initStoryTimeline();
 
@@ -649,39 +638,21 @@ document.addEventListener("DOMContentLoaded", function () {
       },
     });
 
-    // Story Timeline - GSAP scroll-linked card reveals
-    const stNodes = document.querySelectorAll('.st-node');
-    stNodes.forEach((node) => {
-      const card = node.querySelector('.st-card');
-      const marker = node.querySelector('.st-node-marker');
-      const isLeft = node.classList.contains('st-node--left');
-
-      if (card) {
-        gsap.from(card, {
-          x: isLeft ? -60 : 60,
-          opacity: 0,
-          duration: 0.7,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: node,
-            start: 'top 85%',
-            toggleActions: 'play none none none',
-          },
-        });
-      }
-
-      if (marker) {
-        gsap.from(marker, {
-          scale: 0,
-          duration: 0.5,
-          ease: 'back.out(1.7)',
-          scrollTrigger: {
-            trigger: node,
-            start: 'top 85%',
-            toggleActions: 'play none none none',
-          },
-        });
-      }
+    // Story Timeline entries — staggered slide-up
+    const stEntries = document.querySelectorAll('.st-entry');
+    stEntries.forEach((entry, i) => {
+      gsap.from(entry, {
+        y: 30,
+        opacity: 0,
+        duration: 0.6,
+        delay: i * 0.08,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: entry,
+          start: 'top 88%',
+          toggleActions: 'play none none none',
+        },
+      });
     });
 
     // Project cards stagger - professional reveal

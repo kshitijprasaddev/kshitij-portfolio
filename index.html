@@ -293,7 +293,7 @@
               <strong>Autonomous Vehicle Engineering</strong> graduate from TH Ingolstadt, building intelligent systems that work in the real world.
             </p>
             <p>
-              I work across the full stack of autonomy: from ROS2 and sensor fusion to reinforcement learning for autonomous navigation. Bachelor's Thesis on RL-based precision drone landing, graded <strong>1.0</strong> (A+).
+              I work across the full stack of autonomy: from ROS2 and sensor fusion to reinforcement learning for autonomous navigation. Thesis on RL-based precision drone landing, graded <strong>1.0</strong> (A+).
             </p>
             
             <div class="about-highlights">
@@ -364,203 +364,183 @@
           <p class="section-subtitle">Building expertise in autonomous systems through hands-on industry experience</p>
         </div>
         
-        <!-- Interactive Story Timeline -->
+        <!-- Interactive Story Timeline — Editorial Layout -->
         <div class="story-timeline" id="storyTimeline">
-          <!-- The SVG line that draws on scroll -->
-          <div class="st-line-wrap">
-            <div class="st-line-bg"></div>
-            <div class="st-line-progress" id="stLineProgress"></div>
+          <div class="st-progress-line">
+            <div class="st-progress-fill" id="stProgressFill"></div>
           </div>
 
-          <!-- Node 1: Thesis (Current) -->
-          <div class="st-node st-node--right st-node--active" data-accent="green" id="exp-thesis">
-            <div class="st-marker">
-              <div class="st-marker-dot"><i data-lucide="rocket" style="width:16px;height:16px;"></i></div>
-              <span class="st-marker-date">Oct 2025 - Now</span>
-            </div>
-            <div class="st-card st-card--expanded">
-              <div class="st-card-accent"></div>
-              <div class="st-card-header" role="button" tabindex="0">
-                <div class="st-card-logo">
-                  <img src="Logos/akkodis logo.png" alt="Akkodis" />
+          <!-- 01 — Thesis -->
+          <article class="st-entry st-entry--active" id="exp-thesis">
+            <div class="st-index"><span>01</span></div>
+            <div class="st-content">
+              <div class="st-head" role="button" tabindex="0">
+                <div class="st-meta">
+                  <span class="st-badge" data-accent="green">Thesis</span>
+                  <time class="st-date">Oct 2025 — Present</time>
                 </div>
-                <div class="st-card-title-group">
-                  <span class="st-card-badge">Thesis</span>
-                  <h3 class="st-card-title">Autonomous Aerial Systems</h3>
-                  <p class="st-card-org">AKKODIS · Ingolstadt, Bavaria</p>
-                </div>
-                <span class="st-card-toggle"><i data-lucide="chevron-down" style="width:18px;height:18px;"></i></span>
+                <h3 class="st-title">Autonomous Aerial Systems</h3>
+                <p class="st-org">
+                  <img src="Logos/akkodis logo.png" alt="Akkodis" class="st-org-logo" />
+                  AKKODIS &middot; Ingolstadt, Bavaria
+                </p>
+                <span class="st-toggle"><i data-lucide="plus" style="width:16px;height:16px;"></i></span>
               </div>
-              <div class="st-card-body">
-                <ul class="st-card-highlights">
+              <div class="st-body">
+                <ul class="st-highlights">
                   <li>Deep Reinforcement Learning (PPO/SAC/TD3) for Precise Multirotor UAV Landing on Moving Targets</li>
                   <li>Designing distributed training and evaluation pipelines using custom simulators (Isaac Sim, Gazebo) and PX4 Software-in-the-Loop (SITL)</li>
                   <li>Executing reliable pipelines from raw sensor data to RL inference, with strict focus on edge-case handling and tactical execution</li>
                 </ul>
-                <div class="st-card-chips">
+                <div class="st-chips">
                   <span>Python</span><span>C++</span><span>Deep RL</span><span>PX4 SITL</span><span>MAVLink</span><span>Docker</span>
                 </div>
               </div>
             </div>
-          </div>
+          </article>
 
-          <!-- Node 2: AD Testing -->
-          <div class="st-node st-node--left" data-accent="green" id="exp-ad">
-            <div class="st-marker">
-              <div class="st-marker-dot"><i data-lucide="car" style="width:16px;height:16px;"></i></div>
-              <span class="st-marker-date">Mar - Oct 2025</span>
-            </div>
-            <div class="st-card">
-              <div class="st-card-accent"></div>
-              <div class="st-card-header" role="button" tabindex="0">
-                <div class="st-card-logo">
-                  <img src="Logos/akkodis logo.png" alt="Akkodis" />
+          <!-- 02 — AD Testing -->
+          <article class="st-entry" id="exp-ad">
+            <div class="st-index"><span>02</span></div>
+            <div class="st-content">
+              <div class="st-head" role="button" tabindex="0">
+                <div class="st-meta">
+                  <span class="st-badge" data-accent="green">Working Student</span>
+                  <time class="st-date">Mar — Oct 2025</time>
                 </div>
-                <div class="st-card-title-group">
-                  <span class="st-card-badge">Working Student</span>
-                  <h3 class="st-card-title">Automated Driving Testing</h3>
-                  <p class="st-card-org">AKKODIS · Ingolstadt, Bavaria</p>
-                </div>
-                <span class="st-card-toggle"><i data-lucide="chevron-down" style="width:18px;height:18px;"></i></span>
+                <h3 class="st-title">Automated Driving Testing</h3>
+                <p class="st-org">
+                  <img src="Logos/akkodis logo.png" alt="Akkodis" class="st-org-logo" />
+                  AKKODIS &middot; Ingolstadt, Bavaria
+                </p>
+                <span class="st-toggle"><i data-lucide="plus" style="width:16px;height:16px;"></i></span>
               </div>
-              <div class="st-card-body">
-                <ul class="st-card-highlights">
+              <div class="st-body">
+                <ul class="st-highlights">
                   <li>Engineered extensive test suites and macro-level benchmarks for Automated Driving (AD) stacks, improving operational reliability</li>
                   <li>Supported development of a Python pipeline to parameterize and extract driving scenarios for state-of-the-art ADAS functions</li>
                   <li>Proactively collaborated via asynchronous workflows (PRs, RFCs) to ensure robustness and adherence to safety standards</li>
                 </ul>
-                <div class="st-card-chips">
+                <div class="st-chips">
                   <span>Python</span><span>AD Testing</span><span>ADAS</span><span>CI/CD</span>
                 </div>
               </div>
             </div>
-          </div>
+          </article>
 
-          <!-- Node 3: Sensor Fusion -->
-          <div class="st-node st-node--right" data-accent="green" id="exp-sensor">
-            <div class="st-marker">
-              <div class="st-marker-dot"><i data-lucide="radar" style="width:16px;height:16px;"></i></div>
-              <span class="st-marker-date">Oct 2024 - Mar 2025</span>
-            </div>
-            <div class="st-card">
-              <div class="st-card-accent"></div>
-              <div class="st-card-header" role="button" tabindex="0">
-                <div class="st-card-logo">
-                  <img src="Logos/akkodis logo.png" alt="Akkodis" />
+          <!-- 03 — Sensor Fusion -->
+          <article class="st-entry" id="exp-sensor">
+            <div class="st-index"><span>03</span></div>
+            <div class="st-content">
+              <div class="st-head" role="button" tabindex="0">
+                <div class="st-meta">
+                  <span class="st-badge" data-accent="green">Internship</span>
+                  <time class="st-date">Oct 2024 — Mar 2025</time>
                 </div>
-                <div class="st-card-title-group">
-                  <span class="st-card-badge">Internship</span>
-                  <h3 class="st-card-title">Sensor Fusion & Navigation</h3>
-                  <p class="st-card-org">AKKODIS · Ingolstadt, Bavaria</p>
-                </div>
-                <span class="st-card-toggle"><i data-lucide="chevron-down" style="width:18px;height:18px;"></i></span>
+                <h3 class="st-title">Sensor Fusion &amp; Navigation</h3>
+                <p class="st-org">
+                  <img src="Logos/akkodis logo.png" alt="Akkodis" class="st-org-logo" />
+                  AKKODIS &middot; Ingolstadt, Bavaria
+                </p>
+                <span class="st-toggle"><i data-lucide="plus" style="width:16px;height:16px;"></i></span>
               </div>
-              <div class="st-card-body">
-                <ul class="st-card-highlights">
+              <div class="st-body">
+                <ul class="st-highlights">
                   <li>Built and integrated a real-time sensor fusion pipeline (Intel RealSense, LiDAR, Vision) for autonomous state estimation and navigation</li>
                   <li>Developed robust ROS 2 plugins to handle bespoke hardware protocols and intermittent connectivity constraints</li>
                   <li>Reduced system downtime by 15% by implementing failure-mode handling in dynamic trajectory planning algorithms</li>
                 </ul>
-                <div class="st-card-chips">
+                <div class="st-chips">
                   <span>ROS 2</span><span>Sensor Fusion</span><span>RealSense</span><span>LiDAR</span>
                 </div>
               </div>
             </div>
-          </div>
+          </article>
 
-          <!-- Node 4: Service Robot -->
-          <div class="st-node st-node--left" data-accent="green" id="exp-robot">
-            <div class="st-marker">
-              <div class="st-marker-dot"><i data-lucide="bot" style="width:16px;height:16px;"></i></div>
-              <span class="st-marker-date">Apr - Oct 2024</span>
-            </div>
-            <div class="st-card">
-              <div class="st-card-accent"></div>
-              <div class="st-card-header" role="button" tabindex="0">
-                <div class="st-card-logo">
-                  <img src="Logos/akkodis logo.png" alt="Akkodis" />
+          <!-- 04 — Service Robot -->
+          <article class="st-entry" id="exp-robot">
+            <div class="st-index"><span>04</span></div>
+            <div class="st-content">
+              <div class="st-head" role="button" tabindex="0">
+                <div class="st-meta">
+                  <span class="st-badge" data-accent="green">Working Student</span>
+                  <time class="st-date">Apr — Oct 2024</time>
                 </div>
-                <div class="st-card-title-group">
-                  <span class="st-card-badge">Working Student</span>
-                  <h3 class="st-card-title">Service Robot Integration</h3>
-                  <p class="st-card-org">AKKODIS · Ingolstadt, Bavaria</p>
-                </div>
-                <span class="st-card-toggle"><i data-lucide="chevron-down" style="width:18px;height:18px;"></i></span>
+                <h3 class="st-title">Service Robot Integration</h3>
+                <p class="st-org">
+                  <img src="Logos/akkodis logo.png" alt="Akkodis" class="st-org-logo" />
+                  AKKODIS &middot; Ingolstadt, Bavaria
+                </p>
+                <span class="st-toggle"><i data-lucide="plus" style="width:16px;height:16px;"></i></span>
               </div>
-              <div class="st-card-body">
-                <ul class="st-card-highlights">
+              <div class="st-body">
+                <ul class="st-highlights">
                   <li>Focused on tight hardware-software integration, deploying autonomous path planning behaviors on physical service robots</li>
                   <li>Actively shared technical know-how in engineering huddles, reviewing code contributions to support continuous team improvement</li>
                 </ul>
-                <div class="st-card-chips">
+                <div class="st-chips">
                   <span>ROS 2</span><span>Path Planning</span><span>Hardware Integration</span>
                 </div>
               </div>
             </div>
-          </div>
+          </article>
 
-          <!-- Node 5: Formula Student -->
-          <div class="st-node st-node--right" data-accent="blue" id="exp-racing">
-            <div class="st-marker">
-              <div class="st-marker-dot"><i data-lucide="flag" style="width:16px;height:16px;"></i></div>
-              <span class="st-marker-date">Oct 2022 - Mar 2026</span>
-            </div>
-            <div class="st-card">
-              <div class="st-card-accent"></div>
-              <div class="st-card-header" role="button" tabindex="0">
-                <div class="st-card-logo">
-                  <img src="Logos/Logo-Schanzer-blau-schwarz.png" alt="Schanzer Racing" />
+          <!-- 05 — Formula Student -->
+          <article class="st-entry" id="exp-racing">
+            <div class="st-index"><span>05</span></div>
+            <div class="st-content">
+              <div class="st-head" role="button" tabindex="0">
+                <div class="st-meta">
+                  <span class="st-badge" data-accent="blue">Formula Student</span>
+                  <time class="st-date">Oct 2022 — Mar 2026</time>
                 </div>
-                <div class="st-card-title-group">
-                  <span class="st-card-badge">Formula Student</span>
-                  <h3 class="st-card-title">Driverless Department</h3>
-                  <p class="st-card-org">Schanzer Racing e.V. · TH Ingolstadt</p>
-                </div>
-                <span class="st-card-toggle"><i data-lucide="chevron-down" style="width:18px;height:18px;"></i></span>
+                <h3 class="st-title">Driverless Department</h3>
+                <p class="st-org">
+                  <img src="Logos/Logo-Schanzer-blau-schwarz.png" alt="Schanzer Racing" class="st-org-logo" />
+                  Schanzer Racing e.V. &middot; TH Ingolstadt
+                </p>
+                <span class="st-toggle"><i data-lucide="plus" style="width:16px;height:16px;"></i></span>
               </div>
-              <div class="st-card-body">
-                <ul class="st-card-highlights">
+              <div class="st-body">
+                <ul class="st-highlights">
                   <li>Developed high-performance embedded control logic using ROS 2 on NVIDIA JETSON</li>
                   <li>Integrated IMUs, LiDAR, and camera hardware for autonomous perception</li>
                 </ul>
-                <div class="st-card-chips">
+                <div class="st-chips">
                   <span>C++</span><span>ROS 2</span><span>NVIDIA JETSON</span><span>LiDAR</span>
                 </div>
               </div>
             </div>
-          </div>
+          </article>
 
-          <!-- Node 6: Education -->
-          <div class="st-node st-node--left" data-accent="amber" id="exp-edu">
-            <div class="st-marker">
-              <div class="st-marker-dot"><i data-lucide="graduation-cap" style="width:16px;height:16px;"></i></div>
-              <span class="st-marker-date">Oct 2022 - Mar 2026</span>
-            </div>
-            <div class="st-card">
-              <div class="st-card-accent"></div>
-              <div class="st-card-header" role="button" tabindex="0">
-                <div class="st-card-logo">
-                  <img src="Logos/THI logo.png" alt="TH Ingolstadt" />
+          <!-- 06 — Education -->
+          <article class="st-entry" id="exp-edu">
+            <div class="st-index"><span>06</span></div>
+            <div class="st-content">
+              <div class="st-head" role="button" tabindex="0">
+                <div class="st-meta">
+                  <span class="st-badge" data-accent="amber">Education</span>
+                  <time class="st-date">Oct 2022 — Mar 2026</time>
                 </div>
-                <div class="st-card-title-group">
-                  <span class="st-card-badge">Education</span>
-                  <h3 class="st-card-title">B.Eng. Autonomous Vehicle Engineering</h3>
-                  <p class="st-card-org">Technische Hochschule Ingolstadt</p>
-                </div>
-                <span class="st-card-toggle"><i data-lucide="chevron-down" style="width:18px;height:18px;"></i></span>
+                <h3 class="st-title">B.Eng. Autonomous Vehicle Engineering</h3>
+                <p class="st-org">
+                  <img src="Logos/THI logo.png" alt="TH Ingolstadt" class="st-org-logo" />
+                  Technische Hochschule Ingolstadt
+                </p>
+                <span class="st-toggle"><i data-lucide="plus" style="width:16px;height:16px;"></i></span>
               </div>
-              <div class="st-card-body">
-                <ul class="st-card-highlights">
+              <div class="st-body">
+                <ul class="st-highlights">
                   <li>Focus: Robotics, Reinforcement Learning, Systems Engineering, Sensor Fusion, Digital Signal Processing</li>
                   <li>Schanzer Formula Student Racing Team, Driverless Department</li>
                   <li>Winner, PAVE Europe 2025 Next Gen Challenge (Brussels)</li>
                 </ul>
-                <div class="st-card-chips">
+                <div class="st-chips">
                   <span>Robotics</span><span>Reinforcement Learning</span><span>Sensor Fusion</span><span>DSP</span>
                 </div>
               </div>
             </div>
-          </div>
+          </article>
         </div>
       </div>
     </section>
@@ -578,7 +558,7 @@
         <div class="featured-project glass-card">
           <div class="featured-badge">
             <i data-lucide="star"></i>
-            <span>Bachelor's Thesis - Grade: 1.0 (A+)</span>
+            <span>Thesis — Grade: 1.0 (A+)</span>
           </div>
           
           <div class="featured-grid thesis-layout">
@@ -624,7 +604,7 @@
               </div>
               
               <div class="thesis-actions">
-                <button class="btn btn-primary" onclick="openPdfViewer('thesis-kshitij.pdf', 'Bachelor\'s Thesis - RL-Based Precision Drone Landing')">
+                <button class="btn btn-primary" onclick="openPdfViewer('thesis-kshitij.pdf', 'Thesis — RL-Based Precision Drone Landing')">
                   <i data-lucide="book-open"></i>
                   <span>Read Thesis</span>
                 </button>
