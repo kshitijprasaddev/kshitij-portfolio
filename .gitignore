@@ -3,3 +3,20 @@ node_modules/
 out/
 *.tsbuildinfo
 .env*.local
+
+# Old HTML portfolio (content migrated to public/)
+/index.html
+/css/
+/js/
+/DEKRA/
+/Logos/
+/media/
+/.nojekyll
+/CV_Kshitij_Prasad.pdf
+/Resume_KshitijPrasad.pdf
+/thesis-kshitij.pdf
+/Isaac sim hero.png
+/Professor mecking recommendation.jpg
+/kshitij speaking*.jpg
+/kshitij winning*.jpg
+/SAC XY .webm
