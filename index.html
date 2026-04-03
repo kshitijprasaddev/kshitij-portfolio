@@ -81,6 +81,7 @@
         <li><a href="#contact" class="nav-link">Contact</a></li>
       </ul>
       <div class="nav-right">
+        <span class="nav-availability"><span class="availability-dot"></span>Available for work</span>
         <button class="btn btn-nav" id="openCvViewer" onclick="openPdfViewer('CV_Kshitij_Prasad.pdf', 'Curriculum Vitae - Kshitij Prasad')">
           <span>View CV</span>
           <i data-lucide="file-text"></i>
@@ -118,7 +119,7 @@
             </p>
             
             <p class="hero-description">
-              Autonomous Vehicle Engineering graduate specializing in reinforcement learning, robotics, and drone systems.
+              Autonomous Vehicle Engineering graduate from TH Ingolstadt. Thesis on RL-based precision drone landing, graded 1.0. Focused on robotics, reinforcement learning, and real-time sensor systems.
             </p>
             
             <div class="hero-cta">
@@ -142,15 +143,18 @@
         
         <div class="hero-stats">
           <div class="stat-item">
-            <span class="stat-number" data-count="5">0</span>
-            <span class="stat-plus">+</span>
-            <span class="stat-label">Major Projects</span>
+            <span class="stat-label">Based in</span>
+            <span class="stat-value">Ingolstadt, DE</span>
           </div>
           <div class="stat-divider"></div>
           <div class="stat-item">
-            <span class="stat-number" data-count="3">0</span>
-            <span class="stat-plus">+</span>
-            <span class="stat-label">Years Experience</span>
+            <span class="stat-label">Currently</span>
+            <span class="stat-value">Open to work</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <span class="stat-label">Focus</span>
+            <span class="stat-value">Autonomy & RL</span>
           </div>
         </div>
       </div>
@@ -165,7 +169,7 @@
   <!-- Trusted By / Logo Marquee Section -->
   <section class="logos-section">
     <div class="logos-header">
-      <span class="section-eyebrow">Collaborated With</span>
+      <span class="section-eyebrow">Worked With</span>
     </div>
     <div class="logos-marquee">
       <div class="marquee-track">
@@ -283,17 +287,17 @@
     <section id="about" class="section">
       <div class="container">
         <div class="section-header">
-          <span class="section-eyebrow">Who I Am</span>
+          <span class="section-eyebrow">Background</span>
           <h2 class="section-title">About Me</h2>
         </div>
         
         <div class="about-grid">
           <div class="about-content">
             <p class="about-lead">
-              <strong>Autonomous Vehicle Engineering</strong> graduate from TH Ingolstadt, building intelligent systems that work in the real world.
+              I studied <strong>Autonomous Vehicle Engineering</strong> at TH Ingolstadt. My thesis was on landing drones on moving targets using deep RL, graded <strong>1.0</strong>.
             </p>
             <p>
-              I work across the full stack of autonomy: from ROS2 and sensor fusion to reinforcement learning for autonomous navigation. Thesis on RL-based precision drone landing, graded <strong>1.0</strong> (A+).
+              Most of my work sits at the intersection of robotics and machine learning: ROS2 nodes, sensor fusion pipelines, RL training loops, the occasional Next.js app when a project needs a face. I like problems where the software has to work in the real world, not just in a notebook.
             </p>
             
             <div class="about-highlights">
@@ -324,6 +328,12 @@
                   <span class="highlight-value">March 2026</span>
                 </div>
               </div>
+            </div>
+            
+            <div class="about-belief">
+              <blockquote>
+                Most of my work starts in simulation and ends on real hardware. Closing that gap is what I find most interesting about this field.
+              </blockquote>
             </div>
           </div>
           
@@ -359,9 +369,9 @@
     <section id="experience" class="section section-dark">
       <div class="container">
         <div class="section-header">
-          <span class="section-eyebrow">Professional Journey</span>
+          <span class="section-eyebrow">Timeline</span>
           <h2 class="section-title">Experience & Education</h2>
-          <p class="section-subtitle">Building expertise in autonomous systems through hands-on industry experience</p>
+          <p class="section-subtitle">The short version of how I got here</p>
         </div>
         
         <!-- Interactive Story Timeline — Editorial Layout -->
@@ -549,16 +559,16 @@
     <section id="projects" class="section">
       <div class="container">
         <div class="section-header">
-          <span class="section-eyebrow">Portfolio</span>
-          <h2 class="section-title">Featured Projects</h2>
-          <p class="section-subtitle">A selection of my work in robotics, autonomous systems, and AI</p>
+          <span class="section-eyebrow">Work</span>
+          <h2 class="section-title">Projects</h2>
+          <p class="section-subtitle">Things I've actually built, not just talked about</p>
         </div>
         
         <!-- Featured Project: Thesis -->
         <div class="featured-project glass-card">
           <div class="featured-badge">
             <i data-lucide="star"></i>
-            <span>Thesis — Grade: 1.0 (A+)</span>
+            <span>Thesis / Graded 1.0</span>
           </div>
           
           <div class="featured-grid thesis-layout">
@@ -566,10 +576,7 @@
               <h3>Autonomous Precision Landing via Deep Reinforcement Learning</h3>
               <p class="featured-subtitle">AKKODIS | Abschlussarbeit, Autonomous Aerial Systems | Ingolstadt, Bavaria | Oct 2025 - Mar 2026</p>
               <p class="featured-description">
-                Deep Reinforcement Learning (PPO/SAC/TD3) for Precise Multirotor UAV Landing on Moving Targets. 
-                Designed distributed training and evaluation pipelines using custom simulators (Isaac Sim, Gazebo) 
-                and PX4 Software-in-the-Loop (SITL). Executed reliable pipelines from raw sensor data to RL inference, 
-                with a strict focus on edge-case handling and tactical execution.
+                Trained PPO, SAC, and TD3 agents to land a multirotor drone on a moving platform. Built the full pipeline: custom Gym environments in Isaac Sim and Gazebo, PX4 SITL integration, reward shaping, domain randomization. Then tested on a real Pixhawk drone. The sim-to-real transfer working was the best part of the thesis.
               </p>
               
               <div class="progress-list">
@@ -604,7 +611,7 @@
               </div>
               
               <div class="thesis-actions">
-                <button class="btn btn-primary" onclick="openPdfViewer('thesis-kshitij.pdf', 'Thesis — RL-Based Precision Drone Landing')">
+                <button class="btn btn-primary" onclick="openPdfViewer('thesis-kshitij.pdf', 'Thesis: RL-Based Precision Drone Landing')">
                   <i data-lucide="book-open"></i>
                   <span>Read Thesis</span>
                 </button>
@@ -627,7 +634,7 @@
             </div>
             <div class="project-content">
               <h3>Autonomous Mobility Orchestrator</h3>
-              <p>RL-powered platform for city-wide AV fleet optimization - 1st Place PAVE Europe 2025</p>
+              <p>Won 1st place at PAVE Europe 2025. RL-based fleet optimizer for city-wide autonomous mobility.</p>
               <div class="project-tags">
                 <span>PPO</span>
                 <span>Next.js</span>
@@ -647,7 +654,7 @@
             </div>
             <div class="project-content">
               <h3>Schanzer Racing Electric</h3>
-              <p>Formula Student autonomous systems & LiDAR integration</p>
+              <p>Driverless department: LiDAR perception, embedded control on NVIDIA Jetson</p>
               <div class="project-tags">
                 <span>LiDAR</span>
                 <span>ROS2</span>
@@ -667,7 +674,7 @@
             </div>
             <div class="project-content">
               <h3>Akkodis Service Robot</h3>
-              <p>Autonomous TurtleBot3 with YOLO object detection</p>
+              <p>TurtleBot3 + RealSense + YOLO. It finds things and picks them up.</p>
               <div class="project-tags">
                 <span>ROS2</span>
                 <span>YOLO</span>
@@ -687,7 +694,7 @@
             </div>
             <div class="project-content">
               <h3>Pixhawk Drone Platform</h3>
-              <p>Custom autonomous drone for thesis experiments</p>
+              <p>Custom-built for my thesis. PX4 flight controller, real-world RL testing.</p>
               <div class="project-tags">
                 <span>PX4</span>
                 <span>Pixhawk</span>
@@ -707,7 +714,7 @@
             </div>
             <div class="project-content">
               <h3>Campus Help</h3>
-              <p>Tutor-student marketplace for THI campus</p>
+              <p>THI had no good way for students to find tutors. So I built one.</p>
               <div class="project-tags">
                 <span>Next.js</span>
                 <span>Supabase</span>
@@ -727,7 +734,7 @@
             </div>
             <div class="project-content">
               <h3>Pixel Park</h3>
-              <p>LiDAR-based smart parking detection (24hr Hackathon)</p>
+              <p>24-hour hackathon. LiDAR-based parking detection, built overnight.</p>
               <div class="project-tags">
                 <span>LiDAR</span>
                 <span>Python</span>
@@ -747,7 +754,7 @@
             </div>
             <div class="project-content">
               <h3>VR Accident Reconstruction</h3>
-              <p>Dashcam &amp; 3D laser-scan fusion for forensic VR simulation</p>
+              <p>3D laser scans + dashcam footage → forensic VR reconstruction for DEKRA</p>
               <div class="project-tags">
                 <span>IPG CarMaker</span>
                 <span>CARLA</span>
@@ -767,7 +774,7 @@
             </div>
             <div class="project-content">
               <h3>Airbus Fly Your Ideas</h3>
-              <p>Currently participating in Airbus global aerospace challenge</p>
+              <p>Global aerospace challenge by Airbus & UNESCO. Team entry, currently in progress.</p>
               <div class="project-tags">
                 <span>Aerospace</span>
                 <span>Innovation</span>
@@ -783,48 +790,53 @@
     <section id="skills" class="section section-dark">
       <div class="container">
         <div class="section-header">
-          <span class="section-eyebrow">Technical Expertise</span>
-          <h2 class="section-title">Skills & Technologies</h2>
+          <span class="section-eyebrow">Stack</span>
+          <h2 class="section-title">Skills & Tools</h2>
         </div>
         
         <div class="skills-compact">
           <div class="skill-group">
             <h3 class="skill-group-title"><i data-lucide="brain"></i> Machine Learning & AI</h3>
             <div class="skill-chips">
-              <div class="skill-chip" data-level="90"><span>Reinforcement Learning</span><span class="chip-level">90%</span></div>
-              <div class="skill-chip" data-level="90"><span>PyTorch</span><span class="chip-level">90%</span></div>
-              <div class="skill-chip" data-level="80"><span>Computer Vision</span><span class="chip-level">80%</span></div>
-              <div class="skill-chip" data-level="90"><span>YOLO / OpenCV</span><span class="chip-level">90%</span></div>
+              <div class="skill-chip"><span>Reinforcement Learning</span></div>
+              <div class="skill-chip"><span>PyTorch</span></div>
+              <div class="skill-chip"><span>Computer Vision</span></div>
+              <div class="skill-chip"><span>YOLO / OpenCV</span></div>
+              <div class="skill-chip"><span>Stable Baselines3</span></div>
             </div>
           </div>
           
           <div class="skill-group">
             <h3 class="skill-group-title"><i data-lucide="cog"></i> Robotics & Autonomy</h3>
             <div class="skill-chips">
-              <div class="skill-chip" data-level="90"><span>ROS2</span><span class="chip-level">90%</span></div>
-              <div class="skill-chip" data-level="80"><span>PX4 / ArduPilot</span><span class="chip-level">80%</span></div>
-              <div class="skill-chip" data-level="80"><span>Sensor Fusion</span><span class="chip-level">80%</span></div>
-              <div class="skill-chip" data-level="80"><span>SLAM & Navigation</span><span class="chip-level">80%</span></div>
+              <div class="skill-chip"><span>ROS2</span></div>
+              <div class="skill-chip"><span>PX4 / MAVLink</span></div>
+              <div class="skill-chip"><span>Sensor Fusion</span></div>
+              <div class="skill-chip"><span>SLAM & Nav2</span></div>
+              <div class="skill-chip"><span>MoveIt</span></div>
             </div>
           </div>
           
           <div class="skill-group">
             <h3 class="skill-group-title"><i data-lucide="code-2"></i> Programming</h3>
             <div class="skill-chips">
-              <div class="skill-chip" data-level="90"><span>Python</span><span class="chip-level">90%</span></div>
-              <div class="skill-chip" data-level="80"><span>C++</span><span class="chip-level">80%</span></div>
-              <div class="skill-chip" data-level="80"><span>TypeScript / React</span><span class="chip-level">80%</span></div>
-              <div class="skill-chip" data-level="90"><span>Git / CI/CD</span><span class="chip-level">90%</span></div>
+              <div class="skill-chip"><span>Python</span></div>
+              <div class="skill-chip"><span>C++</span></div>
+              <div class="skill-chip"><span>TypeScript</span></div>
+              <div class="skill-chip"><span>Bash</span></div>
+              <div class="skill-chip"><span>Git</span></div>
             </div>
           </div>
           
           <div class="skill-group">
             <h3 class="skill-group-title"><i data-lucide="box"></i> Simulation & Tools</h3>
             <div class="skill-chips">
-              <div class="skill-chip" data-level="90"><span>Gazebo / Isaac Sim</span><span class="chip-level">90%</span></div>
-              <div class="skill-chip" data-level="90"><span>Gymnasium</span><span class="chip-level">90%</span></div>
-              <div class="skill-chip" data-level="90"><span>Docker / Linux</span><span class="chip-level">90%</span></div>
-              <div class="skill-chip" data-level="70"><span>SolidWorks</span><span class="chip-level">70%</span></div>
+              <div class="skill-chip"><span>Gazebo</span></div>
+              <div class="skill-chip"><span>Isaac Sim</span></div>
+              <div class="skill-chip"><span>Gymnasium</span></div>
+              <div class="skill-chip"><span>Docker</span></div>
+              <div class="skill-chip"><span>Linux</span></div>
+              <div class="skill-chip"><span>CI/CD</span></div>
             </div>
           </div>
         </div>
@@ -903,9 +915,9 @@
     <section id="testimonials" class="section">
       <div class="container">
         <div class="section-header">
-          <span class="section-eyebrow">Endorsements</span>
-          <h2 class="section-title">Professional Recommendations</h2>
-          <p class="section-subtitle">What colleagues and professors say about working with me</p>
+          <span class="section-eyebrow">Reference</span>
+          <h2 class="section-title">Recommendation</h2>
+
         </div>
         
         <div class="testimonials-grid">
@@ -928,9 +940,9 @@
     <section id="contact" class="section">
       <div class="container">
         <div class="section-header">
-          <span class="section-eyebrow">Get in Touch</span>
-          <h2 class="section-title">Let's Connect</h2>
-          <p class="section-subtitle">Interested in collaboration or have a question? I'd love to hear from you.</p>
+          <span class="section-eyebrow">Say Hello</span>
+          <h2 class="section-title">Contact</h2>
+          <p class="section-subtitle">I respond to emails. Seriously.</p>
         </div>
         
         <div class="contact-grid">
@@ -1525,7 +1537,7 @@
             <span class="logo-icon">K</span>
             <span class="logo-text">Kshitij Prasad</span>
           </div>
-          <p class="footer-tagline">Building the future of autonomous systems</p>
+          <p class="footer-tagline">Ingolstadt, Germany</p>
         </div>
         
         <div class="footer-links">

@@ -477,63 +477,6 @@ document.addEventListener("DOMContentLoaded", function () {
   updateActiveNav();
 
   // ===== Counter Animation =====
-  function animateCounter(element, target) {
-    const duration = 2000;
-    const start = 0;
-    const startTime = performance.now();
-    
-    function update(currentTime) {
-      const elapsed = currentTime - startTime;
-      const progress = Math.min(elapsed / duration, 1);
-      
-      // Easing function
-      const easeOut = 1 - Math.pow(1 - progress, 3);
-      const current = Math.floor(start + (target - start) * easeOut);
-      
-      element.textContent = current;
-      
-      if (progress < 1) {
-        requestAnimationFrame(update);
-      }
-    }
-    
-    requestAnimationFrame(update);
-  }
-
-  // Trigger counter animation when visible
-  const statNumbers = document.querySelectorAll(".stat-number[data-count]");
-  
-  const counterObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        const target = parseInt(entry.target.dataset.count);
-        animateCounter(entry.target, target);
-        counterObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.5 });
-  
-  statNumbers.forEach((stat) => counterObserver.observe(stat));
-
-  // ===== Skill Bars Animation =====
-  const skillCategories = document.querySelectorAll(".skill-category");
-  
-  const skillObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        const fills = entry.target.querySelectorAll(".skill-fill");
-        fills.forEach((fill, index) => {
-          setTimeout(() => {
-            fill.style.width = fill.style.getPropertyValue("--fill");
-          }, index * 100);
-        });
-        skillObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.3 });
-  
-  skillCategories.forEach((category) => skillObserver.observe(category));
-
   // ===== Scroll Animations (Simple AOS alternative) =====
   const animatedElements = document.querySelectorAll("[data-aos]");
   
