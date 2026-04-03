@@ -1,6 +1,7 @@
 import { useRef, useState, ReactNode } from "react";
 import { Group } from "three";
 import { useFrame } from "@react-three/fiber";
+import { Select } from "@react-three/postprocessing";
 import { useRoomStore } from "@/hooks/useRoomStore";
 import type { HotspotId } from "@/types";
 
@@ -34,23 +35,25 @@ export default function Hotspot({ id, children, yOffset = 0 }: HotspotProps) {
   });
 
   return (
-    <group
-      ref={ref}
-      onClick={(e) => {
-        e.stopPropagation();
-        if (!activePanel) setPanel(id);
-      }}
-      onPointerOver={(e) => {
-        e.stopPropagation();
-        setHovered(id);
-        document.body.style.cursor = "pointer";
-      }}
-      onPointerOut={() => {
-        setHovered(null);
-        document.body.style.cursor = "default";
-      }}
-    >
-      {children}
-    </group>
+    <Select enabled={isHovered && !isActive}>
+      <group
+        ref={ref}
+        onClick={(e) => {
+          e.stopPropagation();
+          if (!activePanel) setPanel(id);
+        }}
+        onPointerOver={(e) => {
+          e.stopPropagation();
+          setHovered(id);
+          document.body.style.cursor = "pointer";
+        }}
+        onPointerOut={() => {
+          setHovered(null);
+          document.body.style.cursor = "default";
+        }}
+      >
+        {children}
+      </group>
+    </Select>
   );
 }

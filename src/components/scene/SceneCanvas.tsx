@@ -8,6 +8,8 @@ import {
   Vignette,
   Noise,
   N8AO,
+  Outline,
+  Selection,
 } from "@react-three/postprocessing";
 import { ToneMappingMode } from "postprocessing";
 import { ACESFilmicToneMapping } from "three";
@@ -45,23 +47,33 @@ export default function SceneCanvas() {
       />
       <CameraRig />
       <Lighting />
-      <Room />
 
-      <EffectComposer multisampling={4}>
-        <N8AO
-          aoRadius={0.5}
-          intensity={1}
-          distanceFalloff={0.5}
-        />
-        <Bloom
-          luminanceThreshold={1.0}
-          luminanceSmoothing={0.4}
-          intensity={0.4}
-          mipmapBlur
-        />
-        <Noise opacity={0.012} />
-        <Vignette offset={0.3} darkness={0.3} />
-      </EffectComposer>
+      <Selection>
+        <Room />
+
+        <EffectComposer multisampling={4}>
+          <N8AO
+            aoRadius={0.5}
+            intensity={1}
+            distanceFalloff={0.5}
+          />
+          <Outline
+            visibleEdgeColor={0x84cc16}
+            hiddenEdgeColor={0x84cc16}
+            blur
+            edgeStrength={4}
+            pulseSpeed={0}
+          />
+          <Bloom
+            luminanceThreshold={1.0}
+            luminanceSmoothing={0.4}
+            intensity={0.4}
+            mipmapBlur
+          />
+          <Noise opacity={0.012} />
+          <Vignette offset={0.3} darkness={0.3} />
+        </EffectComposer>
+      </Selection>
     </Canvas>
   );
 }

@@ -1,9 +1,221 @@
 import { useRef } from "react";
 import { Mesh } from "three";
 import { useFrame } from "@react-three/fiber";
-import { RoundedBox } from "@react-three/drei";
+import { RoundedBox, Html } from "@react-three/drei";
 import { COLORS } from "@/lib/constants";
 import Hotspot from "./Hotspot";
+
+function IDEScreen() {
+  return (
+    <Html
+      transform
+      occlude
+      position={[0, 1, 0.046]}
+      scale={0.048}
+      style={{
+        width: "680px",
+        height: "392px",
+        overflow: "hidden",
+        borderRadius: "2px",
+        pointerEvents: "none",
+      }}
+    >
+      <div
+        style={{
+          width: "100%",
+          height: "100%",
+          background: "#0d1117",
+          fontFamily: "'JetBrains Mono', 'Fira Code', 'Consolas', monospace",
+          fontSize: "11px",
+          color: "#abb2bf",
+          display: "flex",
+          flexDirection: "column",
+          userSelect: "none",
+        }}
+      >
+        {/* Tab bar */}
+        <div
+          style={{
+            display: "flex",
+            background: "#161b22",
+            borderBottom: "1px solid #21262d",
+            padding: "0",
+            height: "28px",
+            alignItems: "center",
+          }}
+        >
+          <div
+            style={{
+              padding: "4px 12px",
+              background: "#0d1117",
+              color: "#e6edf3",
+              borderBottom: "2px solid #84cc16",
+              fontSize: "10px",
+            }}
+          >
+            portfolio.tsx
+          </div>
+          <div
+            style={{
+              padding: "4px 12px",
+              color: "#7d8590",
+              fontSize: "10px",
+            }}
+          >
+            constants.ts
+          </div>
+          <div
+            style={{
+              padding: "4px 12px",
+              color: "#7d8590",
+              fontSize: "10px",
+            }}
+          >
+            hooks.ts
+          </div>
+        </div>
+        {/* Code area */}
+        <div
+          style={{
+            flex: 1,
+            padding: "8px 0",
+            lineHeight: "1.65",
+            display: "flex",
+          }}
+        >
+          {/* Line numbers */}
+          <div
+            style={{
+              color: "#484f58",
+              textAlign: "right",
+              paddingRight: "12px",
+              paddingLeft: "12px",
+              borderRight: "1px solid #21262d",
+              fontSize: "10px",
+              lineHeight: "1.65",
+            }}
+          >
+            {Array.from({ length: 22 }, (_, i) => (
+              <div key={i}>{i + 1}</div>
+            ))}
+          </div>
+          {/* Code content */}
+          <div style={{ paddingLeft: "12px", whiteSpace: "pre" }}>
+            <div>
+              <span style={{ color: "#c678dd" }}>import</span>
+              <span> {"{ "}</span>
+              <span style={{ color: "#e5c07b" }}>motion</span>
+              <span>{" } "}</span>
+              <span style={{ color: "#c678dd" }}>from</span>
+              <span style={{ color: "#98c379" }}> &quot;framer-motion&quot;</span>
+            </div>
+            <div>
+              <span style={{ color: "#c678dd" }}>import</span>
+              <span> {"{ "}</span>
+              <span style={{ color: "#e5c07b" }}>Canvas</span>
+              <span>{" } "}</span>
+              <span style={{ color: "#c678dd" }}>from</span>
+              <span style={{ color: "#98c379" }}>
+                {" "}
+                &quot;@react-three/fiber&quot;
+              </span>
+            </div>
+            <div style={{ height: "1.65em" }} />
+            <div>
+              <span style={{ color: "#7d8590" }}>
+                {"// "}Kshitij Prasad — Developer Portfolio
+              </span>
+            </div>
+            <div>
+              <span style={{ color: "#c678dd" }}>export default function</span>
+              <span style={{ color: "#61afef" }}> Portfolio</span>
+              <span>() {"{"}</span>
+            </div>
+            <div>
+              <span>{"  "}</span>
+              <span style={{ color: "#c678dd" }}>const</span>
+              <span> skills</span>
+              <span style={{ color: "#56b6c2" }}> =</span>
+              <span> [</span>
+            </div>
+            <div>
+              <span>{"    "}</span>
+              <span style={{ color: "#98c379" }}>&quot;React&quot;</span>
+              <span>,</span>
+              <span style={{ color: "#98c379" }}> &quot;TypeScript&quot;</span>
+              <span>,</span>
+              <span style={{ color: "#98c379" }}> &quot;Three.js&quot;</span>
+              <span>,</span>
+            </div>
+            <div>
+              <span>{"    "}</span>
+              <span style={{ color: "#98c379" }}>&quot;Next.js&quot;</span>
+              <span>,</span>
+              <span style={{ color: "#98c379" }}> &quot;Python&quot;</span>
+              <span>,</span>
+              <span style={{ color: "#98c379" }}> &quot;Node.js&quot;</span>
+            </div>
+            <div>
+              <span>{"  "}{"]\u003B"}</span>
+            </div>
+            <div style={{ height: "1.65em" }} />
+            <div>
+              <span>{"  "}</span>
+              <span style={{ color: "#c678dd" }}>return</span>
+              <span> (</span>
+            </div>
+            <div>
+              <span>{"    "}</span>
+              <span style={{ color: "#e06c75" }}>&lt;Canvas</span>
+              <span style={{ color: "#d19a66" }}> shadows</span>
+              <span style={{ color: "#e06c75" }}>&gt;</span>
+            </div>
+            <div>
+              <span>{"      "}</span>
+              <span style={{ color: "#e06c75" }}>&lt;Room</span>
+              <span style={{ color: "#e06c75" }}> /&gt;</span>
+            </div>
+            <div>
+              <span>{"      "}</span>
+              <span style={{ color: "#e06c75" }}>&lt;Lighting</span>
+              <span style={{ color: "#e06c75" }}> /&gt;</span>
+            </div>
+            <div>
+              <span>{"      "}</span>
+              <span style={{ color: "#e06c75" }}>&lt;Camera</span>
+              <span style={{ color: "#d19a66" }}> fov</span>
+              <span>={"{"}40{"}"}</span>
+              <span style={{ color: "#e06c75" }}> /&gt;</span>
+            </div>
+            <div>
+              <span>{"    "}</span>
+              <span style={{ color: "#e06c75" }}>&lt;/Canvas&gt;</span>
+            </div>
+            <div>
+              <span>{"  "})</span>
+            </div>
+            <div>
+              <span>{"}"}</span>
+            </div>
+            <div style={{ height: "1.65em" }} />
+            <div>
+              <span style={{ color: "#7d8590" }}>
+                {"// "}Built with React Three Fiber ✦
+              </span>
+            </div>
+            <div style={{ height: "1.65em" }} />
+            <div>
+              <span style={{ color: "#c678dd" }}>export const</span>
+              <span style={{ color: "#e5c07b" }}> config</span>
+              <span style={{ color: "#56b6c2" }}> =</span>
+              <span> {"{"}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Html>
+  );
+}
 
 export default function Monitor() {
   const screenRef = useRef<Mesh>(null);
@@ -12,7 +224,7 @@ export default function Monitor() {
     if (screenRef.current) {
       const mat = screenRef.current.material as any;
       mat.emissiveIntensity =
-        0.15 + Math.sin(clock.getElapsedTime() * 0.8) * 0.05;
+        0.08 + Math.sin(clock.getElapsedTime() * 0.5) * 0.03;
     }
   });
 
@@ -29,33 +241,18 @@ export default function Monitor() {
         </RoundedBox>
       </mesh>
 
-      {/* Screen face — IDE dark background */}
-      <mesh ref={screenRef} position={[0, 1, 0.045]}>
+      {/* Screen face — dark base behind HTML */}
+      <mesh ref={screenRef} position={[0, 1, 0.044]}>
         <planeGeometry args={[1.65, 0.95]} />
         <meshStandardMaterial
           color="#0d1117"
-          emissive={COLORS.primary}
-          emissiveIntensity={0.15}
+          emissive="#84cc16"
+          emissiveIntensity={0.08}
         />
       </mesh>
 
-      {/* Code syntax lines on screen */}
-      {[
-        { y: 0.34, w: 0.4, c: "#c678dd" },
-        { y: 0.26, w: 0.65, c: "#e5c07b" },
-        { y: 0.18, w: 0.5, c: "#abb2bf" },
-        { y: 0.10, w: 0.45, c: "#98c379" },
-        { y: 0.02, w: 0.2, c: "#c678dd" },
-        { y: -0.06, w: 0.55, c: "#61afef" },
-        { y: -0.14, w: 0.7, c: "#abb2bf" },
-        { y: -0.22, w: 0.4, c: "#e06c75" },
-        { y: -0.30, w: 0.6, c: "#98c379" },
-      ].map(({ y, w, c }, i) => (
-        <mesh key={`line-${i}`} position={[-0.45 + w * 0.2, 1 + y, 0.048]}>
-          <planeGeometry args={[w * 0.45, 0.016]} />
-          <meshBasicMaterial color={c} transparent opacity={0.85} />
-        </mesh>
-      ))}
+      {/* HTML IDE content rendered on monitor */}
+      <IDEScreen />
 
       {/* RGB backlight behind monitor */}
       <mesh position={[0, 1, -0.06]}>
@@ -63,12 +260,12 @@ export default function Monitor() {
         <meshBasicMaterial
           color={COLORS.primary}
           transparent
-          opacity={0.08}
+          opacity={0.06}
         />
       </mesh>
       <pointLight
         position={[0, 1, -0.15]}
-        intensity={0.3}
+        intensity={0.25}
         color={COLORS.primary}
         distance={3}
         decay={2}
