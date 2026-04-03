@@ -10,18 +10,18 @@ export default function Bookshelf() {
         {/* Side panels */}
         <mesh position={[-0.9, 2.5, 0]} castShadow>
           <boxGeometry args={[0.08, 5, 0.8]} />
-          <meshStandardMaterial color={COLORS.bookshelfWood} roughness={0.7} flatShading />
+          <meshPhysicalMaterial color={COLORS.bookshelfWood} roughness={0.5} />
         </mesh>
         <mesh position={[0.9, 2.5, 0]} castShadow>
           <boxGeometry args={[0.08, 5, 0.8]} />
-          <meshStandardMaterial color={COLORS.bookshelfWood} roughness={0.7} flatShading />
+          <meshPhysicalMaterial color={COLORS.bookshelfWood} roughness={0.5} />
         </mesh>
 
         {/* Shelves */}
         {[0, 1.25, 2.5, 3.75, 5].map((y, i) => (
           <mesh key={i} position={[0, y, 0]} castShadow>
             <boxGeometry args={[1.88, 0.08, 0.8]} />
-            <meshStandardMaterial color={COLORS.bookshelfWood} roughness={0.7} flatShading />
+            <meshPhysicalMaterial color={COLORS.bookshelfWood} roughness={0.5} />
           </mesh>
         ))}
 
@@ -35,7 +35,7 @@ export default function Bookshelf() {
         {bookColors.slice(0, 5).map((color, i) => (
           <mesh key={`b1-${i}`} position={[-0.6 + i * 0.3, 0.6, 0]} castShadow>
             <boxGeometry args={[0.18, 1, 0.5]} />
-            <meshStandardMaterial color={color} roughness={0.8} flatShading />
+            <meshPhysicalMaterial color={color} roughness={0.6 + Math.random() * 0.3} />
           </mesh>
         ))}
 
@@ -43,7 +43,7 @@ export default function Bookshelf() {
         {bookColors.slice(1).map((color, i) => (
           <mesh key={`b2-${i}`} position={[-0.5 + i * 0.35, 1.85, 0]} castShadow>
             <boxGeometry args={[0.2, 1, 0.5]} />
-            <meshStandardMaterial color={color} roughness={0.8} flatShading />
+            <meshPhysicalMaterial color={color} roughness={0.7} />
           </mesh>
         ))}
 
@@ -51,7 +51,7 @@ export default function Bookshelf() {
         {bookColors.slice(0, 4).map((color, i) => (
           <mesh key={`b3-${i}`} position={[-0.4 + i * 0.3, 3.1, 0]} castShadow>
             <boxGeometry args={[0.16, 1, 0.45]} />
-            <meshStandardMaterial color={color} roughness={0.8} flatShading />
+            <meshPhysicalMaterial color={color} roughness={0.8} />
           </mesh>
         ))}
 
@@ -59,7 +59,7 @@ export default function Bookshelf() {
         {bookColors.slice(2).map((color, i) => (
           <mesh key={`b4-${i}`} position={[-0.3 + i * 0.35, 4.35, 0]} castShadow>
             <boxGeometry args={[0.22, 1, 0.5]} />
-            <meshStandardMaterial color={color} roughness={0.8} flatShading />
+            <meshPhysicalMaterial color={color} roughness={0.65} />
           </mesh>
         ))}
       </Hotspot>

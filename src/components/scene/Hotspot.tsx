@@ -1,6 +1,7 @@
 import { useRef, useState, ReactNode } from "react";
 import { Group } from "three";
 import { useFrame } from "@react-three/fiber";
+import { Outlines } from "@react-three/drei";
 import { useRoomStore } from "@/hooks/useRoomStore";
 import type { HotspotId } from "@/types";
 
@@ -17,15 +18,19 @@ export default function Hotspot({ id, children, yOffset = 0 }: HotspotProps) {
   const hoveredObject = useRoomStore((s) => s.hoveredObject);
   const activePanel = useRoomStore((s) => s.activePanel);
   const [hoverScale, setHoverScale] = useState(1);
+  const [hoverY, setHoverY] = useState(0);
 
   const isHovered = hoveredObject === id;
   const isActive = activePanel === id;
 
   useFrame((_, delta) => {
-    const target = isHovered && !isActive ? 1.03 : 1;
-    setHoverScale((prev) => prev + (target - prev) * Math.min(delta * 8, 1));
+    const targetScale = isHovered && !isActive ? 1.03 : 1;
+    const targetY = isHovered && !isActive ? 0.05 : 0;
+    setHoverScale((prev) => prev + (targetScale - prev) * Math.min(delta * 8, 1));
+    setHoverY((prev) => prev + (targetY - prev) * Math.min(delta * 6, 1));
     if (ref.current) {
       ref.current.scale.setScalar(hoverScale);
+      ref.current.position.y = hoverY;
     }
   });
 
@@ -47,18 +52,6 @@ export default function Hotspot({ id, children, yOffset = 0 }: HotspotProps) {
       }}
     >
       {children}
-
-      {/* Hover glow outline */}
-      {isHovered && !isActive && (
-        <mesh position={[0, yOffset, 0]}>
-          <sphereGeometry args={[0.12, 8, 8]} />
-          <meshBasicMaterial
-            color="#84cc16"
-            transparent
-            opacity={0.6}
-          />
-        </mesh>
-      )}
     </group>
   );
 }

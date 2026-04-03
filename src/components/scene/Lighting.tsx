@@ -1,41 +1,53 @@
-import { Environment } from "@react-three/drei";
+import { Environment, SoftShadows } from "@react-three/drei";
 import { COLORS } from "@/lib/constants";
 
 export default function Lighting() {
   return (
     <>
-      {/* Global ambient */}
-      <ambientLight intensity={0.3} />
+      <SoftShadows size={25} samples={16} focus={0} />
 
-      {/* Main directional (sun from window) */}
+      {/* Reduced ambient for dramatic contrast */}
+      <ambientLight intensity={0.15} />
+
+      {/* Main directional (sun from window) — high-res shadows */}
       <directionalLight
         position={[2, 8, -4]}
-        intensity={1.2}
+        intensity={1.4}
         castShadow
-        shadow-mapSize-width={2048}
-        shadow-mapSize-height={2048}
+        shadow-mapSize-width={4096}
+        shadow-mapSize-height={4096}
         shadow-camera-far={25}
         shadow-camera-left={-10}
         shadow-camera-right={10}
         shadow-camera-top={10}
         shadow-camera-bottom={-5}
-        shadow-bias={-0.001}
+        shadow-bias={-0.0005}
         color="#f0e8d8"
       />
 
-      {/* Fill light from right side */}
+      {/* Fill light from right side — cool blue */}
       <directionalLight
         position={[6, 4, 3]}
-        intensity={0.3}
+        intensity={0.25}
         color="#d0d8ff"
+      />
+
+      {/* Rect area light above desk — warm bounce */}
+      <rectAreaLight
+        position={[0, 6, -1]}
+        rotation={[-Math.PI / 2, 0, 0]}
+        width={4}
+        height={3}
+        intensity={0.6}
+        color="#ffe8c0"
       />
 
       {/* Green accent on trophy area */}
       <pointLight
         position={[-5.5, 5.5, -2]}
-        intensity={0.5}
+        intensity={0.6}
         color={COLORS.primary}
-        distance={4}
+        distance={5}
         decay={2}
       />
 
@@ -48,17 +60,17 @@ export default function Lighting() {
         decay={2}
       />
 
-      {/* Window backlight */}
+      {/* Window backlight — stronger for volumetric effect */}
       <pointLight
         position={[0, 5, -5.5]}
-        intensity={0.8}
+        intensity={1.2}
         color={COLORS.windowGlow}
-        distance={6}
+        distance={8}
         decay={2}
       />
 
-      {/* Environment map for reflections */}
-      <Environment preset="apartment" />
+      {/* Environment map for realistic reflections — moody city */}
+      <Environment preset="city" />
     </>
   );
 }

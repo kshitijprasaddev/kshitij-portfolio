@@ -1,14 +1,16 @@
 import { COLORS } from "@/lib/constants";
+import { RoundedBox } from "@react-three/drei";
 import Hotspot from "./Hotspot";
 
 export default function Cabinet() {
   return (
     <group position={[4.5, 0, -4]}>
       <Hotspot id="cabinet" yOffset={3}>
-        {/* Body */}
+        {/* Body — matte metal */}
         <mesh position={[0, 1.5, 0]} castShadow>
-          <boxGeometry args={[1.2, 3, 0.8]} />
-          <meshStandardMaterial color={COLORS.cabinet} roughness={0.6} flatShading />
+          <RoundedBox args={[1.2, 3, 0.8]} radius={0.02} smoothness={4}>
+            <meshPhysicalMaterial color={COLORS.cabinet} roughness={0.3} metalness={0.7} />
+          </RoundedBox>
         </mesh>
 
         {/* Drawer lines */}
@@ -19,28 +21,28 @@ export default function Cabinet() {
           </mesh>
         ))}
 
-        {/* Drawer handles */}
+        {/* Drawer handles — polished chrome */}
         {[0.85, 1.55, 2.25].map((y, i) => (
           <mesh key={`h-${i}`} position={[0, y, 0.44]} rotation={[0, 0, Math.PI / 2]} castShadow>
-            <cylinderGeometry args={[0.02, 0.02, 0.3, 8]} />
-            <meshStandardMaterial color={COLORS.cabinetHandle} metalness={0.6} roughness={0.3} />
+            <cylinderGeometry args={[0.02, 0.02, 0.3, 16]} />
+            <meshPhysicalMaterial color={COLORS.cabinetHandle} metalness={0.9} roughness={0.1} />
           </mesh>
         ))}
 
         {/* Top surface */}
         <mesh position={[0, 3.02, 0]}>
           <boxGeometry args={[1.24, 0.04, 0.84]} />
-          <meshStandardMaterial color="#333338" roughness={0.5} flatShading />
+          <meshPhysicalMaterial color="#333338" roughness={0.4} metalness={0.5} />
         </mesh>
 
         {/* Small plant pot on top */}
         <mesh position={[0.3, 3.2, 0]} castShadow>
-          <cylinderGeometry args={[0.12, 0.1, 0.2, 8]} />
-          <meshStandardMaterial color="#8b4513" roughness={0.8} flatShading />
+          <cylinderGeometry args={[0.12, 0.1, 0.2, 12]} />
+          <meshStandardMaterial color="#8b4513" roughness={0.8} />
         </mesh>
         <mesh position={[0.3, 3.45, 0]} castShadow>
-          <icosahedronGeometry args={[0.18, 0]} />
-          <meshStandardMaterial color="#2d5016" roughness={0.8} flatShading />
+          <icosahedronGeometry args={[0.18, 1]} />
+          <meshStandardMaterial color="#2d5016" roughness={0.8} />
         </mesh>
       </Hotspot>
     </group>

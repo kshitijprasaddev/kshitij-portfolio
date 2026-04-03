@@ -1,3 +1,4 @@
+import { ContactShadows } from "@react-three/drei";
 import RoomShell from "./RoomShell";
 import Desk from "./Desk";
 import Monitor from "./Monitor";
@@ -10,6 +11,8 @@ import Trophy from "./Trophy";
 import Window from "./Window";
 import Chair from "./Chair";
 import DeskLamp from "./DeskLamp";
+import Particles from "./Particles";
+import LightRays from "./LightRays";
 
 export default function Room() {
   return (
@@ -26,6 +29,17 @@ export default function Room() {
       <Window />
       <Chair />
       <DeskLamp />
+      <Particles />
+      <LightRays />
+
+      {/* Soft contact shadows grounding all objects */}
+      <ContactShadows
+        position={[0, 0.01, 0]}
+        opacity={0.4}
+        scale={14}
+        blur={2.5}
+        far={4}
+      />
     </group>
   );
 }
