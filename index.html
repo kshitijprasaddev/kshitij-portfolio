@@ -23,8 +23,14 @@
   <!-- GSAP for smooth animations -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  
+  <!-- Three.js for WebGL -->
+  <script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
 </head>
 <body>
+  <!-- WebGL Background -->
+  <canvas id="webgl-canvas"></canvas>
+
   <!-- Scroll Progress Bar -->
   <div class="scroll-progress"></div>
   
@@ -119,7 +125,7 @@
             </p>
             
             <p class="hero-description">
-              Autonomous Vehicle Engineering graduate from TH Ingolstadt. Thesis on RL-based precision drone landing, graded 1.0. Focused on robotics, reinforcement learning, and real-time sensor systems.
+              B.Eng. Autonomous Vehicle Engineering, TH Ingolstadt. Now pursuing M.Sc. AI Engineering of Autonomous Systems. Strong in modern C++, ROS 2, and real-time control loops.
             </p>
             
             <div class="hero-cta">
@@ -294,10 +300,10 @@
         <div class="about-grid">
           <div class="about-content">
             <p class="about-lead">
-              I studied <strong>Autonomous Vehicle Engineering</strong> at TH Ingolstadt. My thesis was on landing drones on moving targets using deep RL, graded <strong>1.0</strong>.
+              <strong>Autonomous Vehicle Engineering</strong> at TH Ingolstadt, driven by addressing the 1.35 million lives lost and 70 billion hours wasted in traffic annually.
             </p>
             <p>
-              Most of my work sits at the intersection of robotics and machine learning: ROS2 nodes, sensor fusion pipelines, RL training loops, the occasional Next.js app when a project needs a face. I like problems where the software has to work in the real world, not just in a notebook.
+              Strong in modern C++, ROS 2, and real-time control loops. Thesis on RL-based precision drone landing, graded <strong>1.0</strong>. Deep passion for open-source tooling and democratizing industrial robotics.
             </p>
             
             <div class="about-highlights">
@@ -316,7 +322,7 @@
                 </div>
                 <div class="highlight-text">
                   <span class="highlight-label">Education</span>
-                  <span class="highlight-value">B.Eng. Autonomous Vehicles</span>
+                  <span class="highlight-value">B.Eng. AV Engineering / M.Sc. AI Engineering</span>
                 </div>
               </div>
               <div class="highlight-item">
@@ -324,8 +330,8 @@
                   <i data-lucide="calendar"></i>
                 </div>
                 <div class="highlight-text">
-                  <span class="highlight-label">Graduation</span>
-                  <span class="highlight-value">March 2026</span>
+                  <span class="highlight-label">Status</span>
+                  <span class="highlight-value">M.Sc. started March 2026</span>
                 </div>
               </div>
             </div>
@@ -356,8 +362,8 @@
               </div>
               <h3>Languages</h3>
               <ul>
-                <li>English - Fluent</li>
-                <li>German - Professional</li>
+                <li>English (Native)</li>
+                <li>German (B2/C1)</li>
               </ul>
             </div>
           </div>
@@ -399,11 +405,11 @@
               <div class="st-body">
                 <ul class="st-highlights">
                   <li>Deep Reinforcement Learning (PPO/SAC/TD3) for Precise Multirotor UAV Landing on Moving Targets</li>
-                  <li>Designing distributed training and evaluation pipelines using custom simulators (Isaac Sim, Gazebo) and PX4 Software-in-the-Loop (SITL)</li>
-                  <li>Executing reliable pipelines from raw sensor data to RL inference, with strict focus on edge-case handling and tactical execution</li>
+                  <li>Benchmarking RL algorithms against native hardware controllers and evaluating comparative performance metrics</li>
+                  <li>Utilizing Isaac Sim domain randomization and Gazebo with PX4 SITL to train RL models with high fidelity; building hard real-time ROS 2 control (ros2_control) and telemetry loops for autonomous flight</li>
                 </ul>
                 <div class="st-chips">
-                  <span>Python</span><span>C++</span><span>Deep RL</span><span>PX4 SITL</span><span>MAVLink</span><span>Docker</span>
+                  <span>Deep RL</span><span>Control Theory</span><span>PX4 SITL</span><span>MAVLink</span><span>MAVSDK</span><span>Python</span><span>C++</span><span>rosbag2</span><span>Docker</span>
                 </div>
               </div>
             </div>
@@ -427,12 +433,12 @@
               </div>
               <div class="st-body">
                 <ul class="st-highlights">
-                  <li>Engineered extensive test suites and macro-level benchmarks for Automated Driving (AD) stacks, improving operational reliability</li>
-                  <li>Supported development of a Python pipeline to parameterize and extract driving scenarios for state-of-the-art ADAS functions</li>
-                  <li>Proactively collaborated via asynchronous workflows (PRs, RFCs) to ensure robustness and adherence to safety standards</li>
+                  <li>Generated and optimized simulation-based scenarios in CARLA to evaluate and validate Automated Driving (AD) stacks</li>
+                  <li>Supported development of a Python pipeline and diagnostic tools to parameterize and extract driving scenarios for state-of-the-art ADAS functions</li>
+                  <li>Planned and evaluated simulation runs, implementing structured data logging for vehicle architecture evaluation</li>
                 </ul>
                 <div class="st-chips">
-                  <span>Python</span><span>AD Testing</span><span>ADAS</span><span>CI/CD</span>
+                  <span>Python</span><span>CARLA</span><span>AD Testing</span><span>ADAS</span><span>CI/CD</span>
                 </div>
               </div>
             </div>
@@ -456,12 +462,12 @@
               </div>
               <div class="st-body">
                 <ul class="st-highlights">
-                  <li>Built and integrated a real-time sensor fusion pipeline (Intel RealSense, LiDAR, Vision) for autonomous state estimation and navigation</li>
-                  <li>Developed robust ROS 2 plugins to handle bespoke hardware protocols and intermittent connectivity constraints</li>
-                  <li>Reduced system downtime by 15% by implementing failure-mode handling in dynamic trajectory planning algorithms</li>
+                  <li>Integrated a ROS 2 service-giveaway robot with Nav2, managing low-level hardware controllers, perception, and trajectory planning</li>
+                  <li>Built real-time perception pipeline using Intel RealSense and YOLO; triggered custom Nav2 behaviors and trajectories</li>
+                  <li>Developed low-level diagnostic tools and hard real-time C++ ROS 2 plugins, reducing system downtime by 15% through stable configuration</li>
                 </ul>
                 <div class="st-chips">
-                  <span>ROS 2</span><span>Sensor Fusion</span><span>RealSense</span><span>LiDAR</span>
+                  <span>ROS 2</span><span>Nav2</span><span>RealSense</span><span>YOLO</span><span>C++</span>
                 </div>
               </div>
             </div>
@@ -485,11 +491,11 @@
               </div>
               <div class="st-body">
                 <ul class="st-highlights">
-                  <li>Focused on tight hardware-software integration, deploying autonomous path planning behaviors on physical service robots</li>
-                  <li>Actively shared technical know-how in engineering huddles, reviewing code contributions to support continuous team improvement</li>
+                  <li>Focused on autonomous navigation on a Service Robot with ROS 2, Nav2, and RealSense; improved exploration and path planning</li>
+                  <li>Supported business pitches by mapping market opportunities where Akkodis' Software Embedded Solutions can drive cross-industry impact in industrial robotics</li>
                 </ul>
                 <div class="st-chips">
-                  <span>ROS 2</span><span>Path Planning</span><span>Hardware Integration</span>
+                  <span>ROS 2</span><span>Nav2</span><span>RealSense</span><span>Path Planning</span>
                 </div>
               </div>
             </div>
@@ -530,9 +536,9 @@
               <div class="st-head" role="button" tabindex="0">
                 <div class="st-meta">
                   <span class="st-badge" data-accent="amber">Education</span>
-                  <time class="st-date">Oct 2022 — Mar 2026</time>
+                  <time class="st-date">Oct 2022 — Present</time>
                 </div>
-                <h3 class="st-title">B.Eng. Autonomous Vehicle Engineering</h3>
+                <h3 class="st-title">Autonomous Vehicle Engineering / AI Engineering</h3>
                 <p class="st-org">
                   <img src="Logos/THI logo.png" alt="TH Ingolstadt" class="st-org-logo" />
                   Technische Hochschule Ingolstadt
@@ -541,12 +547,13 @@
               </div>
               <div class="st-body">
                 <ul class="st-highlights">
-                  <li>Focus: Robotics, Reinforcement Learning, Systems Engineering, Sensor Fusion, Digital Signal Processing</li>
-                  <li>Schanzer Formula Student Racing Team, Driverless Department</li>
+                  <li>M.Sc. AI Engineering of Autonomous Systems (Mar 2026 – Present)</li>
+                  <li>B.Eng. Autonomous Vehicle Engineering (Oct 2022 – Mar 2026)</li>
+                  <li>Focus: Robotics, Machine Learning, Signal Processing, Control Theory, Sensor Fusion</li>
                   <li>Winner, PAVE Europe 2025 Next Gen Challenge (Brussels)</li>
                 </ul>
                 <div class="st-chips">
-                  <span>Robotics</span><span>Reinforcement Learning</span><span>Sensor Fusion</span><span>DSP</span>
+                  <span>Robotics</span><span>Machine Learning</span><span>Control Theory</span><span>Sensor Fusion</span><span>DSP</span>
                 </div>
               </div>
             </div>
@@ -796,47 +803,56 @@
         
         <div class="skills-compact">
           <div class="skill-group">
-            <h3 class="skill-group-title"><i data-lucide="brain"></i> Machine Learning & AI</h3>
+            <h3 class="skill-group-title"><i data-lucide="cog"></i> Robotics</h3>
             <div class="skill-chips">
+              <div class="skill-chip"><span>ROS 2</span></div>
+              <div class="skill-chip"><span>Nav2</span></div>
               <div class="skill-chip"><span>Reinforcement Learning</span></div>
-              <div class="skill-chip"><span>PyTorch</span></div>
-              <div class="skill-chip"><span>Computer Vision</span></div>
-              <div class="skill-chip"><span>YOLO / OpenCV</span></div>
-              <div class="skill-chip"><span>Stable Baselines3</span></div>
-            </div>
-          </div>
-          
-          <div class="skill-group">
-            <h3 class="skill-group-title"><i data-lucide="cog"></i> Robotics & Autonomy</h3>
-            <div class="skill-chips">
-              <div class="skill-chip"><span>ROS2</span></div>
-              <div class="skill-chip"><span>PX4 / MAVLink</span></div>
-              <div class="skill-chip"><span>Sensor Fusion</span></div>
-              <div class="skill-chip"><span>SLAM & Nav2</span></div>
-              <div class="skill-chip"><span>MoveIt</span></div>
+              <div class="skill-chip"><span>Control Theory</span></div>
+              <div class="skill-chip"><span>CARLA</span></div>
+              <div class="skill-chip"><span>Isaac Sim</span></div>
             </div>
           </div>
           
           <div class="skill-group">
             <h3 class="skill-group-title"><i data-lucide="code-2"></i> Programming</h3>
             <div class="skill-chips">
+              <div class="skill-chip"><span>Modern C++ (Hard Real-Time)</span></div>
               <div class="skill-chip"><span>Python</span></div>
-              <div class="skill-chip"><span>C++</span></div>
-              <div class="skill-chip"><span>TypeScript</span></div>
               <div class="skill-chip"><span>Bash</span></div>
-              <div class="skill-chip"><span>Git</span></div>
+              <div class="skill-chip"><span>MATLAB</span></div>
             </div>
           </div>
           
           <div class="skill-group">
-            <h3 class="skill-group-title"><i data-lucide="box"></i> Simulation & Tools</h3>
+            <h3 class="skill-group-title"><i data-lucide="radio"></i> Protocols & Sensors</h3>
             <div class="skill-chips">
-              <div class="skill-chip"><span>Gazebo</span></div>
-              <div class="skill-chip"><span>Isaac Sim</span></div>
-              <div class="skill-chip"><span>Gymnasium</span></div>
+              <div class="skill-chip"><span>PX4</span></div>
+              <div class="skill-chip"><span>MAVLink</span></div>
+              <div class="skill-chip"><span>Intel RealSense</span></div>
+              <div class="skill-chip"><span>LiDAR</span></div>
+              <div class="skill-chip"><span>IMU</span></div>
+            </div>
+          </div>
+          
+          <div class="skill-group">
+            <h3 class="skill-group-title"><i data-lucide="box"></i> Tooling & OS</h3>
+            <div class="skill-chips">
               <div class="skill-chip"><span>Docker</span></div>
-              <div class="skill-chip"><span>Linux</span></div>
+              <div class="skill-chip"><span>Git</span></div>
               <div class="skill-chip"><span>CI/CD</span></div>
+              <div class="skill-chip"><span>JIRA</span></div>
+              <div class="skill-chip"><span>colcon</span></div>
+              <div class="skill-chip"><span>Ubuntu Linux</span></div>
+            </div>
+          </div>
+          
+          <div class="skill-group">
+            <h3 class="skill-group-title"><i data-lucide="cpu"></i> Hardware</h3>
+            <div class="skill-chips">
+              <div class="skill-chip"><span>NVIDIA JETSON</span></div>
+              <div class="skill-chip"><span>Raspberry Pi</span></div>
+              <div class="skill-chip"><span>Pixhawk / PX4</span></div>
             </div>
           </div>
         </div>
@@ -1560,5 +1576,6 @@
 
   <!-- Custom JS -->
   <script src="js/script.js"></script>
+  <script src="js/webgl-scene.js"></script>
 </body>
 </html>
