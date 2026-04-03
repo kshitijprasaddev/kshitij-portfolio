@@ -15,7 +15,7 @@ export default function Trophy() {
   });
 
   return (
-    <group position={[-5.5, 4.85, -3]}>
+    <group position={[-5.5, 4.3, -4]}>
       <Hotspot id="trophy" yOffset={1.2}>
         {/* Base */}
         <mesh position={[0, 0, 0]} castShadow>

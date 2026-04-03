@@ -1,6 +1,6 @@
 export default function DeskLamp() {
   return (
-    <group position={[-1.6, 1.56, -2.8]}>
+    <group position={[-1.6, 1.6, -3]}>
       {/* Base — dark metallic */}
       <mesh position={[0, 0.05, 0]} castShadow>
         <cylinderGeometry args={[0.15, 0.18, 0.08, 16]} />

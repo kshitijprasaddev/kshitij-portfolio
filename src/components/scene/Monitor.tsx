@@ -17,7 +17,7 @@ export default function Monitor() {
   });
 
   return (
-    <group position={[0, 1.56, -2.3]}>
+    <group position={[0, 1.6, -2.5]}>
       {/* Screen bezel — reflective dark */}
       <mesh position={[0, 1, 0]} castShadow>
         <RoundedBox args={[1.8, 1.1, 0.08]} radius={0.02} smoothness={4}>

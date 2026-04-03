@@ -1,16 +1,32 @@
-import { MeshReflectorMaterial } from "@react-three/drei";
+import { MeshReflectorMaterial, useTexture } from "@react-three/drei";
+import { RepeatWrapping } from "three";
 import { COLORS } from "@/lib/constants";
 
 export default function RoomShell() {
+  const [diffMap, normalMap, roughMap, aoMap] = useTexture([
+    "/textures/concrete_floor_03_diff_1k.jpg",
+    "/textures/concrete_floor_03_nor_gl_1k.jpg",
+    "/textures/concrete_floor_03_rough_1k.jpg",
+    "/textures/concrete_floor_03_ao_1k.jpg",
+  ]);
+
+  [diffMap, normalMap, roughMap, aoMap].forEach((tex) => {
+    tex.wrapS = tex.wrapT = RepeatWrapping;
+    tex.repeat.set(6, 6);
+  });
+
   return (
     <group>
-      {/* Reflective floor — polished dark concrete */}
+      {/* PBR textured floor with reflections */}
       <mesh rotation-x={-Math.PI / 2} position={[0, 0, 0]} receiveShadow>
         <planeGeometry args={[14, 14]} />
         <MeshReflectorMaterial
-          color="#1a1814"
+          map={diffMap}
+          normalMap={normalMap}
+          roughnessMap={roughMap}
+          aoMap={aoMap}
           blur={[300, 100]}
-          mirror={0.35}
+          mirror={0.25}
           mixBlur={1}
           roughness={0.8}
           resolution={1024}

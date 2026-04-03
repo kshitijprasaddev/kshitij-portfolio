@@ -1,7 +1,6 @@
 import { useRef, useState, ReactNode } from "react";
 import { Group } from "three";
 import { useFrame } from "@react-three/fiber";
-import { Outlines } from "@react-three/drei";
 import { useRoomStore } from "@/hooks/useRoomStore";
 import type { HotspotId } from "@/types";
 

@@ -3,7 +3,7 @@ import Hotspot from "./Hotspot";
 
 export default function PhotoFrame() {
   return (
-    <group position={[1.5, 1.56, -2.6]}>
+    <group position={[1.5, 1.6, -2.8]}>
       <Hotspot id="photoframe" yOffset={1}>
         {/* Frame border — walnut with clearcoat */}
         <mesh position={[0, 0.45, 0]} castShadow>

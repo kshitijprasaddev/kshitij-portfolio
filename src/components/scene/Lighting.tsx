@@ -69,8 +69,8 @@ export default function Lighting() {
         decay={2}
       />
 
-      {/* Environment map for realistic reflections — moody city */}
-      <Environment preset="city" />
+      {/* Environment map for realistic reflections — studio HDR */}
+      <Environment files="/hdri/studio_small_09_1k.hdr" />
     </>
   );
 }

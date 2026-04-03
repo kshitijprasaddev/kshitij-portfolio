@@ -1,51 +1,28 @@
-import { useRef } from "react";
-import { Group } from "three";
-import { RoundedBox } from "@react-three/drei";
-import { COLORS } from "@/lib/constants";
-import { useRoomStore } from "@/hooks/useRoomStore";
+import { useEffect } from "react";
+import { useGLTF } from "@react-three/drei";
 import Hotspot from "./Hotspot";
 
+const MODEL = "/models/metal_office_desk/metal_office_desk_1k.gltf";
+
 export default function Desk() {
-  const ref = useRef<Group>(null);
+  const { scene } = useGLTF(MODEL);
+
+  useEffect(() => {
+    scene.traverse((child: any) => {
+      if (child.isMesh) {
+        child.castShadow = true;
+        child.receiveShadow = true;
+      }
+    });
+  }, [scene]);
 
   return (
-    <group ref={ref} position={[0, 0, -2]}>
-      {/* Tabletop — clearcoat lacquered wood */}
+    <group position={[0, 0, -2.2]}>
       <Hotspot id="monitor" yOffset={2.2}>
-        <mesh position={[0, 1.5, 0]} castShadow receiveShadow>
-          <RoundedBox args={[4, 0.12, 2]} radius={0.02} smoothness={4}>
-            <meshPhysicalMaterial
-              color={COLORS.deskTop}
-              roughness={0.45}
-              clearcoat={0.3}
-              clearcoatRoughness={0.2}
-            />
-          </RoundedBox>
-        </mesh>
+        <primitive object={scene} scale={0.002} />
       </Hotspot>
-
-      {/* Legs — brushed metal */}
-      {[
-        [-1.8, 0.75, -0.8],
-        [1.8, 0.75, -0.8],
-        [-1.8, 0.75, 0.8],
-        [1.8, 0.75, 0.8],
-      ].map((pos, i) => (
-        <mesh key={i} position={pos as [number, number, number]} castShadow>
-          <cylinderGeometry args={[0.06, 0.06, 1.5, 16]} />
-          <meshPhysicalMaterial
-            color={COLORS.desk}
-            roughness={0.5}
-            metalness={0.3}
-          />
-        </mesh>
-      ))}
-
-      {/* Crossbar front */}
-      <mesh position={[0, 0.3, 0.8]}>
-        <boxGeometry args={[3.6, 0.06, 0.06]} />
-        <meshPhysicalMaterial color={COLORS.desk} roughness={0.5} metalness={0.3} />
-      </mesh>
     </group>
   );
 }
+
+useGLTF.preload(MODEL);

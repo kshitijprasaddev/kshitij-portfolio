@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { ContactShadows } from "@react-three/drei";
 import RoomShell from "./RoomShell";
 import Desk from "./Desk";
@@ -17,6 +18,7 @@ import LightRays from "./LightRays";
 export default function Room() {
   return (
     <group>
+      <Suspense fallback={null}>
       <RoomShell />
       <Desk />
       <Monitor />
@@ -31,6 +33,7 @@ export default function Room() {
       <DeskLamp />
       <Particles />
       <LightRays />
+      </Suspense>
 
       {/* Soft contact shadows grounding all objects */}
       <ContactShadows

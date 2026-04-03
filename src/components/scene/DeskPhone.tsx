@@ -3,7 +3,7 @@ import Hotspot from "./Hotspot";
 
 export default function DeskPhone() {
   return (
-    <group position={[-1.5, 1.56, -2]}>
+    <group position={[-1.3, 1.6, -2.2]}>
       <Hotspot id="phone" yOffset={0.8}>
         {/* Phone base */}
         <mesh position={[0, 0.08, 0]} castShadow>
