@@ -12,6 +12,8 @@ import Trophy from "./Trophy";
 import Window from "./Window";
 import Chair from "./Chair";
 import DeskLamp from "./DeskLamp";
+import DeskProps from "./DeskProps";
+import RoomDecor from "./RoomDecor";
 import Particles from "./Particles";
 import LightRays from "./LightRays";
 
@@ -31,6 +33,8 @@ export default function Room() {
       <Window />
       <Chair />
       <DeskLamp />
+      <DeskProps />
+      <RoomDecor />
       <Particles />
       <LightRays />
       </Suspense>

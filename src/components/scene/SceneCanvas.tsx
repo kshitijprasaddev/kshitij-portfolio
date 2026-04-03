@@ -35,7 +35,7 @@ export default function SceneCanvas() {
         antialias: true,
         alpha: false,
         toneMapping: ACESFilmicToneMapping,
-        toneMappingExposure: 1.1,
+        toneMappingExposure: 1.5,
       }}
       style={{ background: "#0a0a0a" }}
     >
@@ -50,17 +50,17 @@ export default function SceneCanvas() {
       <EffectComposer multisampling={4}>
         <N8AO
           aoRadius={0.5}
-          intensity={2}
+          intensity={1}
           distanceFalloff={0.5}
         />
         <Bloom
-          luminanceThreshold={0.8}
+          luminanceThreshold={1.0}
           luminanceSmoothing={0.4}
-          intensity={0.5}
+          intensity={0.4}
           mipmapBlur
         />
-        <Noise opacity={0.015} />
-        <Vignette offset={0.3} darkness={0.6} />
+        <Noise opacity={0.012} />
+        <Vignette offset={0.3} darkness={0.3} />
       </EffectComposer>
     </Canvas>
   );

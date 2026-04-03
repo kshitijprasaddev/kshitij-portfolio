@@ -6,13 +6,13 @@ export default function Lighting() {
     <>
       <SoftShadows size={25} samples={16} focus={0} />
 
-      {/* Reduced ambient for dramatic contrast */}
-      <ambientLight intensity={0.15} />
+      {/* Ambient for overall visibility */}
+      <ambientLight intensity={0.5} />
 
       {/* Main directional (sun from window) — high-res shadows */}
       <directionalLight
         position={[2, 8, -4]}
-        intensity={1.4}
+        intensity={2.2}
         castShadow
         shadow-mapSize-width={4096}
         shadow-mapSize-height={4096}
@@ -28,8 +28,15 @@ export default function Lighting() {
       {/* Fill light from right side — cool blue */}
       <directionalLight
         position={[6, 4, 3]}
-        intensity={0.25}
+        intensity={0.6}
         color="#d0d8ff"
+      />
+
+      {/* Front fill for model visibility */}
+      <directionalLight
+        position={[-3, 5, 6]}
+        intensity={0.4}
+        color="#e8e0f0"
       />
 
       {/* Rect area light above desk — warm bounce */}
@@ -38,7 +45,7 @@ export default function Lighting() {
         rotation={[-Math.PI / 2, 0, 0]}
         width={4}
         height={3}
-        intensity={0.6}
+        intensity={1.5}
         color="#ffe8c0"
       />
 
@@ -69,8 +76,8 @@ export default function Lighting() {
         decay={2}
       />
 
-      {/* Environment map for realistic reflections — studio HDR */}
-      <Environment files="/hdri/studio_small_09_1k.hdr" />
+      {/* Environment map for realistic reflections */}
+      <Environment preset="apartment" />
     </>
   );
 }
