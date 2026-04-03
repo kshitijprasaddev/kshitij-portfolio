@@ -3781,6 +3781,171 @@ header {
   color: var(--primary);
 }
 
+/* ═══════════════════════════════════════════════════════════
+   INTERACTIONS — Portal Ripple, Deep-Dive, Cursor, Skill Float
+   ═══════════════════════════════════════════════════════════ */
+
+/* Ripple portal canvas */
+#ripple-canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* Deep-dive overlay */
+.deep-dive-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0);
+  backdrop-filter: blur(0px);
+  z-index: 9990;
+  pointer-events: none;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0, 1);
+}
+.deep-dive-overlay.active {
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(12px);
+}
+
+/* Deep-dive clone cards */
+.deep-dive-clone {
+  box-shadow: 0 0 80px rgba(132, 204, 22, 0.15);
+}
+
+/* Custom cursor */
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99999;
+  pointer-events: none;
+  mix-blend-mode: difference;
+}
+.cursor-dot {
+  position: fixed;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #84cc16;
+  top: -3px;
+  left: -3px;
+  z-index: 99999;
+  pointer-events: none;
+  transition: width 0.2s, height 0.2s, top 0.2s, left 0.2s;
+}
+.cursor-dot.cursor-hover {
+  width: 10px;
+  height: 10px;
+  top: -5px;
+  left: -5px;
+  background: #a3e635;
+}
+.cursor-ring {
+  position: fixed;
+  width: 36px;
+  height: 36px;
+  border: 1.5px solid rgba(132, 204, 22, 0.4);
+  border-radius: 50%;
+  top: -18px;
+  left: -18px;
+  z-index: 99998;
+  pointer-events: none;
+  transition: width 0.3s cubic-bezier(0.4,0,0,1), height 0.3s cubic-bezier(0.4,0,0,1), top 0.3s cubic-bezier(0.4,0,0,1), left 0.3s cubic-bezier(0.4,0,0,1), border-color 0.3s;
+}
+.cursor-ring.cursor-hover {
+  width: 56px;
+  height: 56px;
+  top: -28px;
+  left: -28px;
+  border-color: rgba(132, 204, 22, 0.7);
+}
+
+/* Skill chip float animation */
+@keyframes skillFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+.skill-float {
+  animation: skillFloat 3s ease-in-out infinite;
+}
+.skill-chip {
+  transition: box-shadow 0.3s ease, transform 0.3s ease, background 0.3s ease;
+}
+.skill-chip:hover {
+  box-shadow: 0 0 20px rgba(132, 204, 22, 0.25), 0 0 4px rgba(132, 204, 22, 0.15);
+  transform: translateY(-3px) scale(1.05) !important;
+  background: rgba(132, 204, 22, 0.12);
+}
+
+/* Section zoom transition — handled by GSAP, but ensure transform-origin */
+.section {
+  transform-origin: center top;
+  will-change: transform, opacity;
+}
+
+/* Glass card 3D tilt — perspective container */
+.glass-card,
+.featured-project {
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+/* Experience timeline body items — stagger reveal (JS sets initial state) */
+.st-body .st-highlights li,
+.st-body .st-chips span {
+  will-change: opacity, transform;
+}
+
+/* Project card overlay — enhanced hover state */
+.project-card {
+  cursor: pointer;
+  transform-style: preserve-3d;
+}
+.project-card .project-overlay {
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  transform: translateY(8px);
+}
+.project-card:hover .project-overlay {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Preloader percent text */
+.preloader-text {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Hide custom cursor on mobile/touch */
+@media (pointer: coarse) {
+  .custom-cursor,
+  .cursor-dot,
+  .cursor-ring {
+    display: none !important;
+  }
+}
+
+/* Light theme adjustments */
+[data-theme="light"] .cursor-dot {
+  background: #4d7c0f;
+}
+[data-theme="light"] .cursor-ring {
+  border-color: rgba(77, 124, 15, 0.4);
+}
+[data-theme="light"] .cursor-ring.cursor-hover {
+  border-color: rgba(77, 124, 15, 0.7);
+}
+[data-theme="light"] .deep-dive-overlay.active {
+  background: rgba(255, 255, 255, 0.5);
+}
+[data-theme="light"] .skill-chip:hover {
+  box-shadow: 0 0 20px rgba(77, 124, 15, 0.2), 0 0 4px rgba(77, 124, 15, 0.1);
+  background: rgba(77, 124, 15, 0.08);
+}
+
 /* ===== Thesis Section Styles ===== */
 .thesis-layout {
   grid-template-columns: 1fr !important;

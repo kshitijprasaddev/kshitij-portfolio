@@ -589,23 +589,10 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     });
 
-    // Project cards stagger - professional reveal
+    // Project cards — handled by interactions.js with 3D rotate reveal
     const projectCardsGSAP = document.querySelectorAll(".project-card");
     if (projectCardsGSAP.length > 0) {
       gsap.set(projectCardsGSAP, { opacity: 1 });
-      
-      gsap.from(projectCardsGSAP, {
-        y: 80,
-        opacity: 0,
-        duration: 0.8,
-        stagger: 0.15,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: ".projects-grid",
-          start: "top 85%",
-          toggleActions: "play none none none",
-        },
-      });
     }
     
     // Skill categories animation
@@ -631,37 +618,9 @@ document.addEventListener("DOMContentLoaded", function () {
       gsap.set(icons, { scale: 1, opacity: 1 });
     });
 
-    // Contact cards wave animation
-    gsap.utils.toArray(".contact-card").forEach((card, index) => {
-      gsap.from(card, {
-        x: -50,
-        opacity: 0,
-        duration: 0.6,
-        delay: index * 0.1,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: card,
-          start: "top 90%",
-          toggleActions: "play none none none",
-        },
-      });
-    });
+    // Contact cards — handled by interactions.js with directional slide-in
 
-    // Parallax effect for sections
-    gsap.utils.toArray(".section").forEach(section => {
-      const bg = section.querySelector('.section-header');
-      if (bg) {
-        gsap.to(bg, {
-          y: -30,
-          scrollTrigger: {
-            trigger: section,
-            start: "top bottom",
-            end: "bottom top",
-            scrub: 1,
-          },
-        });
-      }
-    });
+    // Section parallax — handled by interactions.js with zoom reveal
   }
 
   // ===== Modal Functionality =====
