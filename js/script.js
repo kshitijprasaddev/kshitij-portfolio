@@ -12,9 +12,8 @@ function openPdfViewer(pdfUrl, title) {
   
   if (!modal || !frame) return;
   
-  // Build absolute URL for Google Docs Viewer
-  const fullUrl = window.location.origin + '/' + pdfUrl;
-  frame.src = 'https://docs.google.com/gview?url=' + encodeURIComponent(fullUrl) + '&embedded=true';
+  // Use direct PDF URL — modern browsers render PDFs natively in iframes
+  frame.src = pdfUrl;
   
   if (titleEl) titleEl.textContent = title || 'Document';
   if (downloadBtn) {
@@ -116,6 +115,10 @@ document.addEventListener("DOMContentLoaded", function () {
       document.body.style.overflow = "";
       initAnimations();
       initAdvancedEffects();
+      // Recalculate ScrollTrigger positions after preloader is gone and layout settles
+      if (typeof ScrollTrigger !== 'undefined') {
+        setTimeout(() => ScrollTrigger.refresh(), 150);
+      }
     }, 1500);
   });
 
@@ -126,6 +129,9 @@ document.addEventListener("DOMContentLoaded", function () {
       document.body.style.overflow = "";
       initAnimations();
       initAdvancedEffects();
+      if (typeof ScrollTrigger !== 'undefined') {
+        setTimeout(() => ScrollTrigger.refresh(), 150);
+      }
     }
   }, 4000);
 

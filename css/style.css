@@ -1391,6 +1391,11 @@ header {
   transition: transform var(--transition-slow);
 }
 
+/* Panel discussion: Kshitij is on the right side of the frame */
+.gallery-side .gallery-image:first-child img {
+  object-position: 75% center;
+}
+
 .gallery-image:hover img {
   transform: scale(1.05);
 }
