@@ -12,8 +12,10 @@ function openPdfViewer(pdfUrl, title) {
   
   if (!modal || !frame) return;
   
-  // Use direct PDF URL — modern browsers render PDFs natively in iframes
-  frame.src = pdfUrl;
+  // Build absolute URL — use Google Docs Viewer for reliable cross-browser PDF rendering
+  const base = window.location.origin + window.location.pathname.replace(/\/[^\/]*$/, '/');
+  const fullUrl = new URL(pdfUrl, base).href;
+  frame.src = 'https://docs.google.com/gview?url=' + encodeURIComponent(fullUrl) + '&embedded=true';
   
   if (titleEl) titleEl.textContent = title || 'Document';
   if (downloadBtn) {
@@ -519,14 +521,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Section headers - elegant fade in
     gsap.utils.toArray(".section-header").forEach((header) => {
-      gsap.from(header, {
+      gsap.fromTo(header, {
         y: 40,
         opacity: 0,
+      }, {
+        y: 0,
+        opacity: 1,
         duration: 1,
         ease: "power3.out",
         scrollTrigger: {
           trigger: header,
-          start: "top 85%",
+          start: "top 95%",
           toggleActions: "play none none none",
         },
       });
@@ -535,15 +540,18 @@ document.addEventListener("DOMContentLoaded", function () {
     // Experience cards - cascade handled by CSS IntersectionObserver
     // Only animate non-cascade experience cards (legacy support)
     gsap.utils.toArray(".experience-card:not(.cascade-item)").forEach((card, index) => {
-      gsap.from(card, {
+      gsap.fromTo(card, {
         y: 60,
         opacity: 0,
+      }, {
+        y: 0,
+        opacity: 1,
         duration: 0.8,
         delay: index * 0.1,
         ease: "power3.out",
         scrollTrigger: {
           trigger: card,
-          start: "top 90%",
+          start: "top 95%",
           toggleActions: "play none none none",
         },
       });
@@ -551,29 +559,35 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Company logos in experience cards - subtle pop in
     gsap.utils.toArray(".company-logo").forEach((logo) => {
-      gsap.from(logo, {
+      gsap.fromTo(logo, {
         scale: 0.5,
         opacity: 0,
+      }, {
+        scale: 1,
+        opacity: 1,
         duration: 0.6,
         delay: 0.2,
         ease: "back.out(2)",
         scrollTrigger: {
           trigger: logo,
-          start: "top 90%",
+          start: "top 95%",
           toggleActions: "play none none none",
         },
       });
     });
 
     // Logo marquee items - cascade fade in
-    gsap.from(".logos-section", {
+    gsap.fromTo(".logos-section", {
       opacity: 0,
       y: 40,
+    }, {
+      opacity: 1,
+      y: 0,
       duration: 1.2,
       ease: "power3.out",
       scrollTrigger: {
         trigger: ".logos-section",
-        start: "top 95%",
+        start: "top 99%",
         toggleActions: "play none none none",
       },
     });
@@ -581,9 +595,12 @@ document.addEventListener("DOMContentLoaded", function () {
     // Story Timeline entries — staggered slide-up
     const stEntries = document.querySelectorAll('.st-entry');
     stEntries.forEach((entry, i) => {
-      gsap.from(entry, {
+      gsap.fromTo(entry, {
         y: 30,
         opacity: 0,
+      }, {
+        y: 0,
+        opacity: 1,
         duration: 0.6,
         delay: i * 0.08,
         ease: 'power3.out',
@@ -603,15 +620,18 @@ document.addEventListener("DOMContentLoaded", function () {
     
     // Skill categories animation
     gsap.utils.toArray(".skill-category").forEach((category, index) => {
-      gsap.from(category, {
+      gsap.fromTo(category, {
         y: 50,
         opacity: 0,
+      }, {
+        y: 0,
+        opacity: 1,
         duration: 0.7,
         delay: index * 0.15,
         ease: "power3.out",
         scrollTrigger: {
           trigger: category,
-          start: "top 90%",
+          start: "top 95%",
           toggleActions: "play none none none",
         },
       });

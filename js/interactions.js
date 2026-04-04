@@ -184,12 +184,13 @@
   if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
     gsap.registerPlugin(ScrollTrigger);
 
-    // Section zoom-in on scroll
+    // Section zoom-in on scroll — use toggleActions instead of scrub
+    // so sections are fully visible once triggered (fixes first-load blank sections)
     gsap.utils.toArray('.section').forEach(function (section) {
       gsap.fromTo(section, {
-        scale: 0.94,
-        opacity: 0.4,
-        y: 60
+        scale: 0.96,
+        opacity: 0,
+        y: 40
       }, {
         scale: 1,
         opacity: 1,
@@ -198,9 +199,8 @@
         ease: 'power3.out',
         scrollTrigger: {
           trigger: section,
-          start: 'top 92%',
-          end: 'top 40%',
-          scrub: 0.5
+          start: 'top 95%',
+          toggleActions: 'play none none none'
         }
       });
     });
@@ -208,26 +208,32 @@
     // Featured achievement parallax layers
     const achieveGallery = document.querySelector('.achievement-gallery');
     if (achieveGallery) {
-      gsap.from('.gallery-main', {
+      gsap.fromTo('.gallery-main', {
         scale: 0.8,
-        opacity: 0,
+        opacity: 0
+      }, {
+        scale: 1,
+        opacity: 1,
         duration: 1.2,
         ease: 'power3.out',
         scrollTrigger: {
           trigger: achieveGallery,
-          start: 'top 80%',
+          start: 'top 95%',
           toggleActions: 'play none none none'
         }
       });
-      gsap.from('.gallery-side .gallery-image', {
+      gsap.fromTo('.gallery-side .gallery-image', {
         x: 80,
-        opacity: 0,
+        opacity: 0
+      }, {
+        x: 0,
+        opacity: 1,
         stagger: 0.2,
         duration: 0.9,
         ease: 'power3.out',
         scrollTrigger: {
           trigger: achieveGallery,
-          start: 'top 75%',
+          start: 'top 95%',
           toggleActions: 'play none none none'
         }
       });
