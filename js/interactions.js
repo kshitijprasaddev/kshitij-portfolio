@@ -72,67 +72,9 @@
 
   /* ═══════════════════════════════════════════════════
      2. DEEP-DIVE PROJECT CARD EXPANSION
-     Full-screen morph when clicking a project card
+     Disabled — blur overlay was making content hard to read
      ═══════════════════════════════════════════════════ */
-  const deepDiveOverlay = document.createElement('div');
-  deepDiveOverlay.className = 'deep-dive-overlay';
-  document.body.appendChild(deepDiveOverlay);
-
-  document.querySelectorAll('.project-card').forEach(function (card) {
-    card.addEventListener('click', function (e) {
-      // The existing modal system handles the content;
-      // we add a visual "morph" effect on top
-
-      const rect = card.getBoundingClientRect();
-      const clone = card.cloneNode(true);
-      clone.className = 'deep-dive-clone';
-      clone.style.cssText = [
-        'position:fixed',
-        'top:' + rect.top + 'px',
-        'left:' + rect.left + 'px',
-        'width:' + rect.width + 'px',
-        'height:' + rect.height + 'px',
-        'z-index:9998',
-        'pointer-events:none',
-        'transition: all 0.55s cubic-bezier(0.4,0,0,1)',
-        'border-radius:14px',
-        'overflow:hidden'
-      ].join(';');
-
-      document.body.appendChild(clone);
-
-      // Trigger reflow then animate
-      clone.offsetHeight;
-      clone.style.top = '0';
-      clone.style.left = '0';
-      clone.style.width = '100vw';
-      clone.style.height = '100vh';
-      clone.style.borderRadius = '0';
-      clone.style.opacity = '0';
-
-      // Blur background
-      deepDiveOverlay.classList.add('active');
-
-      setTimeout(function () {
-        if (clone.parentNode) clone.parentNode.removeChild(clone);
-      }, 600);
-    });
-  });
-
-  // Remove overlay when modal closes
-  const observer = new MutationObserver(function (mutations) {
-    mutations.forEach(function (m) {
-      if (m.type === 'attributes' && m.attributeName === 'class') {
-        const target = m.target;
-        if (target.classList.contains('modal') && !target.classList.contains('show')) {
-          deepDiveOverlay.classList.remove('active');
-        }
-      }
-    });
-  });
-  document.querySelectorAll('.modal').forEach(function (modal) {
-    observer.observe(modal, { attributes: true });
-  });
+  // Deep-dive morph effect removed for cleaner UX
 
   /* ═══════════════════════════════════════════════════
      3. EXPERIENCE TIMELINE — PROGRESSIVE DISCLOSURE
@@ -453,22 +395,9 @@
 
   /* ═══════════════════════════════════════════════════
      8. PARALLAX TILT ON GLASS CARDS (mouse hover)
+     Disabled — was causing readability issues
      ═══════════════════════════════════════════════════ */
-  if (!isMobile) {
-    document.querySelectorAll('.glass-card, .featured-project').forEach(function (card) {
-      card.addEventListener('mousemove', function (e) {
-        const rect = card.getBoundingClientRect();
-        const x = (e.clientX - rect.left) / rect.width - 0.5;
-        const y = (e.clientY - rect.top) / rect.height - 0.5;
-        card.style.transform = 'perspective(800px) rotateY(' + (x * 6) + 'deg) rotateX(' + (-y * 6) + 'deg) scale(1.01)';
-        card.style.transition = 'transform 0.1s ease';
-      });
-      card.addEventListener('mouseleave', function () {
-        card.style.transform = '';
-        card.style.transition = 'transform 0.5s ease';
-      });
-    });
-  }
+  // Tilt effect removed for cleaner UX
 
   /* ═══════════════════════════════════════════════════
      9. PRELOADER ENHANCEMENT — count + reveal

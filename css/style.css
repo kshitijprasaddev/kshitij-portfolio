@@ -1366,6 +1366,11 @@ header {
   gap: 1.5rem;
 }
 
+.gallery-side .gallery-image {
+  flex: 1;
+  min-height: 0;
+}
+
 .gallery-image {
   position: relative;
   border-radius: var(--radius-lg);
@@ -3795,24 +3800,17 @@ header {
   transition: opacity 0.3s ease;
 }
 
-/* Deep-dive overlay */
+/* Deep-dive overlay — disabled for readability */
 .deep-dive-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0);
-  backdrop-filter: blur(0px);
-  z-index: 9990;
-  pointer-events: none;
-  transition: all 0.5s cubic-bezier(0.4, 0, 0, 1);
+  display: none;
 }
 .deep-dive-overlay.active {
-  background: rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(12px);
+  display: none;
 }
 
-/* Deep-dive clone cards */
+/* Deep-dive clone cards — disabled */
 .deep-dive-clone {
-  box-shadow: 0 0 80px rgba(132, 204, 22, 0.15);
+  display: none;
 }
 
 /* Custom cursor */
