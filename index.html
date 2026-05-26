@@ -622,168 +622,31 @@
           </div>
         </div>
         
-        <!-- Project Grid -->
-        <div class="projects-grid">
-          <!-- AV Orchestrator -->
-          <div class="project-card glass-card" data-project-id="av-orchestrator" data-aos="fade-up">
-            <div class="project-badge live">Live Demo</div>
-            <div class="project-image">
-              <img src="media/av_orchestrator_map.jpg" alt="AV Orchestrator">
-              <div class="project-overlay">
-                <span>View Project</span>
-                <i data-lucide="arrow-up-right"></i>
-              </div>
+        <!-- Projects WebGL Showcase -->
+        <div id="projects-showcase">
+          <canvas id="proj-canvas"></canvas>
+
+          <!-- Bottom info overlay -->
+          <div id="proj-info">
+            <div class="proj-counter">
+              <span id="proj-current">01</span><span class="proj-sep"> / </span><span id="proj-total">07</span>
             </div>
-            <div class="project-content">
-              <h3>Autonomous Mobility Orchestrator</h3>
-              <p>Won 1st place at PAVE Europe 2025. RL-based fleet optimizer for city-wide autonomous mobility.</p>
-              <div class="project-tags">
-                <span>PPO</span>
-                <span>Next.js</span>
-                <span>TomTom API</span>
-              </div>
-            </div>
+            <h3 id="proj-title"></h3>
+            <p id="proj-desc"></p>
+            <div id="proj-tags"></div>
+            <button id="proj-view" class="btn btn-primary">View Details</button>
           </div>
-          
-          <!-- Schanzer Racing -->
-          <div class="project-card glass-card" data-project-id="project1" data-aos="fade-up" data-aos-delay="100">
-            <div class="project-image">
-              <img src="media/schanzer_logo.png" alt="Schanzer Racing">
-              <div class="project-overlay">
-                <span>View Project</span>
-                <i data-lucide="arrow-up-right"></i>
-              </div>
-            </div>
-            <div class="project-content">
-              <h3>Schanzer Racing Electric</h3>
-              <p>Driverless department: LiDAR perception, embedded control on NVIDIA Jetson</p>
-              <div class="project-tags">
-                <span>LiDAR</span>
-                <span>ROS2</span>
-                <span>Autonomy</span>
-              </div>
-            </div>
-          </div>
-          
-          <!-- Akkodis -->
-          <div class="project-card glass-card" data-project-id="akkodis" data-aos="fade-up" data-aos-delay="200">
-            <div class="project-image">
-              <img src="media/akkodis_logo.jpg" alt="Akkodis">
-              <div class="project-overlay">
-                <span>View Project</span>
-                <i data-lucide="arrow-up-right"></i>
-              </div>
-            </div>
-            <div class="project-content">
-              <h3>Akkodis Service Robot</h3>
-              <p>TurtleBot3 + RealSense + YOLO. It finds things and picks them up.</p>
-              <div class="project-tags">
-                <span>ROS2</span>
-                <span>YOLO</span>
-                <span>RealSense</span>
-              </div>
-            </div>
-          </div>
-          
-          <!-- Pixhawk -->
-          <div class="project-card glass-card" data-project-id="pixhawk" data-aos="fade-up" data-aos-delay="300">
-            <div class="project-image">
-              <img src="media/pixhawk_drone.jpg" alt="Pixhawk Drone">
-              <div class="project-overlay">
-                <span>View Project</span>
-                <i data-lucide="arrow-up-right"></i>
-              </div>
-            </div>
-            <div class="project-content">
-              <h3>Pixhawk Drone Platform</h3>
-              <p>Custom-built for my thesis. PX4 flight controller, real-world RL testing.</p>
-              <div class="project-tags">
-                <span>PX4</span>
-                <span>Pixhawk</span>
-                <span>UAV</span>
-              </div>
-            </div>
-          </div>
-          
-          <!-- Campus Help -->
-          <div class="project-card glass-card" data-project-id="campus-help" data-aos="fade-up" data-aos-delay="350">
-            <div class="project-image">
-              <img src="Logos/THI logo.png" alt="Campus Help">
-              <div class="project-overlay">
-                <span>View Project</span>
-                <i data-lucide="arrow-up-right"></i>
-              </div>
-            </div>
-            <div class="project-content">
-              <h3>Campus Help</h3>
-              <p>THI had no good way for students to find tutors. So I built one.</p>
-              <div class="project-tags">
-                <span>Next.js</span>
-                <span>Supabase</span>
-                <span>TypeScript</span>
-              </div>
-            </div>
-          </div>
-          
-          <!-- Pixel Park -->
-          <div class="project-card glass-card" data-project-id="project2" data-aos="fade-up" data-aos-delay="400">
-            <div class="project-image">
-              <img src="media/pixelpark_logo.png" alt="Pixel Park">
-              <div class="project-overlay">
-                <span>View Project</span>
-                <i data-lucide="arrow-up-right"></i>
-              </div>
-            </div>
-            <div class="project-content">
-              <h3>Pixel Park</h3>
-              <p>24-hour hackathon. LiDAR-based parking detection, built overnight.</p>
-              <div class="project-tags">
-                <span>LiDAR</span>
-                <span>Python</span>
-                <span>Hackathon</span>
-              </div>
-            </div>
-          </div>
-          
-          <!-- VR Accident Reconstruction -->
-          <div class="project-card glass-card" data-project-id="vr-dekra" data-aos="fade-up" data-aos-delay="450">
-            <div class="project-image">
-              <img src="DEKRA/vr-dekra-1.jpg" alt="VR Accident Reconstruction">
-              <div class="project-overlay">
-                <span>View Project</span>
-                <i data-lucide="arrow-up-right"></i>
-              </div>
-            </div>
-            <div class="project-content">
-              <h3>VR Accident Reconstruction</h3>
-              <p>3D laser scans + dashcam footage → forensic VR reconstruction for DEKRA</p>
-              <div class="project-tags">
-                <span>IPG CarMaker</span>
-                <span>CARLA</span>
-                <span>VR</span>
-              </div>
-            </div>
-          </div>
-          
-          <!-- Airbus Fly Your Ideas -->
-          <div class="project-card glass-card" data-project-id="airbus-fyi" data-aos="fade-up" data-aos-delay="500">
-            <div class="project-image">
-              <img src="Logos/airbus fly your ideas.jpg" alt="Airbus Fly Your Ideas">
-              <div class="project-overlay">
-                <span>View Details</span>
-                <i data-lucide="arrow-up-right"></i>
-              </div>
-            </div>
-            <div class="project-content">
-              <h3>Airbus Fly Your Ideas</h3>
-              <p>Global aerospace challenge by Airbus & UNESCO. Team entry, currently in progress.</p>
-              <div class="project-tags">
-                <span>Aerospace</span>
-                <span>Innovation</span>
-                <span>Airbus</span>
-              </div>
-            </div>
-          </div>
+
+          <!-- Side navigation -->
+          <nav id="proj-nav" aria-label="Project navigation">
+            <button id="proj-prev" aria-label="Previous project">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+            </button>
+            <div id="proj-dots"></div>
+            <button id="proj-next" aria-label="Next project">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+          </nav>
         </div>
       </div>
     </section>
@@ -1341,44 +1204,6 @@
     </div>
   </div>
 
-  <!-- Pixel Park Modal -->
-  <div class="modal" id="modal-project2">
-    <div class="modal-backdrop"></div>
-    <div class="modal-container">
-      <div class="modal-content glass-card">
-        <button class="modal-close">
-          <i data-lucide="x"></i>
-        </button>
-        
-        <div class="modal-header">
-          <h2>Pixel Park</h2>
-          <p class="modal-subtitle">24-Hour Hackathon Project</p>
-        </div>
-        
-        <div class="modal-body">
-          <div class="modal-media">
-            <video controls poster="media/pixelpark_logo.png">
-              <source src="media/pixel_park.mp4" type="video/mp4">
-            </video>
-          </div>
-          
-          <div class="modal-description">
-            <p>
-              Pixel Park was developed during a 24-hour hackathon, focusing on smart city mobility solutions.
-            </p>
-            
-            <h3>Features</h3>
-            <ul>
-              <li>Real-time LiDAR-based parking spot detection</li>
-              <li>Occupancy tracking and availability prediction</li>
-              <li>Integration-ready API for navigation apps</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <!-- VR Accident Reconstruction Modal -->
   <div class="modal" id="modal-vr-dekra">
     <div class="modal-backdrop"></div>
@@ -1576,5 +1401,6 @@
   <script src="js/webgl-scene.js"></script>
   <script src="js/interactions.js"></script>
   <script src="js/effects.js"></script>
+  <script src="js/projects-showcase.js"></script>
 </body>
 </html>
