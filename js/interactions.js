@@ -40,14 +40,14 @@
       rCtx.clearRect(0, 0, rippleCanvas.width, rippleCanvas.height);
       rCtx.beginPath();
       rCtx.arc(x, y, r, 0, Math.PI * 2);
-      rCtx.strokeStyle = `rgba(41, 151, 255, ${alpha * 0.45})`;
+      rCtx.strokeStyle = `rgba(132, 204, 22, ${alpha * 0.5})`;
       rCtx.lineWidth = 3 + (1 - t) * 8;
       rCtx.stroke();
 
       // Inner glow ring
       rCtx.beginPath();
       rCtx.arc(x, y, r * 0.85, 0, Math.PI * 2);
-      rCtx.strokeStyle = `rgba(41, 151, 255, ${alpha * 0.15})`;
+      rCtx.strokeStyle = `rgba(132, 204, 22, ${alpha * 0.15})`;
       rCtx.lineWidth = 1;
       rCtx.stroke();
 
@@ -184,17 +184,18 @@
   if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
     gsap.registerPlugin(ScrollTrigger);
 
-    // Section zoom-in on scroll — opacity NOT touched here;
-    // visibility is handled by the .reveal IntersectionObserver system.
-    // Only scale/y so sections are never blank on first load.
+    // Section zoom-in on scroll — use toggleActions instead of scrub
+    // so sections are fully visible once triggered (fixes first-load blank sections)
     gsap.utils.toArray('.section').forEach(function (section) {
       gsap.fromTo(section, {
-        scale: 0.97,
-        y: 24
+        scale: 0.96,
+        opacity: 0,
+        y: 40
       }, {
         scale: 1,
+        opacity: 1,
         y: 0,
-        duration: 0.9,
+        duration: 1,
         ease: 'power3.out',
         scrollTrigger: {
           trigger: section,
@@ -204,41 +205,162 @@
       });
     });
 
-    // Featured achievement — scale only, no opacity
+    // Featured achievement parallax layers
     const achieveGallery = document.querySelector('.achievement-gallery');
     if (achieveGallery) {
-      gsap.fromTo('.gallery-main', { scale: 0.92 }, {
-        scale: 1, duration: 1.1, ease: 'power3.out',
-        scrollTrigger: { trigger: achieveGallery, start: 'top 95%', toggleActions: 'play none none none' }
+      gsap.fromTo('.gallery-main', {
+        scale: 0.8,
+        opacity: 0
+      }, {
+        scale: 1,
+        opacity: 1,
+        duration: 1.2,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: achieveGallery,
+          start: 'top 95%',
+          toggleActions: 'play none none none'
+        }
       });
-      gsap.fromTo('.gallery-side .gallery-image', { x: 50 }, {
-        x: 0, stagger: 0.2, duration: 0.8, ease: 'power3.out',
-        scrollTrigger: { trigger: achieveGallery, start: 'top 95%', toggleActions: 'play none none none' }
+      gsap.fromTo('.gallery-side .gallery-image', {
+        x: 80,
+        opacity: 0
+      }, {
+        x: 0,
+        opacity: 1,
+        stagger: 0.2,
+        duration: 0.9,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: achieveGallery,
+          start: 'top 95%',
+          toggleActions: 'play none none none'
+        }
       });
     }
 
-    // Project cards — subtle slide only
+    // Project cards — staggered 3D rotate in
     gsap.utils.toArray('.project-card').forEach(function (card, i) {
-      gsap.fromTo(card, { y: 30 }, {
-        y: 0, duration: 0.7, ease: 'power3.out',
-        scrollTrigger: { trigger: card, start: 'top 92%', toggleActions: 'play none none none' }
+      gsap.fromTo(card, {
+        rotationY: -8,
+        opacity: 0,
+        x: i % 2 === 0 ? -40 : 40
+      }, {
+        rotationY: 0,
+        opacity: 1,
+        x: 0,
+        duration: 0.8,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: card,
+          start: 'top 88%',
+          toggleActions: 'play none none none'
+        }
       });
     });
 
-    // Contact cards — slide in
+    // Contact cards — slide in from different directions
     gsap.utils.toArray('.contact-card').forEach(function (card, i) {
-      gsap.fromTo(card, { y: 30 }, {
-        y: 0, duration: 0.6, ease: 'power3.out',
-        scrollTrigger: { trigger: card, start: 'top 92%', toggleActions: 'play none none none' }
+      const direction = i % 2 === 0 ? -60 : 60;
+      gsap.fromTo(card, { x: direction, opacity: 0, scale: 0.9 }, {
+        x: 0, opacity: 1, scale: 1,
+        duration: 0.7,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: card,
+          start: 'top 90%',
+          toggleActions: 'play none none none'
+        }
       });
     });
 
-    // Skill groups — slide up
+    // Skill groups — cascade reveal
     gsap.utils.toArray('.skill-group').forEach(function (group, i) {
-      gsap.fromTo(group, { y: 24 }, {
-        y: 0, duration: 0.55, delay: i * 0.08, ease: 'power3.out',
-        scrollTrigger: { trigger: group, start: 'top 92%', toggleActions: 'play none none none' }
+      gsap.fromTo(group, {
+        y: 40,
+        opacity: 0,
+        scale: 0.95
+      }, {
+        y: 0,
+        opacity: 1,
+        scale: 1,
+        duration: 0.6,
+        delay: i * 0.1,
+        ease: 'back.out(1.5)',
+        scrollTrigger: {
+          trigger: group,
+          start: 'top 90%',
+          toggleActions: 'play none none none'
+        }
       });
+    });
+
+    // Hero title — dramatic split entrance
+    const heroWords = document.querySelectorAll('.hero-title .word');
+    heroWords.forEach(function (word, i) {
+      gsap.fromTo(word, {
+        y: 80,
+        opacity: 0,
+        rotationX: -20
+      }, {
+        y: 0,
+        opacity: 1,
+        rotationX: 0,
+        duration: 1,
+        delay: 1.6 + i * 0.15,
+        ease: 'power4.out'
+      });
+    });
+
+    // Hero subtitle + description stagger
+    gsap.fromTo('.hero-subtitle', {
+      y: 30, opacity: 0
+    }, {
+      y: 0, opacity: 1,
+      duration: 0.8,
+      delay: 2.2,
+      ease: 'power3.out'
+    });
+
+    gsap.fromTo('.hero-description', {
+      y: 30, opacity: 0
+    }, {
+      y: 0, opacity: 1,
+      duration: 0.8,
+      delay: 2.4,
+      ease: 'power3.out'
+    });
+
+    gsap.fromTo('.hero-cta', {
+      y: 30, opacity: 0
+    }, {
+      y: 0, opacity: 1,
+      duration: 0.8,
+      delay: 2.6,
+      ease: 'power3.out'
+    });
+
+    gsap.fromTo('.hero-stats', {
+      y: 30, opacity: 0
+    }, {
+      y: 0, opacity: 1,
+      duration: 0.8,
+      delay: 2.8,
+      ease: 'power3.out'
+    });
+
+    // Hero image wrapper scale-in
+    gsap.fromTo('.hero-image-wrapper', {
+      scale: 0.7,
+      opacity: 0,
+      rotationY: 15
+    }, {
+      scale: 1,
+      opacity: 1,
+      rotationY: 0,
+      duration: 1.2,
+      delay: 1.8,
+      ease: 'power4.out'
     });
   }
 

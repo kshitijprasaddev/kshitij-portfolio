@@ -51,7 +51,7 @@
 
   const terrainMat = new THREE.ShaderMaterial({
     uniforms: {
-      uColor: { value: new THREE.Color(0x2997FF) },
+      uColor: { value: new THREE.Color(0x84cc16) },
       uTime:  { value: 0 }
     },
     vertexShader: `
@@ -106,7 +106,7 @@
 
   const pMat = new THREE.ShaderMaterial({
     uniforms: {
-      uColor: { value: new THREE.Color(0x2997FF) },
+      uColor: { value: new THREE.Color(0x84cc16) },
       uPR:    { value: renderer.getPixelRatio() }
     },
     vertexShader: `
@@ -144,7 +144,7 @@
     cLines = new THREE.LineSegments(
       new THREE.BufferGeometry(),
       new THREE.LineBasicMaterial({
-        color: 0x2997FF, transparent: true, opacity: 0.04,
+        color: 0x84cc16, transparent: true, opacity: 0.04,
         blending: THREE.AdditiveBlending
       })
     );
@@ -161,7 +161,7 @@
       { g: new THREE.IcosahedronGeometry(0.6, 0),  p: [ 14,  3,  -6], s: -0.003 }
     ].forEach(function (d) {
       const mat = new THREE.MeshBasicMaterial({
-        color: 0x2997FF, wireframe: true, transparent: true, opacity: 0.08
+        color: 0x84cc16, wireframe: true, transparent: true, opacity: 0.08
       });
       const mesh = new THREE.Mesh(d.g, mat);
       mesh.position.set(d.p[0], d.p[1], d.p[2]);

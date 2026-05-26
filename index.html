@@ -12,10 +12,10 @@
   <!-- CSS -->
   <link rel="stylesheet" href="css/style.css" />
   
-  <!-- Google Fonts -->
+  <!-- Google Fonts - Coder-style fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
   
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
@@ -40,7 +40,17 @@
     <i data-lucide="moon" class="theme-icon moon"></i>
   </button>
   
-
+  <!-- Music Toggle -->
+  <div class="music-player" id="musicPlayer">
+    <button class="music-toggle" id="musicToggle" aria-label="Toggle music">
+      <i data-lucide="volume-2" class="music-icon-on" style="width:18px;height:18px;"></i>
+      <i data-lucide="volume-x" class="music-icon-off" style="width:18px;height:18px;"></i>
+    </button>
+  </div>
+  <audio id="bgMusic" loop preload="auto">
+    <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3" type="audio/mpeg">
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+  </audio>
   
   <!-- Subtle Background -->
   <div class="animated-bg">
@@ -97,7 +107,7 @@
       <div class="hero-content">
         <div class="hero-main">
           <div class="hero-text">
-            <h1 class="hero-title hero-enter" style="animation-delay:.1s">
+            <h1 class="hero-title">
               <span class="title-line">
                 <span class="word">I'm</span>
               </span>
@@ -109,15 +119,15 @@
               </span>
             </h1>
             
-            <p class="hero-subtitle hero-enter" style="animation-delay:.25s">
-              Robotics & Autonomous Systems Engineer &nbsp;·&nbsp; M.Eng. AI Engineering of Autonomous Systems
+            <p class="hero-subtitle">
+              Robotics & Autonomous Systems Engineer
             </p>
             
-            <p class="hero-description hero-enter" style="animation-delay:.4s">
+            <p class="hero-description">
               B.Eng. Autonomous Vehicle Engineering, TH Ingolstadt. Strong in modern C++, ROS 2, and real-time control loops.
             </p>
             
-            <div class="hero-cta hero-enter" style="animation-delay:.55s">
+            <div class="hero-cta">
               <a href="#projects" class="btn btn-primary">
                 <span>View Projects</span>
                 <i data-lucide="arrow-right"></i>
@@ -136,7 +146,7 @@
           </div>
         </div>
         
-        <div class="hero-stats hero-enter" style="animation-delay:.7s">
+        <div class="hero-stats">
           <div class="stat-item">
             <span class="stat-label">Based in</span>
             <span class="stat-value">Ingolstadt, DE</span>
@@ -144,12 +154,7 @@
           <div class="stat-divider"></div>
           <div class="stat-item">
             <span class="stat-label">Focus</span>
-            <span class="stat-value">Autonomy &amp; RL</span>
-          </div>
-          <div class="stat-divider"></div>
-          <div class="stat-item">
-            <span class="stat-label">Thesis Grade</span>
-            <span class="stat-value">1.0 (A+)</span>
+            <span class="stat-value">Autonomy & RL</span>
           </div>
         </div>
       </div>
@@ -1586,19 +1591,5 @@
   <script src="js/script.js"></script>
   <script src="js/webgl-scene.js"></script>
   <script src="js/interactions.js"></script>
-
-  <!-- Inline: Reveal on scroll -->
-  <script>
-    (function() {
-      var reveals = document.querySelectorAll('.reveal');
-      if (!reveals.length) return;
-      var io = new IntersectionObserver(function(entries) {
-        entries.forEach(function(e) {
-          if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
-        });
-      }, { threshold: 0.05, rootMargin: '0px 0px 0px 0px' });
-      reveals.forEach(function(el) { io.observe(el); });
-    })();
-  </script>
 </body>
 </html>

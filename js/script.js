@@ -75,23 +75,37 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
+  // ===== Music Player =====
+  const musicToggle = document.getElementById('musicToggle');
+  const bgMusic = document.getElementById('bgMusic');
+  
+  if (musicToggle && bgMusic) {
+    bgMusic.volume = 0.3;
+    
+    musicToggle.addEventListener('click', () => {
+      if (bgMusic.paused) {
+        bgMusic.play().then(() => {
+          musicToggle.classList.add('playing');
+        }).catch(e => console.log('Audio play failed:', e));
+      } else {
+        bgMusic.pause();
+        musicToggle.classList.remove('playing');
+      }
+    });
+  }
 
   // ===== Scroll Progress Bar =====
   const scrollProgress = document.querySelector('.scroll-progress');
-  const backToTop = document.getElementById('backToTop');
-
+  
   function updateScrollProgress() {
     const scrollTop = window.scrollY;
     const docHeight = document.documentElement.scrollHeight - window.innerHeight;
     const scrollPercent = (scrollTop / docHeight) * 100;
-    if (scrollProgress) scrollProgress.style.width = scrollPercent + '%';
-    if (backToTop) backToTop.classList.toggle('visible', scrollTop > 600);
+    if (scrollProgress) {
+      scrollProgress.style.width = scrollPercent + '%';
+    }
   }
-
-  if (backToTop) {
-    backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-  }
-
+  
   window.addEventListener('scroll', updateScrollProgress, { passive: true });
 
   // ===== Preloader =====
@@ -505,21 +519,129 @@ document.addEventListener("DOMContentLoaded", function () {
       },
     });
 
-    // Section headers — slide up only (opacity never touched by GSAP)
+    // Section headers - elegant fade in
     gsap.utils.toArray(".section-header").forEach((header) => {
-      gsap.fromTo(header, { y: 30 }, {
-        y: 0, duration: 0.9, ease: "power3.out",
-        scrollTrigger: { trigger: header, start: "top 95%", toggleActions: "play none none none" },
+      gsap.fromTo(header, {
+        y: 40,
+        opacity: 0,
+      }, {
+        y: 0,
+        opacity: 1,
+        duration: 1,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: header,
+          start: "top 95%",
+          toggleActions: "play none none none",
+        },
       });
+    });
+
+    // Experience cards - cascade handled by CSS IntersectionObserver
+    // Only animate non-cascade experience cards (legacy support)
+    gsap.utils.toArray(".experience-card:not(.cascade-item)").forEach((card, index) => {
+      gsap.fromTo(card, {
+        y: 60,
+        opacity: 0,
+      }, {
+        y: 0,
+        opacity: 1,
+        duration: 0.8,
+        delay: index * 0.1,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: card,
+          start: "top 95%",
+          toggleActions: "play none none none",
+        },
+      });
+    });
+
+    // Company logos in experience cards - subtle pop in
+    gsap.utils.toArray(".company-logo").forEach((logo) => {
+      gsap.fromTo(logo, {
+        scale: 0.5,
+        opacity: 0,
+      }, {
+        scale: 1,
+        opacity: 1,
+        duration: 0.6,
+        delay: 0.2,
+        ease: "back.out(2)",
+        scrollTrigger: {
+          trigger: logo,
+          start: "top 95%",
+          toggleActions: "play none none none",
+        },
+      });
+    });
+
+    // Logo marquee items - cascade fade in
+    gsap.fromTo(".logos-section", {
+      opacity: 0,
+      y: 40,
+    }, {
+      opacity: 1,
+      y: 0,
+      duration: 1.2,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: ".logos-section",
+        start: "top 99%",
+        toggleActions: "play none none none",
+      },
     });
 
     // Story Timeline entries — staggered slide-up
     const stEntries = document.querySelectorAll('.st-entry');
     stEntries.forEach((entry, i) => {
-      gsap.fromTo(entry, { y: 24 }, {
-        y: 0, duration: 0.55, delay: i * 0.06, ease: 'power3.out',
-        scrollTrigger: { trigger: entry, start: 'top 90%', toggleActions: 'play none none none' },
+      gsap.fromTo(entry, {
+        y: 30,
+        opacity: 0,
+      }, {
+        y: 0,
+        opacity: 1,
+        duration: 0.6,
+        delay: i * 0.08,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: entry,
+          start: 'top 88%',
+          toggleActions: 'play none none none',
+        },
       });
+    });
+
+    // Project cards — handled by interactions.js with 3D rotate reveal
+    const projectCardsGSAP = document.querySelectorAll(".project-card");
+    if (projectCardsGSAP.length > 0) {
+      gsap.set(projectCardsGSAP, { opacity: 1 });
+    }
+    
+    // Skill categories animation
+    gsap.utils.toArray(".skill-category").forEach((category, index) => {
+      gsap.fromTo(category, {
+        y: 50,
+        opacity: 0,
+      }, {
+        y: 0,
+        opacity: 1,
+        duration: 0.7,
+        delay: index * 0.15,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: category,
+          start: "top 95%",
+          toggleActions: "play none none none",
+        },
+      });
+    });
+
+    // Tech icons - show immediately without animation (CSS handles visibility)
+    gsap.utils.toArray(".tech-icons").forEach(container => {
+      const icons = container.querySelectorAll('.tech-icon');
+      // Set to visible immediately
+      gsap.set(icons, { scale: 1, opacity: 1 });
     });
 
     // Contact cards — handled by interactions.js with directional slide-in
