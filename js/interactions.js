@@ -204,162 +204,41 @@
       });
     });
 
-    // Featured achievement parallax layers
+    // Featured achievement — scale only, no opacity
     const achieveGallery = document.querySelector('.achievement-gallery');
     if (achieveGallery) {
-      gsap.fromTo('.gallery-main', {
-        scale: 0.8,
-        opacity: 0
-      }, {
-        scale: 1,
-        opacity: 1,
-        duration: 1.2,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: achieveGallery,
-          start: 'top 95%',
-          toggleActions: 'play none none none'
-        }
+      gsap.fromTo('.gallery-main', { scale: 0.92 }, {
+        scale: 1, duration: 1.1, ease: 'power3.out',
+        scrollTrigger: { trigger: achieveGallery, start: 'top 95%', toggleActions: 'play none none none' }
       });
-      gsap.fromTo('.gallery-side .gallery-image', {
-        x: 80,
-        opacity: 0
-      }, {
-        x: 0,
-        opacity: 1,
-        stagger: 0.2,
-        duration: 0.9,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: achieveGallery,
-          start: 'top 95%',
-          toggleActions: 'play none none none'
-        }
+      gsap.fromTo('.gallery-side .gallery-image', { x: 50 }, {
+        x: 0, stagger: 0.2, duration: 0.8, ease: 'power3.out',
+        scrollTrigger: { trigger: achieveGallery, start: 'top 95%', toggleActions: 'play none none none' }
       });
     }
 
-    // Project cards — staggered 3D rotate in
+    // Project cards — subtle slide only
     gsap.utils.toArray('.project-card').forEach(function (card, i) {
-      gsap.fromTo(card, {
-        rotationY: -8,
-        opacity: 0,
-        x: i % 2 === 0 ? -40 : 40
-      }, {
-        rotationY: 0,
-        opacity: 1,
-        x: 0,
-        duration: 0.8,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: card,
-          start: 'top 88%',
-          toggleActions: 'play none none none'
-        }
+      gsap.fromTo(card, { y: 30 }, {
+        y: 0, duration: 0.7, ease: 'power3.out',
+        scrollTrigger: { trigger: card, start: 'top 92%', toggleActions: 'play none none none' }
       });
     });
 
-    // Contact cards — slide in from different directions
+    // Contact cards — slide in
     gsap.utils.toArray('.contact-card').forEach(function (card, i) {
-      const direction = i % 2 === 0 ? -60 : 60;
-      gsap.fromTo(card, { x: direction, opacity: 0, scale: 0.9 }, {
-        x: 0, opacity: 1, scale: 1,
-        duration: 0.7,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: card,
-          start: 'top 90%',
-          toggleActions: 'play none none none'
-        }
+      gsap.fromTo(card, { y: 30 }, {
+        y: 0, duration: 0.6, ease: 'power3.out',
+        scrollTrigger: { trigger: card, start: 'top 92%', toggleActions: 'play none none none' }
       });
     });
 
-    // Skill groups — cascade reveal
+    // Skill groups — slide up
     gsap.utils.toArray('.skill-group').forEach(function (group, i) {
-      gsap.fromTo(group, {
-        y: 40,
-        opacity: 0,
-        scale: 0.95
-      }, {
-        y: 0,
-        opacity: 1,
-        scale: 1,
-        duration: 0.6,
-        delay: i * 0.1,
-        ease: 'back.out(1.5)',
-        scrollTrigger: {
-          trigger: group,
-          start: 'top 90%',
-          toggleActions: 'play none none none'
-        }
+      gsap.fromTo(group, { y: 24 }, {
+        y: 0, duration: 0.55, delay: i * 0.08, ease: 'power3.out',
+        scrollTrigger: { trigger: group, start: 'top 92%', toggleActions: 'play none none none' }
       });
-    });
-
-    // Hero title — dramatic split entrance
-    const heroWords = document.querySelectorAll('.hero-title .word');
-    heroWords.forEach(function (word, i) {
-      gsap.fromTo(word, {
-        y: 80,
-        opacity: 0,
-        rotationX: -20
-      }, {
-        y: 0,
-        opacity: 1,
-        rotationX: 0,
-        duration: 1,
-        delay: 1.6 + i * 0.15,
-        ease: 'power4.out'
-      });
-    });
-
-    // Hero subtitle + description stagger
-    gsap.fromTo('.hero-subtitle', {
-      y: 30, opacity: 0
-    }, {
-      y: 0, opacity: 1,
-      duration: 0.8,
-      delay: 2.2,
-      ease: 'power3.out'
-    });
-
-    gsap.fromTo('.hero-description', {
-      y: 30, opacity: 0
-    }, {
-      y: 0, opacity: 1,
-      duration: 0.8,
-      delay: 2.4,
-      ease: 'power3.out'
-    });
-
-    gsap.fromTo('.hero-cta', {
-      y: 30, opacity: 0
-    }, {
-      y: 0, opacity: 1,
-      duration: 0.8,
-      delay: 2.6,
-      ease: 'power3.out'
-    });
-
-    gsap.fromTo('.hero-stats', {
-      y: 30, opacity: 0
-    }, {
-      y: 0, opacity: 1,
-      duration: 0.8,
-      delay: 2.8,
-      ease: 'power3.out'
-    });
-
-    // Hero image wrapper scale-in
-    gsap.fromTo('.hero-image-wrapper', {
-      scale: 0.7,
-      opacity: 0,
-      rotationY: 15
-    }, {
-      scale: 1,
-      opacity: 1,
-      rotationY: 0,
-      duration: 1.2,
-      delay: 1.8,
-      ease: 'power4.out'
     });
   }
 
