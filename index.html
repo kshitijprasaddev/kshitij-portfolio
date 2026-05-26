@@ -33,6 +33,9 @@
 
   <!-- Scroll Progress Bar -->
   <div class="scroll-progress"></div>
+
+  <!-- Scroll Strand — right-rail telemetry helix -->
+  <div id="scroll-strand" aria-hidden="true"></div>
   
   <!-- Theme Toggle (Fixed position) -->
   <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
@@ -270,7 +273,8 @@
   <main>
     <!-- About Section -->
     <section id="about" class="section">
-      <div class="container">
+      <div id="about-canvas-wrap" aria-hidden="true"></div>
+      <div class="container" style="position:relative;z-index:2;">
         <div class="section-header">
           <span class="section-eyebrow">Background</span>
           <h2 class="section-title">About Me</h2>
@@ -348,7 +352,6 @@
         <div class="section-header">
           <span class="section-eyebrow">Timeline</span>
           <h2 class="section-title">Experience & Education</h2>
-          <p class="section-subtitle">The short version of how I got here</p>
         </div>
         
         <!-- Interactive Story Timeline — Editorial Layout -->
@@ -571,8 +574,7 @@
         <!-- Featured Project: Thesis -->
         <div class="featured-project glass-card">
           <div class="featured-badge">
-            <i data-lucide="star"></i>
-            <span>Thesis / Graded 1.0</span>
+            <span>Thesis &middot; Graded 1.0</span>
           </div>
           
           <div class="featured-grid thesis-layout">
@@ -585,20 +587,16 @@
               
               <div class="progress-list">
                 <div class="progress-item completed">
-                  <i data-lucide="check-circle-2"></i>
-                  <span>PPO and SAC models converged</span>
+                  <span>PPO and SAC policies converged to stable landing trajectories</span>
                 </div>
                 <div class="progress-item completed">
-                  <i data-lucide="check-circle-2"></i>
-                  <span>PPO shows higher landing reliability</span>
+                  <span>PPO outperforms SAC on precision landing reliability metrics</span>
                 </div>
                 <div class="progress-item completed">
-                  <i data-lucide="check-circle-2"></i>
-                  <span>Control Barrier Functions implemented</span>
+                  <span>Control Barrier Functions enforcing safety constraints in flight</span>
                 </div>
                 <div class="progress-item completed">
-                  <i data-lucide="check-circle-2"></i>
-                  <span>Real drone testing</span>
+                  <span>Successful sim-to-real transfer on physical Pixhawk hardware</span>
                 </div>
               </div>
               
