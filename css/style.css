@@ -1,39 +1,39 @@
-/* ===== CSS Variables - Modern Professional Design ===== */
+/* ===== CSS Variables - Apple-inspired Professional Design ===== */
 :root {
-  /* Colors - Black/Yellow/Green Minimal Palette */
-  --primary: #84cc16;
-  --primary-light: #a3e635;
-  --primary-dark: #65a30d;
-  --accent: #facc15;
-  --accent-secondary: #22c55e;
+  /* Colors - Apple Blue / Dark Palette */
+  --primary: #2997FF;
+  --primary-light: #409CFF;
+  --primary-dark: #0077ED;
+  --accent: #64d2ff;
+  --accent-secondary: #30d158;
   
   /* Dark theme (default) */
-  --bg-primary: #050505;
-  --bg-secondary: #0a0a0a;
-  --bg-tertiary: #151515;
-  --bg-card: rgba(15, 15, 15, 0.7);
-  --bg-card-hover: rgba(25, 25, 25, 0.9);
+  --bg-primary: #000000;
+  --bg-secondary: #0d0d0d;
+  --bg-tertiary: #1a1a1a;
+  --bg-card: rgba(255, 255, 255, 0.04);
+  --bg-card-hover: rgba(255, 255, 255, 0.08);
   
   /* Text */
-  --text-primary: #fafafa;
-  --text-secondary: #a0a0a0;
-  --text-muted: #606060;
+  --text-primary: #f5f5f7;
+  --text-secondary: #a1a1a6;
+  --text-muted: #6e6e73;
   
   /* Borders */
-  --border: rgba(255, 255, 255, 0.06);
-  --border-light: rgba(255, 255, 255, 0.1);
+  --border: rgba(255, 255, 255, 0.07);
+  --border-light: rgba(255, 255, 255, 0.12);
   
   /* Gradients */
-  --gradient-primary: linear-gradient(135deg, #84cc16 0%, #22c55e 100%);
-  --gradient-text: linear-gradient(135deg, #fafafa 0%, #a3e635 100%);
-  --gradient-glow: radial-gradient(circle, rgba(132, 204, 22, 0.15) 0%, transparent 70%);
+  --gradient-primary: linear-gradient(135deg, #2997FF 0%, #30d158 100%);
+  --gradient-text: linear-gradient(135deg, #f5f5f7 0%, #2997FF 100%);
+  --gradient-glow: radial-gradient(circle, rgba(41, 151, 255, 0.15) 0%, transparent 70%);
   
   /* Effects */
   --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.3);
   --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.4);
   --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.5);
-  --shadow-glow: 0 0 12px rgba(132, 204, 22, 0.02);
-  --shadow-glow-strong: 0 0 20px rgba(132, 204, 22, 0.03);
+  --shadow-glow: 0 0 12px rgba(41, 151, 255, 0.08);
+  --shadow-glow-strong: 0 0 20px rgba(41, 151, 255, 0.15);
   
   /* Radius */
   --radius-sm: 6px;
@@ -50,8 +50,8 @@
   
   /* Fonts */
   --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
-  --font-display: 'Space Grotesk', sans-serif;
-  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-display: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter', sans-serif;
+  --font-body: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Inter', sans-serif;
 }
 
 /* ===== Light Theme ===== */
@@ -76,15 +76,15 @@
 }
 
 [data-theme="light"] .bg-gradient-1 {
-  background: radial-gradient(circle, rgba(132, 204, 22, 0.15) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(41, 151, 255, 0.15) 0%, transparent 70%);
 }
 
 [data-theme="light"] .bg-gradient-2 {
-  background: radial-gradient(circle, rgba(34, 197, 94, 0.1) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(48, 209, 88, 0.1) 0%, transparent 70%);
 }
 
 [data-theme="light"] .bg-gradient-3 {
-  background: radial-gradient(circle, rgba(250, 204, 21, 0.08) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(100, 210, 255, 0.08) 0%, transparent 70%);
 }
 
 /* ===== Theme Toggle ===== */
