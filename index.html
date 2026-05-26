@@ -566,7 +566,6 @@
         <div class="section-header">
           <span class="section-eyebrow">Work</span>
           <h2 class="section-title">Projects</h2>
-          <p class="section-subtitle">Things I've actually built, not just talked about</p>
         </div>
         
         <!-- Featured Project: Thesis -->
@@ -793,7 +792,9 @@
 
     <!-- Skills Section -->
     <section id="skills" class="section section-dark">
-      <div class="container">
+      <!-- Neural network canvas: renders a live RL policy network as background -->
+      <div id="nn-canvas-wrap" aria-hidden="true"></div>
+      <div class="container" style="position:relative;z-index:2;">
         <div class="section-header">
           <span class="section-eyebrow">Stack</span>
           <h2 class="section-title">Skills & Tools</h2>
@@ -1576,5 +1577,6 @@
   <script src="js/script.js"></script>
   <script src="js/webgl-scene.js"></script>
   <script src="js/interactions.js"></script>
+  <script src="js/effects.js"></script>
 </body>
 </html>
