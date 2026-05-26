@@ -4521,3 +4521,430 @@ header {
     padding: 1rem;
   }
 }
+
+/* ===================================================================
+   DESIGN REFINEMENT
+   Anti-AI-Template · Apple / Applied Intuition quality level
+   Every change is intentional. Every pixel earned.
+   =================================================================== */
+
+/* ── 1. Kill all decorative noise ─────────────────────────────────── */
+/* Floating code particles, circuit SVGs, floating dots — all template */
+.code-particles,
+.circuit-lines,
+.floating-dots { display: none; }
+
+/* Cursor follower rings — too "portfolio template 2023" */
+.cursor-follower,
+.cursor-dot { display: none; }
+
+/* Gradient orbs in hero — the #1 AI template tell */
+.gradient-orb,
+.hero-bg { display: none; }
+
+/* Grid and noise overlays — decorative, zero signal */
+.grid-pattern,
+.grid-overlay,
+.noise-overlay { display: none; }
+
+/* Floating cards around portrait — very template */
+.floating-card { display: none; }
+
+/* Image ring glow — template cliché */
+.image-ring { display: none; }
+
+/* Pulsing availability badge — template */
+.hero-badge { display: none; }
+
+/* Pulsing nav availability dot — too "hire me" template */
+.nav-availability { display: none; }
+
+/* 3rd gradient blob — unnecessary */
+.bg-gradient-3 { display: none; }
+
+/* ── 2. Background: single barely-visible orb, not a gradient soup ── */
+.bg-gradient-1,
+.bg-gradient-2 {
+  filter: blur(220px);
+  opacity: 0.055;
+  animation: none; /* remove morphing motion — distracting */
+}
+.bg-gradient-2 {
+  opacity: 0.03;
+  background: radial-gradient(circle, rgba(41, 151, 255, 0.1) 0%, transparent 70%);
+}
+
+/* Progress bar: single clean colour, not gradient */
+.scroll-progress { background: var(--primary); }
+
+/* ── 3. Navigation: Apple-exact precision ─────────────────────────── */
+/* No gradient box icon — just the name */
+.logo-icon { display: none; }
+.logo {
+  gap: 0;
+  font-size: 0.95rem;
+  letter-spacing: -0.02em;
+}
+.logo-text { font-weight: 600; }
+
+/* Links: muted by default, clear on hover — Apple nav pattern */
+.nav-link {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: -0.01em;
+}
+.nav-link:hover,
+.nav-link.active { color: rgba(255, 255, 255, 0.9); }
+
+/* Thin 1px underline, single colour — not a 2px gradient bar */
+.nav-link::after {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.85);
+  transition: width 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Nav CV button: ultra-minimal */
+.btn-nav {
+  font-size: 0.82rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: transparent;
+  color: rgba(255, 255, 255, 0.6);
+  letter-spacing: -0.01em;
+  border-radius: var(--radius-full);
+}
+.btn-nav:hover {
+  border-color: rgba(255, 255, 255, 0.24);
+  color: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+/* ── 4. Hero: editorial scale + portrait image ────────────────────── */
+/* Asymmetric grid: text dominates, image is a clean accent */
+.hero-main {
+  grid-template-columns: 1.35fr 0.85fr;
+  gap: 6rem;
+}
+
+/* Title at true Apple/Applied Intuition scale */
+.hero-title {
+  font-size: clamp(4.5rem, 11vw, 8rem);
+  line-height: 0.92;
+  letter-spacing: -0.045em;
+  font-weight: 700;
+  margin-bottom: 2.5rem;
+}
+
+/* Name in pure white — accent lives in UI, not in the title type */
+.word,
+.word.highlight {
+  color: var(--text-primary);
+}
+
+/* Subtitle: clean, readable, not mono-font coder aesthetic */
+.hero-subtitle {
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.48);
+  letter-spacing: -0.01em;
+  margin-bottom: 1.75rem;
+}
+
+.hero-description {
+  font-size: 0.975rem;
+  color: rgba(255, 255, 255, 0.38);
+  line-height: 1.8;
+  max-width: 440px;
+  margin-bottom: 2.75rem;
+}
+
+/* Portrait image — editorial, not circular "profile pic" */
+.hero-image-wrapper {
+  width: 260px;
+  height: 348px;
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+  box-shadow:
+    0 32px 80px rgba(0, 0, 0, 0.55),
+    0 8px 32px rgba(0, 0, 0, 0.35),
+    0 0 0 1px rgba(255, 255, 255, 0.06);
+}
+.hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 18%;
+  border-radius: 0;
+  border: none;
+  display: block;
+}
+/* Subtle bottom fade — grounds the portrait naturally */
+.hero-image-wrapper::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 35%;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.22));
+  pointer-events: none;
+  border-radius: 0 0 16px 16px;
+}
+
+/* Hero stats: editorial strip below the main grid */
+.hero-stats {
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  padding: 1.75rem 0;
+  gap: 2.5rem;
+}
+.stat-label {
+  font-size: 0.62rem;
+  letter-spacing: 0.09em;
+  color: rgba(255, 255, 255, 0.32);
+  text-transform: uppercase;
+}
+.stat-value {
+  font-family: var(--font-display);
+  font-size: 0.975rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: rgba(255, 255, 255, 0.82);
+}
+.stat-divider {
+  height: 36px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* Scroll indicator: barely-there */
+.scroll-indicator {
+  opacity: 0.3;
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+}
+
+/* ── 5. Buttons: solid, intentional — Apple doesn't use gradients ─── */
+/* Primary: white button with dark text in dark mode (inverted fills) */
+.btn-primary {
+  background: var(--text-primary); /* #f5f5f7 dark / #0a0a0a light */
+  color: var(--bg-primary);         /* #000 dark / #fafafa light */
+  border: none;
+}
+.btn-primary:hover {
+  background: var(--primary);
+  color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 12px 40px rgba(41, 151, 255, 0.28);
+}
+.btn-primary:active { transform: translateY(0); }
+
+/* Secondary: ghost */
+.btn-secondary {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  color: rgba(255, 255, 255, 0.58);
+}
+.btn-secondary:hover {
+  border-color: rgba(255, 255, 255, 0.32);
+  color: rgba(255, 255, 255, 0.88);
+  background: rgba(255, 255, 255, 0.04);
+  transform: translateY(-1px);
+}
+
+/* ── 6. Section headers: editorial, not "template eyebrow" ──────────  */
+.section-eyebrow {
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.07em;
+  color: rgba(255, 255, 255, 0.38);
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+.section-title {
+  font-size: clamp(2.2rem, 4.5vw, 3.5rem);
+  letter-spacing: -0.03em;
+  line-height: 1.08;
+  font-weight: 700;
+}
+.section-subtitle {
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 1rem;
+}
+
+/* ── 7. Glass cards: structural not glassmorphism ─────────────────── */
+.glass-card {
+  background: rgba(255, 255, 255, 0.028);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 18px;
+  backdrop-filter: none; /* remove blur for performance + cleanliness */
+}
+.glass-card:hover {
+  background: rgba(255, 255, 255, 0.042);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* ── 8. Project cards: architectural hover, no glow soup ──────────── */
+.project-card { border-radius: 18px; }
+.project-card:hover {
+  transform: translateY(-6px) scale(1.005);
+  box-shadow:
+    0 32px 64px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(255, 255, 255, 0.07);
+}
+.project-overlay {
+  background: rgba(0, 0, 0, 0.72);
+  backdrop-filter: blur(8px);
+}
+
+/* Featured project: structured, not glass */
+.featured-project {
+  border-radius: 20px;
+  padding: 2.5rem 3rem;
+  margin-bottom: 3rem;
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+/* ── 9. Skills chips: pill, refined ──────────────────────────────── */
+.skill-chip {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 100px;
+  padding: 0.38rem 0.9rem;
+  font-size: 0.82rem;
+  letter-spacing: -0.01em;
+  color: rgba(255, 255, 255, 0.72);
+  transition: all 0.18s ease;
+}
+.skill-chip:hover {
+  background: rgba(41, 151, 255, 0.1);
+  border-color: rgba(41, 151, 255, 0.25);
+  color: var(--primary-light);
+}
+.skill-chip span { color: inherit; }
+
+/* ── 10. About section: editorial pull-quote ─────────────────────── */
+.about-lead {
+  font-size: 1.2rem;
+  line-height: 1.78;
+  font-weight: 400;
+}
+.about-belief blockquote {
+  font-size: 1.08rem;
+  line-height: 1.72;
+  color: rgba(255, 255, 255, 0.55);
+  font-style: italic;
+  border-left: 2px solid var(--primary);
+  padding-left: 1.5rem;
+  margin-left: 0;
+  border-radius: 0;
+  background: none;
+}
+
+/* ── 11. Contact: remove purple gradient from schedule card ────────── */
+.schedule-card {
+  background: rgba(255, 255, 255, 0.028) !important;
+  border: 1px solid rgba(255, 255, 255, 0.07) !important;
+}
+.schedule-card .contact-icon {
+  background: var(--primary) !important;
+}
+
+/* ── 12. Preloader: minimal — just the letter, no animation ────────── */
+.preloader-logo {
+  font-size: 2.5rem;
+  font-weight: 300;
+  letter-spacing: -0.05em;
+  animation: none;
+}
+.preloader-fill { background: var(--primary); }
+
+/* ── 13. Theme toggle: refined, no scale on hover ──────────────────── */
+.theme-toggle {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+.theme-toggle:hover {
+  transform: none;
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.16);
+}
+
+/* ── 14. Form inputs: clean, precise ──────────────────────────────── */
+.form-group input,
+.form-group textarea {
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: rgba(41, 151, 255, 0.4);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* ── 15. Modal: refined depth ──────────────────────────────────────── */
+.modal-content {
+  border-radius: 22px;
+  background: rgba(10, 10, 10, 0.96);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(40px) saturate(200%);
+}
+
+/* ── 16. Tech icon hover: subtle, elegant ─────────────────────────── */
+.tech-icon:hover img {
+  transform: translateY(-4px) scale(1.06);
+}
+
+/* ── 17. Recommendation embed: structural ─────────────────────────── */
+.recommendation-embed {
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  backdrop-filter: none;
+}
+
+/* ── 18. Mobile: portrait image adapts cleanly ─────────────────────── */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: clamp(3.5rem, 14vw, 5rem);
+    letter-spacing: -0.035em;
+  }
+  .hero-main { grid-template-columns: 1fr; gap: 3rem; }
+  .hero-visual { justify-content: flex-start; }
+  .hero-image-wrapper { width: 200px; height: 264px; }
+  .hero-description { max-width: 100%; }
+}
+
+/* ── Light theme companion adjustments ────────────────────────────── */
+[data-theme="light"] .hero-subtitle    { color: rgba(0, 0, 0, 0.48); }
+[data-theme="light"] .hero-description { color: rgba(0, 0, 0, 0.38); }
+[data-theme="light"] .stat-label       { color: rgba(0, 0, 0, 0.32); }
+[data-theme="light"] .stat-value       { color: rgba(0, 0, 0, 0.82); }
+[data-theme="light"] .stat-divider     { background: rgba(0, 0, 0, 0.1); }
+[data-theme="light"] .hero-stats       { border-top-color: rgba(0, 0, 0, 0.08); }
+[data-theme="light"] .word,
+[data-theme="light"] .word.highlight   { color: var(--text-primary); }
+[data-theme="light"] .nav-link         { color: rgba(0, 0, 0, 0.5); }
+[data-theme="light"] .nav-link:hover,
+[data-theme="light"] .nav-link.active  { color: rgba(0, 0, 0, 0.9); }
+[data-theme="light"] .nav-link::after  { background: rgba(0, 0, 0, 0.88); }
+[data-theme="light"] .btn-secondary    {
+  border-color: rgba(0, 0, 0, 0.13);
+  color: rgba(0, 0, 0, 0.58);
+}
+[data-theme="light"] .btn-secondary:hover {
+  border-color: rgba(0, 0, 0, 0.3);
+  color: rgba(0, 0, 0, 0.88);
+  background: rgba(0, 0, 0, 0.04);
+}
+[data-theme="light"] .btn-nav          { border-color: rgba(0, 0, 0, 0.1); color: rgba(0, 0, 0, 0.6); }
+[data-theme="light"] .btn-nav:hover    { border-color: rgba(0, 0, 0, 0.24); color: rgba(0, 0, 0, 0.9); }
+[data-theme="light"] .section-eyebrow  { color: rgba(0, 0, 0, 0.38); }
+[data-theme="light"] .section-subtitle { color: rgba(0, 0, 0, 0.45); }
+[data-theme="light"] .glass-card       { background: rgba(0, 0, 0, 0.025); border-color: rgba(0, 0, 0, 0.06); }
+[data-theme="light"] .glass-card:hover { background: rgba(0, 0, 0, 0.04); border-color: rgba(0, 0, 0, 0.1); }
+[data-theme="light"] .skill-chip       { background: rgba(0, 0, 0, 0.04); border-color: rgba(0, 0, 0, 0.08); color: rgba(0, 0, 0, 0.72); }
+[data-theme="light"] .skill-chip:hover { background: rgba(41, 151, 255, 0.08); border-color: rgba(41, 151, 255, 0.2); color: var(--primary-dark); }
+[data-theme="light"] .schedule-card    { background: rgba(0, 0, 0, 0.025) !important; border-color: rgba(0, 0, 0, 0.07) !important; }
+[data-theme="light"] .about-belief blockquote { color: rgba(0, 0, 0, 0.52); }
+[data-theme="light"] .scroll-indicator { color: rgba(0, 0, 0, 0.35); }
