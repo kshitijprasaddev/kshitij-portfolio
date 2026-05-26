@@ -184,18 +184,17 @@
   if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
     gsap.registerPlugin(ScrollTrigger);
 
-    // Section zoom-in on scroll — use toggleActions instead of scrub
-    // so sections are fully visible once triggered (fixes first-load blank sections)
+    // Section zoom-in on scroll — opacity NOT touched here;
+    // visibility is handled by the .reveal IntersectionObserver system.
+    // Only scale/y so sections are never blank on first load.
     gsap.utils.toArray('.section').forEach(function (section) {
       gsap.fromTo(section, {
-        scale: 0.96,
-        opacity: 0,
-        y: 40
+        scale: 0.97,
+        y: 24
       }, {
         scale: 1,
-        opacity: 1,
         y: 0,
-        duration: 1,
+        duration: 0.9,
         ease: 'power3.out',
         scrollTrigger: {
           trigger: section,
