@@ -97,7 +97,7 @@
       <div class="hero-content">
         <div class="hero-main">
           <div class="hero-text">
-            <h1 class="hero-title reveal">
+            <h1 class="hero-title hero-enter" style="animation-delay:.1s">
               <span class="title-line">
                 <span class="word">I'm</span>
               </span>
@@ -109,15 +109,15 @@
               </span>
             </h1>
             
-            <p class="hero-subtitle reveal reveal-delay-1">
+            <p class="hero-subtitle hero-enter" style="animation-delay:.25s">
               Robotics & Autonomous Systems Engineer &nbsp;·&nbsp; M.Eng. AI Engineering of Autonomous Systems
             </p>
             
-            <p class="hero-description reveal reveal-delay-2">
+            <p class="hero-description hero-enter" style="animation-delay:.4s">
               B.Eng. Autonomous Vehicle Engineering, TH Ingolstadt. Strong in modern C++, ROS 2, and real-time control loops.
             </p>
             
-            <div class="hero-cta reveal reveal-delay-3">
+            <div class="hero-cta hero-enter" style="animation-delay:.55s">
               <a href="#projects" class="btn btn-primary">
                 <span>View Projects</span>
                 <i data-lucide="arrow-right"></i>
@@ -136,7 +136,7 @@
           </div>
         </div>
         
-        <div class="hero-stats reveal reveal-delay-4">
+        <div class="hero-stats hero-enter" style="animation-delay:.7s">
           <div class="stat-item">
             <span class="stat-label">Based in</span>
             <span class="stat-value">Ingolstadt, DE</span>
@@ -1596,7 +1596,7 @@
         entries.forEach(function(e) {
           if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
         });
-      }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+      }, { threshold: 0.05, rootMargin: '0px 0px 0px 0px' });
       reveals.forEach(function(el) { io.observe(el); });
     })();
   </script>
