@@ -75,37 +75,23 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // ===== Music Player =====
-  const musicToggle = document.getElementById('musicToggle');
-  const bgMusic = document.getElementById('bgMusic');
-  
-  if (musicToggle && bgMusic) {
-    bgMusic.volume = 0.3;
-    
-    musicToggle.addEventListener('click', () => {
-      if (bgMusic.paused) {
-        bgMusic.play().then(() => {
-          musicToggle.classList.add('playing');
-        }).catch(e => console.log('Audio play failed:', e));
-      } else {
-        bgMusic.pause();
-        musicToggle.classList.remove('playing');
-      }
-    });
-  }
 
   // ===== Scroll Progress Bar =====
   const scrollProgress = document.querySelector('.scroll-progress');
-  
+  const backToTop = document.getElementById('backToTop');
+
   function updateScrollProgress() {
     const scrollTop = window.scrollY;
     const docHeight = document.documentElement.scrollHeight - window.innerHeight;
     const scrollPercent = (scrollTop / docHeight) * 100;
-    if (scrollProgress) {
-      scrollProgress.style.width = scrollPercent + '%';
-    }
+    if (scrollProgress) scrollProgress.style.width = scrollPercent + '%';
+    if (backToTop) backToTop.classList.toggle('visible', scrollTop > 600);
   }
-  
+
+  if (backToTop) {
+    backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  }
+
   window.addEventListener('scroll', updateScrollProgress, { passive: true });
 
   // ===== Preloader =====

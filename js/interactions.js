@@ -40,14 +40,14 @@
       rCtx.clearRect(0, 0, rippleCanvas.width, rippleCanvas.height);
       rCtx.beginPath();
       rCtx.arc(x, y, r, 0, Math.PI * 2);
-      rCtx.strokeStyle = `rgba(132, 204, 22, ${alpha * 0.5})`;
+      rCtx.strokeStyle = `rgba(41, 151, 255, ${alpha * 0.45})`;
       rCtx.lineWidth = 3 + (1 - t) * 8;
       rCtx.stroke();
 
       // Inner glow ring
       rCtx.beginPath();
       rCtx.arc(x, y, r * 0.85, 0, Math.PI * 2);
-      rCtx.strokeStyle = `rgba(132, 204, 22, ${alpha * 0.15})`;
+      rCtx.strokeStyle = `rgba(41, 151, 255, ${alpha * 0.15})`;
       rCtx.lineWidth = 1;
       rCtx.stroke();
 

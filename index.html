@@ -12,10 +12,10 @@
   <!-- CSS -->
   <link rel="stylesheet" href="css/style.css" />
   
-  <!-- Google Fonts - Coder-style fonts -->
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
   
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
@@ -40,17 +40,7 @@
     <i data-lucide="moon" class="theme-icon moon"></i>
   </button>
   
-  <!-- Music Toggle -->
-  <div class="music-player" id="musicPlayer">
-    <button class="music-toggle" id="musicToggle" aria-label="Toggle music">
-      <i data-lucide="volume-2" class="music-icon-on" style="width:18px;height:18px;"></i>
-      <i data-lucide="volume-x" class="music-icon-off" style="width:18px;height:18px;"></i>
-    </button>
-  </div>
-  <audio id="bgMusic" loop preload="auto">
-    <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3" type="audio/mpeg">
-    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-  </audio>
+
   
   <!-- Subtle Background -->
   <div class="animated-bg">
@@ -87,6 +77,10 @@
         <li><a href="#contact" class="nav-link">Contact</a></li>
       </ul>
       <div class="nav-right">
+        <div class="nav-availability">
+          <span class="availability-dot"></span>
+          <span>Open to Work</span>
+        </div>
         <button class="btn btn-nav" id="openCvViewer" onclick="openPdfViewer('CV_Kshitij_Prasad.pdf', 'CV - Kshitij Prasad')">
           <span>View CV</span>
           <i data-lucide="file-text"></i>
@@ -107,7 +101,7 @@
       <div class="hero-content">
         <div class="hero-main">
           <div class="hero-text">
-            <h1 class="hero-title">
+            <h1 class="hero-title reveal">
               <span class="title-line">
                 <span class="word">I'm</span>
               </span>
@@ -119,15 +113,15 @@
               </span>
             </h1>
             
-            <p class="hero-subtitle">
+            <p class="hero-subtitle reveal reveal-delay-1">
               Robotics & Autonomous Systems Engineer
             </p>
             
-            <p class="hero-description">
+            <p class="hero-description reveal reveal-delay-2">
               B.Eng. Autonomous Vehicle Engineering, TH Ingolstadt. Strong in modern C++, ROS 2, and real-time control loops.
             </p>
             
-            <div class="hero-cta">
+            <div class="hero-cta reveal reveal-delay-3">
               <a href="#projects" class="btn btn-primary">
                 <span>View Projects</span>
                 <i data-lucide="arrow-right"></i>
@@ -146,7 +140,7 @@
           </div>
         </div>
         
-        <div class="hero-stats">
+        <div class="hero-stats reveal reveal-delay-4">
           <div class="stat-item">
             <span class="stat-label">Based in</span>
             <span class="stat-value">Ingolstadt, DE</span>
@@ -154,7 +148,12 @@
           <div class="stat-divider"></div>
           <div class="stat-item">
             <span class="stat-label">Focus</span>
-            <span class="stat-value">Autonomy & RL</span>
+            <span class="stat-value">Autonomy &amp; RL</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <span class="stat-label">Thesis Grade</span>
+            <span class="stat-value">1.0 (A+)</span>
           </div>
         </div>
       </div>
@@ -236,7 +235,7 @@
 
   <!-- Featured Achievement Section -->
   <section class="featured-achievement" id="achievement">
-    <div class="container">
+    <div class="container reveal">
       <div class="achievement-header">
         <span class="section-eyebrow">2025 Highlight</span>
         <h2 class="section-title">1st Place at PAVE Europe</h2>
@@ -285,7 +284,7 @@
   <main>
     <!-- About Section -->
     <section id="about" class="section">
-      <div class="container">
+      <div class="container reveal">
         <div class="section-header">
           <span class="section-eyebrow">Background</span>
           <h2 class="section-title">About Me</h2>
@@ -359,7 +358,7 @@
 
     <!-- Experience Section -->
     <section id="experience" class="section section-dark">
-      <div class="container">
+      <div class="container reveal">
         <div class="section-header">
           <span class="section-eyebrow">Timeline</span>
           <h2 class="section-title">Experience & Education</h2>
@@ -577,7 +576,7 @@
 
     <!-- Projects Section -->
     <section id="projects" class="section">
-      <div class="container">
+      <div class="container reveal">
         <div class="section-header">
           <span class="section-eyebrow">Work</span>
           <h2 class="section-title">Projects</h2>
@@ -808,7 +807,7 @@
 
     <!-- Skills Section -->
     <section id="skills" class="section section-dark">
-      <div class="container">
+      <div class="container reveal">
         <div class="section-header">
           <span class="section-eyebrow">Stack</span>
           <h2 class="section-title">Skills & Tools</h2>
@@ -942,7 +941,7 @@
 
     <!-- Testimonials / Recommendations Section -->
     <section id="testimonials" class="section">
-      <div class="container">
+      <div class="container reveal">
         <div class="section-header">
           <span class="section-eyebrow">Reference</span>
           <h2 class="section-title">Recommendation</h2>
@@ -967,7 +966,7 @@
 
     <!-- Contact Section -->
     <section id="contact" class="section">
-      <div class="container">
+      <div class="container reveal">
         <div class="section-header">
           <span class="section-eyebrow">Say Hello</span>
           <h2 class="section-title">Contact</h2>
@@ -1591,5 +1590,19 @@
   <script src="js/script.js"></script>
   <script src="js/webgl-scene.js"></script>
   <script src="js/interactions.js"></script>
+
+  <!-- Inline: Reveal on scroll -->
+  <script>
+    (function() {
+      var reveals = document.querySelectorAll('.reveal');
+      if (!reveals.length) return;
+      var io = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
+          if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+        });
+      }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+      reveals.forEach(function(el) { io.observe(el); });
+    })();
+  </script>
 </body>
 </html>
