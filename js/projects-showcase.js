@@ -1,4 +1,4 @@
-﻿/**
+/**
  * projects-showcase.js  Â·  Dystopian WebGL Gallery  Â·  v4
  *
  * ARCHITECTURE
@@ -52,6 +52,13 @@
       tags: ['PPO', 'Next.js', 'TomTom API', 'TypeScript', 'Python'],
       image: 'media/av_orchestrator_map.jpg',
       accent: new THREE.Color(0.16, 0.59, 1.0) },
+    { id: 'audi-data',
+      title: 'Audi: 32 PB Pipeline & CLIP Search',
+      category: 'Data Engineering · AI', year: '2026',
+      desc: 'Processing 32 PB of Audi vehicle bus & camera data. CV-based object detection & tracking for scenario reconstruction + CLIP semantic search to find driving scenarios in natural language.',
+      tags: ['CLIP', 'Computer Vision', 'Semantic Search', 'Object Tracking', 'Python', 'ADAS'],
+      image: 'Logos/Audi Logo.png',
+      accent: new THREE.Color(0.85, 0.10, 0.10) },
     { id: 'project1',
       title: 'Schanzer Racing Electric',
       category: 'Autonomous Vehicles', year: '2024',

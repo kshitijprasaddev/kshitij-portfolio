@@ -369,7 +369,7 @@
                   <span class="st-badge" data-accent="green">Internship</span>
                   <time class="st-date">Apr 2026 &mdash; Present</time>
                 </div>
-                <h3 class="st-title">Driver Assistance Simulation</h3>
+                <h3 class="st-title">Data Engineering &amp; AI — Driver Assistance</h3>
                 <p class="st-org">
                   <img src="Logos/Audi Logo.png" alt="Audi AG" class="st-org-logo" />
                   AUDI AG &middot; Ingolstadt, Bavaria
@@ -378,11 +378,12 @@
               </div>
               <div class="st-body">
                 <ul class="st-highlights">
-                  <li>Simulation and validation of driver assistance functions within an OEM production environment</li>
-                  <li>Working alongside cross-functional hardware and software teams on state-of-the-art ADAS systems</li>
+                  <li>Built a <strong>data engineering pipeline</strong> processing <strong>32 PB</strong> of raw vehicle bus &amp; camera data — extracting relevant sensor signals, running computer vision algorithms to detect &amp; track dynamic objects, and reconstructing scenarios in simulation</li>
+                  <li>Developed a <strong>CLIP-based semantic search engine</strong> enabling natural-language queries (e.g. &ldquo;car turning right&rdquo;, &ldquo;emergency braking&rdquo;) across the full scenario database, surfacing fused object data and CAN signals alongside each result</li>
+                  <li>Working alongside cross-functional hardware and software teams on state-of-the-art ADAS systems within an OEM production environment</li>
                 </ul>
                 <div class="st-chips">
-                  <span>ADAS</span><span>Simulation</span><span>Automotive</span><span>C++</span>
+                  <span>Data Engineering</span><span>CLIP</span><span>Computer Vision</span><span>Object Tracking</span><span>Semantic Search</span><span>Python</span><span>ADAS</span><span>Simulation</span>
                 </div>
               </div>
             </div>
@@ -637,7 +638,7 @@
           <div id="proj-hud-tr" aria-hidden="true">
             <span id="proj-current" class="hud-index">01</span>
             <span class="hud-slash"> / </span>
-            <span id="proj-total" class="hud-index">07</span>
+            <span id="proj-total" class="hud-index">08</span>
           </div>
 
           <!-- Progress bar: thin accent line below top HUD -->
@@ -698,7 +699,7 @@
         
         <div class="skills-compact">
           <div class="skill-group">
-            <h3 class="skill-group-title"><i data-lucide="cog"></i> Robotics</h3>
+            <h3 class="skill-group-title"><i data-lucide="cog"></i> Robotics &amp; Autonomy</h3>
             <div class="skill-chips">
               <div class="skill-chip"><span>ROS 2</span></div>
               <div class="skill-chip"><span>Nav2</span></div>
@@ -706,6 +707,19 @@
               <div class="skill-chip"><span>Control Theory</span></div>
               <div class="skill-chip"><span>CARLA</span></div>
               <div class="skill-chip"><span>Isaac Sim</span></div>
+            </div>
+          </div>
+          
+          <div class="skill-group">
+            <h3 class="skill-group-title"><i data-lucide="database"></i> Data Engineering &amp; AI</h3>
+            <div class="skill-chips">
+              <div class="skill-chip"><span>CLIP (OpenAI)</span></div>
+              <div class="skill-chip"><span>Semantic Search</span></div>
+              <div class="skill-chip"><span>Computer Vision</span></div>
+              <div class="skill-chip"><span>Object Tracking</span></div>
+              <div class="skill-chip"><span>Large-Scale Pipelines</span></div>
+              <div class="skill-chip"><span>PyTorch</span></div>
+              <div class="skill-chip"><span>Apache Spark / Petabyte-scale</span></div>
             </div>
           </div>
           
@@ -1374,6 +1388,120 @@
             <span>About the Challenge</span>
             <i data-lucide="external-link"></i>
           </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Audi Data Engineering Modal -->
+  <div class="modal" id="modal-audi-data">
+    <div class="modal-backdrop"></div>
+    <div class="modal-container">
+      <div class="modal-content glass-card">
+        <button class="modal-close">
+          <i data-lucide="x"></i>
+        </button>
+        
+        <div class="modal-header">
+          <span class="modal-badge">Internship &middot; AUDI AG &middot; 2026</span>
+          <h2>Data Engineering &amp; AI at Audi</h2>
+          <p class="modal-subtitle">32 PB Pipeline · CLIP Semantic Search · Scenario Reconstruction</p>
+        </div>
+        
+        <div class="modal-body">
+          <div class="modal-description">
+            <h3>Project 1 — Sensor Data Engineering Pipeline</h3>
+            <p>
+              Built an end-to-end data engineering pipeline handling <strong>32 petabytes</strong> of raw vehicle
+              bus data and camera outputs. The pipeline extracts relevant sensor signals, applies computer
+              vision algorithms to detect and temporally track dynamic objects (vehicles, pedestrians, cyclists),
+              and reconstructs the full driving scenarios inside a simulation environment — enabling automated
+              validation of ADAS functions at massive scale.
+            </p>
+            
+            <div class="features-grid">
+              <div class="feature-item">
+                <i data-lucide="hard-drive"></i>
+                <div>
+                  <strong>32 PB Data Scale</strong>
+                  <p>Processing petabyte-scale raw bus &amp; camera data from fleet vehicles</p>
+                </div>
+              </div>
+              <div class="feature-item">
+                <i data-lucide="eye"></i>
+                <div>
+                  <strong>Computer Vision</strong>
+                  <p>Object detection &amp; multi-object tracking across camera outputs</p>
+                </div>
+              </div>
+              <div class="feature-item">
+                <i data-lucide="git-branch"></i>
+                <div>
+                  <strong>Signal Extraction</strong>
+                  <p>Extracting relevant CAN/bus signals for downstream ADAS validation</p>
+                </div>
+              </div>
+              <div class="feature-item">
+                <i data-lucide="play-circle"></i>
+                <div>
+                  <strong>Simulation Reconstruction</strong>
+                  <p>Recreating real-world scenarios in simulation for test &amp; validation</p>
+                </div>
+              </div>
+            </div>
+
+            <h3 style="margin-top:2rem;">Project 2 — CLIP-Based Semantic Scenario Search</h3>
+            <p>
+              Developed a <strong>multimodal semantic search engine</strong> using OpenAI CLIP, enabling
+              engineers to query the entire scenario database using plain English. Typing &ldquo;car turning
+              right&rdquo; or &ldquo;emergency braking&rdquo; instantly retrieves matching driving scenarios
+              — complete with associated fused object data, CAN signals, and sensor metadata.
+            </p>
+
+            <div class="features-grid">
+              <div class="feature-item">
+                <i data-lucide="search"></i>
+                <div>
+                  <strong>Natural Language Search</strong>
+                  <p>Query scenarios in plain English — &ldquo;emergency braking&rdquo;, &ldquo;lane change left&rdquo;, etc.</p>
+                </div>
+              </div>
+              <div class="feature-item">
+                <i data-lucide="layers"></i>
+                <div>
+                  <strong>CLIP Embeddings</strong>
+                  <p>OpenAI CLIP encodes both text queries and scenario representations in a shared embedding space</p>
+                </div>
+              </div>
+              <div class="feature-item">
+                <i data-lucide="radio"></i>
+                <div>
+                  <strong>Fused Sensor Data</strong>
+                  <p>Results surface ERA fused objects, CAN signals, and camera context</p>
+                </div>
+              </div>
+              <div class="feature-item">
+                <i data-lucide="filter"></i>
+                <div>
+                  <strong>Scenario Classification</strong>
+                  <p>Automatic tagging of scenario types for structured retrieval</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="modal-tags">
+            <span>CLIP</span>
+            <span>Semantic Search</span>
+            <span>Computer Vision</span>
+            <span>Object Tracking</span>
+            <span>Data Engineering</span>
+            <span>Petabyte Scale</span>
+            <span>Python</span>
+            <span>PyTorch</span>
+            <span>ADAS</span>
+            <span>Simulation</span>
+          </div>
         </div>
       </div>
     </div>
