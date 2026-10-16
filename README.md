@@ -11,6 +11,7 @@ Run `python3 -m http.server 4173` from this directory and open `http://localhost
 - `index.html`: project overview, experience, background, contact, and project dialogs.
 - `resume.html`: current consolidated professional profile, with print styles and links to the earlier PDF documents.
 - `css/editorial.css`: responsive page, dialog, and print styles.
+- `css/cinematic.css`: the dark photographic presentation, portrait composition, and restrained hover treatments. Screen-only rules preserve the light printable résumé.
 - `js/portfolio.js`: mobile navigation, project filters, accessible dialogs, and printing.
 - `js/autonomy-scene.js`: an illustrative Three.js drone scene with cursor interaction and pause/play. It respects reduced motion, stops when offscreen or the tab is hidden, and keeps an SVG fallback when WebGL is unavailable.
 - `js/vendor/three.module.min.js`: locally hosted Three.js 0.160.0, under the adjacent MIT license.
