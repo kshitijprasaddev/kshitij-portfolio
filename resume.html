@@ -10,9 +10,24 @@
       content="Kshitij Prasad | robotics, autonomous systems, reinforcement learning, and data engineering. Professional profile and selected projects."
     />
     <link rel="icon" type="image/svg+xml" href="media/favicon.svg" />
-    <link rel="stylesheet" href="css/editorial.css" />
-    <link rel="stylesheet" href="css/cinematic.css" />
-    <script src="js/portfolio.js" defer></script>
+    <link
+      rel="preload"
+      href="media/fonts/dm-sans-latin-variable.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="media/fonts/instrument-serif-latin-italic.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link rel="stylesheet" href="css/fonts.css?v=31e6c1e264" />
+    <link rel="stylesheet" href="css/editorial.css?v=661c637d65" />
+    <link rel="stylesheet" href="css/cinematic.css?v=1335b7314f" />
+    <script src="js/portfolio.js?v=c4ecfc60a4" defer></script>
   </head>
   <body>
     <main class="resume-page">
@@ -136,20 +151,27 @@
       <section class="resume-section">
         <h2>TECHNICAL SKILLS</h2>
         <p>
-          C++ · Python · SQL · ROS 2 · Nav2 · PyTorch · Deep reinforcement learning · CLIP · Computer vision ·
-          Gazebo · CARLA · PX4 · MAVLink · MAVSDK · Docker · Linux · Git · NVIDIA Jetson · LiDAR · RealSense ·
-          GNSS · IMU
+          C++ · Python · TypeScript · SQL · React Native · ROS 2 · Nav2 · PyTorch · Deep reinforcement
+          learning · CLIP · Computer vision · Gazebo · CARLA · PX4 · MAVLink · MAVSDK · Docker · Linux · Git ·
+          NVIDIA Jetson · LiDAR · RealSense · GNSS · IMU
         </p>
       </section>
       <section class="resume-section">
         <h2>LANGUAGES</h2>
         <p>English: fluent · German: B2/C1</p>
       </section>
-      <div class="resume-downloads">
-        <span>Earlier documents:</span><a href="CV_Kshitij_Prasad.pdf" download>Original CV (PDF) ↓</a
-        ><a href="Resume_KshitijPrasad.pdf" download>Original résumé (PDF) ↓</a
-        ><a href="thesis-kshitij.pdf" download>Bachelor’s thesis (PDF) ↓</a>
+      <div class="resume-evidence">
+        <a class="text-link" href="thesis-kshitij.pdf" target="_blank" rel="noopener noreferrer"
+          >Read the bachelor’s thesis (PDF) ↗</a
+        ><a class="text-link" href="index.html#projects">View project case studies ↗</a>
       </div>
+      <details class="resume-downloads">
+        <summary>Earlier documents:</summary>
+        <div>
+          <a href="CV_Kshitij_Prasad.pdf" download>Earlier CV (PDF) ↓</a
+          ><a href="Resume_KshitijPrasad.pdf" download>Earlier résumé (PDF) ↓</a>
+        </div>
+      </details>
     </main>
   </body>
 </html>
