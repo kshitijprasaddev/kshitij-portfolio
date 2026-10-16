@@ -72,7 +72,7 @@ class SiteContracts(unittest.TestCase):
 
     def test_current_resume_and_original_documents_are_available(self):
         current = (ROOT / 'resume.html').read_text()
-        for content in ['AUDI AG', '32 PB', 'CLIP', 'AKKODIS', 'PPO', 'SAC', 'TD3', 'Aero-XRL', 'Nouri', 'Scope', 'EXIST', 'Master’s studies', 'Earlier documents:']:
+        for content in ['AUDI AG', 'CLIP', 'AKKODIS', 'PPO', 'SAC', 'TD3', 'Aero-XRL', 'Nouri', 'Scope', 'EXIST', 'Master’s studies', 'Earlier documents:']:
             self.assertIn(content, current)
         self.assertTrue((ROOT / 'CV_Kshitij_Prasad.pdf').is_file())
         self.assertTrue((ROOT / 'Resume_KshitijPrasad.pdf').is_file())

@@ -117,13 +117,13 @@
 
   document.querySelector('[data-print]')?.addEventListener('click', () => window.print());
 
-  // Load the optional 3D library only as the visitor approaches the experiment.
-  const lab = document.getElementById('autonomy-lab');
+  // The landing illustration is optional; project evidence remains normal HTML.
+  const lab = document.getElementById('trajectory-view');
   if (lab) {
     const loader = new IntersectionObserver(entries => {
       if (!entries.some(entry => entry.isIntersecting)) return;
       loader.disconnect();
-      import('./autonomy-scene.js').catch(() => {
+      import('./trajectory-view.js').catch(() => {
         // The SVG illustration remains available if the module cannot load.
       });
     }, { rootMargin: '350px' });

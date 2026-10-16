@@ -1,34 +1,38 @@
-# Kshitij Prasad — Portfolio
+# Kshitij Prasad | Portfolio
 
-A static portfolio for robotics, AI, autonomous systems, and automotive data engineering. Projects lead the page; the WebGL autonomy lab is an optional enhancement. No build step or runtime framework is required.
+A static portfolio for robotics, automotive data engineering and software. Nouri and Scope lead a project gallery with real prototype screenshots. The dark photographic presentation uses the supplied full-resolution portrait. No build step or runtime framework is required.
 
 ## Preview
 
-Run `python3 -m http.server 4173` from this directory and open `http://localhost:4173`. ES modules require an HTTP server rather than opening `index.html` directly.
+Run `python3 -m http.server 4173` from this directory and open `http://localhost:4173`. ES modules require an HTTP server.
 
 ## Active source
 
-- `index.html`: project overview, experience, background, contact, and project dialogs.
-- `resume.html`: current consolidated professional profile, with print styles and links to the earlier PDF documents.
-- `css/editorial.css`: responsive page, dialog, and print styles.
-- `css/cinematic.css`: the dark photographic presentation, portrait composition, and restrained hover treatments. Screen-only rules preserve the light printable résumé.
-- `js/portfolio.js`: mobile navigation, project filters, accessible dialogs, and printing.
-- `js/autonomy-scene.js`: an illustrative Three.js drone scene with cursor interaction and pause/play. It respects reduced motion, stops when offscreen or the tab is hidden, and keeps an SVG fallback when WebGL is unavailable.
+- `index.html`: projects, experience, background, contact and accessible case-study dialogs.
+- `resume.html`: current consolidated professional profile with a light print layout and links to earlier documents.
+- `css/editorial.css`: shared responsive layout, dialogs and print styles.
+- `css/cinematic.css`: dark photographic presentation and landing-study layout.
+- `js/portfolio.js`: navigation, project filters, modal focus handling, printing and lazy loading.
+- `js/trajectory-view.js`: optional, on-demand Three.js landing geometry. Visitors can inspect approach, alignment and descent, scrub the path and rotate the view. An SVG remains available without WebGL.
 - `js/vendor/three.module.min.js`: locally hosted Three.js 0.160.0, under the adjacent MIT license.
-- `media/*-portfolio.webp`: optimized derivatives of the existing portfolio photographs and screenshots.
-- `media/portrait.jpg`: the supplied portrait, preserved without alteration.
-- `media/nouri-*.webp` and `media/scope-dashboard.webp`: screenshots of the actual prototypes using demonstration data.
+- `media/portrait.webp`: optimized website image from the new portrait; no retouching or generated alterations.
+- `media/portrait-full.png`: the original full-resolution PNG, available to download.
+- `media/*-portfolio.webp`, `media/nouri-*.webp`, `media/scope-dashboard.webp`: optimized project photos and actual prototype screens using demonstration data.
 
-The earlier scripts and stylesheet remain in the repository but are no longer loaded by the page. Their multi-canvas effects and project carousel have been replaced by the focused autonomy scene and a fully readable HTML gallery.
+Earlier scripts and styles remain in the repository for reference but are no longer loaded. The active page uses normal HTML for its gallery and project evidence.
 
 ## Content maintenance
 
-The current profile combines the recent robotics, data engineering, ADAS, and reinforcement learning CV information with the existing public project descriptions. Nouri and Scope lead the gallery, with details drawn from the local project documentation. Both are labeled as in-development work; Scope is described as an EXIST preparation effort, without implying funding or university endorsement. Private project sources and owner-private demo links are not published. Master’s studies are described without selecting between the differing degree abbreviations in the source CVs. The timeline uses May 2026 for Audi and October 2024 as the end of Schanzer Racing, following the recent CVs.
+The current profile combines recent CV information with project documentation and the bachelor’s thesis. The UAV result is explicitly scoped to Gazebo/PX4 SITL with one training seed and 100 evaluation episodes. Pixhawk hardware integration is separate; physical policy transfer remains future work. The landing illustration uses synthetic geometry and shows no recorded telemetry or measured performance.
 
-The existing CV and résumé PDFs are preserved and explicitly labeled as earlier documents. Edit the current HTML résumé when updating the profile. Videos load only when a visitor opens a case study and chooses to play them. The WebGL scene uses synthetic geometry and an illustrative flight path; it displays no live telemetry or claimed performance measurements.
+Nouri is in development. Scope is a working insurance-renewal prototype in EXIST preparation; no funding award, customer outcome or university endorsement is implied. PAVE is a fleet-planning demonstrator with simulated demand and an optional PPO backend. Private source repositories and owner-only demo links are not published. Audi descriptions focus on the actual data-processing and scenario-retrieval contribution.
+
+Master’s studies are described without choosing between degree abbreviations that differ across the source CVs. The timeline follows the recent CVs: May 2026 for Audi and October 2024 as the end of Schanzer Racing.
+
+The earlier CV PDFs remain explicitly labeled as earlier documents. Update `resume.html` for the current profile. Video files load only when a visitor opens a case study and chooses to play them.
 
 ## Verification
 
-Run `python3 tests/validate_site.py` for internal asset/link validation, duplicate IDs, project-dialog wiring, accessible image labels, and résumé checks. Check JavaScript with `node --check js/portfolio.js` and `node --input-type=module --check < js/autonomy-scene.js`.
+Run `python3 tests/validate_site.py` for internal assets, links, unique IDs, project-dialog wiring and accessible media. Check JavaScript with `node --check js/portfolio.js` and `node --input-type=module --check < js/trajectory-view.js`.
 
-Browser review should cover project filters, mobile navigation, dialog keyboard focus and Escape, pause/play, the résumé, and horizontal overflow at desktop and mobile widths. Hosting stays compatible with the existing static Vercel configuration and GitHub Pages.
+Browser review should cover filters, mobile navigation, dialog focus and Escape, landing controls, the résumé and horizontal overflow on desktop and mobile. The site retains the existing static Vercel and GitHub Pages hosting configuration.

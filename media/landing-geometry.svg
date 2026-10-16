@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="650" viewBox="0 0 900 650" fill="none">
+  <title>Illustrative geometry of a controlled approach to a moving landing target</title>
+  <desc>A copper descent curve connects a small vehicle marker to a graphite landing platform above a matte plane. This drawing is an explanation of the task, not measured flight data.</desc>
+  <defs>
+    <linearGradient id="ground" x1="320" y1="240" x2="580" y2="590" gradientUnits="userSpaceOnUse"><stop stop-color="#323a35"/><stop offset="1" stop-color="#252c28"/></linearGradient>
+    <linearGradient id="platform" x1="500" y1="367" x2="614" y2="445" gradientUnits="userSpaceOnUse"><stop stop-color="#60695f"/><stop offset="1" stop-color="#434e46"/></linearGradient>
+  </defs>
+  <path d="M122 392 421 228 791 404 490 590 122 404Z" fill="#202722"/>
+  <path d="M122 392 421 228 791 404 490 579Z" fill="url(#ground)" stroke="#535d53" stroke-opacity=".5"/>
+  <path d="M465 443 642 352" stroke="#7f8979" stroke-opacity=".4" stroke-width="1.5"/>
+  <path d="M482 421 559 380 649 424 572 468 482 432Z" fill="#343e37"/>
+  <path d="M482 421 559 380 649 424 572 456Z" fill="url(#platform)" stroke="#89917f" stroke-opacity=".65"/>
+  <path d="M512 420 560 395 618 424 572 449Z" stroke="#c1c4b3" stroke-opacity=".8" stroke-width="1.25"/>
+  <path d="M302 134C360 130 374 160 408 203S491 283 538 332 569 382 570 418" stroke="#b87d5a" stroke-width="3" stroke-linecap="round"/>
+  <path d="M302 142V346" stroke="#9da793" stroke-opacity=".4" stroke-dasharray="4 7"/>
+  <ellipse cx="302" cy="134" rx="13" ry="6.5" fill="#dddccc"/>
+  <ellipse cx="302" cy="134" rx="22" ry="10" stroke="#bd825c" stroke-width="1.5"/>
+  <g fill="#c9cbbb" font-family="system-ui,sans-serif" font-size="15" letter-spacing=".3">
+    <text x="302" y="101" text-anchor="middle">Vehicle</text>
+    <text x="591" y="497" text-anchor="middle">Moving target</text>
+  </g>
+</svg>
