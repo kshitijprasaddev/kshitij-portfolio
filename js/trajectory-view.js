@@ -35,8 +35,9 @@ import * as THREE from './vendor/three.module.min.js';
   scene.background = new THREE.Color(0x151c1e);
   scene.fog = new THREE.Fog(0x151c1e, 16, 43);
   const camera = new THREE.PerspectiveCamera(38, 1, 0.1, 75);
-  const desiredCamera = new THREE.Vector3(), desiredFocus = new THREE.Vector3(), cameraFocus = new THREE.Vector3();
-  let cameraIndex = 0, snapCamera = true;
+  const desiredCamera = new THREE.Vector3(), desiredFocus = new THREE.Vector3(), desiredUp = new THREE.Vector3(), cameraFocus = new THREE.Vector3();
+  const CAMERA_TRANSITION_DURATION = 0.82;
+  let cameraIndex = 0, snapCamera = true, cameraTransition = null;
   scene.add(new THREE.HemisphereLight(0xc0d4dc, 0x3e4437, 2.1));
   const key = new THREE.DirectionalLight(0xffcea4, 3.4);
   key.position.set(-5.5, 9, 4);
@@ -244,18 +245,32 @@ import * as THREE from './vendor/three.module.min.js';
       desiredFocus.copy(vehicle.position).multiplyScalar(0.42).addScaledVector(cart.position, 0.58); desiredFocus.y = 1.35;
       const framing = mobile ? THREE.MathUtils.lerp(1.2, 0.78, THREE.MathUtils.smoothstep(progress, 0.15, 0.85)) : 1;
       desiredCamera.copy(desiredFocus).add(new THREE.Vector3(6.4 + Math.sin(progress * 1.5) * 0.26, 4.6, 8.4).multiplyScalar(framing));
-      camera.up.set(0, 1, 0);
+      desiredUp.set(0, 1, 0);
     } else if (cameraIndex === 1) {
       desiredFocus.copy(vehicle.position); desiredFocus.y = Math.max(0.95, vehicle.position.y - 0.8);
-      desiredCamera.copy(vehicle.position).add(new THREE.Vector3(4.2, 2.7, 5.3).multiplyScalar(mobile ? 1.25 : 1)); camera.up.set(0, 1, 0);
+      desiredCamera.copy(vehicle.position).add(new THREE.Vector3(4.2, 2.7, 5.3).multiplyScalar(mobile ? 1.25 : 1)); desiredUp.set(0, 1, 0);
     } else {
       desiredFocus.copy(vehicle.position).multiplyScalar(0.36).addScaledVector(cart.position, 0.64); desiredFocus.y = 0;
-      desiredCamera.copy(desiredFocus).add(new THREE.Vector3(0.18, mobile ? 16.2 : 13.5, 0.35)); camera.up.set(0, 0, -1);
+      desiredCamera.copy(desiredFocus).add(new THREE.Vector3(0.18, mobile ? 16.2 : 13.5, 0.35)); desiredUp.set(0, 0, -1);
     }
-    if (snapCamera || !playing || reducedMotion.matches) {
-      camera.position.copy(desiredCamera); cameraFocus.copy(desiredFocus); snapCamera = false;
+    if (snapCamera || reducedMotion.matches) {
+      cameraTransition = null;
+      camera.position.copy(desiredCamera); cameraFocus.copy(desiredFocus); camera.up.copy(desiredUp); snapCamera = false;
+    } else if (cameraTransition) {
+      // A finite transition also runs while the flight is paused. Visible-frame
+      // delta keeps its time frozen when the study is offscreen or obscured.
+      cameraTransition.elapsed = Math.min(CAMERA_TRANSITION_DURATION, cameraTransition.elapsed + delta);
+      const t = cameraTransition.elapsed / CAMERA_TRANSITION_DURATION;
+      const eased = t < 0.5 ? 4 * t ** 3 : 1 - (-2 * t + 2) ** 3 / 2;
+      camera.position.lerpVectors(cameraTransition.position, desiredCamera, eased);
+      cameraFocus.lerpVectors(cameraTransition.focus, desiredFocus, eased);
+      camera.up.lerpVectors(cameraTransition.up, desiredUp, eased).normalize();
+      if (t === 1) cameraTransition = null;
+    } else if (!playing) {
+      camera.position.copy(desiredCamera); cameraFocus.copy(desiredFocus); camera.up.copy(desiredUp);
     } else {
       const smoothing = 1 - Math.exp(-delta * 2.2); camera.position.lerp(desiredCamera, smoothing); cameraFocus.lerp(desiredFocus, smoothing);
+      camera.up.copy(desiredUp);
     }
     camera.lookAt(cameraFocus); camera.updateMatrixWorld();
     positionLabel(vehicleLabel, vehicle.position, -45);
@@ -272,16 +287,16 @@ import * as THREE from './vendor/three.module.min.js';
     cancelAnimationFrame(raf); raf = 0; lastTick = 0;
   }
   function canRender() { return visible && !hidden && !modalOpen && !lost && !failed && width > 0 && height > 0; }
-  function schedule() { if (!raf && canRender() && (playing || dirty)) raf = requestAnimationFrame(tick); }
+  function schedule() { if (!raf && canRender() && (playing || cameraTransition || dirty)) raf = requestAnimationFrame(tick); }
   function tick(now) {
     raf = 0;
     if (!canRender()) { lastTick = 0; return; }
     const delta = lastTick ? Math.min((now - lastTick) / 1000, 0.08) : 0;
-    if (playing && !dirty && now - lastRender < 1000 / 30) { schedule(); return; }
+    if ((playing || cameraTransition) && !dirty && now - lastRender < 1000 / 30) { schedule(); return; }
     lastTick = now; lastRender = now;
     if (playing) { elapsed = Math.min(DURATION, elapsed + delta); if (elapsed >= DURATION) playing = false; }
     try {
-      updateScene(delta || 1 / 30); renderer.render(scene, camera); view.classList.add('trajectory-ready'); dirty = false;
+      updateScene(delta); renderer.render(scene, camera); view.classList.add('trajectory-ready'); dirty = false;
     } catch { showFallback(true); return; }
     schedule();
   }
@@ -299,7 +314,15 @@ import * as THREE from './vendor/three.module.min.js';
     elapsed = 0; playing = false; cameraIndex = 0; lastTick = 0; snapCamera = true; syncControls(); invalidate();
   });
   cameraButton?.addEventListener('click', () => {
-    cameraIndex = (cameraIndex + 1) % cameraNames.length; snapCamera = true; syncControls(); invalidate();
+    cameraIndex = (cameraIndex + 1) % cameraNames.length;
+    cameraTransition = !reducedMotion.matches && !snapCamera ? {
+      elapsed: 0,
+      position: camera.position.clone(),
+      focus: cameraFocus.clone(),
+      up: camera.up.clone()
+    } : null;
+    snapCamera = !cameraTransition;
+    lastTick = 0; syncControls(); invalidate();
   });
   function resize() {
     const bounds = stage.getBoundingClientRect(); width = Math.round(bounds.width); height = Math.round(bounds.height);

@@ -12,6 +12,7 @@ Run `python3 -m http.server 4173` from this directory and open `http://localhost
 - `resume.html`: current consolidated professional profile with a light print layout and links to earlier documents.
 - `css/editorial.css`: shared responsive layout, dialogs and print styles.
 - `css/cinematic.css`: dark photographic presentation and landing-study layout.
+- `css/experience.css` and `js/experience.js`: local light reflections, tactile controls, one-time entrances and reduced-motion handling. Pointer lighting only runs on precise pointers; normal page scrolling stays native.
 - `js/portfolio.js`: navigation, project filters, modal focus handling, printing and lazy loading.
 - `js/trajectory-view.js`: a cinematic Three.js quadrotor approach and moving-platform landing scenario. Pause, replay, timeline scrubbing and three camera views support inspection; a matching rendered poster remains available without WebGL. Playback pauses offscreen and in background tabs, and starts paused for reduced-motion preferences.
 - `js/vendor/three.module.min.js`: locally hosted Three.js 0.160.0, under the adjacent MIT license.
@@ -40,6 +41,10 @@ The earlier CV PDFs remain in a collapsed earlier-documents section, below curre
 
 Run `python3 tests/validate_site.py` for internal assets, links, unique IDs, project-dialog wiring and accessible media. Check JavaScript with `node --check js/portfolio.js` and `node --input-type=module --check < js/trajectory-view.js`.
 
-Browser review should cover filters, mobile navigation, dialog focus and Escape, landing playback/scrubbing/camera controls, the résumé, portrait framing and horizontal overflow on desktop and mobile. The site retains the existing static Vercel and GitHub Pages hosting configuration.
+Browser review should cover filters, mobile navigation, dialog focus and Escape, landing playback/scrubbing/camera controls, the résumé, portrait framing and horizontal overflow on desktop and mobile. Camera changes ease between views even while flight playback is paused, then stop rendering.
 
-Local CSS and module URLs carry content revisions so a new deployment does not reuse an outdated presentation from the browser cache. Update those revisions when their source changes.
+Local CSS and module URLs carry content revisions so a new deployment does not reuse an outdated presentation from the browser cache. Run `python3 scripts/version_assets.py` after editing styles or modules and commit the updated HTML and loader together.
+
+## Deployment
+
+The public production site is https://kshitijprasad.vercel.app/. Vercel deploys `main` to Production; pushes to other branches create Preview deployments. A successful preview does not update the public site. Merge a verified change into `main`, wait for the Production deployment to succeed, and check the public homepage and résumé. The repository homepage alias redirects to the canonical production address.

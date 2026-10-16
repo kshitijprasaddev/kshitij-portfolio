@@ -149,7 +149,7 @@
     const loader = new IntersectionObserver(entries => {
       if (!entries.some(entry => entry.isIntersecting)) return;
       loader.disconnect();
-      import('./trajectory-view.js?v=3d234caa1d').catch(() => {
+      import('./trajectory-view.js?v=5fb5095fb3').catch(() => {
         // The rendered poster remains available if the module cannot load.
       });
     }, { rootMargin: '350px' });
