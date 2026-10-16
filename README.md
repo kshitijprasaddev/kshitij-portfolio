@@ -32,7 +32,7 @@ The current profile combines recent CV information with project documentation an
 
 Nouri is in development. Scope is a working insurance-renewal prototype in EXIST preparation; no funding award, customer outcome or university endorsement is implied. PAVE is a fleet-planning demonstrator with simulated demand and an optional PPO backend. Private source repositories and owner-only demo links are not published. Audi descriptions focus on the actual data-processing and scenario-retrieval contribution.
 
-Master’s studies are described without choosing between degree abbreviations that differ across the source CVs. The timeline follows the recent CVs: May 2026 for Audi and October 2024 as the end of Schanzer Racing.
+Current master’s studies appear once, in the résumé’s Education section. The homepage and profile introduction emphasize professional work and completed qualifications. The timeline follows the recent CVs: May 2026 for Audi and October 2024 as the end of Schanzer Racing.
 
 The earlier CV PDFs remain in a collapsed earlier-documents section, below current project and thesis links. Update `resume.html` for the current profile. Video files load only when a visitor opens a case study and chooses to play them.
 
