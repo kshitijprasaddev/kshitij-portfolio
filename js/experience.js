@@ -3,14 +3,13 @@
   'use strict';
   const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
   const precisePointer = matchMedia('(hover: hover) and (pointer: fine)');
-  const stackedStory = matchMedia('(max-width: 760px)');
   const body = document.body;
   const entrances = [];
   const pausedEntrances = new Set();
   const springStates = [];
   const activeSprings = new Set();
   const lightSurfaces = [];
-  let springFrame = 0, springTime = 0, scrollFrame = 0, pageSuspended = false, story = null;
+  let springFrame = 0, springTime = 0, scrollFrame = 0, pageSuspended = false;
   const clamp = (value, min = 0, max = 1) => Math.max(min, Math.min(max, value));
   const motionVisible = () => !document.hidden && !pageSuspended;
 
@@ -39,7 +38,6 @@
     if (!motionVisible()) return;
     const height = document.documentElement.scrollHeight - innerHeight;
     body.style.setProperty('--scroll-progress', String(height > 0 ? clamp(scrollY / height) : 0));
-    paintStory();
   }
   function queueProgress() {
     if (!scrollFrame && motionVisible()) scrollFrame = requestAnimationFrame(paintProgress);
@@ -49,7 +47,7 @@
   new ResizeObserver(queueProgress).observe(body);
 
   // Register the observer before enabling any hidden entrance state.
-  const reveals = [...document.querySelectorAll('.section-heading, .work-card, .timeline-entry, .about-copy, .recognition-copy, .stack-grid > div, .engineering-card')];
+  const reveals = [...document.querySelectorAll('.section-heading, .work-card, .timeline-entry, .about-copy, .recognition-copy, .stack-grid > div')];
   function reveal(element) { element.classList.add('is-revealed'); }
   function revealVisible() {
     reveals.forEach(element => {
@@ -146,9 +144,9 @@
       updateSpringTarget(state);
     });
   }
-  const springSelector = '.btn, .nav-cv, .filter, .project-image, .modal-close, .trajectory-toolbar button, .engineering-card .text-link';
+  const springSelector = '.btn, .nav-cv, .filter, .project-image, .modal-close, .trajectory-toolbar button';
   document.querySelectorAll(springSelector).forEach(element => {
-    const state = { element, position: 1, velocity: 0, target: 1, hoverScale: element.classList.contains('project-image') ? 1.015 : 1.02, hover: false, pointer: null, key: null };
+    const state = { element, position: 1, velocity: 0, target: 1, hoverScale: element.classList.contains('project-image') ? 1.008 : 1.012, hover: false, pointer: null, key: null };
     springStates.push(state);
     element.classList.add('spring-surface');
     element.addEventListener('pointerenter', event => {
@@ -194,49 +192,6 @@
     springStates.forEach(state => { state.hover = false; updateSpringTarget(state); });
     clearLights();
   });
-
-  // Native document scrolling selects a chapter; no scroll capture or live region.
-  function setStoryActive(index) {
-    if (!story || story.active === index) return;
-    story.active = index;
-    story.section.dataset.activeStory = String(index);
-    story.steps.forEach((step, stepIndex) => step.classList.toggle('is-active', stepIndex === index));
-    story.visuals.forEach((visual, visualIndex) => {
-      const active = visualIndex === index;
-      visual.classList.toggle('is-active', active);
-      visual.setAttribute('aria-hidden', String(!active));
-    });
-  }
-  function paintStory() {
-    if (!story) return;
-    // On a stacked layout the readable chapter sits below the pinned visual.
-    const line = innerHeight * (stackedStory.matches ? 0.68 : 0.45);
-    const bounds = story.steps.map(step => step.getBoundingClientRect());
-    let index = 0;
-    bounds.forEach((rect, stepIndex) => { if (rect.top <= line) index = stepIndex; });
-    setStoryActive(index);
-    const distance = bounds.at(-1).top - bounds[0].top;
-    const progress = distance > 0 ? clamp((line - bounds[0].top) / distance) : 0;
-    if (Math.abs(progress - story.progress) > 0.001) {
-      story.progress = progress;
-      story.section.style.setProperty('--story-progress', progress.toFixed(4));
-      story.stepsContainer?.style.setProperty('--story-progress', progress.toFixed(4));
-    }
-  }
-  const storySection = document.getElementById('engineering-story');
-  if (storySection) {
-    const steps = [...storySection.querySelectorAll('.story-step[data-story-step]')].sort((a, b) => Number(a.dataset.storyStep) - Number(b.dataset.storyStep));
-    const visuals = steps.map(step => storySection.querySelector(`.story-visual[data-story-visual="${step.dataset.storyStep}"]`));
-    if (steps.length >= 2 && visuals.every(Boolean)) {
-      story = { section: storySection, steps, visuals, stepsContainer: storySection.querySelector('.story-steps'), active: -1, progress: -1 };
-      paintStory();
-      storySection.classList.add('story-ready');
-      storySection.addEventListener('focusin', event => {
-        const index = steps.indexOf(event.target.closest('.story-step'));
-        if (index >= 0) setStoryActive(index);
-      });
-    }
-  }
 
   // A grazing reflection follows a mouse locally, without tilting the content.
   function resetLight(surface) {

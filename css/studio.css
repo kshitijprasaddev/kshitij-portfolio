@@ -213,6 +213,11 @@
     transform: none;
     transition-duration: 180ms;
   }
+  .btn::before,
+  .nav-cv::before,
+  .trajectory-toolbar button::before {
+    display: none;
+  }
 
   /* Clear intent, bold type, one composed photograph. */
   .hero {
@@ -242,7 +247,7 @@
     font-size: clamp(75px, 7.5vw, 108px);
     font-weight: 700;
     line-height: 0.98;
-    letter-spacing: -0.075em;
+    letter-spacing: -0.05em;
     margin: 0 0 32px;
   }
   .hero h1 em {
@@ -262,7 +267,7 @@
     font-size: 22px;
     font-weight: 600;
     line-height: 1.4;
-    letter-spacing: -0.045em;
+    letter-spacing: -0.035em;
     margin-bottom: 14px;
     color: #ebede5;
   }
@@ -378,7 +383,7 @@
     font-size: clamp(38px, 4.15vw, 60px);
     font-weight: 700;
     line-height: 1.04;
-    letter-spacing: -0.065em;
+    letter-spacing: -0.035em;
   }
   .section h2 em,
   .recognition h2 em,
@@ -533,7 +538,7 @@
     font-size: 28px;
     line-height: 1.13;
     font-weight: 700;
-    letter-spacing: -0.05em;
+    letter-spacing: -0.035em;
     margin: 0 0 14px;
   }
   .work-card h3 > span {
@@ -558,6 +563,23 @@
     padding: 0 14px;
     gap: 6px;
   }
+  .work-card .project-links {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 18px;
+    padding: 12px 14px 0;
+  }
+  .project-links a {
+    color: #bac8d2;
+    font-size: 12px;
+    line-height: 1.7;
+    text-underline-offset: 5px;
+  }
+  .project-links a:hover {
+    color: #f4f6ed;
+    text-decoration: underline;
+  }
   .tags span,
   .modal-tags span {
     border: 1px solid #ffffff12;
@@ -571,7 +593,7 @@
     font-family: var(--display);
     font-weight: 700;
     font-size: 61px;
-    letter-spacing: -0.065em;
+    letter-spacing: -0.035em;
     top: 29px;
     left: 28px;
   }
@@ -579,7 +601,7 @@
     font-family: var(--font);
     font-size: 24px;
     font-weight: 500;
-    letter-spacing: -0.04em;
+    letter-spacing: -0.035em;
     line-height: 1.14;
     left: 29px;
     bottom: 35px;
@@ -601,7 +623,7 @@
     font-family: var(--display);
     font-weight: 700;
     font-size: 40px;
-    letter-spacing: -0.065em;
+    letter-spacing: -0.035em;
     top: 27px;
     left: 25px;
   }
@@ -662,226 +684,6 @@
     color: #f5f6ef;
   }
 
-  /* Four concise evidence cards; their numbers come from the project record. */
-  .engineering-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 25px;
-    width: 90%;
-    max-width: 1296px;
-    margin: 0 auto 120px;
-  }
-  .engineering-card {
-    min-height: 345px;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 37px 38px 35px;
-    border: 1px solid #ffffff0b;
-    border-radius: 27px;
-    background: var(--glass);
-    box-shadow: var(--glass-shadow);
-    backdrop-filter: blur(16px);
-  }
-  .engineering-index {
-    position: absolute;
-    top: 34px;
-    right: 36px;
-    font: 11px var(--font);
-    color: #7e8995;
-    letter-spacing: 0.06em;
-  }
-  .engineering-value {
-    display: block;
-    font-size: 83px;
-    font-weight: 700;
-    line-height: 1;
-    letter-spacing: -0.075em;
-    color: #ecefe5;
-    margin-bottom: 32px;
-  }
-  .engineering-card h3 {
-    font-size: 24px;
-    font-weight: 600;
-    line-height: 1.2;
-    letter-spacing: -0.045em;
-    margin-bottom: 12px;
-  }
-  .engineering-card p {
-    color: #98a3ae;
-    font-size: 14px;
-    line-height: 1.8;
-    max-width: 440px;
-    margin-bottom: 24px;
-  }
-  .engineering-card .text-link {
-    margin-top: auto;
-    font-size: 12px;
-    color: #d3dacb;
-  }
-
-  /* Product decisions unfold beside an anchored, changing piece of evidence. */
-  .engineering-story {
-    scroll-margin-top: 110px;
-    padding-top: 0;
-    padding-bottom: 115px;
-  }
-  .story-heading {
-    max-width: 750px;
-    margin-bottom: 55px;
-  }
-  .story-heading > .eyebrow {
-    margin-bottom: 20px;
-  }
-  .story-heading h2 {
-    margin-bottom: 23px;
-  }
-  .story-heading > p:not(.eyebrow) {
-    max-width: 590px;
-    color: #929eaa;
-    font-size: 15px;
-    line-height: 1.85;
-  }
-  .story-layout {
-    display: grid;
-    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.85fr);
-    gap: 9%;
-    align-items: start;
-  }
-  .story-stage {
-    display: grid;
-    gap: 24px;
-    align-self: start;
-    min-width: 0;
-  }
-  .story-visual {
-    position: relative;
-    display: grid;
-    place-items: center;
-    min-width: 0;
-    min-height: 500px;
-    margin: 0;
-    overflow: hidden;
-    border: 1px solid #ffffff10;
-    border-radius: 30px;
-    background: #1c2024;
-    box-shadow: 0 25px 60px #0003;
-  }
-  .story-visual > img {
-    max-width: 100%;
-    max-height: 500px;
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-  }
-  .story-visual[data-story-visual="0"] {
-    background: #e0e8d4;
-  }
-  .story-visual[data-story-visual="0"] > img {
-    width: auto;
-    max-width: 68%;
-    height: 84%;
-    max-height: 440px;
-    border-radius: 24px;
-    box-shadow: 0 15px 45px #263b2d26;
-  }
-  .story-visual[data-story-visual="1"] {
-    background: #15352a;
-  }
-  .story-visual[data-story-visual="1"] > img {
-    width: 88%;
-    max-height: 84%;
-    height: auto;
-    border-radius: 12px;
-    box-shadow: 0 20px 45px #0003;
-  }
-  .story-visual[data-story-visual="2"] > img {
-    width: 100%;
-    height: 100%;
-    max-height: none;
-    object-fit: cover;
-  }
-  .story-visual figcaption {
-    position: absolute;
-    left: 22px;
-    right: 22px;
-    bottom: 22px;
-    border: 1px solid #ffffff15;
-    border-radius: 14px;
-    padding: 13px 16px;
-    font: 12px/1.65 var(--font);
-    color: #e3e8dc;
-    background: #11161ce0;
-    backdrop-filter: blur(14px);
-  }
-  .story-step {
-    min-height: 490px;
-    min-height: max(430px, 60vh);
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    padding: 55px 0;
-    border-bottom: 1px solid #ffffff0a;
-  }
-  .story-step:first-child {
-    padding-top: 20px;
-  }
-  .story-step:last-child {
-    border: 0;
-  }
-  .story-step .eyebrow {
-    color: #818d99;
-    font-size: 10px;
-    margin-bottom: 24px;
-  }
-  .story-step h3 {
-    font-size: 35px;
-    font-weight: 700;
-    line-height: 1.1;
-    letter-spacing: -0.055em;
-    margin-bottom: 23px;
-  }
-  .story-step p {
-    color: #909daa;
-    font-size: 15px;
-    line-height: 1.9;
-    max-width: 445px;
-    margin-bottom: 26px;
-  }
-  .story-step .text-link {
-    font-size: 13px;
-    color: #dce3d2;
-  }
-  .story-step.is-active h3 {
-    color: #f7f8f1;
-  }
-  .story-ready .story-stage {
-    position: sticky;
-    top: 120px;
-    height: min(70vh, 600px);
-    min-height: 480px;
-    display: block;
-  }
-  .story-ready .story-visual {
-    position: absolute;
-    inset: 0;
-    min-height: 0;
-    opacity: 0;
-    visibility: hidden;
-    transform: scale(0.972);
-    transition:
-      opacity 480ms ease,
-      transform 700ms cubic-bezier(0.2, 0.75, 0.25, 1),
-      visibility 480ms;
-  }
-  .story-ready .story-visual.is-active {
-    opacity: 1;
-    visibility: visible;
-    transform: scale(1);
-  }
-
   /* The flight study belongs to the same product system. */
   .landing-study {
     padding-top: 54px;
@@ -900,7 +702,7 @@
   }
   .landing-copy h2 {
     font: 700 clamp(35px, 3.3vw, 48px) / 1.06 var(--display);
-    letter-spacing: -0.06em;
+    letter-spacing: -0.035em;
     margin-top: 20px;
   }
   .landing-intro p {
@@ -1030,7 +832,7 @@
   .timeline-title h3 {
     font-size: 26px;
     font-weight: 700;
-    letter-spacing: -0.05em;
+    letter-spacing: -0.035em;
   }
   .timeline-title > span {
     color: #7f8d9a;
@@ -1144,12 +946,12 @@
   .contact {
     background: radial-gradient(ellipse at 50% 95%, #5d6a7d0c, transparent 70%);
     border-color: #ffffff10;
-    padding-top: 95px;
-    padding-bottom: 105px;
+    padding-top: 75px;
+    padding-bottom: 85px;
   }
   .contact h2 {
-    font: 700 clamp(50px, 7.2vw, 101px) / 1 var(--display);
-    letter-spacing: -0.075em;
+    font: 700 clamp(42px, 4.2vw, 60px) / 1.08 var(--display);
+    letter-spacing: -0.035em;
   }
   .contact h2 em {
     font: inherit;
@@ -1162,7 +964,7 @@
   .contact-email {
     color: #dce5d6;
     font-size: 25px;
-    letter-spacing: -0.04em;
+    letter-spacing: -0.035em;
   }
   .contact-email > span {
     color: #dce5d6;
@@ -1212,7 +1014,7 @@
   .modal-header h2 {
     font-weight: 700;
     font-size: 38px;
-    letter-spacing: -0.06em;
+    letter-spacing: -0.035em;
   }
   .modal-header > p {
     color: #a4b0bc;
@@ -1231,7 +1033,7 @@
   .modal-body h3 {
     font-size: 22px;
     font-weight: 600;
-    letter-spacing: -0.045em;
+    letter-spacing: -0.035em;
   }
   .modal-body p,
   .modal-body li {
@@ -1299,7 +1101,7 @@
     font-size: 61px;
     font-weight: 700;
     line-height: 1.05;
-    letter-spacing: -0.065em;
+    letter-spacing: -0.035em;
   }
   .resume-page .resume-role {
     color: #b5c1ad;
@@ -1387,9 +1189,7 @@
   .nav-cv.spring-surface:hover {
     transform: none;
   }
-  .engineering-card:hover {
-    border-color: #ffffff17;
-  }
+
   .trajectory-view:hover {
     border-color: #ffffff23;
     box-shadow: var(--glass-shadow);
@@ -1459,25 +1259,7 @@
     top: 93px;
     left: 23px;
   }
-  .engineering-card {
-    padding: 32px;
-  }
-  .engineering-index {
-    top: 31px;
-    right: 31px;
-  }
-  .story-layout {
-    gap: 7%;
-  }
-  .story-step h3 {
-    font-size: 32px;
-  }
-  .story-ready .story-stage {
-    min-height: 440px;
-  }
-  .story-visual {
-    min-height: 440px;
-  }
+
   .timeline-entry {
     grid-template-columns: 180px 1fr;
     gap: 35px;
@@ -1665,61 +1447,7 @@
     left: 12%;
     width: 99%;
   }
-  .engineering-grid {
-    gap: 22px;
-    margin-bottom: 95px;
-  }
-  .engineering-card {
-    padding: 29px;
-    min-height: 335px;
-    border-radius: 24px;
-  }
-  .engineering-value {
-    font-size: 74px;
-  }
-  .engineering-card h3 {
-    font-size: 22px;
-  }
-  .engineering-card p {
-    font-size: 13px;
-  }
-  .engineering-index {
-    top: 29px;
-    right: 28px;
-  }
-  .engineering-story {
-    padding-top: 0;
-  }
-  .story-heading {
-    margin-bottom: 45px;
-  }
-  .story-layout {
-    gap: 6%;
-  }
-  .story-step {
-    min-height: max(400px, 60vh);
-  }
-  .story-step h3 {
-    font-size: 29px;
-  }
-  .story-step p {
-    font-size: 14px;
-  }
-  .story-ready .story-stage {
-    min-height: 400px;
-    height: 62vh;
-  }
-  .story-visual {
-    min-height: 400px;
-    border-radius: 25px;
-  }
-  .story-visual figcaption {
-    left: 16px;
-    right: 16px;
-    bottom: 16px;
-    padding: 11px 13px;
-    font-size: 11px;
-  }
+
   .landing-study {
     margin-bottom: 85px;
   }
@@ -1755,7 +1483,7 @@
     font-size: 34px;
   }
   .contact h2 {
-    font-size: 76px;
+    font-size: 48px;
   }
   .resume-page {
     padding: 42px;
@@ -1822,11 +1550,11 @@
     letter-spacing: 0.08em;
   }
   .hero h1 {
-    font-size: clamp(49px, 10.4vw, 78px);
+    font-size: clamp(64px, 12vw, 86px);
     font-weight: 700;
     line-height: 0.98;
     margin: 0 0 30px;
-    letter-spacing: -0.07em;
+    letter-spacing: -0.05em;
     text-shadow: none;
   }
   .hero h1 em {
@@ -1878,7 +1606,7 @@
   .hero-intro {
     font-size: 23px;
     line-height: 1.35;
-    letter-spacing: -0.045em;
+    letter-spacing: -0.035em;
     margin-bottom: 15px;
   }
   .hero-detail {
@@ -1932,7 +1660,7 @@
   }
   .section h2 {
     font-size: 42px;
-    letter-spacing: -0.065em;
+    letter-spacing: -0.035em;
   }
   .section-heading .eyebrow {
     font-size: 9px;
@@ -1993,7 +1721,7 @@
   .work-card h3 {
     padding-inline: 13px;
     font-size: 28px;
-    letter-spacing: -0.055em;
+    letter-spacing: -0.035em;
     margin-bottom: 15px;
   }
   .work-card h3 > span {
@@ -2086,131 +1814,7 @@
   .archive-label {
     font-size: 9px;
   }
-  .engineering-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 14px;
-    margin-bottom: 80px;
-  }
-  .engineering-card {
-    padding: 25px 22px;
-    border-radius: 22px;
-    min-height: 335px;
-  }
-  .engineering-index {
-    top: 24px;
-    right: 22px;
-    font-size: 10px;
-  }
-  .engineering-value {
-    font-size: 64px;
-    margin-bottom: 26px;
-  }
-  .engineering-card h3 {
-    font-size: 21px;
-    line-height: 1.2;
-    margin-bottom: 12px;
-  }
-  .engineering-card p {
-    font-size: 12px;
-    line-height: 1.85;
-    margin-bottom: 21px;
-  }
-  .engineering-card .text-link {
-    font-size: 11px;
-  }
-  .engineering-story {
-    padding-top: 0;
-    padding-bottom: 75px;
-  }
-  .story-heading {
-    margin-bottom: 30px;
-  }
-  .story-heading > .eyebrow {
-    font-size: 9px;
-    margin-bottom: 19px;
-  }
-  .story-heading h2 {
-    margin-bottom: 22px;
-  }
-  .story-heading > p:not(.eyebrow) {
-    font-size: 14px;
-    line-height: 1.85;
-  }
-  .story-layout {
-    grid-template-columns: 1fr;
-    gap: 0;
-  }
-  .story-stage {
-    gap: 18px;
-  }
-  .story-visual {
-    min-height: 330px;
-    border-radius: 23px;
-  }
-  .story-visual > img {
-    max-height: 330px;
-  }
-  .story-visual[data-story-visual="0"] > img {
-    max-height: 280px;
-    border-radius: 19px;
-  }
-  .story-visual[data-story-visual="1"] > img {
-    max-height: 84%;
-    width: 88%;
-  }
-  .story-visual figcaption {
-    left: 15px;
-    right: 15px;
-    bottom: 15px;
-    border-radius: 11px;
-    font-size: 11px;
-    padding: 11px 14px;
-  }
-  .story-ready .story-stage {
-    top: 90px;
-    z-index: 3;
-    background: var(--bg);
-    height: min(45svh, 330px);
-    min-height: 240px;
-    margin-bottom: 15px;
-  }
-  .story-ready .story-stage::before {
-    content: "";
-    position: absolute;
-    top: -20px;
-    left: 0;
-    right: 0;
-    height: 20px;
-    background: var(--bg);
-  }
-  .story-ready .story-visual {
-    min-height: 0;
-  }
-  .story-step {
-    min-height: max(365px, 53vh);
-    padding: 43px 5px;
-  }
-  .story-step:first-child {
-    padding-top: 36px;
-  }
-  .story-step .eyebrow {
-    font-size: 9px;
-    margin-bottom: 20px;
-  }
-  .story-step h3 {
-    font-size: 32px;
-    line-height: 1.1;
-    margin-bottom: 22px;
-  }
-  .story-step p {
-    max-width: none;
-    font-size: 14px;
-    margin-bottom: 25px;
-    line-height: 1.9;
-  }
-  .story-step .text-link {
-    font-size: 13px;
-  }
+
   .landing-study {
     padding-top: 42px;
     margin-bottom: 75px;
@@ -2393,8 +1997,8 @@
     padding-bottom: 75px;
   }
   .contact h2 {
-    font-size: clamp(50px, 11vw, 76px);
-    letter-spacing: -0.07em;
+    font-size: 48px;
+    letter-spacing: -0.035em;
   }
   .contact-email {
     font-size: clamp(20px, 4.8vw, 27px);
@@ -2490,8 +2094,8 @@
     padding-top: 38px;
   }
   .hero h1 {
-    font-size: clamp(45px, 11.6vw, 56px);
-    letter-spacing: -0.07em;
+    font-size: clamp(60px, 15.4vw, 72px);
+    letter-spacing: -0.05em;
   }
   .hero-portrait {
     height: 340px;
@@ -2525,34 +2129,7 @@
     font-size: 11px;
     padding-inline: 10px;
   }
-  .engineering-grid {
-    grid-template-columns: 1fr;
-    gap: 18px;
-  }
-  .engineering-card {
-    min-height: 305px;
-    padding: 29px;
-  }
-  .engineering-index {
-    top: 29px;
-    right: 29px;
-  }
-  .engineering-value {
-    font-size: 77px;
-    margin-bottom: 29px;
-  }
-  .engineering-card h3 {
-    font-size: 24px;
-  }
-  .engineering-card p {
-    font-size: 14px;
-  }
-  .engineering-card .text-link {
-    font-size: 12px;
-  }
-  .story-step h3 {
-    font-size: 30px;
-  }
+
   .trajectory-stage {
     height: 320px;
   }
@@ -2574,7 +2151,7 @@
     padding-inline: 13px;
   }
   .hero h1 {
-    font-size: 43px;
+    font-size: 60px;
   }
   .hero-actions {
     gap: 18px;
@@ -2609,55 +2186,14 @@
   .spring-surface {
     scale: 1 !important;
   }
-  .story-ready .story-visual {
-    transition: none;
-    transform: none;
-  }
 }
 @media screen {
   .reduced-effects .spring-surface {
     scale: 1 !important;
   }
-  .reduced-effects .story-ready .story-visual {
-    transition: none;
-    transform: none;
-  }
 }
 
-/* Structured footer and factual metric units use their own compact layout. */
 @media screen {
-  .engineering {
-    scroll-margin-top: 110px;
-    padding-top: 10px;
-    padding-bottom: 115px;
-  }
-  .engineering .engineering-grid {
-    width: 100%;
-    max-width: none;
-    margin: 0;
-  }
-  .engineering-index {
-    position: static;
-    display: block;
-    margin-bottom: 26px;
-    font-size: 9px;
-  }
-  .engineering-value {
-    display: flex;
-    align-items: baseline;
-    flex-wrap: wrap;
-    gap: 10px 13px;
-    margin-bottom: 27px;
-  }
-  .engineering-value > span {
-    display: inline-block;
-    max-width: 155px;
-    font-size: 13px;
-    line-height: 1.5;
-    font-weight: 400;
-    letter-spacing: -0.015em;
-    color: #919ea8;
-  }
   .footer {
     display: grid;
     grid-template-columns: minmax(200px, 1.35fr) repeat(3, minmax(0, 1fr));
@@ -2739,21 +2275,6 @@
   }
 }
 @media screen and (max-width: 760px) {
-  .engineering {
-    padding-top: 0;
-    padding-bottom: 80px;
-  }
-  .engineering-index {
-    font-size: 8px;
-    margin-bottom: 23px;
-  }
-  .engineering-value {
-    gap: 7px 10px;
-  }
-  .engineering-value > span {
-    font-size: 12px;
-    max-width: 130px;
-  }
   .footer {
     grid-template-columns: 1fr 1fr;
     gap: 30px 23px;
@@ -2787,14 +2308,5 @@
   }
   .footer-bottom p:nth-child(2) {
     font-size: 9px;
-  }
-}
-@media screen and (max-width: 480px) {
-  .engineering-index {
-    font-size: 9px;
-  }
-  .engineering-value > span {
-    font-size: 13px;
-    max-width: 155px;
   }
 }
