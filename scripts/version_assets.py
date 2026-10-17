@@ -18,7 +18,7 @@ module.write_text(re.sub(
 ))
 assets = [
     'css/fonts.css', 'css/editorial.css', 'css/cinematic.css',
-    'css/experience.css', 'js/experience.js', 'js/portfolio.js',
+    'css/experience.css', 'css/studio.css', 'js/experience.js', 'js/portfolio.js',
 ]
 for name in ['index.html', 'resume.html']:
     page = ROOT / name
