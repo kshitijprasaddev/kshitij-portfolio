@@ -53,55 +53,134 @@
 
   let activeModal = null;
   let restoreFocus = null;
+  let closingHistory = false;
   const pageRegions = [...document.querySelectorAll('body > header, body > main, body > footer, body > .skip-link')];
   const focusable = 'a[href], button:not([disabled]), input, textarea, select, video[controls], [tabindex="0"]';
   const modals = [...document.querySelectorAll('.modal')];
+  const projectSlugs = {
+    'modal-nouri': 'nouri', 'modal-scope': 'scope', 'modal-thesis': 'uav-landing',
+    'modal-audi-data': 'audi-data', 'modal-av-orchestrator': 'mobility-orchestrator',
+    'modal-project1': 'schanzer-racing', 'modal-akkodis': 'service-robot',
+    'modal-pixhawk': 'pixhawk', 'modal-campus-help': 'campus-help',
+    'modal-vr-dekra': 'vr-reconstruction', 'modal-airbus-fyi': 'aero-xrl'
+  };
+  const routeModals = new Map(modals.map(modal => [`#project/${projectSlugs[modal.id]}`, modal]));
+  const historyKey = 'portfolioProject';
+  const pagePath = () => location.pathname + location.search;
+  function modalFromLocation() { return routeModals.get(location.hash) || null; }
+  function ownedEntry() {
+    const entry = history.state?.[historyKey];
+    return entry?.version === 1 && entry.path === pagePath() && entry.hash === location.hash ? entry : null;
+  }
+  function baseHistoryState() {
+    const state = history.state && typeof history.state === 'object' ? { ...history.state } : {};
+    delete state[historyKey];
+    return state;
+  }
+  function projectTrigger(modal) {
+    return [...document.querySelectorAll('[data-modal]')].find(trigger => trigger.dataset.modal === modal.id && !trigger.closest('.modal'));
+  }
   modals.forEach((modal, index) => {
     const heading = modal.querySelector('h2');
     if (heading) {
       heading.id ||= `project-dialog-title-${index}`;
       modal.setAttribute('aria-labelledby', heading.id);
     }
+    modal.setAttribute('aria-hidden', 'true');
     modal.querySelectorAll('.modal-close, .modal-backdrop').forEach(control => {
       control.addEventListener('click', closeModal);
     });
   });
   function openModal(modal, trigger) {
-    if (!modal) return;
-    if (!activeModal) restoreFocus = trigger;
+    if (!modal || modal === activeModal) return;
+    closeMenu();
+    const previousModal = activeModal;
+    if (!activeModal) restoreFocus = trigger || projectTrigger(modal);
     else {
       activeModal.classList.remove('show');
       activeModal.querySelectorAll('video').forEach(video => video.pause());
     }
     activeModal = modal;
     modal.classList.add('show');
+    modal.setAttribute('aria-hidden', 'false');
     document.body.classList.add('modal-open');
     pageRegions.forEach(region => { region.inert = true; });
     modal.querySelector('.modal-container').scrollTop = 0;
     modal.querySelector('.modal-close')?.focus({ preventScroll: true });
+    previousModal?.setAttribute('aria-hidden', 'true');
     document.dispatchEvent(new CustomEvent('portfolio:modal-change', { detail: { open: true } }));
   }
-  function closeModal() {
+  function dismissModal() {
     if (!activeModal) return;
+    const dismissed = activeModal;
     activeModal.querySelectorAll('video').forEach(video => video.pause());
     activeModal.classList.remove('show');
     activeModal = null;
     document.body.classList.remove('modal-open');
     pageRegions.forEach(region => { region.inert = false; });
-    restoreFocus?.focus({ preventScroll: true });
+    if (restoreFocus?.isConnected && restoreFocus.getClientRects().length) {
+      restoreFocus.focus({ preventScroll: true });
+    } else {
+      const fallback = document.getElementById('projects');
+      fallback?.setAttribute('tabindex', '-1');
+      fallback?.focus({ preventScroll: true });
+    }
+    dismissed.setAttribute('aria-hidden', 'true');
+    restoreFocus = null;
     document.dispatchEvent(new CustomEvent('portfolio:modal-change', { detail: { open: false } }));
   }
+  function syncModalFromLocation() {
+    closingHistory = false;
+    const modal = modalFromLocation();
+    if (modal) openModal(modal);
+    else dismissModal();
+  }
+  function closeModal() {
+    if (!activeModal || closingHistory) return;
+    if (ownedEntry()) {
+      // Only a project entry created here may move the browser back a step.
+      closingHistory = true;
+      history.back();
+    } else {
+      // A shared project URL has no known underlying page entry to return to.
+      history.replaceState(baseHistoryState(), '', `${pagePath()}#projects`);
+      dismissModal();
+      document.getElementById('projects')?.scrollIntoView({ block: 'start' });
+    }
+  }
+  function navigateProject(modal, trigger) {
+    if (!modal || modal === activeModal) return;
+    const hash = `#project/${projectSlugs[modal.id]}`;
+    const existing = ownedEntry();
+    const entry = {
+      version: 1, path: pagePath(), hash,
+      returnHash: existing?.returnHash ?? (modalFromLocation() ? '#projects' : location.hash)
+    };
+    const state = { ...baseHistoryState(), [historyKey]: entry };
+    if (activeModal && modalFromLocation()) {
+      // Related project links remain in the same dialog history entry.
+      history.replaceState(existing ? state : baseHistoryState(), '', `${pagePath()}${hash}`);
+    } else {
+      history.pushState(state, '', `${pagePath()}${hash}`);
+    }
+    closingHistory = false;
+    openModal(modal, trigger);
+  }
   document.querySelectorAll('[data-modal]').forEach(trigger => {
-    trigger.addEventListener('click', () => openModal(document.getElementById(trigger.dataset.modal), trigger));
+    trigger.addEventListener('click', () => navigateProject(document.getElementById(trigger.dataset.modal), trigger));
   });
+  addEventListener('popstate', syncModalFromLocation);
+  addEventListener('hashchange', syncModalFromLocation);
+  syncModalFromLocation();
   document.addEventListener('keydown', event => {
     if (!activeModal) return;
-    if (event.key === 'Escape') closeModal();
+    if (event.key === 'Escape') { event.preventDefault(); closeModal(); }
     if (event.key !== 'Tab') return;
     const controls = [...activeModal.querySelectorAll(focusable)].filter(element => element.getClientRects().length);
     const first = controls[0];
     const last = controls.at(-1);
-    if (event.shiftKey && document.activeElement === first) {
+    if (!first) { event.preventDefault(); activeModal.focus(); }
+    else if (event.shiftKey && document.activeElement === first) {
       event.preventDefault(); last.focus();
     } else if (!event.shiftKey && document.activeElement === last) {
       event.preventDefault(); first.focus();
